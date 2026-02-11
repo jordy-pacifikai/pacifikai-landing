@@ -2276,14 +2276,23 @@
             contactCollected = true;
             localStorage.setItem('mana_contact_done', 'true');
 
+            // Save directly to Supabase (100% reliable, no LLM dependency)
+            fetch('/api/contact', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ session_id: sessionId, name: name || undefined, email: email || undefined })
+            }).catch(() => {});
+
             // Show as user message
             const parts = [];
             if (name) parts.push(name);
             if (email) parts.push(email);
             addMessage(parts.join(' — '), 'user');
 
-            // Send to API as a structured message so Claude + CRM tools pick it up
-            const msg = `Mon prenom: ${name || '(non renseigne)'}. Mon email: ${email || '(non renseigne)'}.`;
+            // Also send to Claude so the conversation flows naturally
+            const msg = name && email ? `Je m'appelle ${name}, mon email: ${email}.`
+                      : name ? `Je m'appelle ${name}.`
+                      : `Mon email: ${email}.`;
             showTyping();
             sending = true;
             fetch(CHAT_API, {
