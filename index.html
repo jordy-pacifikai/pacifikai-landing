@@ -501,38 +501,7 @@
         }
 
         .services-grid.large {
-            grid-template-columns: repeat(2, 1fr);
-        }
-
-        .services-secondary {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 0.75rem;
-            margin-top: 2rem;
-        }
-
-        .service-mini {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            padding: 1rem;
-            text-align: center;
-            transition: all 0.3s;
-        }
-
-        .service-mini:hover {
-            border-color: var(--border-light);
-        }
-
-        .service-mini h4 {
-            font-size: 0.85rem;
-            font-weight: 500;
-            margin-bottom: 0.25rem;
-        }
-
-        .service-mini p {
-            font-size: 0.7rem;
-            color: var(--text-dim);
+            grid-template-columns: repeat(3, 1fr);
         }
 
         .service-card {
@@ -680,7 +649,6 @@
             .process-grid,
             .services-grid,
             .services-grid.large { grid-template-columns: 1fr; }
-            .services-secondary { grid-template-columns: repeat(2, 1fr); }
             .process-grid .card:nth-child(5) { grid-column: span 1; }
             .cta-section { padding: 3rem 1.5rem; }
             .cta-box { padding: 2.5rem 1.5rem; }
@@ -706,6 +674,208 @@
             0%, 100% { transform: translateY(0); }
             50% { transform: translateY(-10px); }
         }
+
+        /* Infrastructure Section */
+        .infrastructure-hero {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 3rem;
+        }
+
+        .infra-visual {
+            position: relative;
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .infra-lines {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+
+        .infra-node {
+            position: absolute;
+            width: 48px;
+            height: 48px;
+            background: var(--bg);
+            border: 1px solid var(--border-light);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+
+        .infra-node:hover {
+            border-color: var(--accent);
+            transform: scale(1.1);
+        }
+
+        .infra-node svg {
+            width: 24px;
+            height: 24px;
+            stroke: var(--text-secondary);
+        }
+
+        .infra-node-1 { top: 10%; left: 10%; }
+        .infra-node-2 { top: 10%; right: 10%; }
+        .infra-node-3 { bottom: 10%; left: 10%; }
+        .infra-node-4 { bottom: 10%; right: 10%; }
+
+        .infra-center {
+            width: 64px;
+            height: 64px;
+            background: linear-gradient(135deg, var(--accent), #1d4ed8);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1rem;
+            color: white;
+            box-shadow: 0 0 30px var(--accent-glow);
+            z-index: 1;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 0 30px var(--accent-glow); }
+            50% { box-shadow: 0 0 50px var(--accent-glow); }
+        }
+
+        .infra-content h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .infra-content p {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+
+        .infra-content strong {
+            color: var(--accent);
+        }
+
+        .infra-list {
+            list-style: none;
+        }
+
+        .infra-list li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .infra-list li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 6px;
+            height: 6px;
+            background: var(--accent);
+            border-radius: 50%;
+        }
+
+        /* Automatisations Grid */
+        .auto-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+
+        .auto-category {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: all 0.3s;
+        }
+
+        .auto-category:hover {
+            border-color: var(--accent);
+        }
+
+        .auto-category-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .auto-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--accent-soft);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .auto-icon svg {
+            width: 20px;
+            height: 20px;
+            stroke: var(--accent);
+        }
+
+        .auto-category h3 {
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        .auto-list {
+            list-style: none;
+        }
+
+        .auto-list li {
+            padding: 0.4rem 0;
+            padding-left: 1rem;
+            position: relative;
+            color: var(--text-secondary);
+            font-size: 0.8rem;
+            line-height: 1.5;
+        }
+
+        .auto-list li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0.75rem;
+            width: 4px;
+            height: 4px;
+            background: var(--text-dim);
+            border-radius: 50%;
+        }
+
+        @media (max-width: 1024px) {
+            .infrastructure-hero {
+                grid-template-columns: 1fr;
+                padding: 2rem;
+            }
+            .infra-visual {
+                height: 150px;
+            }
+            .auto-grid {
+                grid-template-columns: 1fr;
+            }
+        }
     </style>
 </head>
 <body>
@@ -724,7 +894,9 @@
         </a>
         <ul class="nav-links">
             <li><a href="#process">Processus</a></li>
+            <li><a href="#infrastructure">Infrastructure</a></li>
             <li><a href="#services">Services</a></li>
+            <li><a href="#automatisations">Automatisations</a></li>
             <li><a href="blog/index.html">Blog</a></li>
             <li><a href="#contact">Contact</a></li>
         </ul>
@@ -753,7 +925,7 @@
 
     <section class="statement">
         <p>
-            Agence d'<span class="highlight">automatisation IA</span> basée à Tahiti. Nous transformons les entreprises en <span class="accent">leaders digitaux</span> de leur secteur.
+            Agence d'<span class="highlight">automatisation IA</span> basée à Tahiti. Nous créons des <span class="accent">infrastructures complètes</span> qui transforment les entreprises en leaders digitaux.
         </p>
     </section>
 
@@ -850,6 +1022,51 @@
         </div>
     </section>
 
+    <!-- Infrastructure Section -->
+    <section class="section" id="infrastructure">
+        <div class="section-header">
+            <h2 class="section-title">Infrastructures IA complètes</h2>
+            <span class="section-dot"></span>
+        </div>
+
+        <div class="infrastructure-hero">
+            <div class="infra-visual">
+                <div class="infra-node infra-node-1">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+                </div>
+                <div class="infra-node infra-node-2">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M8 12l2 2 4-4"/></svg>
+                </div>
+                <div class="infra-node infra-node-3">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                </div>
+                <div class="infra-node infra-node-4">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+                </div>
+                <div class="infra-center">
+                    <span>IA</span>
+                </div>
+                <svg class="infra-lines" viewBox="0 0 300 200">
+                    <line x1="60" y1="50" x2="150" y2="100" stroke="var(--accent)" stroke-width="1" opacity="0.3"/>
+                    <line x1="240" y1="50" x2="150" y2="100" stroke="var(--accent)" stroke-width="1" opacity="0.3"/>
+                    <line x1="60" y1="150" x2="150" y2="100" stroke="var(--accent)" stroke-width="1" opacity="0.3"/>
+                    <line x1="240" y1="150" x2="150" y2="100" stroke="var(--accent)" stroke-width="1" opacity="0.3"/>
+                </svg>
+            </div>
+            <div class="infra-content">
+                <h3>Pas juste un chatbot. Une infrastructure.</h3>
+                <p>Nous ne livrons pas des outils isolés. Nous créons des <strong>écosystèmes complets</strong> où tous vos processus communiquent entre eux grâce à l'IA.</p>
+                <ul class="infra-list">
+                    <li>10 à 20+ workflows interconnectés</li>
+                    <li>Dashboard de pilotage centralisé</li>
+                    <li>Agents IA spécialisés par département</li>
+                    <li>Intégrations avec vos outils existants</li>
+                    <li>Documentation et formation incluses</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
     <section class="section" id="services">
         <div class="section-header">
             <h2 class="section-title">Nos services</h2>
@@ -857,6 +1074,7 @@
         </div>
 
         <div class="services-grid large">
+            <!-- 1. Automatisation de workflows -->
             <div class="service-card">
                 <div class="service-visual">
                     <div class="service-row">
@@ -880,9 +1098,10 @@
                     </div>
                 </div>
                 <h3>Automatisation de workflows</h3>
-                <p>Connexion de vos applications. Réservations, commandes, facturation, relances - tout peut être automatisé.</p>
+                <p>Connexion de vos applications. Réservations, commandes, facturation, relances — tout automatisé par l'IA.</p>
             </div>
 
+            <!-- 2. Chatbots & Agents IA -->
             <div class="service-card">
                 <div class="service-visual">
                     <div class="service-row" style="background: var(--accent-soft);">
@@ -899,6 +1118,65 @@
                 <p>Assistants virtuels qui répondent à vos clients 24/7 sur WhatsApp, Messenger ou votre site web.</p>
             </div>
 
+            <!-- 3. Applications web & mobile -->
+            <div class="service-card">
+                <div class="service-visual">
+                    <div class="service-row">
+                        <div class="service-row-icon" style="background: var(--accent);">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>
+                        </div>
+                        <span class="service-row-text">Dashboard</span>
+                        <span style="margin-left: auto; color: var(--accent); font-size: 0.65rem;">Live</span>
+                    </div>
+                    <div class="service-row">
+                        <div class="service-row-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12" y2="18"/></svg>
+                        </div>
+                        <span class="service-row-text">App mobile</span>
+                    </div>
+                    <div class="service-row">
+                        <div class="service-row-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/></svg>
+                        </div>
+                        <span class="service-row-text">IA intégrée</span>
+                    </div>
+                </div>
+                <h3>Applications web & mobile</h3>
+                <p>Dashboards, portails clients, apps métier — conçus sur-mesure et alimentés par l'IA.</p>
+            </div>
+
+            <!-- 4. Marketing automatisé -->
+            <div class="service-card">
+                <div class="service-visual" style="justify-content: center; align-items: center;">
+                    <svg width="100" height="60" viewBox="0 0 100 60">
+                        <path d="M0 50 Q25 20, 50 35 T100 15" fill="none" stroke="var(--accent)" stroke-width="2" opacity="0.6"/>
+                        <path d="M0 55 Q25 35, 50 45 T100 25" fill="none" stroke="var(--accent)" stroke-width="1" opacity="0.3"/>
+                        <circle cx="50" cy="35" r="3" fill="var(--accent)"/>
+                        <text x="75" y="12" fill="var(--accent)" font-size="8">Automatique</text>
+                    </svg>
+                </div>
+                <h3>Marketing automatisé</h3>
+                <p>Newsletters, posts réseaux sociaux, emails de relance — générés et publiés automatiquement par l'IA.</p>
+            </div>
+
+            <!-- 5. Landing pages & sites web -->
+            <div class="service-card">
+                <div class="service-visual">
+                    <div class="service-row" style="background: var(--accent-soft);">
+                        <div class="service-row-icon" style="background: var(--accent);">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                        </div>
+                        <span class="service-row-text" style="color: var(--text);">Site vitrine</span>
+                    </div>
+                    <div style="padding: 0.75rem; background: var(--bg); border-radius: 6px; font-size: 0.7rem; color: var(--text-secondary);">
+                        Design moderne + contenu IA
+                    </div>
+                </div>
+                <h3>Landing pages & sites web</h3>
+                <p>Sites vitrines, pages de vente, blogs — design moderne et contenu généré par l'IA.</p>
+            </div>
+
+            <!-- 6. Extraction de documents -->
             <div class="service-card">
                 <div class="service-visual">
                     <div class="service-row">
@@ -918,36 +1196,157 @@
                 <p>L'IA lit vos factures, bons de commande, relevés bancaires et extrait les données automatiquement.</p>
             </div>
 
+            <!-- 7. Intégrations API -->
             <div class="service-card">
                 <div class="service-visual" style="justify-content: center; align-items: center;">
-                    <svg width="100" height="60" viewBox="0 0 100 60">
-                        <path d="M0 50 Q25 20, 50 35 T100 15" fill="none" stroke="var(--accent)" stroke-width="2" opacity="0.6"/>
-                        <path d="M0 55 Q25 35, 50 45 T100 25" fill="none" stroke="var(--accent)" stroke-width="1" opacity="0.3"/>
-                        <circle cx="50" cy="35" r="3" fill="var(--accent)"/>
-                        <text x="75" y="12" fill="var(--accent)" font-size="8">Automatique</text>
+                    <svg width="120" height="60" viewBox="0 0 120 60">
+                        <circle cx="20" cy="30" r="10" fill="none" stroke="var(--accent)" stroke-width="1.5" opacity="0.6"/>
+                        <circle cx="60" cy="30" r="10" fill="none" stroke="var(--accent)" stroke-width="1.5" opacity="0.8"/>
+                        <circle cx="100" cy="30" r="10" fill="none" stroke="var(--accent)" stroke-width="1.5" opacity="0.6"/>
+                        <line x1="30" y1="30" x2="50" y2="30" stroke="var(--accent)" stroke-width="1" opacity="0.4"/>
+                        <line x1="70" y1="30" x2="90" y2="30" stroke="var(--accent)" stroke-width="1" opacity="0.4"/>
+                        <text x="14" y="33" fill="var(--text-secondary)" font-size="7">CRM</text>
+                        <text x="55" y="33" fill="var(--accent)" font-size="7">API</text>
+                        <text x="92" y="33" fill="var(--text-secondary)" font-size="7">ERP</text>
                     </svg>
                 </div>
-                <h3>Marketing automatisé</h3>
-                <p>Newsletters, posts réseaux sociaux, emails de relance - générés et publiés automatiquement par l'IA.</p>
+                <h3>Intégrations API</h3>
+                <p>Connexion de tous vos outils : CRM, facturation, calendrier, messaging — un écosystème unifié.</p>
+            </div>
+
+            <!-- 8. Conseil & Formation IA -->
+            <div class="service-card">
+                <div class="service-visual">
+                    <div class="service-row" style="background: var(--accent-soft);">
+                        <div class="service-row-icon" style="background: var(--accent);">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg>
+                        </div>
+                        <span class="service-row-text" style="color: var(--text);">Stratégie IA</span>
+                    </div>
+                    <div style="padding: 0.75rem; background: var(--bg); border-radius: 6px; font-size: 0.7rem; color: var(--text-secondary);">
+                        Audit + formation équipes
+                    </div>
+                </div>
+                <h3>Conseil & Formation IA</h3>
+                <p>Audit de vos process, stratégie IA personnalisée et formation de vos équipes pour l'autonomie.</p>
             </div>
         </div>
+    </section>
 
-        <div class="services-secondary">
-            <div class="service-mini">
-                <h4>Sites web</h4>
-                <p>Landing pages & apps</p>
+    <!-- Automatisations complètes -->
+    <section class="section" id="automatisations">
+        <div class="section-header">
+            <h2 class="section-title">Ce qu'on peut automatiser</h2>
+            <span class="section-dot"></span>
+        </div>
+
+        <div class="auto-grid">
+            <!-- Service Client -->
+            <div class="auto-category">
+                <div class="auto-category-header">
+                    <div class="auto-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+                    </div>
+                    <h3>Service Client</h3>
+                </div>
+                <ul class="auto-list">
+                    <li>Chatbot WhatsApp/Messenger 24/7</li>
+                    <li>Réponses automatiques aux emails</li>
+                    <li>FAQ intelligente avec IA</li>
+                    <li>Routage des demandes par département</li>
+                    <li>Réponses aux avis Google/TripAdvisor</li>
+                    <li>Support multilingue automatique</li>
+                </ul>
             </div>
-            <div class="service-mini">
-                <h4>Intégrations API</h4>
-                <p>Connexion de vos outils</p>
+
+            <!-- Ventes & CRM -->
+            <div class="auto-category">
+                <div class="auto-category-header">
+                    <div class="auto-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+                    </div>
+                    <h3>Ventes & CRM</h3>
+                </div>
+                <ul class="auto-list">
+                    <li>Qualification automatique des leads</li>
+                    <li>Séquences email personnalisées</li>
+                    <li>Relances automatiques prospects</li>
+                    <li>Scoring et priorisation clients</li>
+                    <li>Devis automatiques</li>
+                    <li>Upsell/Cross-sell intelligent</li>
+                </ul>
             </div>
-            <div class="service-mini">
-                <h4>Conseil IA</h4>
-                <p>Audit & stratégie</p>
+
+            <!-- Marketing -->
+            <div class="auto-category">
+                <div class="auto-category-header">
+                    <div class="auto-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                    </div>
+                    <h3>Marketing</h3>
+                </div>
+                <ul class="auto-list">
+                    <li>Newsletters générées par IA</li>
+                    <li>Posts réseaux sociaux automatiques</li>
+                    <li>Articles SEO optimisés</li>
+                    <li>Calendrier éditorial intelligent</li>
+                    <li>A/B testing automatique</li>
+                    <li>Veille concurrentielle</li>
+                </ul>
             </div>
-            <div class="service-mini">
-                <h4>Formation</h4>
-                <p>Autonomie équipes</p>
+
+            <!-- Opérations -->
+            <div class="auto-category">
+                <div class="auto-category-header">
+                    <div class="auto-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-2 2 2 2 0 01-2-2v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83 0 2 2 0 010-2.83l.06-.06a1.65 1.65 0 00.33-1.82 1.65 1.65 0 00-1.51-1H3a2 2 0 01-2-2 2 2 0 012-2h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 010-2.83 2 2 0 012.83 0l.06.06a1.65 1.65 0 001.82.33H9a1.65 1.65 0 001-1.51V3a2 2 0 012-2 2 2 0 012 2v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 0 2 2 0 010 2.83l-.06.06a1.65 1.65 0 00-.33 1.82V9a1.65 1.65 0 001.51 1H21a2 2 0 012 2 2 2 0 01-2 2h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
+                    </div>
+                    <h3>Opérations</h3>
+                </div>
+                <ul class="auto-list">
+                    <li>Réservations en ligne automatisées</li>
+                    <li>Gestion des commandes</li>
+                    <li>Notifications et alertes</li>
+                    <li>Rappels rendez-vous automatiques</li>
+                    <li>Planification équipes</li>
+                    <li>Suivi livraisons</li>
+                </ul>
+            </div>
+
+            <!-- Finance & Admin -->
+            <div class="auto-category">
+                <div class="auto-category-header">
+                    <div class="auto-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+                    </div>
+                    <h3>Finance & Admin</h3>
+                </div>
+                <ul class="auto-list">
+                    <li>Extraction de factures (OCR)</li>
+                    <li>Rapprochement bancaire</li>
+                    <li>Génération de rapports</li>
+                    <li>Facturation automatique</li>
+                    <li>Relances impayés</li>
+                    <li>Export comptable</li>
+                </ul>
+            </div>
+
+            <!-- RH & Recrutement -->
+            <div class="auto-category">
+                <div class="auto-category-header">
+                    <div class="auto-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="8.5" cy="7" r="4"/><line x1="20" y1="8" x2="20" y2="14"/><line x1="23" y1="11" x2="17" y2="11"/></svg>
+                    </div>
+                    <h3>RH & Recrutement</h3>
+                </div>
+                <ul class="auto-list">
+                    <li>Tri automatique des CV</li>
+                    <li>Réponses candidats automatiques</li>
+                    <li>Onboarding automatisé</li>
+                    <li>Gestion des congés</li>
+                    <li>Évaluations périodiques</li>
+                    <li>Formation IA des équipes</li>
+                </ul>
             </div>
         </div>
     </section>
@@ -1106,12 +1505,197 @@
             });
         }, { threshold: 0.1 });
 
-        document.querySelectorAll('.card, .service-card, .service-mini').forEach((el, i) => {
+        document.querySelectorAll('.card, .service-card, .auto-category').forEach((el, i) => {
             el.style.opacity = '0';
             el.style.transform = 'translateY(20px)';
             el.style.transition = `opacity 0.5s ease ${i * 0.05}s, transform 0.5s ease ${i * 0.05}s`;
             observer.observe(el);
         });
+    </script>
+
+    <!-- MANA Chat Widget -->
+    <style>
+        .mana-widget { position: fixed; bottom: 24px; right: 24px; z-index: 9999; font-family: var(--font); }
+        .mana-bubble { width: 60px; height: 60px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), #2563eb); display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 4px 20px rgba(59,130,246,0.4); transition: transform 0.2s, box-shadow 0.2s; }
+        .mana-bubble:hover { transform: scale(1.08); box-shadow: 0 6px 28px rgba(59,130,246,0.5); }
+        .mana-bubble svg { width: 28px; height: 28px; fill: #fff; }
+        .mana-bubble .mana-close { display: none; }
+        .mana-bubble.open .mana-chat-icon { display: none; }
+        .mana-bubble.open .mana-close { display: block; }
+        .mana-badge { position: absolute; top: -2px; right: -2px; width: 14px; height: 14px; background: #22c55e; border-radius: 50%; border: 2px solid var(--bg); }
+        .mana-panel { position: absolute; bottom: 72px; right: 0; width: 380px; max-height: 520px; background: var(--bg-card); border: 1px solid var(--border-light); border-radius: 16px; display: flex; flex-direction: column; overflow: hidden; opacity: 0; transform: translateY(16px) scale(0.95); pointer-events: none; transition: opacity 0.25s, transform 0.25s; box-shadow: 0 8px 40px rgba(0,0,0,0.5); }
+        .mana-panel.open { opacity: 1; transform: translateY(0) scale(1); pointer-events: all; }
+        .mana-header { padding: 16px 20px; background: linear-gradient(135deg, rgba(59,130,246,0.15), rgba(37,99,235,0.08)); border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 12px; }
+        .mana-avatar { width: 36px; height: 36px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), #2563eb); display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
+        .mana-header-text h4 { font-size: 14px; font-weight: 600; color: var(--text); margin: 0; }
+        .mana-header-text span { font-size: 12px; color: var(--text-secondary); }
+        .mana-status { width: 8px; height: 8px; background: #22c55e; border-radius: 50%; display: inline-block; margin-right: 4px; }
+        .mana-messages { flex: 1; overflow-y: auto; padding: 16px; display: flex; flex-direction: column; gap: 10px; min-height: 280px; max-height: 340px; scrollbar-width: thin; scrollbar-color: var(--border-light) transparent; }
+        .mana-msg { max-width: 85%; padding: 10px 14px; border-radius: 14px; font-size: 13.5px; line-height: 1.5; word-wrap: break-word; animation: manaFadeIn 0.2s ease; }
+        .mana-msg.bot { background: var(--bg-card-hover); color: var(--text); border-bottom-left-radius: 4px; align-self: flex-start; border: 1px solid var(--border); }
+        .mana-msg.user { background: var(--accent); color: #fff; border-bottom-right-radius: 4px; align-self: flex-end; }
+        .mana-typing { display: flex; gap: 4px; padding: 10px 14px; align-self: flex-start; }
+        .mana-typing span { width: 7px; height: 7px; background: var(--text-dim); border-radius: 50%; animation: manaBounce 1.2s infinite; }
+        .mana-typing span:nth-child(2) { animation-delay: 0.15s; }
+        .mana-typing span:nth-child(3) { animation-delay: 0.3s; }
+        .mana-input-area { padding: 12px 16px; border-top: 1px solid var(--border); display: flex; gap: 8px; background: var(--bg); }
+        .mana-input { flex: 1; padding: 10px 14px; background: var(--bg-card); border: 1px solid var(--border); border-radius: 10px; color: var(--text); font-size: 13.5px; font-family: var(--font); outline: none; resize: none; max-height: 80px; }
+        .mana-input::placeholder { color: var(--text-dim); }
+        .mana-input:focus { border-color: var(--accent); }
+        .mana-send { width: 38px; height: 38px; border-radius: 10px; background: var(--accent); border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.2s, opacity 0.2s; flex-shrink: 0; }
+        .mana-send:hover { background: #2563eb; }
+        .mana-send:disabled { opacity: 0.4; cursor: not-allowed; }
+        .mana-send svg { width: 18px; height: 18px; fill: #fff; }
+        @keyframes manaFadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes manaBounce { 0%, 60%, 100% { transform: translateY(0); } 30% { transform: translateY(-6px); } }
+        @media (max-width: 480px) {
+            .mana-panel { width: calc(100vw - 32px); right: -8px; bottom: 68px; max-height: 70vh; }
+            .mana-bubble { width: 52px; height: 52px; }
+        }
+    </style>
+
+    <div class="mana-widget">
+        <div class="mana-panel" id="mana-panel">
+            <div class="mana-header">
+                <div class="mana-avatar">M</div>
+                <div class="mana-header-text">
+                    <h4>MANA</h4>
+                    <span><span class="mana-status"></span>Assistante IA PACIFIK'AI</span>
+                </div>
+            </div>
+            <div class="mana-messages" id="mana-messages"></div>
+            <div class="mana-input-area">
+                <textarea class="mana-input" id="mana-input" placeholder="Ecris ton message..." rows="1" onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();sendManaMessage()}"></textarea>
+                <button class="mana-send" id="mana-send" onclick="sendManaMessage()">
+                    <svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+                </button>
+            </div>
+        </div>
+        <div class="mana-bubble" id="mana-bubble" onclick="toggleManaChat()">
+            <span class="mana-badge" id="mana-badge" style="display:none"></span>
+            <svg class="mana-chat-icon" viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H6l-2 2V4h16v12z"/></svg>
+            <svg class="mana-close" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" fill="#fff"/></svg>
+        </div>
+    </div>
+
+    <script>
+    (function() {
+        const CHAT_API = '/api/chat';
+        let sessionId = localStorage.getItem('mana_session_id');
+        if (!sessionId) {
+            sessionId = 'lp_' + crypto.randomUUID();
+            localStorage.setItem('mana_session_id', sessionId);
+        }
+        let chatOpen = false;
+        let firstOpen = true;
+        let sending = false;
+
+        function toggleManaChat() {
+            chatOpen = !chatOpen;
+            document.getElementById('mana-panel').classList.toggle('open', chatOpen);
+            document.getElementById('mana-bubble').classList.toggle('open', chatOpen);
+            document.getElementById('mana-badge').style.display = 'none';
+            if (chatOpen && firstOpen) {
+                firstOpen = false;
+                renderSavedMessages();
+                const saved = JSON.parse(localStorage.getItem('mana_messages') || '[]');
+                if (saved.length === 0) {
+                    addMessage("Ia ora na! Je suis MANA, l'assistante IA de PACIFIK'AI. Comment je peux t'aider aujourd'hui?", 'bot');
+                }
+                setTimeout(() => document.getElementById('mana-input').focus(), 300);
+            }
+        }
+        window.toggleManaChat = toggleManaChat;
+
+        function addMessage(text, role, save = true) {
+            const container = document.getElementById('mana-messages');
+            const div = document.createElement('div');
+            div.className = 'mana-msg ' + role;
+            div.textContent = text;
+            container.appendChild(div);
+            container.scrollTop = container.scrollHeight;
+            if (save) {
+                const msgs = JSON.parse(localStorage.getItem('mana_messages') || '[]');
+                msgs.push({ text, role });
+                localStorage.setItem('mana_messages', JSON.stringify(msgs));
+            }
+        }
+
+        function renderSavedMessages() {
+            const msgs = JSON.parse(localStorage.getItem('mana_messages') || '[]');
+            msgs.forEach(m => addMessage(m.text, m.role, false));
+        }
+
+        function showTyping() {
+            const container = document.getElementById('mana-messages');
+            const div = document.createElement('div');
+            div.className = 'mana-typing';
+            div.id = 'mana-typing';
+            div.innerHTML = '<span></span><span></span><span></span>';
+            container.appendChild(div);
+            container.scrollTop = container.scrollHeight;
+        }
+
+        function hideTyping() {
+            const el = document.getElementById('mana-typing');
+            if (el) el.remove();
+        }
+
+        async function sendManaMessage() {
+            if (sending) return;
+            const input = document.getElementById('mana-input');
+            const text = input.value.trim();
+            if (!text) return;
+
+            sending = true;
+            input.value = '';
+            input.style.height = 'auto';
+            document.getElementById('mana-send').disabled = true;
+
+            addMessage(text, 'user');
+            showTyping();
+
+            try {
+                const resp = await fetch(CHAT_API, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        message: text,
+                        session_id: sessionId,
+                        page_url: window.location.href
+                    })
+                });
+                const data = await resp.json();
+                hideTyping();
+                if (data.success && data.response) {
+                    addMessage(data.response, 'bot');
+                } else {
+                    addMessage(data.response || "Desole, petit souci. Ecris a jordy@pacifikai.com!", 'bot');
+                }
+            } catch (err) {
+                hideTyping();
+                addMessage("Connexion perdue. Reessaie dans un instant!", 'bot');
+            }
+
+            sending = false;
+            document.getElementById('mana-send').disabled = false;
+            input.focus();
+        }
+        window.sendManaMessage = sendManaMessage;
+
+        // Auto-resize textarea
+        document.getElementById('mana-input').addEventListener('input', function() {
+            this.style.height = 'auto';
+            this.style.height = Math.min(this.scrollHeight, 80) + 'px';
+        });
+
+        // Auto-open after 30s if not interacted
+        setTimeout(() => {
+            if (!chatOpen && !localStorage.getItem('mana_messages')) {
+                document.getElementById('mana-badge').style.display = 'block';
+            }
+        }, 30000);
+    })();
     </script>
 </body>
 </html>
