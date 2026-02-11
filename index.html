@@ -2338,9 +2338,9 @@
                 const saved = JSON.parse(localStorage.getItem('mana_messages') || '[]');
                 if (saved.length === 0) {
                     addMessage("Ia ora na! Je suis MANA, l'assistant IA de PACIFIK'AI. Tu cherches a automatiser, creer une app, un site web, ou autre chose ? Dis-moi tout!", 'bot');
-                    if (!contactCollected) {
-                        setTimeout(() => showContactForm(), 600);
-                    }
+                }
+                if (!contactCollected) {
+                    setTimeout(() => showContactForm(), 600);
                 }
                 setTimeout(() => {
                     if (!document.getElementById('mana-contact-form')) {
