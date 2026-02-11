@@ -2192,6 +2192,16 @@
         .mana-send:hover { background: #2563eb; }
         .mana-send:disabled { opacity: 0.4; cursor: not-allowed; }
         .mana-send svg { width: 18px; height: 18px; fill: #fff; }
+        .mana-form { align-self: flex-start; max-width: 90%; background: var(--bg-card-hover); border: 1px solid var(--border); border-radius: 14px; padding: 14px; animation: manaFadeIn 0.3s ease; }
+        .mana-form p { font-size: 13px; color: var(--text-secondary); margin: 0 0 10px; line-height: 1.4; }
+        .mana-form input { width: 100%; padding: 9px 12px; background: var(--bg); border: 1px solid var(--border); border-radius: 8px; color: var(--text); font-size: 13px; font-family: var(--font); outline: none; margin-bottom: 8px; box-sizing: border-box; }
+        .mana-form input::placeholder { color: var(--text-dim); }
+        .mana-form input:focus { border-color: var(--accent); }
+        .mana-form button { width: 100%; padding: 9px; background: var(--accent); color: #fff; border: none; border-radius: 8px; font-size: 13px; font-weight: 600; font-family: var(--font); cursor: pointer; transition: background 0.2s; }
+        .mana-form button:hover { background: #2563eb; }
+        .mana-form button:disabled { opacity: 0.5; cursor: not-allowed; }
+        .mana-form .mana-skip { display: block; text-align: center; margin-top: 6px; font-size: 11.5px; color: var(--text-dim); cursor: pointer; border: none; background: none; font-family: var(--font); width: 100%; padding: 4px; }
+        .mana-form .mana-skip:hover { color: var(--text-secondary); }
         @keyframes manaFadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
         @keyframes manaBounce { 0%, 60%, 100% { transform: translateY(0); } 30% { transform: translateY(-6px); } }
         @media (max-width: 480px) {
@@ -2235,6 +2245,78 @@
         let chatOpen = false;
         let firstOpen = true;
         let sending = false;
+        let contactCollected = localStorage.getItem('mana_contact_done') === 'true';
+
+        function showContactForm() {
+            const container = document.getElementById('mana-messages');
+            const form = document.createElement('div');
+            form.className = 'mana-form';
+            form.id = 'mana-contact-form';
+            form.innerHTML = `
+                <p>Pour mieux t'aider, dis-moi comment te joindre :</p>
+                <input type="text" id="mana-fname" placeholder="Ton prenom" autocomplete="given-name">
+                <input type="email" id="mana-femail" placeholder="Ton email" autocomplete="email">
+                <button onclick="submitContactForm()">C'est parti !</button>
+                <button class="mana-skip" onclick="skipContactForm()">Passer cette etape</button>
+            `;
+            container.appendChild(form);
+            container.scrollTop = container.scrollHeight;
+            setTimeout(() => document.getElementById('mana-fname')?.focus(), 200);
+        }
+
+        function submitContactForm() {
+            const nameEl = document.getElementById('mana-fname');
+            const emailEl = document.getElementById('mana-femail');
+            const name = nameEl?.value.trim() || '';
+            const email = emailEl?.value.trim() || '';
+            if (!name && !email) { nameEl?.focus(); return; }
+
+            // Remove form
+            document.getElementById('mana-contact-form')?.remove();
+            contactCollected = true;
+            localStorage.setItem('mana_contact_done', 'true');
+
+            // Show as user message
+            const parts = [];
+            if (name) parts.push(name);
+            if (email) parts.push(email);
+            addMessage(parts.join(' — '), 'user');
+
+            // Send to API as a structured message so Claude + CRM tools pick it up
+            const msg = `Mon prenom: ${name || '(non renseigne)'}. Mon email: ${email || '(non renseigne)'}.`;
+            showTyping();
+            sending = true;
+            fetch(CHAT_API, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ message: msg, session_id: sessionId, page_url: window.location.href })
+            })
+            .then(r => r.json())
+            .then(data => {
+                hideTyping();
+                if (data.success && data.response) addMessage(data.response, 'bot');
+                else addMessage("Mauruuru ! Comment je peux t'aider ?", 'bot');
+            })
+            .catch(() => {
+                hideTyping();
+                addMessage("Mauruuru ! Comment je peux t'aider ?", 'bot');
+            })
+            .finally(() => {
+                sending = false;
+                document.getElementById('mana-send').disabled = false;
+                document.getElementById('mana-input')?.focus();
+            });
+        }
+        window.submitContactForm = submitContactForm;
+
+        function skipContactForm() {
+            document.getElementById('mana-contact-form')?.remove();
+            contactCollected = true;
+            localStorage.setItem('mana_contact_done', 'true');
+            addMessage("Pas de souci ! Comment je peux t'aider ?", 'bot');
+            document.getElementById('mana-input')?.focus();
+        }
+        window.skipContactForm = skipContactForm;
 
         function toggleManaChat() {
             chatOpen = !chatOpen;
@@ -2247,8 +2329,15 @@
                 const saved = JSON.parse(localStorage.getItem('mana_messages') || '[]');
                 if (saved.length === 0) {
                     addMessage("Ia ora na! Je suis MANA, l'assistant IA de PACIFIK'AI. Tu cherches a automatiser, creer une app, un site web, ou autre chose ? Dis-moi tout!", 'bot');
+                    if (!contactCollected) {
+                        setTimeout(() => showContactForm(), 600);
+                    }
                 }
-                setTimeout(() => document.getElementById('mana-input').focus(), 300);
+                setTimeout(() => {
+                    if (!document.getElementById('mana-contact-form')) {
+                        document.getElementById('mana-input')?.focus();
+                    }
+                }, 300);
             }
         }
         window.toggleManaChat = toggleManaChat;
