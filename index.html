@@ -2247,20 +2247,41 @@
         let sending = false;
         let contactCollected = localStorage.getItem('mana_contact_done') === 'true';
 
+        // If contact not collected, reset conversation for clean start
+        if (!contactCollected) {
+            localStorage.removeItem('mana_messages');
+            sessionId = 'lp_' + crypto.randomUUID();
+            localStorage.setItem('mana_session_id', sessionId);
+        }
+
+        function lockInput() {
+            const input = document.getElementById('mana-input');
+            const btn = document.getElementById('mana-send');
+            if (input) { input.disabled = true; input.placeholder = 'Remplis le formulaire ci-dessus...'; }
+            if (btn) btn.disabled = true;
+        }
+
+        function unlockInput() {
+            const input = document.getElementById('mana-input');
+            const btn = document.getElementById('mana-send');
+            if (input) { input.disabled = false; input.placeholder = 'Ecris ton message...'; }
+            if (btn) btn.disabled = false;
+        }
+
         function showContactForm() {
             const container = document.getElementById('mana-messages');
             const form = document.createElement('div');
             form.className = 'mana-form';
             form.id = 'mana-contact-form';
             form.innerHTML = `
-                <p>Pour mieux t'aider, dis-moi comment te joindre :</p>
-                <input type="text" id="mana-fname" placeholder="Ton prenom" autocomplete="given-name">
-                <input type="email" id="mana-femail" placeholder="Ton email" autocomplete="email">
+                <p>Avant de commencer, dis-moi comment te joindre :</p>
+                <input type="text" id="mana-fname" placeholder="Ton prenom" autocomplete="given-name" required>
+                <input type="email" id="mana-femail" placeholder="Ton email" autocomplete="email" required>
                 <button onclick="submitContactForm()">C'est parti !</button>
-                <button class="mana-skip" onclick="skipContactForm()">Passer cette etape</button>
             `;
             container.appendChild(form);
             container.scrollTop = container.scrollHeight;
+            lockInput();
             setTimeout(() => document.getElementById('mana-fname')?.focus(), 200);
         }
 
@@ -2269,30 +2290,27 @@
             const emailEl = document.getElementById('mana-femail');
             const name = nameEl?.value.trim() || '';
             const email = emailEl?.value.trim() || '';
-            if (!name && !email) { nameEl?.focus(); return; }
+            if (!name) { nameEl?.focus(); return; }
+            if (!email) { emailEl?.focus(); return; }
 
-            // Remove form
+            // Remove form & unlock input
             document.getElementById('mana-contact-form')?.remove();
             contactCollected = true;
             localStorage.setItem('mana_contact_done', 'true');
+            unlockInput();
 
             // Save directly to Supabase (100% reliable, no LLM dependency)
             fetch('/api/contact', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ session_id: sessionId, name: name || undefined, email: email || undefined })
+                body: JSON.stringify({ session_id: sessionId, name, email })
             }).catch(() => {});
 
             // Show as user message
-            const parts = [];
-            if (name) parts.push(name);
-            if (email) parts.push(email);
-            addMessage(parts.join(' — '), 'user');
+            addMessage(`${name} — ${email}`, 'user');
 
-            // Also send to Claude so the conversation flows naturally
-            const msg = name && email ? `Je m'appelle ${name}, mon email: ${email}.`
-                      : name ? `Je m'appelle ${name}.`
-                      : `Mon email: ${email}.`;
+            // Send to Claude so the conversation flows naturally
+            const msg = `Je m'appelle ${name}, mon email: ${email}.`;
             showTyping();
             sending = true;
             fetch(CHAT_API, {
@@ -2318,15 +2336,6 @@
         }
         window.submitContactForm = submitContactForm;
 
-        function skipContactForm() {
-            document.getElementById('mana-contact-form')?.remove();
-            contactCollected = true;
-            localStorage.setItem('mana_contact_done', 'true');
-            addMessage("Pas de souci ! Comment je peux t'aider ?", 'bot');
-            document.getElementById('mana-input')?.focus();
-        }
-        window.skipContactForm = skipContactForm;
-
         function toggleManaChat() {
             chatOpen = !chatOpen;
             document.getElementById('mana-panel').classList.toggle('open', chatOpen);
@@ -2334,19 +2343,17 @@
             document.getElementById('mana-badge').style.display = 'none';
             if (chatOpen && firstOpen) {
                 firstOpen = false;
-                renderSavedMessages();
-                const saved = JSON.parse(localStorage.getItem('mana_messages') || '[]');
-                if (saved.length === 0) {
-                    addMessage("Ia ora na! Je suis MANA, l'assistant IA de PACIFIK'AI. Tu cherches a automatiser, creer une app, un site web, ou autre chose ? Dis-moi tout!", 'bot');
-                }
                 if (!contactCollected) {
-                    setTimeout(() => showContactForm(), 600);
-                }
-                setTimeout(() => {
-                    if (!document.getElementById('mana-contact-form')) {
-                        document.getElementById('mana-input')?.focus();
+                    addMessage("Ia ora na! Je suis MANA, l'assistant IA de PACIFIK'AI. Tu cherches a automatiser, creer une app, un site web, ou autre chose ? Dis-moi tout!", 'bot', false);
+                    showContactForm();
+                } else {
+                    renderSavedMessages();
+                    const saved = JSON.parse(localStorage.getItem('mana_messages') || '[]');
+                    if (saved.length === 0) {
+                        addMessage("Ia ora na! Je suis MANA, l'assistant IA de PACIFIK'AI. Tu cherches a automatiser, creer une app, un site web, ou autre chose ? Dis-moi tout!", 'bot');
                     }
-                }, 300);
+                    document.getElementById('mana-input')?.focus();
+                }
             }
         }
         window.toggleManaChat = toggleManaChat;
