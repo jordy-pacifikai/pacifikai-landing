@@ -6,8 +6,8 @@
     <title>Blog | PACIFIK'AI - Automatisation IA en Polynésie</title>
     <meta name="description" content="Découvrez comment les entreprises leaders utilisent l'IA pour transformer leurs opérations. Cas concrets, études et insights.">
 
-    <link rel="icon" type="image/png" href="../assets/favicon.png">
-    <link rel="apple-touch-icon" href="../assets/favicon.png">
+    <link rel="icon" type="image/png" href="/assets/favicon.png">
+    <link rel="apple-touch-icon" href="/assets/favicon.png">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -567,20 +567,125 @@
         .article-card:nth-child(5) { animation-delay: 0.4s; }
         .article-card:nth-child(6) { animation-delay: 0.48s; }
         .article-card:nth-child(7) { animation-delay: 0.56s; }
+
+        /* ═══════════════════════════════════
+           SKELETON LOADING
+        ═══════════════════════════════════ */
+        #articles-loading {
+            grid-column: 1 / -1;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 1.75rem;
+        }
+        @keyframes shimmer {
+            0% { background-position: -400px 0; }
+            100% { background-position: 400px 0; }
+        }
+
+        .skeleton-bone {
+            background: linear-gradient(90deg, var(--bg-card) 25%, var(--border) 37%, var(--bg-card) 63%);
+            background-size: 800px 100%;
+            animation: shimmer 1.8s ease-in-out infinite;
+            border-radius: 6px;
+        }
+
+        .skeleton-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .skeleton-card .skeleton-image {
+            height: 210px;
+        }
+
+        .skeleton-card .skeleton-content {
+            padding: 1.5rem 1.5rem 1.75rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .skeleton-card .skeleton-meta {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .skeleton-card .skeleton-meta span {
+            height: 12px;
+            width: 70px;
+        }
+
+        .skeleton-card .skeleton-title {
+            height: 18px;
+            width: 90%;
+        }
+
+        .skeleton-card .skeleton-title-2 {
+            height: 18px;
+            width: 60%;
+        }
+
+        .skeleton-card .skeleton-text {
+            height: 13px;
+            width: 100%;
+        }
+
+        .skeleton-card .skeleton-text-short {
+            height: 13px;
+            width: 75%;
+        }
+
+        .skeleton-card .skeleton-link {
+            height: 14px;
+            width: 100px;
+            margin-top: 0.5rem;
+        }
+
+        .skeleton-featured {
+            grid-column: 1 / -1;
+            display: grid;
+            grid-template-columns: 1.3fr 1fr;
+        }
+
+        .skeleton-featured .skeleton-image {
+            height: 100%;
+            min-height: 320px;
+        }
+
+        .skeleton-featured .skeleton-content {
+            padding: 2.5rem 2rem;
+            justify-content: center;
+        }
+
+        .skeleton-featured .skeleton-title { height: 22px; }
+        .skeleton-featured .skeleton-title-2 { height: 22px; width: 50%; }
+
+        @media (max-width: 768px) {
+            .skeleton-featured {
+                grid-template-columns: 1fr;
+            }
+            .skeleton-featured .skeleton-image {
+                min-height: 200px;
+            }
+        }
     </style>
 </head>
 <body>
     <nav>
-        <a href="../index.html" class="logo">
-            <img src="../assets/logo.png" alt="PACIFIK'AI" class="logo-img">
+        <a href="/" class="logo">
+            <img src="/assets/logo.png" alt="PACIFIK'AI" class="logo-img">
         </a>
         <ul class="nav-links">
-            <li><a href="../index.html#process">Processus</a></li>
-            <li><a href="../index.html#services">Services</a></li>
-            <li><a href="index.html" class="active">Blog</a></li>
-            <li><a href="../index.html#contact">Contact</a></li>
+            <li><a href="/#process">Processus</a></li>
+            <li><a href="/#services">Services</a></li>
+            <li><a href="/blog" class="active">Blog</a></li>
+            <li><a href="/#contact">Contact</a></li>
         </ul>
-        <a href="../index.html#contact" class="nav-cta">Nous contacter</a>
+        <a href="/#contact" class="nav-cta">Nous contacter</a>
     </nav>
 
     <section class="blog-hero">
@@ -600,9 +705,53 @@
 
     <section class="articles-section">
         <div class="articles-grid" id="dynamic-articles">
-            <!-- Loading state -->
-            <div id="articles-loading" style="grid-column: 1 / -1; text-align: center; padding: 4rem 0; color: rgba(255,255,255,0.5);">
-                Chargement des articles...
+            <!-- Skeleton loading state -->
+            <div id="articles-loading">
+                <div class="skeleton-card skeleton-featured">
+                    <div class="skeleton-image skeleton-bone"></div>
+                    <div class="skeleton-content">
+                        <div class="skeleton-meta"><span class="skeleton-bone"></span><span class="skeleton-bone"></span></div>
+                        <div class="skeleton-title skeleton-bone"></div>
+                        <div class="skeleton-title-2 skeleton-bone"></div>
+                        <div class="skeleton-text skeleton-bone"></div>
+                        <div class="skeleton-text skeleton-bone"></div>
+                        <div class="skeleton-text-short skeleton-bone"></div>
+                        <div class="skeleton-link skeleton-bone"></div>
+                    </div>
+                </div>
+                <div class="skeleton-card">
+                    <div class="skeleton-image skeleton-bone"></div>
+                    <div class="skeleton-content">
+                        <div class="skeleton-meta"><span class="skeleton-bone"></span><span class="skeleton-bone"></span></div>
+                        <div class="skeleton-title skeleton-bone"></div>
+                        <div class="skeleton-title-2 skeleton-bone"></div>
+                        <div class="skeleton-text skeleton-bone"></div>
+                        <div class="skeleton-text-short skeleton-bone"></div>
+                        <div class="skeleton-link skeleton-bone"></div>
+                    </div>
+                </div>
+                <div class="skeleton-card">
+                    <div class="skeleton-image skeleton-bone"></div>
+                    <div class="skeleton-content">
+                        <div class="skeleton-meta"><span class="skeleton-bone"></span><span class="skeleton-bone"></span></div>
+                        <div class="skeleton-title skeleton-bone"></div>
+                        <div class="skeleton-title-2 skeleton-bone"></div>
+                        <div class="skeleton-text skeleton-bone"></div>
+                        <div class="skeleton-text-short skeleton-bone"></div>
+                        <div class="skeleton-link skeleton-bone"></div>
+                    </div>
+                </div>
+                <div class="skeleton-card">
+                    <div class="skeleton-image skeleton-bone"></div>
+                    <div class="skeleton-content">
+                        <div class="skeleton-meta"><span class="skeleton-bone"></span><span class="skeleton-bone"></span></div>
+                        <div class="skeleton-title skeleton-bone"></div>
+                        <div class="skeleton-title-2 skeleton-bone"></div>
+                        <div class="skeleton-text skeleton-bone"></div>
+                        <div class="skeleton-text-short skeleton-bone"></div>
+                        <div class="skeleton-link skeleton-bone"></div>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -656,13 +805,13 @@
             if (!dateStr) return '';
             const months = ['janvier', 'fevrier', 'mars', 'avril', 'mai', 'juin',
                 'juillet', 'aout', 'septembre', 'octobre', 'novembre', 'decembre'];
-            const d = new Date(dateStr);
-            return `${d.getDate()} ${months[d.getMonth()]} ${d.getFullYear()}`;
+            const [year, month, day] = dateStr.split('-');
+            return `${parseInt(day)} ${months[parseInt(month) - 1]} ${year}`;
         }
 
         function createArticleCard(article, index) {
             const card = document.createElement('a');
-            card.href = `article.html?slug=${encodeURIComponent(article.slug)}`;
+            card.href = `/blog/article?slug=${encodeURIComponent(article.slug)}`;
             card.className = `article-card${index === 0 ? ' featured-article' : ''}`;
             card.dataset.category = (article.format || article.category || '').toLowerCase();
             card.style.animationDelay = `${0.08 * index}s`;
@@ -673,8 +822,11 @@
 
             const badgeLabel = article.format || article.category || '';
 
-            const imageHtml = article.featured_image
-                ? `<img src="${article.featured_image}" alt="${article.title}" loading="lazy">`
+            const optimizedImg = article.featured_image
+                ? `https://wsrv.nl/?url=${encodeURIComponent(article.featured_image)}&w=800&q=75&output=webp`
+                : '';
+            const imageHtml = optimizedImg
+                ? `<img src="${optimizedImg}" alt="${article.title}" loading="lazy" width="800" height="450">`
                 : '';
 
             card.innerHTML = `
@@ -711,7 +863,7 @@
 
                 const data = await resp.json();
                 if (!data.articles || data.articles.length === 0) {
-                    if (loading) loading.textContent = 'Aucun article pour le moment.';
+                    if (loading) { loading.innerHTML = '<p style="grid-column:1/-1;text-align:center;padding:4rem 0;color:var(--text-dim);">Aucun article pour le moment.</p>'; }
                     return;
                 }
 
@@ -728,7 +880,7 @@
                 }
             } catch (err) {
                 console.error('Error loading articles:', err);
-                if (loading) loading.textContent = 'Erreur de chargement des articles.';
+                if (loading) { loading.innerHTML = '<p style="grid-column:1/-1;text-align:center;padding:4rem 0;color:var(--text-dim);">Erreur de chargement des articles.</p>'; }
             }
         }
 
