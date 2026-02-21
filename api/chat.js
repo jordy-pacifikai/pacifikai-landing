@@ -110,10 +110,11 @@ async function supabaseRequest(method, path, body, headers = {}) {
   return resp;
 }
 
-async function upsertProspect(sessionId, visitorName) {
+async function upsertProspect(sessionId) {
+  // Don't include name here — /api/contact.js handles name+email separately.
+  // Including name:'' would overwrite an already-collected name due to merge-duplicates.
   await supabaseRequest('POST', 'messenger_prospects', {
     sender_id: sessionId,
-    name: visitorName || '',
     last_contact_at: new Date().toISOString(),
     temperature: 'cold',
     conversation_stage: 'discovery',
@@ -141,7 +142,7 @@ async function callClaude(messages) {
       'content-type': 'application/json'
     },
     body: JSON.stringify({
-      model: 'claude-sonnet-4-5-20250929',
+      model: 'claude-sonnet-4-6',
       max_tokens: 800,
       system: SYSTEM_PROMPT,
       tools: TOOLS,
@@ -223,6 +224,14 @@ export default async function handler(req, res) {
 
     // 3. Call Claude
     const claudeResponse = await callClaude(messages);
+    if (claudeResponse.error) {
+      console.error('Claude API error:', claudeResponse.error);
+      return res.status(200).json({
+        success: false,
+        response: "Desole, petit souci technique. Ecris a jordy@pacifikai.com en attendant !",
+        session_id
+      });
+    }
     const content = claudeResponse.content || [];
 
     // 4. Parse response
@@ -269,7 +278,7 @@ export default async function handler(req, res) {
       session_id
     });
   } catch (error) {
-    console.error('Chat API error:', error);
+    console.error('Chat API error:', error?.message || error);
     return res.status(500).json({
       success: false,
       response: "Desole, petit souci technique. Ecris a jordy@pacifikai.com !",

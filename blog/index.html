@@ -6,8 +6,24 @@
     <title>Blog | PACIFIK'AI - Automatisation IA en Polynésie</title>
     <meta name="description" content="Découvrez comment les entreprises leaders utilisent l'IA pour transformer leurs opérations. Cas concrets, études et insights.">
 
+    <link rel="canonical" href="https://pacifikai.com/blog">
     <link rel="icon" type="image/png" href="/assets/favicon.png">
     <link rel="apple-touch-icon" href="/assets/favicon.png">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="PACIFIK'AI">
+    <meta property="og:title" content="Blog | PACIFIK'AI - Automatisation IA en Polynésie">
+    <meta property="og:description" content="Découvrez comment les entreprises leaders utilisent l'IA pour transformer leurs opérations. Cas concrets, études et insights.">
+    <meta property="og:url" content="https://pacifikai.com/blog">
+    <meta property="og:image" content="https://pacifikai.com/assets/og-image.png">
+    <meta property="og:locale" content="fr_FR">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Blog | PACIFIK'AI - Automatisation IA en Polynésie">
+    <meta name="twitter:description" content="Découvrez comment les entreprises leaders utilisent l'IA pour transformer leurs opérations.">
+    <meta name="twitter:image" content="https://pacifikai.com/assets/og-image.png">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -755,14 +771,18 @@
             </div>
         </div>
 
-        <!-- Newsletter CTA -->
-        <div class="newsletter-cta">
-            <h3>Restez informe</h3>
-            <p>Recevez nos analyses sur l'IA et l'automatisation, adaptees au marche polynesien.</p>
-            <form class="newsletter-form">
-                <input type="email" placeholder="Votre email" required>
-                <button type="submit">S'inscrire</button>
+        <!-- Lead Magnet CTA -->
+        <div class="newsletter-cta" id="lead-magnet-cta">
+            <h3>Guide gratuit : 10 Workflows IA pour gagner 10h/semaine</h3>
+            <p>Chatbots, contenu social, extraction de docs, relance devis... 10 automations concretes pour votre PME.</p>
+            <form class="newsletter-form" id="blog-lm-form">
+                <input type="email" id="blog-lm-email" placeholder="Votre email" required>
+                <button type="submit">Recevoir le guide</button>
             </form>
+            <div id="blog-lm-success" style="display:none;text-align:center;padding:16px 0;">
+                <p style="color:#34d399;font-weight:600;margin-bottom:8px;">C'est pret !</p>
+                <a href="/assets/guide-10-workflows-ia.pdf" download style="color:#818cf8;text-decoration:underline;">Telecharger le PDF</a>
+            </div>
         </div>
     </section>
 
@@ -886,12 +906,11 @@
 
         loadDynamicArticles();
 
-        // Newsletter form - via serverless API
-        document.querySelector('.newsletter-form').addEventListener('submit', async (e) => {
+        // Lead magnet form - via serverless API
+        document.getElementById('blog-lm-form').addEventListener('submit', async (e) => {
             e.preventDefault();
-            const form = e.target;
-            const emailInput = form.querySelector('input[type="email"]');
-            const submitBtn = form.querySelector('button');
+            const emailInput = document.getElementById('blog-lm-email');
+            const submitBtn = e.target.querySelector('button');
             const email = emailInput.value.trim();
 
             if (!email) return;
@@ -900,31 +919,25 @@
             submitBtn.textContent = '...';
 
             try {
-                const response = await fetch('/api/newsletter', {
+                const response = await fetch('/api/lead-magnet', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ email, source: 'Blog PACIFIKAI' })
+                    body: JSON.stringify({ email, source: 'blog-inline-cta' })
                 });
 
                 const data = await response.json();
 
                 if (data.success) {
-                    emailInput.value = '';
-                    submitBtn.textContent = data.duplicate ? 'Deja inscrit' : 'Inscrit !';
-                    submitBtn.style.background = data.duplicate ? '#3b82f6' : '#22c55e';
+                    document.getElementById('blog-lm-form').style.display = 'none';
+                    document.getElementById('blog-lm-success').style.display = 'block';
                 } else {
                     throw new Error(data.error || 'Erreur');
                 }
             } catch (error) {
-                console.error('Newsletter error:', error);
-                submitBtn.textContent = 'Erreur';
+                console.error('Lead magnet error:', error);
+                submitBtn.textContent = 'Erreur, reessayez';
                 submitBtn.style.background = '#ef4444';
-            } finally {
-                setTimeout(() => {
-                    submitBtn.textContent = "S'inscrire";
-                    submitBtn.style.background = '';
-                    submitBtn.disabled = false;
-                }, 3000);
+                setTimeout(() => { submitBtn.textContent = 'Recevoir le guide'; submitBtn.style.background = ''; submitBtn.disabled = false; }, 3000);
             }
         });
     </script>

@@ -6,8 +6,25 @@
     <title id="page-title">Article | PACIFIK'AI</title>
     <meta name="description" id="page-description" content="">
 
+    <link rel="canonical" href="https://pacifikai.com/blog/article" id="page-canonical">
     <link rel="icon" type="image/png" href="/assets/favicon.png">
     <link rel="apple-touch-icon" href="/assets/favicon.png">
+
+    <!-- Open Graph (updated dynamically when article loads) -->
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="PACIFIK'AI">
+    <meta property="og:title" content="Article | PACIFIK'AI" id="og-title">
+    <meta property="og:description" content="" id="og-description">
+    <meta property="og:url" content="https://pacifikai.com/blog/article" id="og-url">
+    <meta property="og:image" content="https://pacifikai.com/assets/og-image.png" id="og-image">
+    <meta property="og:locale" content="fr_FR">
+    <meta property="article:publisher" content="PACIFIK'AI">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Article | PACIFIK'AI" id="tw-title">
+    <meta name="twitter:description" content="" id="tw-description">
+    <meta name="twitter:image" content="https://pacifikai.com/assets/og-image.png" id="tw-image">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -1076,8 +1093,27 @@
 
         <div class="article-content" id="article-body"></div>
 
+        <!-- Lead Magnet CTA -->
         <section class="article-cta">
-            <div class="cta-box">
+            <div class="cta-box" id="article-lm-cta">
+                <span style="display:inline-block;padding:4px 12px;background:rgba(99,102,241,0.12);color:#818cf8;border-radius:12px;font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:1px;margin-bottom:12px;">Guide gratuit</span>
+                <h3>10 Workflows IA pour gagner 10h/semaine</h3>
+                <p>Recevez notre guide avec 10 automations concretes : chatbots, contenu social, extraction de docs, relance devis...</p>
+                <form style="display:flex;gap:8px;max-width:400px;margin:16px auto 0;" id="article-lm-form">
+                    <input type="email" id="article-lm-email" placeholder="votre@email.com" required style="flex:1;padding:12px 16px;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;color:var(--text);font-size:14px;outline:none;font-family:inherit;">
+                    <button type="submit" style="padding:12px 20px;background:var(--accent);color:#fff;border:none;border-radius:8px;font-size:14px;font-weight:600;cursor:pointer;white-space:nowrap;font-family:inherit;">Recevoir</button>
+                </form>
+                <div id="article-lm-success" style="display:none;padding:16px 0;">
+                    <p style="color:#34d399;font-weight:600;margin-bottom:8px;">C'est pret !</p>
+                    <a href="/assets/guide-10-workflows-ia.pdf" download style="color:#818cf8;text-decoration:underline;">Telecharger le PDF</a>
+                </div>
+                <p style="font-size:11px;color:var(--text-dim);margin-top:12px;">Pas de spam. Desabonnement en 1 clic.</p>
+            </div>
+        </section>
+
+        <!-- Contact CTA -->
+        <section class="article-cta" style="margin-top:0;">
+            <div class="cta-box" style="background:var(--bg-card);border:1px solid var(--border);">
                 <h3>Vous souhaitez automatiser votre entreprise ?</h3>
                 <p>Discutons de comment l'IA peut transformer vos operations.</p>
                 <a href="/#contact" class="cta-btn">
@@ -1148,6 +1184,43 @@
             document.getElementById('page-title').textContent = `${article.title} | PACIFIK'AI`;
             document.getElementById('page-description').setAttribute('content', article.excerpt);
 
+            // Update OG + Twitter meta tags
+            const articleUrl = `https://pacifikai.com/blog/article?slug=${encodeURIComponent(article.slug)}`;
+            const ogImage = article.featured_image
+                ? `https://wsrv.nl/?url=${encodeURIComponent(article.featured_image)}&w=1200&q=80&output=webp`
+                : 'https://pacifikai.com/assets/og-image.png';
+
+            document.getElementById('page-canonical').setAttribute('href', articleUrl);
+            document.getElementById('og-title').setAttribute('content', `${article.title} | PACIFIK'AI`);
+            document.getElementById('og-description').setAttribute('content', article.excerpt);
+            document.getElementById('og-url').setAttribute('content', articleUrl);
+            document.getElementById('og-image').setAttribute('content', ogImage);
+            document.getElementById('tw-title').setAttribute('content', `${article.title} | PACIFIK'AI`);
+            document.getElementById('tw-description').setAttribute('content', article.excerpt);
+            document.getElementById('tw-image').setAttribute('content', ogImage);
+
+            // Inject JSON-LD Article schema
+            const jsonLd = {
+                "@context": "https://schema.org",
+                "@type": "Article",
+                "headline": article.title,
+                "description": article.excerpt,
+                "image": ogImage,
+                "url": articleUrl,
+                "datePublished": article.published_date,
+                "author": { "@type": "Organization", "name": "PACIFIK'AI", "url": "https://pacifikai.com" },
+                "publisher": {
+                    "@type": "Organization",
+                    "name": "PACIFIK'AI",
+                    "logo": { "@type": "ImageObject", "url": "https://pacifikai.com/assets/logo.png" }
+                },
+                "mainEntityOfPage": { "@type": "WebPage", "@id": articleUrl }
+            };
+            const script = document.createElement('script');
+            script.type = 'application/ld+json';
+            script.textContent = JSON.stringify(jsonLd);
+            document.head.appendChild(script);
+
             document.getElementById('breadcrumb-category').textContent = article.category;
             document.getElementById('article-category').textContent = article.category;
             document.getElementById('article-title').textContent = article.title;
@@ -1178,6 +1251,34 @@
         }
 
         loadArticle();
+
+        // Lead magnet form
+        document.getElementById('article-lm-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const emailInput = document.getElementById('article-lm-email');
+            const submitBtn = e.target.querySelector('button');
+            const email = emailInput.value.trim();
+            if (!email) return;
+
+            submitBtn.disabled = true;
+            submitBtn.textContent = '...';
+
+            try {
+                const resp = await fetch('/api/lead-magnet', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, source: 'article-inline-cta' })
+                });
+                const data = await resp.json();
+                if (data.success) {
+                    document.getElementById('article-lm-form').style.display = 'none';
+                    document.getElementById('article-lm-success').style.display = 'block';
+                } else { throw new Error(data.error); }
+            } catch (err) {
+                submitBtn.textContent = 'Erreur';
+                setTimeout(() => { submitBtn.textContent = 'Recevoir'; submitBtn.disabled = false; }, 3000);
+            }
+        });
     </script>
 </body>
 </html>

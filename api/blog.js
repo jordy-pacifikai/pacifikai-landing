@@ -100,6 +100,6 @@ export default async function handler(req, res) {
     return res.status(400).json({ error: 'Invalid action. Use ?action=list or ?action=article&slug=xxx' });
   } catch (error) {
     console.error('Blog API error:', error);
-    return res.status(500).json({ error: 'Internal server error' });
+    return res.status(500).json({ error: 'Internal server error', detail: error.message });
   }
 }
