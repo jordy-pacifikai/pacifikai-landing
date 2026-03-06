@@ -2826,23 +2826,3 @@
     </script>
 </body>
 </html>
-.style.display = 'none';
-                    document.getElementById('lm-success-view').style.display = 'block';
-                } else {
-                    throw new Error(data.error || 'Erreur');
-                }
-            } catch (err) {
-                errorEl.textContent = 'Erreur, reessayez.';
-                errorEl.style.display = 'block';
-                submitBtn.disabled = false;
-                submitBtn.textContent = 'Recevoir';
-            }
-        });
-
-        emailInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') submitBtn.click(); });
-    })();
-    </script>
-</body>
-</html>
-dy>
-</html>
