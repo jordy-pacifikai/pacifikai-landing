@@ -31,18 +31,23 @@
 
     <style>
         :root {
-            --bg: #0a0a12;
-            --bg-card: #0f1020;
-            --bg-card-hover: #151630;
-            --border: #1a1a2e;
-            --border-light: #252540;
-            --text: #ffffff;
-            --text-secondary: #8888aa;
-            --text-dim: #555570;
-            --accent: #3b82f6;
-            --accent-glow: rgba(59, 130, 246, 0.4);
-            --accent-soft: rgba(59, 130, 246, 0.1);
+            --bg: #080c14;
+            --bg-card: #0d1424;
+            --bg-card-hover: #111b30;
+            --border: #162038;
+            --border-light: #1e2d4a;
+            --text: #f0f2f8;
+            --text-secondary: #8b97b8;
+            --text-dim: #4a5578;
+            --accent: #f97066;
+            --accent-glow: rgba(249, 112, 102, 0.4);
+            --accent-soft: rgba(249, 112, 102, 0.1);
+            --lagoon: #14b8a6;
+            --lagoon-glow: rgba(20, 184, 166, 0.3);
+            --lagoon-soft: rgba(20, 184, 166, 0.1);
+            --gold: #f5c542;
             --font: 'Plus Jakarta Sans', -apple-system, sans-serif;
+            --font-display: 'Audiowide', sans-serif;
             --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
             --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
         }
@@ -75,8 +80,8 @@
             position: absolute;
             inset: 0;
             background-image:
-                linear-gradient(rgba(59, 130, 246, 0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(59, 130, 246, 0.03) 1px, transparent 1px);
+                linear-gradient(rgba(249, 112, 102, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(249, 112, 102, 0.03) 1px, transparent 1px);
             background-size: 60px 60px;
             mask-image: radial-gradient(ellipse 80% 50% at 50% 0%, black 40%, transparent 100%);
         }
@@ -111,7 +116,7 @@
         .orb-2 {
             width: 400px;
             height: 400px;
-            background: #f59e0b;
+            background: var(--lagoon);
             animation-delay: -7s;
         }
 
@@ -443,7 +448,7 @@
             position: absolute;
             inset: -1px;
             border-radius: 12px;
-            background: radial-gradient(circle at 50% 50%, rgba(59,130,246,0.15), transparent 70%);
+            background: radial-gradient(circle at 50% 50%, rgba(249,112,102,0.15), transparent 70%);
             opacity: 0;
             transition: opacity 0.4s ease;
             pointer-events: none;
@@ -452,9 +457,9 @@
         .card:hover::before { opacity: 1; }
         .card:hover {
             background: var(--bg-card-hover);
-            border-color: rgba(59,130,246,0.3);
+            border-color: rgba(249,112,102,0.3);
             transform: translateY(-4px);
-            box-shadow: 0 8px 30px rgba(59,130,246,0.1);
+            box-shadow: 0 8px 30px rgba(249,112,102,0.1);
         }
 
         .card-visual {
@@ -621,7 +626,7 @@
             position: absolute;
             inset: -1px;
             border-radius: 12px;
-            background: radial-gradient(circle at 50% 50%, rgba(59,130,246,0.12), transparent 70%);
+            background: radial-gradient(circle at 50% 50%, rgba(249,112,102,0.12), transparent 70%);
             opacity: 0;
             transition: opacity 0.4s ease;
             pointer-events: none;
@@ -631,7 +636,7 @@
         .service-card:hover {
             border-color: var(--accent);
             transform: translateY(-4px);
-            box-shadow: 0 8px 30px rgba(59,130,246,0.1);
+            box-shadow: 0 8px 30px rgba(249,112,102,0.1);
         }
 
         .service-visual {
@@ -708,7 +713,7 @@
         }
         @keyframes counterGlow {
             0% { text-shadow: none; }
-            40% { text-shadow: 0 0 20px var(--accent-glow), 0 0 40px rgba(59,130,246,0.2); }
+            40% { text-shadow: 0 0 20px var(--accent-glow), 0 0 40px rgba(249,112,102,0.2); }
             100% { text-shadow: none; }
         }
         .counter-label { display: block; font-size: 13px; color: var(--text-dim); margin-top: 6px; }
@@ -895,6 +900,231 @@
             50% { transform: translateY(-10px); }
         }
 
+        /* ===== BENTO SERVICES GRID ===== */
+
+        .bento-section { padding: 100px 0 60px; position: relative; }
+        .bento-section .section-header { text-align: center; margin-bottom: 48px; }
+
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 1rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+        .bento-tile-lg   { grid-column: span 7; }
+        .bento-tile-md   { grid-column: span 5; }
+        .bento-tile-sm   { grid-column: span 4; }
+        .bento-tile-wide { grid-column: span 12; }
+
+        .bento-tile {
+            position: relative;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            overflow: hidden;
+            cursor: pointer;
+            min-height: 260px;
+            opacity: 0;
+            transform: translateY(40px) scale(0.97);
+            transition: opacity 0.7s var(--ease-out-expo), transform 0.7s var(--ease-spring), border-color 0.4s, box-shadow 0.4s;
+        }
+        .bento-tile.is-visible { opacity: 1; transform: translateY(0) scale(1); }
+
+        /* Stagger entrance */
+        .bento-grid .bento-tile:nth-child(1) { transition-delay: 0s; }
+        .bento-grid .bento-tile:nth-child(2) { transition-delay: 0.1s; }
+        .bento-grid .bento-tile:nth-child(3) { transition-delay: 0.2s; }
+        .bento-grid .bento-tile:nth-child(4) { transition-delay: 0.25s; }
+        .bento-grid .bento-tile:nth-child(5) { transition-delay: 0.3s; }
+        .bento-grid .bento-tile:nth-child(6) { transition-delay: 0.35s; }
+
+        /* Per-tile accent colors */
+        .bento-tile[data-accent="coral"]    { --tile-accent: var(--accent); --tile-glow: var(--accent-glow); --tile-soft: var(--accent-soft); }
+        .bento-tile[data-accent="lagoon"]   { --tile-accent: var(--lagoon); --tile-glow: var(--lagoon-glow); --tile-soft: var(--lagoon-soft); }
+        .bento-tile[data-accent="gold"]     { --tile-accent: var(--gold); --tile-glow: rgba(245,197,66,0.3); --tile-soft: rgba(245,197,66,0.1); }
+        .bento-tile[data-accent="violet"]   { --tile-accent: #a78bfa; --tile-glow: rgba(167,139,250,0.3); --tile-soft: rgba(167,139,250,0.1); }
+
+        .bento-tile:hover {
+            border-color: var(--tile-accent, var(--accent));
+            box-shadow: 0 0 40px var(--tile-glow, var(--accent-glow));
+        }
+
+        /* Mouse-tracking glow */
+        .bento-glow {
+            position: absolute; inset: 0; z-index: 0; pointer-events: none;
+            opacity: 0; transition: opacity 0.4s;
+            background: radial-gradient(600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), var(--tile-glow, var(--accent-glow)), transparent 40%);
+        }
+        .bento-tile:hover .bento-glow { opacity: 0.5; }
+
+        /* Front content */
+        .bento-front {
+            position: relative; z-index: 2;
+            padding: 28px;
+            transition: transform 0.5s var(--ease-out-expo);
+        }
+        .bento-tile:hover .bento-front { transform: translateY(-8px); }
+
+        .bento-icon {
+            width: 44px; height: 44px; border-radius: 12px;
+            background: linear-gradient(135deg, var(--tile-accent, var(--accent)), transparent);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 22px; margin-bottom: 14px;
+        }
+        .bento-title { font-size: 1.15rem; font-weight: 700; color: var(--text); margin-bottom: 6px; }
+        .bento-desc { color: var(--text-secondary); font-size: 0.88rem; line-height: 1.5; margin-bottom: 16px; }
+
+        /* Mini visual area */
+        .bento-visual {
+            position: relative; height: 80px; overflow: hidden;
+            border-radius: 8px; background: rgba(255,255,255,0.02);
+            border: 1px solid var(--border);
+        }
+        .bento-tile-lg .bento-visual { height: 100px; }
+
+        /* Detail panel (slide-up on hover) */
+        .bento-detail {
+            position: absolute; bottom: 0; left: 0; right: 0; z-index: 3;
+            padding: 20px 28px 24px;
+            background: linear-gradient(0deg, var(--bg-card) 70%, transparent);
+            clip-path: inset(100% 0 0 0);
+            transition: clip-path 0.5s var(--ease-out-expo);
+        }
+        .bento-tile:hover .bento-detail { clip-path: inset(0); }
+
+        .bento-detail h4 {
+            font-size: 0.75rem; font-weight: 600; color: var(--tile-accent, var(--accent));
+            text-transform: uppercase; letter-spacing: 0.05em;
+            margin-bottom: 8px;
+        }
+        .bento-detail ul {
+            list-style: none; padding: 0; margin: 0 0 12px;
+        }
+        .bento-detail li {
+            color: var(--text-secondary); font-size: 0.82rem; padding: 3px 0 3px 16px;
+            position: relative;
+        }
+        .bento-detail li::before {
+            content: ''; position: absolute; left: 0; top: 10px;
+            width: 6px; height: 6px; border-radius: 50%;
+            background: var(--tile-accent, var(--accent)); opacity: 0.5;
+        }
+
+        /* Example tags */
+        .bento-tags { display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 10px; }
+        .bento-tag {
+            display: inline-block; padding: 3px 8px;
+            background: var(--tile-soft, var(--accent-soft));
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 6px; font-size: 0.68rem;
+            color: var(--tile-accent, var(--accent));
+        }
+
+        .bento-link {
+            display: inline-flex; align-items: center; gap: 4px;
+            color: var(--tile-accent, var(--accent)); font-size: 0.82rem; font-weight: 600;
+            text-decoration: none;
+        }
+        .bento-link:hover { text-decoration: underline; }
+
+        /* Bento mini visuals */
+        .bento-chat { display: flex; flex-direction: column; gap: 4px; padding: 8px; }
+        .bento-chat-msg {
+            padding: 4px 8px; border-radius: 8px; font-size: 0.6rem;
+            max-width: 75%; opacity: 0;
+            animation: bentoChatIn 0.4s ease forwards;
+            animation-play-state: paused;
+        }
+        .bento-tile:hover .bento-chat-msg { animation-play-state: running; }
+        .bento-chat-msg.user { align-self: flex-end; background: var(--tile-accent); color: #fff; }
+        .bento-chat-msg.bot { align-self: flex-start; background: rgba(255,255,255,0.06); color: var(--text-secondary); }
+        .bento-chat-msg:nth-child(1) { animation-delay: 0.2s; }
+        .bento-chat-msg:nth-child(2) { animation-delay: 0.8s; }
+        .bento-chat-msg:nth-child(3) { animation-delay: 1.4s; }
+        @keyframes bentoChatIn {
+            0% { opacity: 0; transform: translateY(6px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        .bento-pipeline { display: flex; align-items: center; justify-content: center; gap: 6px; padding: 8px; height: 100%; }
+        .bento-pipe-node {
+            width: 32px; height: 32px; border-radius: 8px;
+            background: var(--tile-soft); border: 1px solid rgba(255,255,255,0.06);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 0.6rem; color: var(--tile-accent);
+        }
+        .bento-pipe-arrow { color: var(--text-dim); font-size: 0.7rem; }
+
+        .bento-bars { display: flex; align-items: flex-end; gap: 3px; padding: 8px 12px; height: 100%; }
+        .bento-bar {
+            flex: 1; border-radius: 2px 2px 0 0;
+            background: var(--tile-accent); opacity: 0.5;
+            transform-origin: bottom; transform: scaleY(0);
+            animation: bentoBarGrow 1.5s ease-out forwards;
+            animation-play-state: paused;
+        }
+        .bento-tile:hover .bento-bar { animation-play-state: running; }
+        .bento-bar:nth-child(1) { height: 40%; animation-delay: 0.1s; }
+        .bento-bar:nth-child(2) { height: 65%; animation-delay: 0.2s; }
+        .bento-bar:nth-child(3) { height: 50%; animation-delay: 0.3s; }
+        .bento-bar:nth-child(4) { height: 80%; animation-delay: 0.4s; }
+        .bento-bar:nth-child(5) { height: 55%; animation-delay: 0.5s; }
+        .bento-bar:nth-child(6) { height: 90%; animation-delay: 0.6s; }
+        @keyframes bentoBarGrow { 0% { transform: scaleY(0); } 100% { transform: scaleY(1); } }
+
+        .bento-mockup { padding: 6px; height: 100%; }
+        .bento-mockup-nav { display: flex; gap: 3px; margin-bottom: 4px; }
+        .bento-mockup-nav span { width: 12px; height: 2px; background: rgba(255,255,255,0.12); border-radius: 1px; }
+        .bento-mockup-hero { height: 20px; border-radius: 3px; background: linear-gradient(135deg, var(--tile-accent), transparent); opacity: 0.3; margin-bottom: 4px; }
+        .bento-mockup-blocks { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3px; }
+        .bento-mockup-block { height: 14px; border-radius: 2px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.04); }
+
+        .bento-scan { padding: 8px; display: flex; flex-direction: column; align-items: center; gap: 4px; height: 100%; justify-content: center; }
+        .bento-scan-bar {
+            width: 0; height: 2px; background: var(--tile-accent); border-radius: 1px;
+            animation: bentoScan 2s ease forwards;
+            animation-play-state: paused;
+        }
+        .bento-tile:hover .bento-scan-bar { animation-play-state: running; }
+        @keyframes bentoScan { 0% { width: 0; } 100% { width: 80%; } }
+        .bento-scan-fields { display: flex; gap: 4px; margin-top: 4px; }
+        .bento-scan-field {
+            padding: 2px 6px; background: var(--tile-soft);
+            border-radius: 3px; font-size: 0.5rem; color: var(--tile-accent);
+            opacity: 0; animation: bentoFieldIn 0.3s ease forwards;
+            animation-play-state: paused;
+        }
+        .bento-tile:hover .bento-scan-field { animation-play-state: running; }
+        .bento-scan-field:nth-child(1) { animation-delay: 1.2s; }
+        .bento-scan-field:nth-child(2) { animation-delay: 1.5s; }
+        .bento-scan-field:nth-child(3) { animation-delay: 1.8s; }
+        @keyframes bentoFieldIn { 0% { opacity: 0; transform: translateY(4px); } 100% { opacity: 1; transform: translateY(0); } }
+
+        /* Bento responsive */
+        @media (max-width: 1024px) {
+            .bento-grid { grid-template-columns: repeat(2, 1fr); }
+            [class*="bento-tile-"] { grid-column: span 1; }
+            .bento-tile-wide { grid-column: span 2; }
+            .bento-detail {
+                position: relative; clip-path: none;
+                background: none; border-top: 1px solid var(--border);
+                padding: 16px 28px 20px;
+            }
+            .bento-tile:hover .bento-front { transform: none; }
+            .bento-tile .bento-chat-msg,
+            .bento-tile .bento-bar,
+            .bento-tile .bento-scan-bar,
+            .bento-tile .bento-scan-field { animation-play-state: running; }
+        }
+        @media (max-width: 640px) {
+            .bento-grid { grid-template-columns: 1fr; padding: 0 16px; }
+            [class*="bento-tile-"] { grid-column: span 1; }
+            .bento-tile { min-height: 200px; }
+            .bento-front { padding: 20px; }
+        }
+
         /* ===== MODULES INTERACTIFS ===== */
 
         .modules-section { padding: 100px 0 60px; position: relative; }
@@ -928,21 +1158,21 @@
         .module-card:nth-child(4) { transition-delay: 0.45s; }
 
         /* Accent colors per module */
-        .module-card[data-accent="blue"] { --mod-accent: #3b82f6; --mod-glow: rgba(59,130,246,0.15); }
+        .module-card[data-accent="blue"] { --mod-accent: #f97066; --mod-glow: rgba(249,112,102,0.15); }
         .module-card[data-accent="cyan"] { --mod-accent: #06b6d4; --mod-glow: rgba(6,182,212,0.15); }
         .module-card[data-accent="purple"] { --mod-accent: #8b5cf6; --mod-glow: rgba(139,92,246,0.15); }
         .module-card[data-accent="amber"] { --mod-accent: #f59e0b; --mod-glow: rgba(245,158,11,0.15); }
 
         .module-card:hover {
             border-color: var(--mod-accent, rgba(255,255,255,0.12));
-            box-shadow: 0 0 40px var(--mod-glow, rgba(59,130,246,0.1));
+            box-shadow: 0 0 40px var(--mod-glow, rgba(249,112,102,0.1));
         }
 
         /* Mouse-tracking glow */
         .module-glow {
             position: absolute; inset: 0; z-index: 0; pointer-events: none;
             opacity: 0; transition: opacity 0.4s;
-            background: radial-gradient(600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), var(--mod-glow, rgba(59,130,246,0.08)), transparent 40%);
+            background: radial-gradient(600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), var(--mod-glow, rgba(249,112,102,0.08)), transparent 40%);
         }
         .module-card:hover .module-glow { opacity: 1; }
 
@@ -1057,7 +1287,7 @@
         .demo-site-nav span { width: 16px; height: 3px; background: rgba(255,255,255,0.15); border-radius: 2px; }
         .demo-site-hero {
             height: 40px; margin-bottom: 6px; border-radius: 4px;
-            background: linear-gradient(135deg, var(--mod-accent), rgba(59,130,246,0.2));
+            background: linear-gradient(135deg, var(--mod-accent), rgba(249,112,102,0.2));
             opacity: 0.5;
         }
         .demo-site-text { display: flex; flex-direction: column; gap: 3px; margin-bottom: 8px; }
@@ -1396,14 +1626,14 @@
         .app-dot-y { background: #f59e0b; }
         .app-dot-g { background: #22c55e; }
         .app-body { display: flex; height: 100px; }
-        .app-sidebar { width: 48px; background: rgba(59,130,246,0.08); border-right: 1px solid var(--border); display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 10px 0; }
+        .app-sidebar { width: 48px; background: rgba(249,112,102,0.08); border-right: 1px solid var(--border); display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 10px 0; }
         .app-sidebar-icon { width: 20px; height: 3px; background: var(--border-light); border-radius: 2px; opacity: 0.7; }
         .app-content { flex: 1; padding: 10px; display: flex; flex-direction: column; gap: 6px; }
         .app-stat-row { display: flex; gap: 6px; }
         .app-stat { flex: 1; height: 24px; background: var(--border); border-radius: 4px; opacity: 0.7; }
         .app-chart-bar { width: 100%; height: 6px; background: var(--border); border-radius: 3px; overflow: hidden; position: relative; }
         .app-chart-fill { height: 100%; background: var(--accent); border-radius: 3px; width: 0; }
-        .app-ai-badge { position: absolute; top: 8px; right: 8px; padding: 2px 6px; background: rgba(59,130,246,0.15); border: 1px solid rgba(59,130,246,0.3); border-radius: 4px; font-size: 0.5rem; color: var(--accent); font-weight: 600; opacity: 0.7; }
+        .app-ai-badge { position: absolute; top: 8px; right: 8px; padding: 2px 6px; background: rgba(249,112,102,0.15); border: 1px solid rgba(249,112,102,0.3); border-radius: 4px; font-size: 0.5rem; color: var(--accent); font-weight: 600; opacity: 0.7; }
         .svc-apps.is-visible .app-sidebar-icon:nth-child(1) { animation: appElementLoop 5s ease infinite; }
         .svc-apps.is-visible .app-sidebar-icon:nth-child(2) { animation: appElementLoop 5s ease 0.15s infinite; }
         .svc-apps.is-visible .app-sidebar-icon:nth-child(3) { animation: appElementLoop 5s ease 0.3s infinite; }
@@ -1425,7 +1655,7 @@
         .lp-mockup { width: 100%; max-width: 220px; background: var(--bg); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
         .lp-header { height: 16px; background: var(--border); display: flex; align-items: center; justify-content: center; }
         .lp-header-bar { width: 50%; height: 3px; background: var(--border-light); border-radius: 2px; }
-        .lp-hero { height: 40px; margin: 6px; background: linear-gradient(135deg, rgba(59,130,246,0.15), rgba(59,130,246,0.05)); border-radius: 4px; display: flex; align-items: center; justify-content: center; opacity: 0.8; }
+        .lp-hero { height: 40px; margin: 6px; background: linear-gradient(135deg, rgba(249,112,102,0.15), rgba(249,112,102,0.05)); border-radius: 4px; display: flex; align-items: center; justify-content: center; opacity: 0.8; }
         .lp-hero-text { width: 60%; height: 4px; background: var(--accent); border-radius: 2px; opacity: 0.5; }
         .lp-sections { padding: 4px 6px; display: flex; flex-direction: column; gap: 4px; }
         .lp-section-block { height: 14px; background: var(--border); border-radius: 3px; opacity: 0.6; transform: translateY(0); }
@@ -1457,8 +1687,8 @@
         .svc-api.is-visible .api-icon-3 { animation: apiNodePopCenter 5s cubic-bezier(0.34,1.56,0.64,1) 0.4s infinite; }
         .svc-api.is-visible .api-center { animation: apiCenterPulse 3s ease infinite; }
         @keyframes apiCenterPulse {
-            0%, 100% { opacity: 0.8; transform: translate(-50%, -50%) scale(0.95); box-shadow: 0 0 0 rgba(59,130,246,0); }
-            50% { opacity: 1; transform: translate(-50%, -50%) scale(1.08); box-shadow: 0 0 20px rgba(59,130,246,0.4); }
+            0%, 100% { opacity: 0.8; transform: translate(-50%, -50%) scale(0.95); box-shadow: 0 0 0 rgba(249,112,102,0); }
+            50% { opacity: 1; transform: translate(-50%, -50%) scale(1.08); box-shadow: 0 0 20px rgba(249,112,102,0.4); }
         }
         @keyframes apiNodePop {
             0%, 100% { opacity: 0.7; transform: scale(0.92); border-color: var(--border-light); }
@@ -1471,7 +1701,7 @@
 
         /* --- New Service Visuals: Conseil & Formation --- */
         .conseil-visual { height: 160px; padding: 1rem; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; }
-        .conseil-brain { width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; background: rgba(59,130,246,0.1); border-radius: 50%; opacity: 0.85; }
+        .conseil-brain { width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; background: rgba(249,112,102,0.1); border-radius: 50%; opacity: 0.85; }
         .conseil-brain svg { width: 28px; height: 28px; stroke: var(--accent); }
         .conseil-lines { display: flex; flex-direction: column; gap: 6px; width: 100%; max-width: 140px; }
         .conseil-line { height: 4px; background: var(--border-light); border-radius: 2px; opacity: 0.7; transform: scaleX(1); transform-origin: left; }
@@ -1669,14 +1899,14 @@
 
         /* --- Process Card Polish --- */
         .is-visible .chat-anim { animation: chatGlow 2s ease 1.8s infinite; }
-        @keyframes chatGlow { 0%, 100% { box-shadow: none; } 50% { box-shadow: 0 0 20px rgba(59,130,246,0.1); } }
+        @keyframes chatGlow { 0%, 100% { box-shadow: none; } 50% { box-shadow: 0 0 20px rgba(249,112,102,0.1); } }
         .is-visible .audit-visual .visual-icon {
             animation: iconIdentifiedLoop 4s ease infinite;
         }
         @keyframes iconIdentifiedLoop {
             0% { background: transparent; border-color: var(--border); }
-            25% { background: rgba(59,130,246,0.1); border-color: rgba(59,130,246,0.3); box-shadow: 0 0 8px var(--accent-glow); }
-            50% { background: rgba(59,130,246,0.1); border-color: rgba(59,130,246,0.3); }
+            25% { background: rgba(249,112,102,0.1); border-color: rgba(249,112,102,0.3); box-shadow: 0 0 8px var(--accent-glow); }
+            50% { background: rgba(249,112,102,0.1); border-color: rgba(249,112,102,0.3); }
             75% { background: transparent; border-color: var(--border); box-shadow: none; }
             100% { background: transparent; border-color: var(--border); }
         }
@@ -1742,7 +1972,7 @@
         }
         .wf-visual::before {
             content: ''; position: absolute; inset: 0;
-            background-image: linear-gradient(rgba(59,130,246,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(59,130,246,0.04) 1px, transparent 1px);
+            background-image: linear-gradient(rgba(249,112,102,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(249,112,102,0.04) 1px, transparent 1px);
             background-size: 20px 20px; opacity: 0;
         }
         .svc-workflow.is-visible .wf-visual::before { animation: fadeIn 0.6s ease 0.1s forwards; }
@@ -1795,7 +2025,7 @@
         }
         .chat-header-bar {
             display: flex; align-items: center; gap: 8px; padding: 6px 10px;
-            border-bottom: 1px solid var(--border); background: rgba(59,130,246,0.05);
+            border-bottom: 1px solid var(--border); background: rgba(249,112,102,0.05);
         }
         .chat-avatar {
             width: 24px; height: 24px; border-radius: 50%; background: var(--accent);
@@ -1875,8 +2105,8 @@
         @keyframes lineHighlightLoop {
             0% { background: var(--border-light); }
             5% { background: var(--accent); box-shadow: 0 0 6px var(--accent-glow); }
-            10% { background: rgba(59,130,246,0.3); }
-            70% { background: rgba(59,130,246,0.3); }
+            10% { background: rgba(249,112,102,0.3); }
+            70% { background: rgba(249,112,102,0.3); }
             80% { background: var(--border-light); }
             100% { background: var(--border-light); }
         }
@@ -1890,7 +2120,7 @@
         .svc-docs.is-visible .docs-field-3 { animation: fieldLoop 7s ease 1.8s infinite; }
         @keyframes fieldLoop {
             0%, 100% { opacity: 0.8; transform: translateX(0); border-color: var(--border); }
-            50% { opacity: 1; transform: translateX(0); border-color: rgba(59,130,246,0.3); }
+            50% { opacity: 1; transform: translateX(0); border-color: rgba(249,112,102,0.3); }
         }
 
         /* --- Service: Marketing Dashboard --- */
@@ -2352,6 +2582,249 @@
         </p>
     </section>
 
+    <!-- ===== BENTO SERVICES ===== -->
+    <section class="section bento-section" id="services-bento">
+        <div class="section-header">
+            <h2 class="section-title">Ce qu'on fait pour vous</h2>
+            <span class="section-dot"></span>
+        </div>
+
+        <div class="bento-grid">
+
+            <!-- Tile 1 — Chatbots & Agents IA (large) -->
+            <div class="bento-tile bento-tile-lg" data-accent="coral">
+                <div class="bento-glow"></div>
+                <div class="bento-front">
+                    <div class="bento-icon">🤖</div>
+                    <h3 class="bento-title">Chatbots & Agents IA</h3>
+                    <p class="bento-desc">Assistants virtuels 24/7 sur WhatsApp, Messenger ou votre site web</p>
+                    <div class="bento-visual">
+                        <div class="bento-chat">
+                            <div class="bento-chat-msg user">Je voudrais réserver pour samedi</div>
+                            <div class="bento-chat-msg bot">Bien sûr ! Pour combien de personnes ?</div>
+                            <div class="bento-chat-msg user">4 personnes à 19h</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bento-detail">
+                    <h4>Arguments clés</h4>
+                    <ul>
+                        <li>Réponse instantanée 24/7 — vos clients n'attendent plus</li>
+                        <li>WhatsApp, Messenger, Instagram, site web</li>
+                        <li>Réservation, FAQ, qualification de leads automatique</li>
+                    </ul>
+                    <h4>Exemples</h4>
+                    <div class="bento-tags">
+                        <span class="bento-tag">Chatbot WhatsApp 24/7</span>
+                        <span class="bento-tag">FAQ intelligente IA</span>
+                        <span class="bento-tag">Réponses emails auto</span>
+                        <span class="bento-tag">Routage par département</span>
+                        <span class="bento-tag">Support multilingue</span>
+                        <span class="bento-tag">Réponses avis Google</span>
+                    </div>
+                    <a href="/services/chatbots.html" class="bento-link">En savoir plus →</a>
+                </div>
+            </div>
+
+            <!-- Tile 2 — Automatisation de workflows (medium) -->
+            <div class="bento-tile bento-tile-md" data-accent="lagoon">
+                <div class="bento-glow"></div>
+                <div class="bento-front">
+                    <div class="bento-icon">⚡</div>
+                    <h3 class="bento-title">Automatisation</h3>
+                    <p class="bento-desc">Vos apps connectées, vos process automatisés bout-en-bout</p>
+                    <div class="bento-visual">
+                        <div class="bento-pipeline">
+                            <div class="bento-pipe-node">📥</div>
+                            <span class="bento-pipe-arrow">→</span>
+                            <div class="bento-pipe-node">⚙️</div>
+                            <span class="bento-pipe-arrow">→</span>
+                            <div class="bento-pipe-node">📤</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bento-detail">
+                    <h4>Arguments clés</h4>
+                    <ul>
+                        <li>10 à 20+ workflows interconnectés par entreprise</li>
+                        <li>Réservations, commandes, facturation, relances</li>
+                        <li>Intégration avec tous vos outils existants</li>
+                    </ul>
+                    <h4>Exemples</h4>
+                    <div class="bento-tags">
+                        <span class="bento-tag">Réservations auto</span>
+                        <span class="bento-tag">Gestion commandes</span>
+                        <span class="bento-tag">Rappels RDV</span>
+                        <span class="bento-tag">Notifications</span>
+                        <span class="bento-tag">Planification équipes</span>
+                        <span class="bento-tag">Suivi livraisons</span>
+                    </div>
+                    <a href="/services/workflows.html" class="bento-link">En savoir plus →</a>
+                </div>
+            </div>
+
+            <!-- Tile 3 — Sites Web (small) -->
+            <div class="bento-tile bento-tile-sm" data-accent="coral">
+                <div class="bento-glow"></div>
+                <div class="bento-front">
+                    <div class="bento-icon">🌐</div>
+                    <h3 class="bento-title">Sites Web</h3>
+                    <p class="bento-desc">Sites vitrines, landing pages haute conversion</p>
+                    <div class="bento-visual">
+                        <div class="bento-mockup">
+                            <div class="bento-mockup-nav"><span></span><span></span><span></span></div>
+                            <div class="bento-mockup-hero"></div>
+                            <div class="bento-mockup-blocks">
+                                <div class="bento-mockup-block"></div>
+                                <div class="bento-mockup-block"></div>
+                                <div class="bento-mockup-block"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bento-detail">
+                    <h4>Arguments clés</h4>
+                    <ul>
+                        <li>Design premium responsive</li>
+                        <li>SEO technique optimisé</li>
+                        <li>Performance 90+ Lighthouse</li>
+                    </ul>
+                    <div class="bento-tags">
+                        <span class="bento-tag">Qualification leads</span>
+                        <span class="bento-tag">Séquences email</span>
+                        <span class="bento-tag">Devis automatiques</span>
+                    </div>
+                    <a href="/services/landing-pages.html" class="bento-link">En savoir plus →</a>
+                </div>
+            </div>
+
+            <!-- Tile 4 — Applications (small) -->
+            <div class="bento-tile bento-tile-sm" data-accent="lagoon">
+                <div class="bento-glow"></div>
+                <div class="bento-front">
+                    <div class="bento-icon">📱</div>
+                    <h3 class="bento-title">Applications</h3>
+                    <p class="bento-desc">Dashboards, portails clients, apps métier</p>
+                    <div class="bento-visual">
+                        <div class="bento-bars">
+                            <div class="bento-bar"></div>
+                            <div class="bento-bar"></div>
+                            <div class="bento-bar"></div>
+                            <div class="bento-bar"></div>
+                            <div class="bento-bar"></div>
+                            <div class="bento-bar"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bento-detail">
+                    <h4>Arguments clés</h4>
+                    <ul>
+                        <li>Next.js / React — interfaces temps réel</li>
+                        <li>Gestion utilisateurs & rôles</li>
+                        <li>Déploiement cloud scalable</li>
+                    </ul>
+                    <div class="bento-tags">
+                        <span class="bento-tag">Scoring clients</span>
+                        <span class="bento-tag">Relances auto</span>
+                        <span class="bento-tag">Upsell intelligent</span>
+                    </div>
+                    <a href="/services/apps.html" class="bento-link">En savoir plus →</a>
+                </div>
+            </div>
+
+            <!-- Tile 5 — Marketing Digital (small) -->
+            <div class="bento-tile bento-tile-sm" data-accent="gold">
+                <div class="bento-glow"></div>
+                <div class="bento-front">
+                    <div class="bento-icon">📈</div>
+                    <h3 class="bento-title">Marketing & SEO</h3>
+                    <p class="bento-desc">Contenus IA, campagnes automatisées, visibilité</p>
+                    <div class="bento-visual">
+                        <div class="bento-bars">
+                            <div class="bento-bar"></div>
+                            <div class="bento-bar"></div>
+                            <div class="bento-bar"></div>
+                            <div class="bento-bar"></div>
+                            <div class="bento-bar"></div>
+                            <div class="bento-bar"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bento-detail">
+                    <h4>Arguments clés</h4>
+                    <ul>
+                        <li>Rédaction IA optimisée SEO</li>
+                        <li>Campagnes Facebook/Google automatisées</li>
+                        <li>Analytics & reporting avancé</li>
+                    </ul>
+                    <h4>Exemples</h4>
+                    <div class="bento-tags">
+                        <span class="bento-tag">Newsletters IA</span>
+                        <span class="bento-tag">Posts sociaux auto</span>
+                        <span class="bento-tag">Articles SEO</span>
+                        <span class="bento-tag">A/B testing auto</span>
+                        <span class="bento-tag">Calendrier éditorial</span>
+                        <span class="bento-tag">Veille concurrentielle</span>
+                    </div>
+                    <a href="/services/marketing.html" class="bento-link">En savoir plus →</a>
+                </div>
+            </div>
+
+            <!-- Tile 6 — Docs + API + Conseil (wide) -->
+            <div class="bento-tile bento-tile-wide" data-accent="violet">
+                <div class="bento-glow"></div>
+                <div class="bento-front" style="display:flex; gap:32px; align-items:flex-start;">
+                    <div style="flex:1;">
+                        <div class="bento-icon">📄</div>
+                        <h3 class="bento-title">Extraction docs, API & Conseil</h3>
+                        <p class="bento-desc">L'IA lit vos documents, connecte vos outils, et on forme vos équipes</p>
+                    </div>
+                    <div class="bento-visual" style="flex:1; min-height:60px;">
+                        <div class="bento-scan">
+                            <div class="bento-scan-bar"></div>
+                            <div class="bento-scan-fields">
+                                <span class="bento-scan-field">Montant</span>
+                                <span class="bento-scan-field">Date</span>
+                                <span class="bento-scan-field">Fournisseur</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bento-detail">
+                    <div style="display:flex; gap:24px; flex-wrap:wrap;">
+                        <div style="flex:1; min-width:200px;">
+                            <h4>Extraction & API</h4>
+                            <ul>
+                                <li>Factures, bons de commande, relevés bancaires</li>
+                                <li>CRM, facturation, calendrier — un écosystème unifié</li>
+                                <li>Connexion de tous vos outils existants</li>
+                            </ul>
+                        </div>
+                        <div style="flex:1; min-width:200px;">
+                            <h4>Exemples</h4>
+                            <div class="bento-tags">
+                                <span class="bento-tag">OCR factures</span>
+                                <span class="bento-tag">Rapprochement bancaire</span>
+                                <span class="bento-tag">Rapports auto</span>
+                                <span class="bento-tag">Relances impayés</span>
+                                <span class="bento-tag">Tri CV auto</span>
+                                <span class="bento-tag">Onboarding auto</span>
+                                <span class="bento-tag">Gestion congés</span>
+                                <span class="bento-tag">Formation IA</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="margin-top:10px; display:flex; gap:16px;">
+                        <a href="/services/documents.html" class="bento-link">Extraction docs →</a>
+                        <a href="/services/api.html" class="bento-link">Intégrations API →</a>
+                        <a href="/services/conseil.html" class="bento-link">Conseil & Formation →</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
     <!-- ===== MODULES INTERACTIFS — 4 mega-cartes ===== -->
     <section class="section modules-section" id="modules">
         <div class="section-header">
@@ -2706,10 +3179,10 @@
                     <line x1="240" y1="50" x2="150" y2="100" stroke="var(--accent)" stroke-width="1" opacity="0.3"/>
                     <line x1="60" y1="150" x2="150" y2="100" stroke="var(--accent)" stroke-width="1" opacity="0.3"/>
                     <line x1="240" y1="150" x2="150" y2="100" stroke="var(--accent)" stroke-width="1" opacity="0.3"/>
-                    <circle class="data-packet dp-1" cx="60" cy="50" r="3" fill="#3b82f6"/>
-                    <circle class="data-packet dp-2" cx="240" cy="50" r="3" fill="#3b82f6"/>
-                    <circle class="data-packet dp-3" cx="60" cy="150" r="3" fill="#3b82f6"/>
-                    <circle class="data-packet dp-4" cx="240" cy="150" r="3" fill="#3b82f6"/>
+                    <circle class="data-packet dp-1" cx="60" cy="50" r="3" fill="#f97066"/>
+                    <circle class="data-packet dp-2" cx="240" cy="50" r="3" fill="#f97066"/>
+                    <circle class="data-packet dp-3" cx="60" cy="150" r="3" fill="#f97066"/>
+                    <circle class="data-packet dp-4" cx="240" cy="150" r="3" fill="#f97066"/>
                 </svg>
             </div>
             <div class="infra-content">
@@ -3158,7 +3631,7 @@
             }
 
             draw() {
-                ctx.fillStyle = 'rgba(59, 130, 246, 0.6)';
+                ctx.fillStyle = 'rgba(249, 112, 102, 0.5)';
                 ctx.beginPath();
                 ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
                 ctx.closePath();
@@ -3186,7 +3659,7 @@
 
                     if (distance < 120) {
                         let opacity = 1 - distance / 120;
-                        ctx.strokeStyle = `rgba(59, 130, 246, ${opacity * 0.15})`;
+                        ctx.strokeStyle = `rgba(249, 112, 102, ${opacity * 0.12})`;
                         ctx.lineWidth = 0.5;
                         ctx.beginPath();
                         ctx.moveTo(particles[a].x, particles[a].y);
@@ -3232,7 +3705,7 @@
             });
         }, { threshold: 0.15 });
 
-        document.querySelectorAll('.card, .service-card, .service-mini, .auto-category, .module-card, .infrastructure-hero, .statement, .cta-box, .testimonial-card, .counter-item, .section-header').forEach(el => {
+        document.querySelectorAll('.card, .service-card, .service-mini, .auto-category, .module-card, .bento-tile, .infrastructure-hero, .statement, .cta-box, .testimonial-card, .counter-item, .section-header').forEach(el => {
             animObserver.observe(el);
         });
 
@@ -3291,6 +3764,43 @@
         })();
     </script>
 
+    <!-- Bento Services JS -->
+    <script>
+    (function() {
+        // Mouse-tracking glow for bento tiles
+        document.querySelectorAll('.bento-tile').forEach(tile => {
+            tile.addEventListener('mousemove', e => {
+                const rect = tile.getBoundingClientRect();
+                tile.style.setProperty('--mouse-x', (e.clientX - rect.left) + 'px');
+                tile.style.setProperty('--mouse-y', (e.clientY - rect.top) + 'px');
+            });
+        });
+
+        // 3D tilt for bento tiles (subtle)
+        document.querySelectorAll('.bento-tile').forEach(tile => {
+            const maxTilt = 4;
+            const perspective = 1200;
+            const scale = 1.01;
+            let raf;
+            tile.addEventListener('mousemove', e => {
+                if (raf) cancelAnimationFrame(raf);
+                raf = requestAnimationFrame(() => {
+                    const rect = tile.getBoundingClientRect();
+                    const x = (e.clientX - rect.left) / rect.width;
+                    const y = (e.clientY - rect.top) / rect.height;
+                    const tiltX = (maxTilt * (0.5 - y)).toFixed(2);
+                    const tiltY = (maxTilt * (x - 0.5)).toFixed(2);
+                    tile.style.transform = `perspective(${perspective}px) rotateX(${tiltX}deg) rotateY(${tiltY}deg) scale3d(${scale},${scale},${scale})`;
+                });
+            });
+            tile.addEventListener('mouseleave', () => {
+                if (raf) cancelAnimationFrame(raf);
+                tile.style.transform = '';
+            });
+        });
+    })();
+    </script>
+
     <!-- Modules Interactifs JS -->
     <script>
     (function() {
@@ -3341,12 +3851,12 @@
     <!-- MANA Chat Widget -->
     <style>
         .mana-widget { position: fixed; bottom: 24px; right: 24px; z-index: 9999; font-family: var(--font); }
-        .mana-bubble { width: 60px; height: 60px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), #2563eb); display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 4px 20px rgba(59,130,246,0.4); transition: transform 0.2s, box-shadow 0.2s; animation: bubblePulse 3s ease-in-out infinite; }
-        .mana-bubble:hover { transform: scale(1.08); box-shadow: 0 6px 28px rgba(59,130,246,0.5); animation: none; }
+        .mana-bubble { width: 60px; height: 60px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), #e85d5a); display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 4px 20px rgba(249,112,102,0.4); transition: transform 0.2s, box-shadow 0.2s; animation: bubblePulse 3s ease-in-out infinite; }
+        .mana-bubble:hover { transform: scale(1.08); box-shadow: 0 6px 28px rgba(249,112,102,0.5); animation: none; }
         .mana-bubble.open { animation: none; }
         @keyframes bubblePulse {
-            0%, 100% { box-shadow: 0 4px 20px rgba(59,130,246,0.4); transform: scale(1); }
-            50% { box-shadow: 0 4px 28px rgba(59,130,246,0.6), 0 0 0 8px rgba(59,130,246,0.1); transform: scale(1.05); }
+            0%, 100% { box-shadow: 0 4px 20px rgba(249,112,102,0.4); transform: scale(1); }
+            50% { box-shadow: 0 4px 28px rgba(249,112,102,0.6), 0 0 0 8px rgba(249,112,102,0.1); transform: scale(1.05); }
         }
         .mana-bubble img.mana-chat-icon { width: 44px; height: 44px; border-radius: 50%; }
         .mana-bubble svg { width: 28px; height: 28px; fill: #fff; }
@@ -3356,8 +3866,8 @@
         .mana-badge { position: absolute; top: -2px; right: -2px; width: 14px; height: 14px; background: #22c55e; border-radius: 50%; border: 2px solid var(--bg); }
         .mana-panel { position: absolute; bottom: 72px; right: 0; width: 380px; max-height: 520px; background: var(--bg-card); border: 1px solid var(--border-light); border-radius: 16px; display: flex; flex-direction: column; overflow: hidden; opacity: 0; transform: translateY(16px) scale(0.95); pointer-events: none; transition: opacity 0.25s, transform 0.25s; box-shadow: 0 8px 40px rgba(0,0,0,0.5); }
         .mana-panel.open { opacity: 1; transform: translateY(0) scale(1); pointer-events: all; }
-        .mana-header { padding: 16px 20px; background: linear-gradient(135deg, rgba(59,130,246,0.15), rgba(37,99,235,0.08)); border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 12px; }
-        .mana-avatar { width: 36px; height: 36px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), #2563eb); display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; overflow: hidden; }
+        .mana-header { padding: 16px 20px; background: linear-gradient(135deg, rgba(249,112,102,0.15), rgba(37,99,235,0.08)); border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 12px; }
+        .mana-avatar { width: 36px; height: 36px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), #e85d5a); display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; overflow: hidden; }
         .mana-avatar img { width: 100%; height: 100%; object-fit: cover; }
         .mana-header-text h4 { font-size: 14px; font-weight: 600; color: var(--text); margin: 0; }
         .mana-header-text span { font-size: 12px; color: var(--text-secondary); }
@@ -3377,7 +3887,7 @@
         .mana-input::placeholder { color: var(--text-dim); }
         .mana-input:focus { border-color: var(--accent); }
         .mana-send { width: 38px; height: 38px; border-radius: 10px; background: var(--accent); border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.2s, opacity 0.2s; flex-shrink: 0; }
-        .mana-send:hover { background: #2563eb; }
+        .mana-send:hover { background: #e85d5a; }
         .mana-send:disabled { opacity: 0.4; cursor: not-allowed; }
         .mana-send svg { width: 18px; height: 18px; fill: #fff; }
         .mana-form { align-self: flex-start; max-width: 90%; background: var(--bg-card-hover); border: 1px solid var(--border); border-radius: 14px; padding: 14px; animation: manaFadeIn 0.3s ease; }
@@ -3386,7 +3896,7 @@
         .mana-form input::placeholder { color: var(--text-dim); }
         .mana-form input:focus { border-color: var(--accent); }
         .mana-form button { width: 100%; padding: 9px; background: var(--accent); color: #fff; border: none; border-radius: 8px; font-size: 13px; font-weight: 600; font-family: var(--font); cursor: pointer; transition: background 0.2s; }
-        .mana-form button:hover { background: #2563eb; }
+        .mana-form button:hover { background: #e85d5a; }
         .mana-form button:disabled { opacity: 0.5; cursor: not-allowed; }
         .mana-form .mana-skip { display: block; text-align: center; margin-top: 6px; font-size: 11.5px; color: var(--text-dim); cursor: pointer; border: none; background: none; font-family: var(--font); width: 100%; padding: 4px; }
         .mana-form .mana-skip:hover { color: var(--text-secondary); }
@@ -3658,14 +4168,14 @@
     .lm-popup p { font-size:14px; color:#a0a0bd; line-height:1.6; margin-bottom:20px; }
     .lm-form { display:flex; gap:8px; }
     .lm-form input { flex:1; padding:12px 16px; background:#111122; border:1px solid #1c1c35; border-radius:8px; color:#f0f0f5; font-size:14px; outline:none; font-family:inherit; }
-    .lm-form input:focus { border-color:#6366f1; }
+    .lm-form input:focus { border-color:#f97066; }
     .lm-form input::placeholder { color:#5a5a78; }
-    .lm-form button { padding:12px 20px; background:#6366f1; color:#fff; border:none; border-radius:8px; font-size:14px; font-weight:600; cursor:pointer; white-space:nowrap; font-family:inherit; transition:background 0.2s; }
+    .lm-form button { padding:12px 20px; background:#f97066; color:#fff; border:none; border-radius:8px; font-size:14px; font-weight:600; cursor:pointer; white-space:nowrap; font-family:inherit; transition:background 0.2s; }
     .lm-form button:hover { background:#4f46e5; }
     .lm-form button:disabled { opacity:0.6; cursor:not-allowed; }
     .lm-success { text-align:center; padding:20px 0; }
     .lm-success .check { font-size:48px; margin-bottom:12px; display:block; }
-    .lm-success a { display:inline-block; margin-top:16px; padding:12px 24px; background:#6366f1; color:#fff; border-radius:8px; text-decoration:none; font-weight:600; font-size:14px; }
+    .lm-success a { display:inline-block; margin-top:16px; padding:12px 24px; background:#f97066; color:#fff; border-radius:8px; text-decoration:none; font-weight:600; font-size:14px; }
     .lm-success a:hover { background:#4f46e5; }
     .lm-error { color:#ef4444; font-size:13px; margin-top:8px; }
     .lm-note { font-size:11px; color:#5a5a78; margin-top:12px; }
