@@ -951,26 +951,20 @@ fadeEls.forEach(el => fadeObs.observe(el));
     }
 
 
+    // Load ALL iframes on init
+    cards.forEach(function(card) {
+        var thumb = card.querySelector('.portfolio-thumb');
+        var iframe = document.createElement('iframe');
+        iframe.src = card.getAttribute('href');
+        iframe.loading = 'eager';
+        iframe.setAttribute('tabindex', '-1');
+        thumb.appendChild(iframe);
+    });
+
     function updateUI() {
         positionCards();
         dots.forEach(function(d, i) { d.classList.toggle('active', i === currentIndex); });
         if (counterEl) counterEl.textContent = currentIndex + 1;
-        // Load iframe on active card only
-        cards.forEach(function(card, i) {
-            var thumb = card.querySelector('.portfolio-thumb');
-            var existingIframe = thumb.querySelector('iframe');
-            if (i === currentIndex) {
-                if (!existingIframe) {
-                    var iframe = document.createElement('iframe');
-                    iframe.src = card.getAttribute('href');
-                    iframe.loading = 'eager';
-                    iframe.setAttribute('tabindex', '-1');
-                    thumb.appendChild(iframe);
-                }
-            } else if (existingIframe) {
-                existingIframe.remove();
-            }
-        });
     }
 
     function goTo(idx) {
