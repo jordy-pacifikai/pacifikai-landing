@@ -631,7 +631,7 @@ footer a:hover { color: var(--text); }
                     </div>
                 </div>
             </a>
-            <a href="/portfolio/studio-belleza.html" target="_blank" class="portfolio-card">
+            <a href="/portfolio/studio-belleza.html" target="_blank" class="portfolio-card" data-site="https://studio-belleza.vercel.app">
                 <div class="portfolio-thumb">
                     <img src="/portfolio/images/studio-belleza/hero.jpg" alt="Studio Belleza Tahiti" loading="lazy">
                     <span class="thumb-label">Client reel</span>
@@ -955,7 +955,7 @@ fadeEls.forEach(el => fadeObs.observe(el));
     cards.forEach(function(card) {
         var thumb = card.querySelector('.portfolio-thumb');
         var iframe = document.createElement('iframe');
-        iframe.src = card.getAttribute('href');
+        iframe.src = card.getAttribute('data-site') || card.getAttribute('href');
         iframe.loading = 'eager';
         iframe.setAttribute('tabindex', '-1');
         thumb.appendChild(iframe);
