@@ -58,12 +58,12 @@
     width: 340px;
     height: 340px;
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(139,157,119,.18), transparent 70%);
+    background: radial-gradient(circle, rgba(139,157,119,.10), transparent 70%);
     animation: breathe 6s ease-in-out infinite;
   }
   @keyframes breathe {
-    0%, 100% { transform: scale(1); opacity: .35; }
-    50%       { transform: scale(1.35); opacity: .65; }
+    0%, 100% { transform: scale(1); opacity: .2; }
+    50%       { transform: scale(1.35); opacity: .35; }
   }
   .hero-inner { position: relative; z-index: 1; }
   .hero-eyebrow {
@@ -71,17 +71,20 @@
     font-size: 11px;
     letter-spacing: .25em;
     text-transform: uppercase;
-    color: var(--sage);
+    color: var(--earth);
     margin-bottom: 36px;
+    position: relative;
+    z-index: 2;
   }
   .hero-title {
     font-family: 'Cormorant', serif;
     font-size: clamp(60px, 10vw, 110px);
-    font-weight: 300;
-    color: var(--dark);
+    font-weight: 400;
+    color: var(--earth);
     line-height: 1;
     margin-bottom: 32px;
-    overflow: hidden;
+    position: relative;
+    z-index: 2;
   }
   .hero-sub {
     font-family: 'Cormorant', serif;
@@ -550,15 +553,7 @@ document.querySelectorAll('.gentle-parallax').forEach(el => {
   });
 });
 
-// === HERO TITLE WORD FADE (preserved logic, GSAP-enhanced) ===
-const titleEl = document.getElementById('hero-title');
-if (titleEl) {
-  const words = titleEl.textContent.split(' ');
-  titleEl.innerHTML = words.map(w => `<span class="word">${w}</span>`).join(' ');
-  gsap.from(titleEl.querySelectorAll('.word'), {
-    y: 10, opacity: 0, stagger: 0.22, duration: 0.6, ease: 'power2.out', delay: 0.3
-  });
-}
+// === HERO TITLE — visible immediately, no opacity animation ===
 
 // === SERVICE ITEMS STAGGER ===
 gsap.utils.toArray('.service-item').forEach(el => {
