@@ -941,7 +941,10 @@ fadeEls.forEach(el => fadeObs.observe(el));
 
     function positionCards() {
         cards.forEach(function(card, i) {
-            const diff = i - currentIndex;
+            var diff = i - currentIndex;
+            // Circular wrap: shortest path around the ring
+            if (diff > total / 2) diff -= total;
+            if (diff < -total / 2) diff += total;
             if (diff >= -2 && diff <= 2) {
                 card.setAttribute('data-pos', diff.toString());
             } else {
