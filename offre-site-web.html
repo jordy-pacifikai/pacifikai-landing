@@ -941,15 +941,14 @@ fadeEls.forEach(el => fadeObs.observe(el));
         loadVisibleIframes();
     }
 
-    // Lazy-load iframes only for active card + neighbors
+    // Lazy-load iframes — load all 5 visible positions + preload neighbors
     function loadVisibleIframes() {
         cards.forEach(function(card, i) {
             const iframe = card.querySelector('iframe');
-            if (!iframe) return;
+            if (!iframe || !iframe.dataset.src) return;
             const diff = Math.abs(i - currentIndex);
-            // Also handle wrap-around
             const wrapDiff = Math.min(diff, total - diff);
-            if (wrapDiff <= 1 && !iframe.src && iframe.dataset.src) {
+            if (wrapDiff <= 2 && !iframe.getAttribute('src')) {
                 iframe.src = iframe.dataset.src;
                 iframe.addEventListener('load', function() { iframe.classList.add('loaded'); }, { once: true });
             }
