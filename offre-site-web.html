@@ -173,9 +173,13 @@ section { position: relative; z-index: 1; }
   opacity: 0; transition: opacity 0.4s; pointer-events: none; border-radius: 18px;
 }
 .portfolio-card[data-pos="0"]:hover::before { opacity: 1; }
-.portfolio-iframe-wrap { position: relative; flex: 1; min-height: 400px; overflow: hidden; border-bottom: 1px solid var(--border); pointer-events: none; }
-.portfolio-iframe-wrap iframe { width: 200%; height: 200%; transform: scale(0.5); transform-origin: top left; border: none; pointer-events: none; }
-.portfolio-iframe-wrap::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 60px; background: linear-gradient(transparent, var(--bg-card)); pointer-events: none; }
+.portfolio-iframe-wrap { position: relative; flex: 1; min-height: 400px; overflow: hidden; border-bottom: 1px solid var(--border); pointer-events: none; background: linear-gradient(135deg, rgba(249,112,102,0.05), rgba(20,184,166,0.05)); }
+.portfolio-iframe-wrap iframe { width: 200%; height: 200%; transform: scale(0.5); transform-origin: top left; border: none; pointer-events: none; opacity: 0; transition: opacity 0.5s ease; }
+.portfolio-iframe-wrap iframe.loaded { opacity: 1; }
+.portfolio-iframe-wrap::before { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.03), transparent); background-size: 200% 100%; animation: shimmer 2s infinite; z-index: 1; }
+.portfolio-iframe-wrap iframe.loaded + .portfolio-iframe-wrap::before { display: none; }
+@keyframes shimmer { 0%{background-position:200% 0} 100%{background-position:-200% 0} }
+.portfolio-iframe-wrap::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 60px; background: linear-gradient(transparent, var(--bg-card)); pointer-events: none; z-index: 2; }
 .portfolio-card-info { padding: 20px 24px; }
 .portfolio-card-info h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 6px; }
 .portfolio-card-info p { font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 12px; line-height: 1.5; }
@@ -509,7 +513,7 @@ footer a:hover { color: var(--text); }
         <div class="portfolio-carousel" id="portfolioCarousel">
             <a href="/portfolio/air-tahiti-nui.html" target="_blank" class="portfolio-card">
                 <div class="portfolio-iframe-wrap">
-                    <iframe src="/portfolio/air-tahiti-nui.html" loading="lazy" scrolling="no" tabindex="-1"></iframe>
+                    <iframe data-src="/portfolio/air-tahiti-nui.html" scrolling="no" tabindex="-1"></iframe>
                 </div>
                 <div class="portfolio-card-info">
                     <h3>Air Tahiti Nui</h3>
@@ -523,7 +527,7 @@ footer a:hover { color: var(--text); }
             </a>
             <a href="/portfolio/hinano.html" target="_blank" class="portfolio-card">
                 <div class="portfolio-iframe-wrap">
-                    <iframe src="/portfolio/hinano.html" loading="lazy" scrolling="no" tabindex="-1"></iframe>
+                    <iframe data-src="/portfolio/hinano.html" scrolling="no" tabindex="-1"></iframe>
                 </div>
                 <div class="portfolio-card-info">
                     <h3>Hinano / Brasserie de Tahiti</h3>
@@ -537,7 +541,7 @@ footer a:hover { color: var(--text); }
             </a>
             <a href="/portfolio/the-brando.html" target="_blank" class="portfolio-card">
                 <div class="portfolio-iframe-wrap">
-                    <iframe src="/portfolio/the-brando.html" loading="lazy" scrolling="no" tabindex="-1"></iframe>
+                    <iframe data-src="/portfolio/the-brando.html" scrolling="no" tabindex="-1"></iframe>
                 </div>
                 <div class="portfolio-card-info">
                     <h3>The Brando</h3>
@@ -551,7 +555,7 @@ footer a:hover { color: var(--text); }
             </a>
             <a href="/portfolio/robert-wan.html" target="_blank" class="portfolio-card">
                 <div class="portfolio-iframe-wrap">
-                    <iframe src="/portfolio/robert-wan.html" loading="lazy" scrolling="no" tabindex="-1"></iframe>
+                    <iframe data-src="/portfolio/robert-wan.html" scrolling="no" tabindex="-1"></iframe>
                 </div>
                 <div class="portfolio-card-info">
                     <h3>Robert Wan Perles</h3>
@@ -565,7 +569,7 @@ footer a:hover { color: var(--text); }
             </a>
             <a href="/portfolio/tahiti-nui-travel.html" target="_blank" class="portfolio-card">
                 <div class="portfolio-iframe-wrap">
-                    <iframe src="/portfolio/tahiti-nui-travel.html" loading="lazy" scrolling="no" tabindex="-1"></iframe>
+                    <iframe data-src="/portfolio/tahiti-nui-travel.html" scrolling="no" tabindex="-1"></iframe>
                 </div>
                 <div class="portfolio-card-info">
                     <h3>Tahiti Nui Travel</h3>
@@ -579,7 +583,7 @@ footer a:hover { color: var(--text); }
             </a>
             <a href="/portfolio/mama-roti.html" target="_blank" class="portfolio-card">
                 <div class="portfolio-iframe-wrap">
-                    <iframe src="/portfolio/mama-roti.html" loading="lazy" scrolling="no" tabindex="-1"></iframe>
+                    <iframe data-src="/portfolio/mama-roti.html" scrolling="no" tabindex="-1"></iframe>
                 </div>
                 <div class="portfolio-card-info">
                     <h3>Chez Mama Roti</h3>
@@ -593,7 +597,7 @@ footer a:hover { color: var(--text); }
             </a>
             <a href="/portfolio/moana-ink.html" target="_blank" class="portfolio-card">
                 <div class="portfolio-iframe-wrap">
-                    <iframe src="/portfolio/moana-ink.html" loading="lazy" scrolling="no" tabindex="-1"></iframe>
+                    <iframe data-src="/portfolio/moana-ink.html" scrolling="no" tabindex="-1"></iframe>
                 </div>
                 <div class="portfolio-card-info">
                     <h3>Moana Ink</h3>
@@ -607,7 +611,7 @@ footer a:hover { color: var(--text); }
             </a>
             <a href="/portfolio/lagon-bleu.html" target="_blank" class="portfolio-card">
                 <div class="portfolio-iframe-wrap">
-                    <iframe src="/portfolio/lagon-bleu.html" loading="lazy" scrolling="no" tabindex="-1"></iframe>
+                    <iframe data-src="/portfolio/lagon-bleu.html" scrolling="no" tabindex="-1"></iframe>
                 </div>
                 <div class="portfolio-card-info">
                     <h3>Lagon Bleu Plongee</h3>
@@ -621,7 +625,7 @@ footer a:hover { color: var(--text); }
             </a>
             <a href="/portfolio/studio-belleza.html" target="_blank" class="portfolio-card">
                 <div class="portfolio-iframe-wrap">
-                    <iframe src="https://studio-belleza.vercel.app" loading="lazy" scrolling="no" tabindex="-1"></iframe>
+                    <iframe data-src="https://studio-belleza.vercel.app" scrolling="no" tabindex="-1"></iframe>
                 </div>
                 <div class="portfolio-card-info">
                     <h3>Studio Belleza Tahiti</h3>
@@ -635,7 +639,7 @@ footer a:hover { color: var(--text); }
             </a>
             <a href="/portfolio/te-fare-ora.html" target="_blank" class="portfolio-card">
                 <div class="portfolio-iframe-wrap">
-                    <iframe src="/portfolio/te-fare-ora.html" loading="lazy" scrolling="no" tabindex="-1"></iframe>
+                    <iframe data-src="/portfolio/te-fare-ora.html" scrolling="no" tabindex="-1"></iframe>
                 </div>
                 <div class="portfolio-card-info">
                     <h3>Te Fare Ora</h3>
@@ -932,6 +936,22 @@ fadeEls.forEach(el => fadeObs.observe(el));
                 card.setAttribute('data-pos', diff.toString());
             } else {
                 card.setAttribute('data-pos', 'hidden');
+            }
+        });
+        loadVisibleIframes();
+    }
+
+    // Lazy-load iframes only for active card + neighbors
+    function loadVisibleIframes() {
+        cards.forEach(function(card, i) {
+            const iframe = card.querySelector('iframe');
+            if (!iframe) return;
+            const diff = Math.abs(i - currentIndex);
+            // Also handle wrap-around
+            const wrapDiff = Math.min(diff, total - diff);
+            if (wrapDiff <= 1 && !iframe.src && iframe.dataset.src) {
+                iframe.src = iframe.dataset.src;
+                iframe.addEventListener('load', function() { iframe.classList.add('loaded'); }, { once: true });
             }
         });
     }
