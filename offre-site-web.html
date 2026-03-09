@@ -144,7 +144,7 @@ section { position: relative; z-index: 1; }
   position: relative; height: 620px; padding: 20px 0 40px;
 }
 .portfolio-card {
-  position: absolute; width: 380px; min-height: 560px;
+  position: absolute; width: 380px; height: 560px;
   background: var(--bg-card); border: 1px solid var(--border); border-radius: 18px;
   overflow: hidden; cursor: pointer; text-decoration: none; color: inherit;
   display: flex; flex-direction: column;
@@ -173,10 +173,8 @@ section { position: relative; z-index: 1; }
   opacity: 0; transition: opacity 0.4s; pointer-events: none; border-radius: 18px;
 }
 .portfolio-card[data-pos="0"]:hover::before { opacity: 1; }
-.portfolio-thumb { position: relative; flex: 1; min-height: 400px; overflow: hidden; border-bottom: 1px solid var(--border); }
-.portfolio-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.6s cubic-bezier(.25,.46,.45,.94); }
+.portfolio-thumb { position: relative; height: 400px; overflow: hidden; border-bottom: 1px solid var(--border); }
 .portfolio-thumb iframe { position: absolute; top: 0; left: 0; width: 1440px; height: 1600px; border: none; transform: scale(0.264); transform-origin: top left; pointer-events: none; z-index: 5; }
-.portfolio-card[data-pos="0"]:hover .portfolio-thumb img { transform: scale(1.06); }
 .portfolio-thumb::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, var(--bg-card) 0%, rgba(13,20,36,0.3) 40%, transparent 100%); pointer-events: none; z-index: 3; }
 .portfolio-card[data-pos="0"] .portfolio-thumb::after { background: linear-gradient(to top, var(--bg-card) 0%, transparent 20%); }
 .portfolio-thumb .thumb-label { position: absolute; top: 16px; left: 16px; z-index: 3; padding: 5px 14px; border-radius: 6px; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; background: rgba(0,0,0,0.55); backdrop-filter: blur(8px); color: #fff; border: 1px solid rgba(255,255,255,0.1); }
@@ -512,154 +510,44 @@ footer a:hover { color: var(--text); }
         <button class="carousel-btn carousel-btn--next" aria-label="Suivant">&#8594;</button>
         <div class="portfolio-carousel" id="portfolioCarousel">
             <a href="/portfolio/air-tahiti-nui.html" target="_blank" class="portfolio-card">
-                <div class="portfolio-thumb">
-                    <img src="/portfolio/images/air-tahiti-nui-hero.jpg" alt="Air Tahiti Nui" loading="lazy">
-                    <span class="thumb-label">Site vitrine</span>
-                </div>
-                <div class="portfolio-card-info">
-                    <h3>Air Tahiti Nui</h3>
-                    <p>Compagnie aerienne internationale — Design premium dark &amp; gold</p>
-                    <div class="portfolio-tags">
-                        <span class="portfolio-tag">Aviation</span>
-                        <span class="portfolio-tag">Parallax</span>
-                        <span class="portfolio-tag">3D Tilt</span>
-                    </div>
-                </div>
+                <div class="portfolio-thumb"><iframe src="/portfolio/air-tahiti-nui.html" tabindex="-1"></iframe><span class="thumb-label">Site vitrine</span></div>
+                <div class="portfolio-card-info"><h3>Air Tahiti Nui</h3><p>Compagnie aerienne internationale — Design premium dark &amp; gold</p><div class="portfolio-tags"><span class="portfolio-tag">Aviation</span><span class="portfolio-tag">Parallax</span><span class="portfolio-tag">3D Tilt</span></div></div>
             </a>
             <a href="/portfolio/hinano.html" target="_blank" class="portfolio-card">
-                <div class="portfolio-thumb">
-                    <img src="/portfolio/images/hinano/hero.jpg" alt="Hinano Brasserie de Tahiti" loading="lazy">
-                    <span class="thumb-label">Site vitrine</span>
-                </div>
-                <div class="portfolio-card-info">
-                    <h3>Hinano / Brasserie de Tahiti</h3>
-                    <p>Biere iconique depuis 1955 — Split hero, marquee infini &amp; scroll-snap galerie</p>
-                    <div class="portfolio-tags">
-                        <span class="portfolio-tag">Brasserie</span>
-                        <span class="portfolio-tag">Marquee</span>
-                        <span class="portfolio-tag">Ken Burns</span>
-                    </div>
-                </div>
+                <div class="portfolio-thumb"><iframe src="/portfolio/hinano.html" tabindex="-1"></iframe><span class="thumb-label">Site vitrine</span></div>
+                <div class="portfolio-card-info"><h3>Hinano / Brasserie de Tahiti</h3><p>Biere iconique depuis 1955 — Split hero, marquee infini &amp; scroll-snap galerie</p><div class="portfolio-tags"><span class="portfolio-tag">Brasserie</span><span class="portfolio-tag">Marquee</span><span class="portfolio-tag">Ken Burns</span></div></div>
             </a>
             <a href="/portfolio/the-brando.html" target="_blank" class="portfolio-card">
-                <div class="portfolio-thumb">
-                    <img src="/portfolio/images/the-brando/hero.jpg" alt="The Brando Tetiaroa" loading="lazy">
-                    <span class="thumb-label">Site vitrine</span>
-                </div>
-                <div class="portfolio-card-info">
-                    <h3>The Brando</h3>
-                    <p>Resort eco-luxe Tetiaroa — Parallax multi-couche, progress bar &amp; zoom scroll</p>
-                    <div class="portfolio-tags">
-                        <span class="portfolio-tag">Resort</span>
-                        <span class="portfolio-tag">Parallax</span>
-                        <span class="portfolio-tag--accent portfolio-tag">Magazine</span>
-                    </div>
-                </div>
+                <div class="portfolio-thumb"><iframe src="/portfolio/the-brando.html" tabindex="-1"></iframe><span class="thumb-label">Site vitrine</span></div>
+                <div class="portfolio-card-info"><h3>The Brando</h3><p>Resort eco-luxe Tetiaroa — Parallax multi-couche, progress bar &amp; zoom scroll</p><div class="portfolio-tags"><span class="portfolio-tag">Resort</span><span class="portfolio-tag">Parallax</span><span class="portfolio-tag">Magazine</span></div></div>
             </a>
             <a href="/portfolio/robert-wan.html" target="_blank" class="portfolio-card">
-                <div class="portfolio-thumb">
-                    <img src="/portfolio/images/robert-wan/hero.jpg" alt="Robert Wan Perles" loading="lazy">
-                    <span class="thumb-label">Site vitrine</span>
-                </div>
-                <div class="portfolio-card-info">
-                    <h3>Robert Wan Perles</h3>
-                    <p>L'Empereur des Perles — Cursor glow dore, clip-path reveal &amp; typo editorial</p>
-                    <div class="portfolio-tags">
-                        <span class="portfolio-tag">Joaillerie</span>
-                        <span class="portfolio-tag">Cursor Glow</span>
-                        <span class="portfolio-tag--accent portfolio-tag">Ultra Luxe</span>
-                    </div>
-                </div>
+                <div class="portfolio-thumb"><iframe src="/portfolio/robert-wan.html" tabindex="-1"></iframe><span class="thumb-label">Site vitrine</span></div>
+                <div class="portfolio-card-info"><h3>Robert Wan Perles</h3><p>L'Empereur des Perles — Cursor glow dore, clip-path reveal &amp; typo editorial</p><div class="portfolio-tags"><span class="portfolio-tag">Joaillerie</span><span class="portfolio-tag">Cursor Glow</span><span class="portfolio-tag">Ultra Luxe</span></div></div>
             </a>
             <a href="/portfolio/tahiti-nui-travel.html" target="_blank" class="portfolio-card">
-                <div class="portfolio-thumb">
-                    <img src="/portfolio/images/tahiti-nui-travel/hero.jpg" alt="Tahiti Nui Travel" loading="lazy">
-                    <span class="thumb-label">Site vitrine</span>
-                </div>
-                <div class="portfolio-card-info">
-                    <h3>Tahiti Nui Travel</h3>
-                    <p>Agence de voyage majeure — Bento grid, 3D tilt cards &amp; counter anime</p>
-                    <div class="portfolio-tags">
-                        <span class="portfolio-tag">Voyage</span>
-                        <span class="portfolio-tag">Bento Grid</span>
-                        <span class="portfolio-tag">3D Tilt</span>
-                    </div>
-                </div>
+                <div class="portfolio-thumb"><iframe src="/portfolio/tahiti-nui-travel.html" tabindex="-1"></iframe><span class="thumb-label">Site vitrine</span></div>
+                <div class="portfolio-card-info"><h3>Tahiti Nui Travel</h3><p>Agence de voyage majeure — Bento grid, 3D tilt cards &amp; counter anime</p><div class="portfolio-tags"><span class="portfolio-tag">Voyage</span><span class="portfolio-tag">Bento Grid</span><span class="portfolio-tag">3D Tilt</span></div></div>
             </a>
             <a href="/portfolio/mama-roti.html" target="_blank" class="portfolio-card">
-                <div class="portfolio-thumb">
-                    <img src="/portfolio/images/mama-roti/hero.jpg" alt="Chez Mama Roti" loading="lazy">
-                    <span class="thumb-label">Site vitrine</span>
-                </div>
-                <div class="portfolio-card-info">
-                    <h3>Chez Mama Roti</h3>
-                    <p>Roulotte familiale a Punaauia — Style ardoise &amp; typewriter anime</p>
-                    <div class="portfolio-tags">
-                        <span class="portfolio-tag">TPE</span>
-                        <span class="portfolio-tag">Chalkboard</span>
-                        <span class="portfolio-tag">Typewriter</span>
-                    </div>
-                </div>
+                <div class="portfolio-thumb"><iframe src="/portfolio/mama-roti.html" tabindex="-1"></iframe><span class="thumb-label">Site vitrine</span></div>
+                <div class="portfolio-card-info"><h3>Chez Mama Roti</h3><p>Roulotte familiale — Design warm &amp; premium</p><div class="portfolio-tags"><span class="portfolio-tag">TPE</span><span class="portfolio-tag">Dark Amber</span><span class="portfolio-tag">Serif</span></div></div>
             </a>
             <a href="/portfolio/moana-ink.html" target="_blank" class="portfolio-card">
-                <div class="portfolio-thumb">
-                    <img src="/portfolio/images/moana-ink/hero.jpg" alt="Moana Ink Tatouage" loading="lazy">
-                    <span class="thumb-label">Site vitrine</span>
-                </div>
-                <div class="portfolio-card-info">
-                    <h3>Moana Ink</h3>
-                    <p>Tatoueur artisan a Papeete — Curseur encre &amp; masonry gallery</p>
-                    <div class="portfolio-tags">
-                        <span class="portfolio-tag">TPE</span>
-                        <span class="portfolio-tag">Custom Cursor</span>
-                        <span class="portfolio-tag">Masonry</span>
-                    </div>
-                </div>
+                <div class="portfolio-thumb"><iframe src="/portfolio/moana-ink.html" tabindex="-1"></iframe><span class="thumb-label">Site vitrine</span></div>
+                <div class="portfolio-card-info"><h3>Moana Ink</h3><p>Tatoueur artisan a Papeete — Curseur encre &amp; masonry gallery</p><div class="portfolio-tags"><span class="portfolio-tag">TPE</span><span class="portfolio-tag">Custom Cursor</span><span class="portfolio-tag">Masonry</span></div></div>
             </a>
             <a href="/portfolio/lagon-bleu.html" target="_blank" class="portfolio-card">
-                <div class="portfolio-thumb">
-                    <img src="/portfolio/images/lagon-bleu/hero.jpg" alt="Lagon Bleu Plongee Moorea" loading="lazy">
-                    <span class="thumb-label">Site vitrine</span>
-                </div>
-                <div class="portfolio-card-info">
-                    <h3>Lagon Bleu Plongee</h3>
-                    <p>Centre plongee familial Moorea — Depth progression &amp; bulles CSS</p>
-                    <div class="portfolio-tags">
-                        <span class="portfolio-tag">TPE</span>
-                        <span class="portfolio-tag">Depth Scroll</span>
-                        <span class="portfolio-tag">Bubbles</span>
-                    </div>
-                </div>
+                <div class="portfolio-thumb"><iframe src="/portfolio/lagon-bleu.html" tabindex="-1"></iframe><span class="thumb-label">Site vitrine</span></div>
+                <div class="portfolio-card-info"><h3>Lagon Bleu Plongee</h3><p>Centre plongee familial Moorea — Depth progression &amp; bulles CSS</p><div class="portfolio-tags"><span class="portfolio-tag">TPE</span><span class="portfolio-tag">Depth Scroll</span><span class="portfolio-tag">Bubbles</span></div></div>
             </a>
             <a href="/portfolio/studio-belleza.html" target="_blank" class="portfolio-card" data-site="https://studio-belleza.vercel.app">
-                <div class="portfolio-thumb">
-                    <img src="/portfolio/images/studio-belleza/hero.jpg" alt="Studio Belleza Tahiti" loading="lazy">
-                    <span class="thumb-label">Client reel</span>
-                </div>
-                <div class="portfolio-card-info">
-                    <h3>Studio Belleza Tahiti</h3>
-                    <p>Booking en ligne + Chatbot IA + Dashboard admin — Client reel</p>
-                    <div class="portfolio-tags">
-                        <span class="portfolio-tag">Next.js</span>
-                        <span class="portfolio-tag">Chatbot IA</span>
-                        <span class="portfolio-tag">Client</span>
-                    </div>
-                </div>
+                <div class="portfolio-thumb"><iframe src="https://studio-belleza.vercel.app" tabindex="-1"></iframe><span class="thumb-label">Client reel</span></div>
+                <div class="portfolio-card-info"><h3>Studio Belleza Tahiti</h3><p>Booking en ligne + Chatbot IA + Dashboard admin — Client reel</p><div class="portfolio-tags"><span class="portfolio-tag">Next.js</span><span class="portfolio-tag">Chatbot IA</span><span class="portfolio-tag">Client</span></div></div>
             </a>
             <a href="/portfolio/te-fare-ora.html" target="_blank" class="portfolio-card">
-                <div class="portfolio-thumb">
-                    <img src="/portfolio/images/te-fare-ora/hero.jpg" alt="Te Fare Ora Bien-etre" loading="lazy">
-                    <span class="thumb-label">Site vitrine</span>
-                </div>
-                <div class="portfolio-card-info">
-                    <h3>Te Fare Ora</h3>
-                    <p>Coach bien-etre a Tahiti — Zen minimaliste &amp; cercle respirant</p>
-                    <div class="portfolio-tags">
-                        <span class="portfolio-tag">TPE</span>
-                        <span class="portfolio-tag">Breathing</span>
-                        <span class="portfolio-tag">Zen</span>
-                    </div>
-                </div>
+                <div class="portfolio-thumb"><iframe src="/portfolio/te-fare-ora.html" tabindex="-1"></iframe><span class="thumb-label">Site vitrine</span></div>
+                <div class="portfolio-card-info"><h3>Te Fare Ora</h3><p>Coach bien-etre a Tahiti — Zen minimaliste &amp; cercle respirant</p><div class="portfolio-tags"><span class="portfolio-tag">TPE</span><span class="portfolio-tag">Breathing</span><span class="portfolio-tag">Zen</span></div></div>
             </a>
         </div>
         <div class="carousel-dots" id="carouselDots"></div>
@@ -953,16 +841,6 @@ fadeEls.forEach(el => fadeObs.observe(el));
         });
     }
 
-
-    // Load ALL iframes on init
-    cards.forEach(function(card) {
-        var thumb = card.querySelector('.portfolio-thumb');
-        var iframe = document.createElement('iframe');
-        iframe.src = card.getAttribute('data-site') || card.getAttribute('href');
-        iframe.loading = 'eager';
-        iframe.setAttribute('tabindex', '-1');
-        thumb.appendChild(iframe);
-    });
 
     function updateUI() {
         positionCards();
