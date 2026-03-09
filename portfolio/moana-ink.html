@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Moana Ink — Tatouage Artisan | Papeete</title>
+<meta name="description" content="Moana Ink — Studio de tatouage artisanal à Papeete. Motifs polynésiens traditionnels et contemporains par Teiki, artiste tatoueur.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.css">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--black:#0A0A0A;--ink:#1A1A1A;--bone:#E8E0D4;--accent:#C45D3E;--dim:rgba(232,224,212,.5);--faint:rgba(232,224,212,.2)}
+body{font-family:'Inter',sans-serif;color:var(--bone);background:var(--black);font-weight:300;line-height:1.8;cursor:crosshair}
+
+/* SCROLL PROGRESS BAR */
+.scroll-progress{position:fixed;top:0;left:0;height:3px;z-index:9999;background:var(--accent);transform-origin:left;transform:scaleX(0);will-change:transform}
+
+/* CUSTOM CURSOR — magnetic ink dot */
+.cursor-dot{position:fixed;width:12px;height:12px;background:var(--accent);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .3s,height .3s,background .3s;mix-blend-mode:difference}
+.cursor-dot.hover{width:48px;height:48px;background:var(--bone)}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:24px 48px;display:flex;justify-content:space-between;align-items:center;mix-blend-mode:difference;transition:transform .35s ease}
+nav.nav-hidden{transform:translateY(-100%)}
+.nav-brand{font-family:'Abril Fatface',serif;font-size:24px;color:var(--bone);text-decoration:none}
+.nav-right a{color:var(--dim);text-decoration:none;font-size:13px;letter-spacing:2px;text-transform:uppercase;margin-left:32px;transition:color .3s}
+.nav-right a:hover{color:var(--bone)}
+
+/* HERO — FULL IMAGE, TEXT OVERLAID BOTTOM */
+.hero{height:100vh;position:relative;overflow:hidden}
+.hero img{width:100%;height:100%;object-fit:cover;filter:grayscale(.4) contrast(1.1)}
+.hero-ov{position:absolute;inset:0;background:linear-gradient(to top,var(--black) 0%,transparent 40%,rgba(10,10,10,.3) 100%)}
+.hero-text{position:absolute;bottom:80px;left:48px;z-index:2}
+.hero-text h1{font-family:'Abril Fatface',serif;font-size:clamp(48px,8vw,96px);line-height:1;margin-bottom:12px}
+.hero-text h1 span{color:var(--accent)}
+.hero-text p{color:var(--dim);font-size:16px;max-width:420px}
+
+/* HORIZONTAL DIVIDER — SVG tattoo line */
+.tattoo-line{text-align:center;padding:80px 0;opacity:.3}
+.tattoo-line svg{width:200px;height:20px}
+
+/* MASONRY GALLERY with hover zoom */
+.gallery{padding:0 48px 120px}
+.gallery-label{font-size:11px;letter-spacing:4px;text-transform:uppercase;color:var(--accent);margin-bottom:32px}
+.masonry{columns:3;column-gap:12px}
+.masonry-item{break-inside:avoid;margin-bottom:12px;position:relative;overflow:hidden;border-radius:4px}
+.masonry-item img{width:100%;display:block;filter:grayscale(.6);transition:all .6s cubic-bezier(.25,.46,.45,.94)}
+.masonry-item:hover img{filter:grayscale(0);transform:scale(1.06)}
+.masonry-item::after{content:'';position:absolute;inset:0;background:rgba(196,93,62,.1);opacity:0;transition:opacity .4s}
+.masonry-item:hover::after{opacity:1}
+/* Clip-path reveal on gallery items */
+.masonry-item{clip-path:inset(100% 0 0 0)}
+.masonry-item.clip-visible{clip-path:inset(0 0 0 0);transition:clip-path 1s cubic-bezier(.25,.46,.45,.94)}
+
+/* ABOUT — SPLIT with SVG LINE DRAW */
+.about{padding:120px 48px;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.about-text .label{font-size:11px;letter-spacing:4px;text-transform:uppercase;color:var(--accent);margin-bottom:16px}
+.about-text h2{font-family:'Abril Fatface',serif;font-size:clamp(32px,4vw,48px);margin-bottom:24px;line-height:1.1}
+.about-text p{color:var(--dim);font-size:15px;margin-bottom:16px}
+.about-img{position:relative}
+.about-img img{width:100%;border-radius:4px;filter:grayscale(.3)}
+/* Animated border that draws in */
+.draw-border{position:absolute;inset:-12px;border:1px solid var(--accent);border-radius:8px;clip-path:inset(0 100% 100% 0);transition:clip-path 1.5s cubic-bezier(.25,.46,.45,.94)}
+.draw-border.visible{clip-path:inset(0 0 0 0)}
+
+/* PROCESS — 3 STEPS stacked */
+.process{padding:120px 48px;text-align:center}
+.process h2{font-family:'Abril Fatface',serif;font-size:36px;margin-bottom:64px}
+.steps{display:flex;gap:48px;justify-content:center;flex-wrap:wrap}
+.step{flex:1;min-width:200px;max-width:300px}
+.step-num{font-family:'Abril Fatface',serif;font-size:64px;color:var(--accent);opacity:.3;line-height:1;margin-bottom:12px}
+.step h3{font-size:16px;font-weight:500;margin-bottom:8px;letter-spacing:1px;text-transform:uppercase}
+.step p{color:var(--dim);font-size:14px}
+
+/* CTA */
+.cta{padding:120px 48px;text-align:center;border-top:1px solid var(--faint)}
+.cta h2{font-family:'Abril Fatface',serif;font-size:clamp(28px,4vw,48px);margin-bottom:16px}
+.cta p{color:var(--dim);margin-bottom:32px}
+.cta-btn{display:inline-block;padding:16px 40px;border:1px solid var(--accent);color:var(--bone);text-decoration:none;font-size:13px;letter-spacing:2px;text-transform:uppercase;transition:all .3s}
+.cta-btn:hover{background:var(--accent);border-color:var(--accent)}
+
+/* FOOTER */
+footer{padding:48px;border-top:1px solid var(--faint);display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px}
+footer p{color:rgba(232,224,212,.3);font-size:13px}
+footer a{color:rgba(232,224,212,.3);text-decoration:none}
+
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(30px);transition:all .8s cubic-bezier(.25,.46,.45,.94)}
+.reveal.visible{opacity:1;transform:translateY(0)}
+
+@media(max-width:768px){
+  nav{padding:16px 20px}
+  .nav-right a{margin-left:16px;font-size:11px}
+  .hero-text{left:20px;bottom:40px}
+  .gallery{padding:0 20px 80px}
+  .masonry{columns:2;column-gap:8px}
+  .about{grid-template-columns:1fr;padding:80px 20px;gap:40px}
+  .process{padding:80px 20px}
+  .steps{flex-direction:column;align-items:center}
+  .cta{padding:80px 20px}
+  footer{padding:32px 20px;flex-direction:column;text-align:center}
+  .cursor-dot{display:none}
+  .counters{flex-wrap:wrap;gap:32px;padding:60px 20px}
+  .horizontal-scroll .scroll-item{width:85vw}
+}
+/* HORIZONTAL SCROLL SHOWCASE */
+.horizontal-scroll{position:relative;overflow:hidden}
+.horizontal-scroll .scroll-track{display:flex;gap:20px;width:max-content;padding:40px 0}
+.horizontal-scroll .scroll-item{flex-shrink:0;width:70vw;max-width:500px;overflow:hidden;border-radius:8px}
+.horizontal-scroll .scroll-item img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease}
+.horizontal-scroll .scroll-item:hover img{transform:scale(1.05)}
+
+/* MARQUEE TICKER */
+.marquee{overflow:hidden;padding:40px 0;border-top:1px solid rgba(232,224,212,.05);border-bottom:1px solid rgba(232,224,212,.05)}
+.marquee-track{display:flex;gap:60px;white-space:nowrap;will-change:transform}
+.marquee-text{font-size:clamp(14px,2vw,20px);letter-spacing:.15em;text-transform:uppercase;opacity:.3;flex-shrink:0}
+
+/* CIRCLE REVEAL */
+.circle-reveal{clip-path:circle(0% at 50% 50%);transition:clip-path 1.2s cubic-bezier(.25,.46,.45,.94)}
+.circle-reveal.revealed{clip-path:circle(75% at 50% 50%)}
+
+/* COUNTERS ROW */
+.counters{padding:80px 48px;display:flex;justify-content:center;gap:64px;border-top:1px solid var(--faint);border-bottom:1px solid var(--faint)}
+.counter-item{text-align:center}
+.counter-num{font-family:'Abril Fatface',serif;font-size:clamp(40px,5vw,64px);color:var(--accent);line-height:1}
+.counter-label{font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--dim);margin-top:8px}
+
+/* REDUCED MOTION */
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
+  .cursor-dot{display:none!important}
+  .masonry-item{clip-path:none!important}
+}
+</style>
+</head>
+<body>
+
+<div class="scroll-progress" id="scrollProgress"></div>
+<div class="cursor-dot" id="cursor"></div>
+
+<nav>
+  <a href="#" class="nav-brand">Moana Ink</a>
+  <div class="nav-right">
+    <a href="#galerie">Portfolio</a>
+    <a href="#apropos">L'Artiste</a>
+    <a href="#rdv">RDV</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <img src="images/moana-ink/hero.jpg" alt="Tatouage polynésien artisanal" data-parallax="0.3" class="scale-scroll">
+  <div class="hero-ov"></div>
+  <div class="hero-text reveal">
+    <h1 class="char-stagger">Moana<br><span>Ink</span></h1>
+    <p>Tatouage artisanal polynésien par Teiki. Chaque pièce raconte une histoire.</p>
+  </div>
+</section>
+
+<div class="tattoo-line">
+  <svg viewBox="0 0 200 20"><path d="M0 10 Q25 0 50 10 T100 10 T150 10 T200 10" fill="none" stroke="#C45D3E" stroke-width="1" stroke-dasharray="4 4"/></svg>
+</div>
+
+<!-- HORIZONTAL SCROLL SHOWCASE -->
+<section class="horizontal-scroll">
+  <div class="scroll-track">
+    <div class="scroll-item"><img src="images/moana-ink/sleeve.jpg" alt="Tatouage bras complet" loading="lazy"></div>
+    <div class="scroll-item"><img src="images/moana-ink/back.jpg" alt="Tatouage dos" loading="lazy"></div>
+    <div class="scroll-item"><img src="images/moana-ink/motifs.jpg" alt="Motifs polynésiens" loading="lazy"></div>
+    <div class="scroll-item"><img src="images/moana-ink/studio.jpg" alt="Studio Moana Ink" loading="lazy"></div>
+    <div class="scroll-item"><img src="images/moana-ink/tools.jpg" alt="Outils traditionnels" loading="lazy"></div>
+    <div class="scroll-item"><img src="images/moana-ink/hero.jpg" alt="En cours de tatouage" loading="lazy"></div>
+  </div>
+</section>
+
+<!-- MARQUEE TICKER -->
+<div class="marquee">
+  <div class="marquee-track">
+    <span class="marquee-text">TATOUAGE TRADITIONNEL</span>
+    <span class="marquee-text">—</span>
+    <span class="marquee-text">POLYNÉSIE</span>
+    <span class="marquee-text">—</span>
+    <span class="marquee-text">SUR MESURE</span>
+    <span class="marquee-text">—</span>
+    <span class="marquee-text">ARTISANAL</span>
+    <span class="marquee-text">—</span>
+    <span class="marquee-text">PAPEETE</span>
+    <span class="marquee-text">—</span>
+    <span class="marquee-text">HÉRITAGE MA'OHI</span>
+    <span class="marquee-text">—</span>
+  </div>
+</div>
+
+<section class="gallery" id="galerie">
+  <div class="gallery-label reveal">Portfolio</div>
+  <div class="masonry">
+    <div class="masonry-item"><img src="images/moana-ink/sleeve.jpg" alt="Tatouage bras complet" loading="lazy"></div>
+    <div class="masonry-item"><img src="images/moana-ink/back.jpg" alt="Tatouage dos" loading="lazy"></div>
+    <div class="masonry-item"><img src="images/moana-ink/motifs.jpg" alt="Motifs polynésiens" loading="lazy"></div>
+    <div class="masonry-item"><img src="images/moana-ink/studio.jpg" alt="Studio" loading="lazy"></div>
+    <div class="masonry-item"><img src="images/moana-ink/tools.jpg" alt="Outils" loading="lazy"></div>
+    <div class="masonry-item"><img src="images/moana-ink/hero.jpg" alt="Travail en cours" loading="lazy"></div>
+  </div>
+</section>
+
+<!-- COUNTERS -->
+<div class="counters">
+  <div class="counter-item">
+    <div class="counter-num" data-count="12" data-suffix="+">0</div>
+    <div class="counter-label">Années d'expérience</div>
+  </div>
+  <div class="counter-item">
+    <div class="counter-num" data-count="2500" data-suffix="+">0</div>
+    <div class="counter-label">Tatouages réalisés</div>
+  </div>
+  <div class="counter-item">
+    <div class="counter-num" data-count="100" data-suffix="%">0</div>
+    <div class="counter-label">Sur mesure</div>
+  </div>
+</div>
+
+<section class="about" id="apropos">
+  <div class="about-text reveal">
+    <div class="label">L'Artiste</div>
+    <h2 class="word-reveal">Teiki, Héritier du Tatau</h2>
+    <p>Formé par les maîtres tatoueurs de Faa'a, Teiki pratique le tatouage depuis 2012. Son style mêle les motifs ancestraux ma'ohi — tikis, tortues, vagues — à une esthétique contemporaine.</p>
+    <p>Chaque création est un dialogue entre l'artiste et le porteur. Pas de catalogue. Que du sur-mesure.</p>
+  </div>
+  <div class="about-img reveal">
+    <img src="images/moana-ink/tools.jpg" alt="Outils de tatouage traditionnels" loading="lazy" class="circle-reveal">
+    <div class="draw-border"></div>
+  </div>
+</section>
+
+<section class="process reveal">
+  <h2 class="word-reveal">Le Processus</h2>
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">01</div>
+      <h3>Rencontre</h3>
+      <p>Discussion autour d'un café. On parle de ton histoire, de tes envies, du placement.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">02</div>
+      <h3>Dessin</h3>
+      <p>Création du motif sur mesure. Ajustements jusqu'à ce que ça te parle vraiment.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">03</div>
+      <h3>Encrage</h3>
+      <p>Séance dans un environnement stérile. Encres pro, matériel à usage unique.</p>
+    </div>
+  </div>
+</section>
+
+<section class="cta" id="rdv">
+  <h2>Prêt à te Faire Tatouer ?</h2>
+  <p>Prends rendez-vous par message. Consultation gratuite.</p>
+  <a href="mailto:teiki@moanaink.pf" class="cta-btn">Envoyer un Message</a>
+</section>
+
+<footer>
+  <p>Moana Ink — Papeete, Tahiti</p>
+  <p>Sur rendez-vous uniquement</p>
+  <p>Site réalisé par <a href="https://pacifikai.com">PACIFIK'AI</a></p>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/split-type@0.3.4/umd/index.min.js"></script>
+<script>
+// === LENIS SMOOTH SCROLL ===
+const lenis = new Lenis({ duration: 1.2, easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)) });
+lenis.on('scroll', ScrollTrigger.update);
+gsap.ticker.add((time) => lenis.raf(time * 1000));
+gsap.ticker.lagSmoothing(0);
+
+// === SCROLL PROGRESS BAR ===
+gsap.to('#scrollProgress', {
+  scaleX: 1, ease: 'none',
+  scrollTrigger: { trigger: document.body, start: 'top top', end: 'bottom bottom', scrub: 0.3 }
+});
+
+// === NAV HIDE/SHOW ===
+let lastScroll = 0;
+const nav = document.querySelector('nav');
+ScrollTrigger.create({
+  onUpdate: (self) => {
+    const scroll = self.scroll();
+    if (scroll > lastScroll && scroll > 80) nav.classList.add('nav-hidden');
+    else nav.classList.remove('nav-hidden');
+    lastScroll = scroll;
+  }
+});
+
+// === MAGNETIC CURSOR (Level 3 — ink dot with lerp) ===
+const cursor = document.getElementById('cursor');
+if (cursor && window.matchMedia('(pointer: fine)').matches) {
+  let mx = 0, my = 0, cx = 0, cy = 0;
+  document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+  (function loop() {
+    cx += (mx - cx) * 0.12; cy += (my - cy) * 0.12;
+    cursor.style.left = cx + 'px'; cursor.style.top = cy + 'px';
+    requestAnimationFrame(loop);
+  })();
+  document.querySelectorAll('a, button, .cta-btn, .masonry-item').forEach(el => {
+    el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
+    el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
+  });
+}
+
+// === CHAR STAGGER — Hero title (Level 3) ===
+document.querySelectorAll('.char-stagger').forEach(el => {
+  const split = new SplitType(el, { types: 'chars' });
+  gsap.from(split.chars, {
+    yPercent: 80, opacity: 0, rotateX: -40,
+    stagger: 0.04, duration: 0.7, ease: 'power4.out',
+    scrollTrigger: { trigger: el, start: 'top 85%' }
+  });
+});
+
+// === WORD REVEAL — Section headings ===
+document.querySelectorAll('.word-reveal').forEach(el => {
+  const split = new SplitType(el, { types: 'words' });
+  gsap.from(split.words, {
+    yPercent: 100, opacity: 0, stagger: 0.05, duration: 0.8,
+    ease: 'power3.out',
+    scrollTrigger: { trigger: el, start: 'top 85%' }
+  });
+});
+
+// === PARALLAX HERO IMAGE ===
+document.querySelectorAll('[data-parallax]').forEach(img => {
+  const speed = parseFloat(img.dataset.parallax);
+  gsap.to(img, {
+    yPercent: speed * 30, ease: 'none',
+    scrollTrigger: { trigger: img.parentElement, start: 'top top', end: 'bottom top', scrub: 1 }
+  });
+});
+
+// === CLIP-PATH GALLERY REVEAL ===
+document.querySelectorAll('.masonry-item').forEach((item, i) => {
+  gsap.to(item, {
+    scrollTrigger: {
+      trigger: item, start: 'top 90%',
+      onEnter: () => item.classList.add('clip-visible')
+    }
+  });
+});
+
+// === REVEAL SECTIONS (GSAP replaces IntersectionObserver) ===
+gsap.utils.toArray('.reveal').forEach(el => {
+  gsap.from(el, {
+    y: 30, opacity: 0, duration: 0.8, ease: 'power3.out',
+    scrollTrigger: { trigger: el, start: 'top 85%' }
+  });
+});
+
+// === DRAW BORDER ANIMATION ===
+document.querySelectorAll('.draw-border').forEach(el => {
+  ScrollTrigger.create({
+    trigger: el, start: 'top 80%',
+    onEnter: () => el.classList.add('visible')
+  });
+});
+
+// === STAGGER STEPS ===
+gsap.from('.step', {
+  y: 40, opacity: 0, stagger: 0.15, duration: 0.8, ease: 'power3.out',
+  scrollTrigger: { trigger: '.steps', start: 'top 80%' }
+});
+
+// === HORIZONTAL SCROLL GALLERY ===
+const hTrack = document.querySelector('.scroll-track');
+if (hTrack) {
+  gsap.to(hTrack, {
+    x: () => -(hTrack.scrollWidth - window.innerWidth + 100),
+    ease: 'none',
+    scrollTrigger: {
+      trigger: '.horizontal-scroll',
+      start: 'top top',
+      end: () => '+=' + (hTrack.scrollWidth - window.innerWidth),
+      scrub: 1,
+      pin: true,
+      anticipatePin: 1
+    }
+  });
+}
+
+// === IMAGE SCALE ON SCROLL ===
+gsap.utils.toArray('.scale-scroll').forEach(img => {
+  gsap.from(img, {
+    scale: 1.15, ease: 'none',
+    scrollTrigger: { trigger: img.parentElement, start: 'top bottom', end: 'bottom top', scrub: 1 }
+  });
+});
+
+// === MARQUEE TICKER ===
+document.querySelectorAll('.marquee-track').forEach(track => {
+  const items = track.innerHTML;
+  track.innerHTML += items + items;
+  gsap.to(track, {
+    x: '-50%', duration: 30, ease: 'none', repeat: -1
+  });
+});
+
+// === COUNTER ANIMATION ===
+document.querySelectorAll('[data-count]').forEach(el => {
+  const target = parseInt(el.dataset.count);
+  const suffix = el.dataset.suffix || '';
+  ScrollTrigger.create({
+    trigger: el, start: 'top 85%',
+    onEnter: () => {
+      gsap.to({ val: 0 }, {
+        val: target, duration: 2, ease: 'power2.out',
+        onUpdate: function() { el.textContent = Math.round(this.targets()[0].val) + suffix; }
+      });
+    }, once: true
+  });
+});
+
+// === CIRCLE REVEAL ===
+document.querySelectorAll('.circle-reveal').forEach(el => {
+  ScrollTrigger.create({
+    trigger: el, start: 'top 80%',
+    onEnter: () => el.classList.add('revealed')
+  });
+});
+
+// === CURSOR TEXT LABEL ===
+if (cursor && window.matchMedia('(pointer: fine)').matches) {
+  document.querySelectorAll('.masonry-item, .scroll-item').forEach(el => {
+    el.addEventListener('mouseenter', () => {
+      cursor.innerHTML = '<span style="font-size:10px;letter-spacing:2px;text-transform:uppercase">VOIR</span>';
+      cursor.classList.add('hover');
+    });
+    el.addEventListener('mouseleave', () => {
+      cursor.innerHTML = '';
+      cursor.classList.remove('hover');
+    });
+  });
+}
+
+// === TEXT SCRAMBLE EFFECT ===
+class TextScramble {
+  constructor(el) { this.el = el; this.chars = '!<>-_\\/[]{}—=+*^?#'; this.update = this.update.bind(this); }
+  setText(newText) {
+    const oldText = this.el.innerText;
+    const length = Math.max(oldText.length, newText.length);
+    const promise = new Promise(resolve => this.resolve = resolve);
+    this.queue = [];
+    for (let i = 0; i < length; i++) {
+      const from = oldText[i] || '';
+      const to = newText[i] || '';
+      const start = Math.floor(Math.random() * 40);
+      const end = start + Math.floor(Math.random() * 40);
+      this.queue.push({ from, to, start, end });
+    }
+    cancelAnimationFrame(this.frameRequest);
+    this.frame = 0;
+    this.update();
+    return promise;
+  }
+  update() {
+    let output = '';
+    let complete = 0;
+    for (let i = 0, n = this.queue.length; i < n; i++) {
+      let { from, to, start, end, char } = this.queue[i];
+      if (this.frame >= end) { complete++; output += to; }
+      else if (this.frame >= start) {
+        if (!char || Math.random() < 0.28) { char = this.chars[Math.floor(Math.random() * this.chars.length)]; this.queue[i].char = char; }
+        output += '<span style="opacity:.4">' + char + '</span>';
+      } else { output += from; }
+    }
+    this.el.innerHTML = output;
+    if (complete === this.queue.length) { this.resolve(); }
+    else { this.frameRequest = requestAnimationFrame(this.update); this.frame++; }
+  }
+}
+// Scramble the hero subtitle after char-stagger completes
+setTimeout(() => {
+  const heroP = document.querySelector('.hero-text p');
+  if (heroP) {
+    const fx = new TextScramble(heroP);
+    fx.setText(heroP.textContent);
+  }
+}, 1200);
+</script>
+</body>
+</html>

@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tahiti Nui Travel — Votre Voyage en Polynésie</title>
+<meta name="description" content="Tahiti Nui Travel — 50 ans d'expertise. Circuits sur mesure en Polynésie française. Bora Bora, Moorea, Marquises, Tuamotu.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.css">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--blue:#0066CC;--orange:#E94E1B;--dark:#1A1A1A;--gray:#F7F8FA;--white:#fff;--text:#333}
+/* ===== CUSTOM CURSOR ===== */
+.cursor-dot{position:fixed;width:12px;height:12px;background:var(--teal, #008B8B);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .3s,height .3s,background .3s;mix-blend-mode:difference}
+.cursor-dot.hover{width:48px;height:48px;background:var(--sand, #E8DCC8)}
+@media (max-width: 768px) { .cursor-dot{display:none} }
+.scroll-progress{position:fixed;top:0;left:0;height:3px;z-index:9999;background:var(--orange);transform-origin:left;transform:scaleX(0);will-change:transform}
+body{font-family:'Source Sans 3',sans-serif;color:var(--dark);background:var(--white);font-weight:400;line-height:1.7}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:16px 48px;display:flex;align-items:center;justify-content:space-between;background:rgba(255,255,255,.95);backdrop-filter:blur(12px);border-bottom:1px solid rgba(0,0,0,.06);transition:all .3s,transform .35s ease}
+nav.nav-hidden{transform:translateY(-100%)}
+.nav-brand{font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:20px;color:var(--blue);text-decoration:none}
+.nav-links{display:flex;gap:28px;list-style:none;align-items:center}
+.nav-links a{color:var(--text);text-decoration:none;font-size:14px;font-weight:500;transition:color .3s}
+.nav-links a:hover{color:var(--blue)}
+.nav-cta{padding:10px 24px;background:var(--orange);color:var(--white);text-decoration:none;border-radius:8px;font-size:13px;font-weight:600;transition:all .2s;border:none;cursor:pointer}
+.nav-cta:hover{transform:translateY(-1px);box-shadow:0 4px 16px rgba(233,78,27,.3)}
+
+/* HERO — VIDEO-STYLE FULLSCREEN */
+.hero{min-height:100vh;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center}
+.hero-bg{position:absolute;inset:0}
+.hero-bg img{width:100%;height:100%;object-fit:cover;animation:kenburns 20s ease-in-out infinite alternate}
+@keyframes kenburns{0%{transform:scale(1) translate(0,0)}100%{transform:scale(1.1) translate(-2%,-1%)}}
+.hero-ov{position:absolute;inset:0;background:linear-gradient(135deg,rgba(0,40,100,.7) 0%,rgba(0,20,60,.4) 50%,rgba(233,78,27,.2) 100%)}
+.hero-content{position:relative;z-index:2;text-align:center;max-width:800px;padding:0 24px}
+.hero-tag{display:inline-block;padding:8px 20px;border:1px solid rgba(255,255,255,.3);border-radius:24px;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.8);margin-bottom:28px;backdrop-filter:blur(4px)}
+.hero-title{font-family:'Plus Jakarta Sans',sans-serif;font-size:clamp(36px,6vw,72px);font-weight:800;color:var(--white);line-height:1.05;margin-bottom:20px}
+.hero-title span{background:linear-gradient(135deg,#fff 0%,#E94E1B 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero-sub{color:rgba(255,255,255,.75);font-size:18px;margin-bottom:40px;max-width:560px;margin-left:auto;margin-right:auto}
+.hero-btn{display:inline-block;padding:18px 44px;background:var(--orange);color:var(--white);text-decoration:none;border-radius:12px;font-size:16px;font-weight:700;font-family:'Plus Jakarta Sans',sans-serif;transition:all .3s;box-shadow:0 4px 20px rgba(233,78,27,.4)}
+.hero-btn:hover{transform:translateY(-3px);box-shadow:0 8px 32px rgba(233,78,27,.5)}
+.scroll-hint{position:absolute;bottom:32px;left:50%;transform:translateX(-50%);z-index:2;color:rgba(255,255,255,.5);font-size:12px;letter-spacing:2px;text-transform:uppercase;animation:bounce 2s infinite}
+@keyframes bounce{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(8px)}}
+
+/* BENTO DESTINATIONS */
+.destinations{padding:120px 48px;background:var(--white)}
+.section-head{text-align:center;margin-bottom:64px}
+.section-label{font-size:12px;letter-spacing:3px;text-transform:uppercase;color:var(--blue);margin-bottom:8px;font-weight:600}
+.section-title{font-family:'Plus Jakarta Sans',sans-serif;font-size:clamp(28px,4vw,48px);font-weight:800;color:var(--dark)}
+
+.bento{display:grid;grid-template-columns:repeat(4,1fr);grid-template-rows:320px 320px;gap:16px}
+.bento-item{position:relative;border-radius:20px;overflow:hidden;cursor:pointer}
+.bento-item img{width:100%;height:100%;object-fit:cover;transition:transform .8s cubic-bezier(.25,.46,.45,.94)}
+.bento-item:hover img{transform:scale(1.08)}
+.bento-ov{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.7) 0%,transparent 50%);transition:background .4s}
+.bento-item:hover .bento-ov{background:linear-gradient(to top,rgba(0,102,204,.8) 0%,transparent 60%)}
+.bento-info{position:absolute;bottom:24px;left:24px;right:24px;z-index:2}
+.bento-info h3{font-family:'Plus Jakarta Sans',sans-serif;font-size:24px;font-weight:700;color:var(--white);margin-bottom:4px}
+.bento-info p{color:rgba(255,255,255,.7);font-size:14px}
+/* Bento layout: first item spans 2 cols */
+.bento-item:nth-child(1){grid-column:1/3}
+.bento-item:nth-child(2){grid-column:3/4}
+.bento-item:nth-child(3){grid-column:4/5}
+.bento-item:nth-child(4){grid-column:1/2}
+.bento-item:nth-child(5){grid-column:2/4}
+.bento-item:nth-child(6){grid-column:4/5}
+
+/* 3D TILT CARDS */
+.why-us{padding:120px 48px;background:var(--gray)}
+.tilt-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.tilt-card{background:var(--white);border-radius:20px;padding:48px 36px;text-align:center;box-shadow:0 2px 20px rgba(0,0,0,.04);transition:box-shadow .4s;transform-style:preserve-3d;perspective:800px;cursor:default}
+.tilt-card:hover{box-shadow:0 20px 60px rgba(0,0,0,.1)}
+.tilt-icon{width:56px;height:56px;background:linear-gradient(135deg,var(--blue),#0052a3);border-radius:14px;display:flex;align-items:center;justify-content:center;margin:0 auto 24px;color:var(--white);font-size:24px;font-weight:700}
+.tilt-card h3{font-family:'Plus Jakarta Sans',sans-serif;font-size:20px;font-weight:700;margin-bottom:12px;color:var(--dark)}
+.tilt-card p{color:#666;font-size:15px;line-height:1.7}
+.tilt-stat{margin-top:20px;display:inline-block;padding:6px 16px;background:rgba(0,102,204,.08);border-radius:20px;font-size:13px;font-weight:600;color:var(--blue)}
+
+/* COUNTER STATS */
+.stats-band{padding:80px 48px;background:var(--blue)}
+.stats-row{display:flex;justify-content:center;gap:80px;flex-wrap:wrap}
+.stat{text-align:center}
+.stat .num{font-family:'Plus Jakarta Sans',sans-serif;font-size:clamp(48px,6vw,72px);font-weight:800;color:var(--white);line-height:1}
+.stat .label{color:rgba(255,255,255,.7);font-size:14px;margin-top:8px;text-transform:uppercase;letter-spacing:2px}
+
+/* CTA */
+.cta{position:relative;min-height:60vh;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden}
+.cta img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.cta-ov{position:absolute;inset:0;background:linear-gradient(135deg,rgba(0,40,100,.85),rgba(233,78,27,.6))}
+.cta-content{position:relative;z-index:2}
+.cta-content .section-title{color:var(--white);margin-bottom:12px}
+.cta-content p{color:rgba(255,255,255,.8);font-size:18px;margin-bottom:36px}
+
+/* FOOTER */
+footer{background:var(--dark);padding:64px 48px 32px}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:48px;margin-bottom:48px}
+.footer-brand{font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:22px;color:var(--white);margin-bottom:16px}
+.footer-brand span{color:var(--orange)}
+footer p{color:rgba(255,255,255,.5);font-size:14px;margin-bottom:8px}
+footer h4{color:var(--white);font-size:14px;font-weight:600;text-transform:uppercase;letter-spacing:1px;margin-bottom:16px}
+footer ul{list-style:none}
+footer li{margin-bottom:8px}
+footer a{color:rgba(255,255,255,.5);text-decoration:none;font-size:14px;transition:color .3s}
+footer a:hover{color:var(--orange)}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.1);padding-top:24px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px}
+.footer-bottom p{color:rgba(255,255,255,.3);font-size:13px}
+
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(40px);transition:opacity .8s cubic-bezier(.25,.46,.45,.94),transform .8s cubic-bezier(.25,.46,.45,.94)}
+.reveal.visible{opacity:1;transform:translateY(0)}
+
+/* MOBILE */
+@media(max-width:768px){
+  nav{padding:12px 20px}
+  .nav-links{display:none}
+  .hero-content{padding:0 20px}
+  .destinations,.why-us{padding:80px 20px}
+  .bento{grid-template-columns:1fr;grid-template-rows:auto}
+  .bento-item:nth-child(n){grid-column:auto}
+  .bento-item{height:240px}
+  .tilt-grid{grid-template-columns:1fr}
+  .stats-row{gap:40px}
+  .stats-band{padding:60px 20px}
+  .footer-grid{grid-template-columns:1fr}
+  footer{padding:48px 20px 24px}
+  .footer-bottom{flex-direction:column;text-align:center}
+}
+/* MARQUEE */
+.marquee{overflow:hidden;padding:40px 0;border-top:1px solid rgba(0,0,0,.06);border-bottom:1px solid rgba(0,0,0,.06)}
+.marquee-track{display:flex;gap:60px;white-space:nowrap;will-change:transform}
+.marquee-text{font-size:clamp(14px,2vw,20px);letter-spacing:.15em;text-transform:uppercase;opacity:.25;flex-shrink:0;font-family:'Plus Jakarta Sans',sans-serif;font-weight:600}
+
+/* CIRCLE REVEAL */
+.circle-reveal{clip-path:circle(0% at 50% 50%);transition:clip-path 1.2s cubic-bezier(.25,.46,.45,.94)}
+.circle-reveal.revealed{clip-path:circle(75% at 50% 50%)}
+
+/* ===== HORIZONTAL SCROLL SHOWCASE ===== */
+.horizontal-scroll{position:relative;overflow:hidden}
+.horizontal-scroll .scroll-track{display:flex;gap:20px;width:max-content;padding:40px 0}
+.horizontal-scroll .scroll-item{flex-shrink:0;width:70vw;max-width:500px;overflow:hidden;border-radius:8px}
+.horizontal-scroll .scroll-item img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease}
+.horizontal-scroll .scroll-item:hover img{transform:scale(1.05)}
+@media (max-width: 768px) { .horizontal-scroll .scroll-item{width:85vw} }
+
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
+}
+</style>
+</head>
+<body>
+<div class="cursor-dot" id="cursor"></div>
+<div class="scroll-progress" id="scrollProgress"></div>
+
+<nav>
+  <a href="#" class="nav-brand">Tahiti Nui Travel</a>
+  <ul class="nav-links">
+    <li><a href="#destinations">Destinations</a></li>
+    <li><a href="#pourquoi">Pourquoi nous</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="#contact" class="nav-cta">Demander un devis</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <div class="hero-bg"><img src="images/tahiti-nui-travel/hero.jpg" alt="Polynésie française vue aérienne" class="scale-scroll"></div>
+  <div class="hero-ov"></div>
+  <div class="hero-content reveal">
+    <div class="hero-tag">Agence N°1 en Polynésie</div>
+    <h1 class="hero-title">Votre Voyage<br>Commence <span>Ici</span></h1>
+    <p class="hero-sub">50 ans d'expertise locale. Des circuits sur mesure dans les plus beaux archipels du Pacifique Sud.</p>
+    <a href="#contact" class="hero-btn">Obtenir un Devis Gratuit</a>
+  </div>
+  <div class="scroll-hint">Découvrir ↓</div>
+</section>
+
+<div class="marquee">
+  <div class="marquee-track">
+    <span class="marquee-text">Voyages</span>
+    <span class="marquee-text">—</span>
+    <span class="marquee-text">Polynésie</span>
+    <span class="marquee-text">—</span>
+    <span class="marquee-text">Aventure</span>
+    <span class="marquee-text">—</span>
+    <span class="marquee-text">Découverte</span>
+    <span class="marquee-text">—</span>
+    <span class="marquee-text">Bora Bora</span>
+    <span class="marquee-text">—</span>
+    <span class="marquee-text">Moorea</span>
+    <span class="marquee-text">—</span>
+    <span class="marquee-text">Sur Mesure</span>
+    <span class="marquee-text">—</span>
+  </div>
+</div>
+
+<section class="destinations" id="destinations">
+  <div class="section-head">
+    <div class="section-label">Destinations</div>
+    <h2 class="section-title word-reveal">Les Perles du Pacifique</h2>
+  </div>
+  <div class="bento">
+    <div class="bento-item reveal">
+      <img src="images/tahiti-nui-travel/bora-bora.jpg" alt="Bora Bora" loading="lazy">
+      <div class="bento-ov"></div>
+      <div class="bento-info"><h3>Bora Bora</h3><p>L'île mythique aux eaux turquoise</p></div>
+    </div>
+    <div class="bento-item reveal">
+      <img src="images/tahiti-nui-travel/moorea.jpg" alt="Moorea" loading="lazy">
+      <div class="bento-ov"></div>
+      <div class="bento-info"><h3>Moorea</h3><p>L'île sœur, à 30 min de Tahiti</p></div>
+    </div>
+    <div class="bento-item reveal">
+      <img src="images/tahiti-nui-travel/marquises.jpg" alt="Les Marquises" loading="lazy">
+      <div class="bento-ov"></div>
+      <div class="bento-info"><h3>Les Marquises</h3><p>Terres sauvages et mystiques</p></div>
+    </div>
+    <div class="bento-item reveal">
+      <img src="images/tahiti-nui-travel/tuamotu.jpg" alt="Les Tuamotu" loading="lazy">
+      <div class="bento-ov"></div>
+      <div class="bento-info"><h3>Les Tuamotu</h3><p>Atolls et fonds marins uniques</p></div>
+    </div>
+    <div class="bento-item reveal">
+      <img src="images/tahiti-nui-travel/couple.jpg" alt="Voyage de noces Polynésie" loading="lazy">
+      <div class="bento-ov"></div>
+      <div class="bento-info"><h3>Voyages de Noces</h3><p>La destination romantique par excellence</p></div>
+    </div>
+    <div class="bento-item reveal">
+      <img src="images/tahiti-nui-travel/office.jpg" alt="Notre équipe" loading="lazy">
+      <div class="bento-ov"></div>
+      <div class="bento-info"><h3>Notre Équipe</h3><p>Des experts locaux à votre service</p></div>
+    </div>
+  </div>
+</section>
+
+<div class="stats-band">
+  <div class="stats-row">
+    <div class="stat reveal"><div class="num" data-count="50">0</div><div class="label">Années d'expérience</div></div>
+    <div class="stat reveal"><div class="num" data-count="20000" data-suffix="+">0</div><div class="label">Voyageurs accompagnés</div></div>
+    <div class="stat reveal"><div class="num" data-count="118">0</div><div class="label">Îles accessibles</div></div>
+    <div class="stat reveal"><div class="num" data-count="98" data-suffix="%">0</div><div class="label">% de satisfaction</div></div>
+  </div>
+</div>
+
+<section class="why-us" id="pourquoi">
+  <div class="section-head">
+    <div class="section-label">Pourquoi nous</div>
+    <h2 class="section-title word-reveal">L'Avantage Local</h2>
+  </div>
+  <div class="tilt-grid stagger-grid">
+    <div class="tilt-card reveal">
+      <div class="tilt-icon">✦</div>
+      <h3>Expertise Locale</h3>
+      <p>Basés à Papeete depuis 1974, nous connaissons chaque île, chaque pension, chaque secret de la Polynésie.</p>
+      <div class="tilt-stat">50 ans de présence</div>
+    </div>
+    <div class="tilt-card reveal">
+      <div class="tilt-icon">◈</div>
+      <h3>100% Sur Mesure</h3>
+      <p>Chaque voyage est unique. Nous construisons votre itinéraire en fonction de vos envies, votre budget, votre rythme.</p>
+      <div class="tilt-stat">Devis personnalisé</div>
+    </div>
+    <div class="tilt-card reveal">
+      <div class="tilt-icon">☎</div>
+      <h3>Accompagnement 7j/7</h3>
+      <p>Assistance locale avant, pendant et après votre séjour. Un interlocuteur dédié joignable à tout moment.</p>
+      <div class="tilt-stat">Disponible 24/7</div>
+    </div>
+  </div>
+</section>
+
+<div class="cta" id="contact">
+  <img src="images/tahiti-nui-travel/couple.jpg" alt="Voyage Polynésie" loading="lazy" class="scale-scroll">
+  <div class="cta-ov"></div>
+  <div class="cta-content reveal">
+    <h2 class="section-title">Prêt à Découvrir la Polynésie ?</h2>
+    <p>Recevez votre devis personnalisé sous 24h.</p>
+    <a href="mailto:info@tahitinuitravel.com" class="hero-btn">Obtenir un Devis Gratuit</a>
+  </div>
+</div>
+
+<!-- HORIZONTAL SCROLL SHOWCASE -->
+<section class="horizontal-scroll">
+  <div class="scroll-track">
+    <div class="scroll-item"><img src="images/tahiti-nui-travel/bora-bora.jpg" alt="Bora Bora lagon turquoise" loading="lazy"></div>
+    <div class="scroll-item"><img src="images/tahiti-nui-travel/moorea.jpg" alt="Moorea vue aerienne" loading="lazy"></div>
+    <div class="scroll-item"><img src="images/tahiti-nui-travel/marquises.jpg" alt="Iles Marquises" loading="lazy"></div>
+    <div class="scroll-item"><img src="images/tahiti-nui-travel/tuamotu.jpg" alt="Archipel des Tuamotu" loading="lazy"></div>
+    <div class="scroll-item"><img src="images/tahiti-nui-travel/couple.jpg" alt="Voyage de reve en Polynesie" loading="lazy"></div>
+    <div class="scroll-item"><img src="images/tahiti-nui-travel/office.jpg" alt="Agence Tahiti Nui Travel" loading="lazy"></div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div class="footer-brand">Tahiti Nui <span>Travel</span></div>
+      <p>L'agence de voyage de référence en Polynésie française depuis 1974. Circuits sur mesure, croisières, voyages de noces et séjours d'exception.</p>
+    </div>
+    <div>
+      <h4>Liens Rapides</h4>
+      <ul>
+        <li><a href="#destinations">Destinations</a></li>
+        <li><a href="#pourquoi">Pourquoi nous</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Contact</h4>
+      <p>Rue du Commandant Destremau</p>
+      <p>Papeete, Tahiti 98714</p>
+      <p>+689 40 54 02 00</p>
+      <p>info@tahitinuitravel.com</p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 Tahiti Nui Travel — Tous droits réservés</p>
+    <p>Site réalisé par <a href="https://pacifikai.com">PACIFIK'AI</a></p>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/split-type@0.3.4/umd/index.min.js"></script>
+<script>
+// === LENIS SMOOTH SCROLL ===
+const lenis = new Lenis({ duration: 1.2, easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)) });
+lenis.on('scroll', ScrollTrigger.update);
+gsap.ticker.add((time) => lenis.raf(time * 1000));
+gsap.ticker.lagSmoothing(0);
+
+// === SCROLL PROGRESS BAR ===
+gsap.to('#scrollProgress', {
+  scaleX: 1, ease: 'none',
+  scrollTrigger: { trigger: document.body, start: 'top top', end: 'bottom bottom', scrub: 0.3 }
+});
+
+// === NAV HIDE/SHOW ===
+let lastScroll = 0;
+const nav = document.querySelector('nav');
+ScrollTrigger.create({
+  onUpdate: (self) => {
+    const scroll = self.scroll();
+    if (scroll > lastScroll && scroll > 80) nav.classList.add('nav-hidden');
+    else nav.classList.remove('nav-hidden');
+    lastScroll = scroll;
+  }
+});
+
+// === MAGNETIC CURSOR ===
+const cursor = document.getElementById('cursor');
+if (cursor && window.matchMedia('(pointer: fine)').matches) {
+  let mx = 0, my = 0, cx = 0, cy = 0;
+  document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+  (function loop() {
+    cx += (mx - cx) * 0.12; cy += (my - cy) * 0.12;
+    cursor.style.left = cx + 'px'; cursor.style.top = cy + 'px';
+    requestAnimationFrame(loop);
+  })();
+  document.querySelectorAll('a, button, .cta-btn, .destination-card').forEach(el => {
+    el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
+    el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
+  });
+}
+
+// === WORD REVEAL ===
+document.querySelectorAll('.word-reveal').forEach(el => {
+  const split = new SplitType(el, { types: 'words' });
+  gsap.from(split.words, {
+    yPercent: 100, opacity: 0, stagger: 0.05, duration: 0.8,
+    ease: 'power3.out',
+    scrollTrigger: { trigger: el, start: 'top 85%' }
+  });
+});
+
+// === PARALLAX HERO ===
+const heroImg = document.querySelector('.hero-bg img');
+if (heroImg) {
+  gsap.to(heroImg, {
+    yPercent: 15, ease: 'none',
+    scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: 1 }
+  });
+}
+
+// === STAGGER BENTO GRID ===
+ScrollTrigger.batch('.bento-item', {
+  onEnter: batch => gsap.to(batch, { opacity: 1, y: 0, stagger: 0.12, duration: 0.8, ease: 'power3.out' }),
+  start: 'top 85%'
+});
+// Set initial state for bento items
+gsap.set('.bento-item', { opacity: 0, y: 40 });
+
+// === REVEAL SECTIONS ===
+gsap.utils.toArray('.reveal').forEach(el => {
+  gsap.from(el, {
+    y: 40, opacity: 0, duration: 0.8, ease: 'power3.out',
+    scrollTrigger: { trigger: el, start: 'top 85%' }
+  });
+});
+
+// === COUNTER ANIMATION (data-count) ===
+document.querySelectorAll('[data-count]').forEach(el => {
+  const target = parseInt(el.dataset.count);
+  const suffix = el.dataset.suffix || '';
+  ScrollTrigger.create({
+    trigger: el, start: 'top 85%',
+    onEnter: () => {
+      gsap.to({ val: 0 }, {
+        val: target, duration: 2, ease: 'power2.out',
+        onUpdate: function() { el.textContent = Math.round(this.targets()[0].val).toLocaleString('fr-FR') + suffix; }
+      });
+    }, once: true
+  });
+});
+
+// === MARQUEE INFINITE ===
+document.querySelectorAll('.marquee-track').forEach(track => {
+  const items = track.innerHTML;
+  track.innerHTML += items + items;
+  gsap.to(track, { x: '-50%', duration: 30, ease: 'none', repeat: -1 });
+});
+
+// === IMAGE SCALE-ON-SCROLL ===
+gsap.utils.toArray('.scale-scroll').forEach(img => {
+  gsap.from(img, {
+    scale: 1.15, ease: 'none',
+    scrollTrigger: { trigger: img.parentElement, start: 'top bottom', end: 'bottom top', scrub: 1 }
+  });
+});
+
+// === CIRCLE REVEAL ===
+document.querySelectorAll('.circle-reveal').forEach(el => {
+  ScrollTrigger.create({
+    trigger: el, start: 'top 80%',
+    onEnter: () => el.classList.add('revealed')
+  });
+});
+
+// === STAGGER GRID ===
+document.querySelectorAll('.stagger-grid').forEach(grid => {
+  gsap.from(grid.children, {
+    y: 60, opacity: 0, stagger: 0.12, duration: 0.8, ease: 'power3.out',
+    scrollTrigger: { trigger: grid, start: 'top 85%' }
+  });
+});
+
+// === 3D TILT CARDS (preserved from original) ===
+document.querySelectorAll('.tilt-card').forEach(card => {
+  card.addEventListener('mousemove', e => {
+    const rect = card.getBoundingClientRect();
+    const x = (e.clientX - rect.left) / rect.width - .5;
+    const y = (e.clientY - rect.top) / rect.height - .5;
+    card.style.transform = `perspective(800px) rotateY(${x*10}deg) rotateX(${-y*10}deg) scale3d(1.02,1.02,1.02)`;
+  });
+  card.addEventListener('mouseleave', () => {
+    card.style.transform = 'perspective(800px) rotateY(0) rotateX(0) scale3d(1,1,1)';
+    card.style.transition = 'transform .6s';
+  });
+  card.addEventListener('mouseenter', () => { card.style.transition = 'transform .1s'; });
+});
+
+// === HORIZONTAL SCROLL GALLERY ===
+const hTrack = document.querySelector('.scroll-track');
+if (hTrack) {
+  gsap.to(hTrack, {
+    x: () => -(hTrack.scrollWidth - window.innerWidth + 100),
+    ease: 'none',
+    scrollTrigger: {
+      trigger: '.horizontal-scroll',
+      start: 'top top',
+      end: () => '+=' + (hTrack.scrollWidth - window.innerWidth),
+      scrub: 1,
+      pin: true,
+      anticipatePin: 1
+    }
+  });
+}
+
+// === TEXT SCRAMBLE EFFECT ===
+class TextScramble {
+  constructor(el) { this.el = el; this.chars = '!<>-_\\/[]{}—=+*^?#'; this.update = this.update.bind(this); }
+  setText(newText) {
+    const oldText = this.el.innerText;
+    const length = Math.max(oldText.length, newText.length);
+    const promise = new Promise(resolve => this.resolve = resolve);
+    this.queue = [];
+    for (let i = 0; i < length; i++) {
+      const from = oldText[i] || '';
+      const to = newText[i] || '';
+      const start = Math.floor(Math.random() * 40);
+      const end = start + Math.floor(Math.random() * 40);
+      this.queue.push({ from, to, start, end });
+    }
+    cancelAnimationFrame(this.frameRequest);
+    this.frame = 0;
+    this.update();
+    return promise;
+  }
+  update() {
+    let output = '';
+    let complete = 0;
+    for (let i = 0, n = this.queue.length; i < n; i++) {
+      let { from, to, start, end, char } = this.queue[i];
+      if (this.frame >= end) { complete++; output += to; }
+      else if (this.frame >= start) {
+        if (!char || Math.random() < 0.28) { char = this.chars[Math.floor(Math.random() * this.chars.length)]; this.queue[i].char = char; }
+        output += '<span style="opacity:.4">' + char + '</span>';
+      } else { output += from; }
+    }
+    this.el.innerHTML = output;
+    if (complete === this.queue.length) { this.resolve(); }
+    else { this.frameRequest = requestAnimationFrame(this.update); this.frame++; }
+  }
+}
+setTimeout(() => {
+  const heroP = document.querySelector('.hero-content p, .hero p, .hero-text p');
+  if (heroP) { const fx = new TextScramble(heroP); fx.setText(heroP.textContent); }
+}, 1200);
+</script>
+</body>
+</html>

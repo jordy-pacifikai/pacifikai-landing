@@ -1,0 +1,3111 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Air Tahiti Nui - La compagnie de la Polynésie française</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Source+Sans+Pro:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --atn-teal: #2CCCD4;
+            --atn-teal-dark: #1aa3aa;
+            --atn-teal-light: #5DD9E0;
+            --atn-gold: #C9A84C;
+            --atn-gold-light: #E4C76B;
+            --atn-orange: #FF6B00;
+            --atn-white: #FFFFFF;
+            --atn-cream: #FBF9F7;
+            --atn-gray-light: #F4F7F9;
+            --atn-gray: #E5E5E5;
+            --atn-gray-dark: #2D3748;
+            --atn-text: #1A202C;
+            --atn-navy: #0D2137;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            /* scroll-behavior managed by Lenis */
+        }
+
+        /* Lenis smooth scroll */
+        html.lenis, html.lenis body { height: auto; }
+        .lenis.lenis-smooth { scroll-behavior: auto !important; }
+        .lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+        .lenis.lenis-stopped { overflow: clip; }
+
+        /* ===== CUSTOM CURSOR ===== */
+        .cursor-dot{position:fixed;width:12px;height:12px;background:var(--atn-teal);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .3s,height .3s,background .3s;mix-blend-mode:difference}
+        .cursor-dot.hover{width:48px;height:48px;background:var(--atn-gold)}
+
+        /* Scroll progress bar */
+        .scroll-progress { position: fixed; top: 0; left: 0; width: 100%; height: 3px; z-index: 10000; pointer-events: none; }
+        .scroll-progress-bar { height: 100%; width: 100%; background: linear-gradient(90deg, var(--atn-teal), var(--atn-gold)); transform-origin: left; transform: scaleX(0); }
+
+        /* Prefers reduced motion */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
+        }
+
+        /* GSAP reveal helpers */
+        .word-reveal .word { display: inline-block; overflow: hidden; }
+        .word-reveal .word > span { display: inline-block; }
+
+        body {
+            font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, sans-serif;
+            color: var(--atn-text);
+            line-height: 1.6;
+            background: var(--atn-white);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', Georgia, serif;
+        }
+
+        /* ============================================
+           ORGANIC WAVE BACKGROUNDS - SVG Patterns
+           ============================================ */
+
+        .wave-divider {
+            position: absolute;
+            width: 100%;
+            overflow: hidden;
+            line-height: 0;
+        }
+
+        .wave-divider svg {
+            position: relative;
+            display: block;
+            width: calc(100% + 1.3px);
+            height: 80px;
+        }
+
+        .wave-divider.top {
+            top: 0;
+            transform: rotate(180deg);
+        }
+
+        .wave-divider.bottom {
+            bottom: 0;
+        }
+
+        .wave-divider.flip svg {
+            transform: scaleX(-1);
+        }
+
+        /* ============================================
+           HEADER - Minimal & Elegant
+           ============================================ */
+
+        .header {
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .header.scrolled {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.08);
+        }
+
+        .header-top {
+            background: linear-gradient(135deg, var(--atn-teal) 0%, var(--atn-teal-dark) 100%);
+            padding: 10px 0;
+            font-size: 13px;
+        }
+
+        .header-top .container {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .header-top a {
+            color: rgba(255, 255, 255, 0.9);
+            text-decoration: none;
+            font-weight: 500;
+            letter-spacing: 0.3px;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .header-top a:hover {
+            color: var(--atn-white);
+            transform: translateY(-1px);
+        }
+
+        .header-main {
+            padding: 16px 0;
+            background: transparent;
+            transition: all 0.4s;
+        }
+
+        .header.scrolled .header-main {
+            padding: 12px 0;
+        }
+
+        .header-main .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 50px;
+            width: auto;
+            transition: all 0.3s;
+        }
+
+        .header.scrolled .logo img {
+            height: 45px;
+        }
+
+        .nav-main {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-main a {
+            color: var(--atn-white);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            padding: 12px 20px;
+            border-radius: 50px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+        }
+
+        .header.scrolled .nav-main a {
+            color: var(--atn-text);
+        }
+
+        .nav-main a:hover {
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .header.scrolled .nav-main a:hover {
+            background: var(--atn-teal);
+            color: white;
+        }
+
+        .nav-main a.active {
+            background: var(--atn-gold);
+            color: var(--atn-navy);
+        }
+
+        .container {
+            max-width: 1320px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ============================================
+           HERO - Immersive Full-Screen Experience
+           ============================================ */
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, var(--atn-navy) 0%, #0a1929 100%);
+        }
+
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+        }
+
+        .hero-bg img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.6;
+        }
+
+        .hero-bg::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                135deg,
+                rgba(13, 33, 55, 0.7) 0%,
+                rgba(44, 204, 212, 0.3) 50%,
+                rgba(13, 33, 55, 0.8) 100%
+            );
+        }
+
+        /* Animated Wave Overlay */
+        .hero-waves {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 200px;
+            z-index: 1;
+        }
+
+        .hero-waves svg {
+            position: absolute;
+            bottom: 0;
+            width: 200%;
+            height: 100%;
+        }
+
+        .hero-waves .wave-1 {
+            animation: waveMove 25s linear infinite;
+            opacity: 0.6;
+        }
+
+        .hero-waves .wave-2 {
+            animation: waveMove 20s linear infinite reverse;
+            opacity: 0.4;
+            animation-delay: -5s;
+        }
+
+        .hero-waves .wave-3 {
+            animation: waveMove 15s linear infinite;
+            opacity: 0.2;
+            animation-delay: -10s;
+        }
+
+        @keyframes waveMove {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* Floating Particles */
+        .hero-particles {
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: var(--atn-gold);
+            border-radius: 50%;
+            opacity: 0.4;
+            animation: float 15s infinite ease-in-out;
+        }
+
+        .particle:nth-child(1) { left: 10%; top: 20%; animation-delay: 0s; }
+        .particle:nth-child(2) { left: 20%; top: 60%; animation-delay: -2s; }
+        .particle:nth-child(3) { left: 35%; top: 30%; animation-delay: -4s; }
+        .particle:nth-child(4) { left: 50%; top: 70%; animation-delay: -6s; }
+        .particle:nth-child(5) { left: 65%; top: 25%; animation-delay: -8s; }
+        .particle:nth-child(6) { left: 80%; top: 55%; animation-delay: -10s; }
+        .particle:nth-child(7) { left: 90%; top: 40%; animation-delay: -12s; }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) scale(1); opacity: 0.4; }
+            50% { transform: translateY(-40px) scale(1.5); opacity: 0.8; }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            padding: 140px 0 200px;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(135deg, var(--atn-gold) 0%, var(--atn-gold-light) 100%);
+            color: var(--atn-navy);
+            padding: 10px 24px;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border-radius: 50px;
+            margin-bottom: 32px;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .hero-badge::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: var(--atn-navy);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.5); }
+        }
+
+        .hero h1 {
+            font-size: clamp(42px, 6vw, 72px);
+            font-weight: 600;
+            line-height: 1.1;
+            color: var(--atn-white);
+            margin-bottom: 28px;
+            animation: fadeInUp 0.8s ease-out 0.2s both;
+        }
+
+        .hero h1 span {
+            background: linear-gradient(135deg, var(--atn-teal-light) 0%, var(--atn-teal) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-description {
+            font-size: 20px;
+            color: rgba(255, 255, 255, 0.85);
+            margin-bottom: 40px;
+            max-width: 550px;
+            line-height: 1.8;
+            animation: fadeInUp 0.8s ease-out 0.4s both;
+        }
+
+        .hero-ctas {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            animation: fadeInUp 0.8s ease-out 0.6s both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 18px 36px;
+            font-size: 14px;
+            font-weight: 700;
+            text-decoration: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            border: none;
+            font-family: inherit;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--atn-gold) 0%, var(--atn-gold-light) 100%);
+            color: var(--atn-navy);
+            box-shadow: 0 8px 30px rgba(201, 168, 76, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(201, 168, 76, 0.5);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--atn-white);
+            border: 2px solid rgba(255, 255, 255, 0.4);
+        }
+
+        .btn-secondary:hover {
+            background: var(--atn-white);
+            color: var(--atn-navy);
+            border-color: var(--atn-white);
+            transform: translateY(-4px);
+        }
+
+        .btn-teal {
+            background: linear-gradient(135deg, var(--atn-teal) 0%, var(--atn-teal-dark) 100%);
+            color: var(--atn-white);
+            box-shadow: 0 8px 30px rgba(44, 204, 212, 0.4);
+        }
+
+        .btn-teal:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(44, 204, 212, 0.5);
+        }
+
+        /* ============================================
+           BOOKING SECTION - Floating Card Design
+           ============================================ */
+
+        .booking-section {
+            position: relative;
+            z-index: 10;
+            margin-top: -100px;
+            padding-bottom: 100px;
+        }
+
+        .booking-card {
+            background: var(--atn-white);
+            border-radius: 24px;
+            padding: 40px 48px;
+            box-shadow:
+                0 25px 80px rgba(0, 0, 0, 0.12),
+                0 10px 30px rgba(0, 0, 0, 0.08);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .booking-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--atn-teal), var(--atn-gold), var(--atn-teal));
+        }
+
+        .booking-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 32px;
+        }
+
+        .booking-header h3 {
+            font-size: 28px;
+            color: var(--atn-navy);
+            font-weight: 600;
+        }
+
+        .booking-tabs {
+            display: flex;
+            gap: 8px;
+        }
+
+        .booking-tab {
+            padding: 10px 24px;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--atn-gray-dark);
+            background: var(--atn-gray-light);
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .booking-tab.active {
+            background: var(--atn-teal);
+            color: white;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr auto;
+            gap: 20px;
+            align-items: end;
+        }
+
+        .form-group {
+            position: relative;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--atn-teal-dark);
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 16px 20px;
+            border: 2px solid var(--atn-gray);
+            border-radius: 12px;
+            font-size: 15px;
+            font-family: inherit;
+            transition: all 0.3s;
+            background: var(--atn-white);
+            color: var(--atn-text);
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--atn-teal);
+            box-shadow: 0 0 0 4px rgba(44, 204, 212, 0.15);
+        }
+
+        .form-group select {
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%232CCCD4' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 16px center;
+            background-size: 18px;
+            padding-right: 48px;
+        }
+
+        .btn-search {
+            height: 56px;
+            padding: 0 40px;
+            white-space: nowrap;
+        }
+
+        /* ============================================
+           DESTINATIONS - Immersive Cards
+           ============================================ */
+
+        .destinations {
+            padding: 120px 0;
+            background: var(--atn-cream);
+            position: relative;
+        }
+
+        .destinations::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 100%;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%232CCCD4' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            opacity: 0.5;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 64px;
+            position: relative;
+        }
+
+        .section-subtitle {
+            display: inline-block;
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--atn-teal);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 16px;
+        }
+
+        .section-header h2 {
+            font-size: clamp(36px, 5vw, 52px);
+            color: var(--atn-navy);
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .section-header p {
+            font-size: 18px;
+            color: var(--atn-gray-dark);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .destinations-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+            position: relative;
+        }
+
+        .destination-card {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            aspect-ratio: 3/4;
+            cursor: pointer;
+            group: destination;
+        }
+
+        .destination-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .destination-card:hover img {
+            transform: scale(1.1);
+        }
+
+        .destination-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                to top,
+                rgba(13, 33, 55, 0.9) 0%,
+                rgba(13, 33, 55, 0.4) 40%,
+                transparent 100%
+            );
+            z-index: 1;
+            transition: all 0.4s;
+        }
+
+        .destination-card:hover::before {
+            background: linear-gradient(
+                to top,
+                rgba(44, 204, 212, 0.9) 0%,
+                rgba(44, 204, 212, 0.4) 40%,
+                transparent 100%
+            );
+        }
+
+        .destination-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 32px;
+            z-index: 2;
+            transform: translateY(20px);
+            transition: transform 0.4s;
+        }
+
+        .destination-card:hover .destination-content {
+            transform: translateY(0);
+        }
+
+        .destination-tag {
+            display: inline-block;
+            background: var(--atn-gold);
+            color: var(--atn-navy);
+            padding: 6px 14px;
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-radius: 50px;
+            margin-bottom: 12px;
+        }
+
+        .destination-card h4 {
+            font-size: 24px;
+            color: white;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .destination-card p {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 16px;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.4s 0.1s;
+        }
+
+        .destination-card:hover p {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .destination-price {
+            display: flex;
+            align-items: baseline;
+            gap: 8px;
+        }
+
+        .destination-price .amount {
+            font-size: 28px;
+            font-weight: 700;
+            color: white;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .destination-price .currency {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* ============================================
+           EXPERIENCE - Staggered Grid with Curves
+           ============================================ */
+
+        .experience {
+            padding: 140px 0;
+            background: var(--atn-white);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .experience-curve-top {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 120px;
+            overflow: hidden;
+        }
+
+        .experience-curve-top svg {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 120px;
+        }
+
+        .experience-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .experience-visual {
+            position: relative;
+        }
+
+        .experience-image-main {
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.15);
+            position: relative;
+            z-index: 2;
+        }
+
+        .experience-image-main img {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+        }
+
+        .experience-image-float {
+            position: absolute;
+            width: 280px;
+            height: 200px;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+            bottom: -40px;
+            right: -40px;
+            z-index: 3;
+            border: 6px solid white;
+        }
+
+        .experience-image-float img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .experience-blob {
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: linear-gradient(135deg, var(--atn-teal) 0%, var(--atn-teal-light) 100%);
+            border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+            opacity: 0.1;
+            top: -50px;
+            left: -100px;
+            z-index: 1;
+            animation: blobMorph 15s infinite ease-in-out;
+        }
+
+        @keyframes blobMorph {
+            0%, 100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+            50% { border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%; }
+        }
+
+        .experience-content {
+            padding-left: 40px;
+        }
+
+        .experience-content h2 {
+            font-size: 44px;
+            color: var(--atn-navy);
+            margin-bottom: 24px;
+            font-weight: 600;
+            line-height: 1.2;
+        }
+
+        .experience-content h2 span {
+            color: var(--atn-teal);
+        }
+
+        .experience-content > p {
+            font-size: 18px;
+            color: var(--atn-gray-dark);
+            margin-bottom: 40px;
+            line-height: 1.8;
+        }
+
+        .experience-features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            margin-bottom: 40px;
+        }
+
+        .feature-item {
+            display: flex;
+            gap: 16px;
+            align-items: flex-start;
+        }
+
+        .feature-icon {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, var(--atn-teal) 0%, var(--atn-teal-dark) 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .feature-icon svg {
+            width: 24px;
+            height: 24px;
+            fill: white;
+        }
+
+        .feature-text h5 {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--atn-navy);
+            margin-bottom: 4px;
+            font-family: 'Source Sans Pro', sans-serif;
+        }
+
+        .feature-text p {
+            font-size: 14px;
+            color: var(--atn-gray-dark);
+        }
+
+        /* ============================================
+           CLASSES - Premium Cards with Hover
+           ============================================ */
+
+        .classes {
+            padding: 140px 0;
+            background: linear-gradient(180deg, var(--atn-navy) 0%, #0a1929 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .classes::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%232CCCD4' fill-opacity='0.03' fill-rule='evenodd'/%3E%3C/svg%3E");
+        }
+
+        .classes .section-header h2 {
+            color: white;
+        }
+
+        .classes .section-header p {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .classes-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+            position: relative;
+        }
+
+        .class-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            overflow: hidden;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+        }
+
+        .class-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, transparent 60%, rgba(44, 204, 212, 0.1) 100%);
+            opacity: 0;
+            transition: opacity 0.5s;
+        }
+
+        .class-card:hover {
+            transform: translateY(-12px);
+            border-color: var(--atn-teal);
+            box-shadow: 0 30px 60px rgba(44, 204, 212, 0.2);
+        }
+
+        .class-card:hover::before {
+            opacity: 1;
+        }
+
+        .class-card-image {
+            position: relative;
+            height: 240px;
+            overflow: hidden;
+        }
+
+        .class-card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.7s;
+        }
+
+        .class-card:hover .class-card-image img {
+            transform: scale(1.1);
+        }
+
+        .class-badge {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: linear-gradient(135deg, var(--atn-gold) 0%, var(--atn-gold-light) 100%);
+            color: var(--atn-navy);
+            padding: 8px 20px;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            border-radius: 50px;
+        }
+
+        .class-card-content {
+            padding: 36px;
+        }
+
+        .class-name {
+            font-size: 12px;
+            color: var(--atn-teal);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 8px;
+        }
+
+        .class-card h4 {
+            font-size: 28px;
+            color: white;
+            margin-bottom: 16px;
+            font-weight: 600;
+        }
+
+        .class-card > p {
+            font-size: 15px;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 28px;
+            line-height: 1.7;
+        }
+
+        .class-features {
+            list-style: none;
+            margin-bottom: 32px;
+        }
+
+        .class-features li {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 0;
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.85);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .class-features li:last-child {
+            border-bottom: none;
+        }
+
+        .class-features li::before {
+            content: '';
+            width: 20px;
+            height: 20px;
+            background: linear-gradient(135deg, var(--atn-teal) 0%, var(--atn-teal-dark) 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'%3E%3C/polyline%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: center;
+            flex-shrink: 0;
+        }
+
+        .btn-class {
+            width: 100%;
+            padding: 16px;
+            background: transparent;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            border-radius: 12px;
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-class:hover {
+            background: var(--atn-teal);
+            border-color: var(--atn-teal);
+        }
+
+        /* ============================================
+           STATS SECTION - Animated Counters
+           ============================================ */
+
+        .stats {
+            padding: 100px 0;
+            background: linear-gradient(135deg, var(--atn-teal) 0%, var(--atn-teal-dark) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stats-wave {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 100px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 48px;
+            position: relative;
+        }
+
+        .stat-item {
+            text-align: center;
+            position: relative;
+        }
+
+        .stat-item::after {
+            content: '';
+            position: absolute;
+            right: -24px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 1px;
+            height: 60px;
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .stat-item:last-child::after {
+            display: none;
+        }
+
+        .stat-number {
+            font-size: 64px;
+            font-weight: 700;
+            color: white;
+            font-family: 'Playfair Display', serif;
+            line-height: 1;
+            margin-bottom: 8px;
+        }
+
+        .stat-number span {
+            color: var(--atn-gold);
+        }
+
+        .stat-label {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.85);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 600;
+        }
+
+        /* ============================================
+           NEWSLETTER - Elegant CTA
+           ============================================ */
+
+        .newsletter {
+            padding: 120px 0;
+            background: var(--atn-cream);
+            position: relative;
+        }
+
+        .newsletter-card {
+            background: linear-gradient(135deg, var(--atn-navy) 0%, #0a1929 100%);
+            border-radius: 32px;
+            padding: 80px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .newsletter-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(44, 204, 212, 0.15) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .newsletter-card::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            left: -10%;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(201, 168, 76, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .newsletter-content {
+            position: relative;
+            z-index: 1;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .newsletter-text h2 {
+            font-size: 42px;
+            color: white;
+            margin-bottom: 20px;
+            font-weight: 600;
+            line-height: 1.2;
+        }
+
+        .newsletter-text h2 span {
+            color: var(--atn-gold);
+        }
+
+        .newsletter-text p {
+            font-size: 18px;
+            color: rgba(255, 255, 255, 0.75);
+            line-height: 1.8;
+        }
+
+        .newsletter-form-wrapper {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 40px;
+        }
+
+        .newsletter-form {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .newsletter-form input[type="email"] {
+            width: 100%;
+            padding: 18px 24px;
+            border: 2px solid rgba(255, 255, 255, 0.15);
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.05);
+            color: white;
+            font-size: 16px;
+            font-family: inherit;
+            transition: all 0.3s;
+        }
+
+        .newsletter-form input[type="email"]::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .newsletter-form input[type="email"]:focus {
+            outline: none;
+            border-color: var(--atn-teal);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .newsletter-form button {
+            width: 100%;
+        }
+
+        .newsletter-privacy {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.5);
+            text-align: center;
+            margin-top: 16px;
+        }
+
+        /* ===== HORIZONTAL SCROLL SHOWCASE ===== */
+        .horizontal-scroll{position:relative;overflow:hidden}
+        .horizontal-scroll .scroll-track{display:flex;gap:20px;width:max-content;padding:40px 0}
+        .horizontal-scroll .scroll-item{flex-shrink:0;width:70vw;max-width:500px;overflow:hidden;border-radius:8px}
+        .horizontal-scroll .scroll-item img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease}
+        .horizontal-scroll .scroll-item:hover img{transform:scale(1.05)}
+        @media (max-width: 768px) { .horizontal-scroll .scroll-item{width:85vw} }
+
+        /* ============================================
+           FOOTER - Clean & Modern
+           ============================================ */
+
+        .footer {
+            background: var(--atn-navy);
+            color: white;
+            padding: 80px 0 40px;
+            position: relative;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr repeat(4, 1fr);
+            gap: 48px;
+            margin-bottom: 60px;
+        }
+
+        .footer-brand img {
+            height: 48px;
+            margin-bottom: 24px;
+        }
+
+        .footer-brand p {
+            font-size: 15px;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.8;
+            max-width: 300px;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 12px;
+            margin-top: 24px;
+        }
+
+        .footer-social a {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.08);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s;
+            font-size: 18px;
+        }
+
+        .footer-social a:hover {
+            background: var(--atn-teal);
+            transform: translateY(-4px);
+        }
+
+        .footer-column h5 {
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 24px;
+            color: white;
+            font-family: 'Source Sans Pro', sans-serif;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column li {
+            margin-bottom: 14px;
+        }
+
+        .footer-column a {
+            color: rgba(255, 255, 255, 0.65);
+            text-decoration: none;
+            font-size: 14px;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+
+        .footer-column a:hover {
+            color: var(--atn-teal);
+            transform: translateX(4px);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-bottom p {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .footer-legal {
+            display: flex;
+            gap: 24px;
+        }
+
+        .footer-legal a {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.5);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-legal a:hover {
+            color: var(--atn-teal);
+        }
+
+        /* ============================================
+           TIARE CHATBOT - Premium Design
+           ============================================ */
+
+        .tiare-toggle {
+            position: fixed;
+            bottom: 28px;
+            right: 28px;
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--atn-teal) 0%, var(--atn-teal-dark) 100%);
+            border: none;
+            cursor: pointer;
+            box-shadow:
+                0 8px 32px rgba(44, 204, 212, 0.4),
+                0 0 0 0 rgba(44, 204, 212, 0.4);
+            z-index: 9999;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: chatPulse 3s infinite;
+        }
+
+        @keyframes chatPulse {
+            0%, 100% { box-shadow: 0 8px 32px rgba(44, 204, 212, 0.4), 0 0 0 0 rgba(44, 204, 212, 0.4); }
+            50% { box-shadow: 0 8px 32px rgba(44, 204, 212, 0.4), 0 0 0 12px rgba(44, 204, 212, 0); }
+        }
+
+        .tiare-toggle:hover {
+            transform: scale(1.08);
+        }
+
+        .tiare-toggle svg {
+            width: 28px;
+            height: 28px;
+            fill: white;
+            transition: all 0.3s;
+        }
+
+        .tiare-toggle.open svg.icon-chat { display: none; }
+        .tiare-toggle.open svg.icon-close { display: block; }
+        .tiare-toggle svg.icon-close { display: none; }
+
+        .tiare-window {
+            position: fixed;
+            bottom: 108px;
+            right: 28px;
+            width: 400px;
+            height: 560px;
+            background: white;
+            border-radius: 24px;
+            box-shadow:
+                0 25px 80px rgba(0, 0, 0, 0.15),
+                0 10px 30px rgba(0, 0, 0, 0.1);
+            z-index: 9998;
+            display: none;
+            flex-direction: column;
+            overflow: hidden;
+            animation: slideUp 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .tiare-window.open {
+            display: flex;
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(24px) scale(0.96); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        .tiare-header {
+            background: linear-gradient(135deg, var(--atn-teal) 0%, var(--atn-teal-dark) 100%);
+            padding: 24px;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .tiare-avatar {
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--atn-gold) 0%, var(--atn-gold-light) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .tiare-avatar img {
+            width: 32px;
+            height: 32px;
+            filter: brightness(0) saturate(100%) invert(12%) sepia(35%) saturate(1095%) hue-rotate(176deg) brightness(95%) contrast(97%);
+        }
+
+        .tiare-info h4 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 4px;
+            font-family: 'Source Sans Pro', sans-serif;
+        }
+
+        .tiare-info p {
+            font-size: 13px;
+            opacity: 0.9;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .tiare-status {
+            width: 8px;
+            height: 8px;
+            background: #10B981;
+            border-radius: 50%;
+            animation: statusPulse 2s infinite;
+        }
+
+        @keyframes statusPulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .tiare-messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+            background: #f8fafc;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .tiare-message {
+            max-width: 85%;
+            padding: 14px 18px;
+            border-radius: 18px;
+            font-size: 14px;
+            line-height: 1.6;
+            animation: messageIn 0.3s ease-out;
+        }
+
+        @keyframes messageIn {
+            from { opacity: 0; transform: translateY(12px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .tiare-message.bot {
+            background: white;
+            color: var(--atn-text);
+            border-bottom-left-radius: 6px;
+            align-self: flex-start;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+        }
+
+        .tiare-message.user {
+            background: linear-gradient(135deg, var(--atn-teal) 0%, var(--atn-teal-dark) 100%);
+            color: white;
+            border-bottom-right-radius: 6px;
+            align-self: flex-end;
+        }
+
+        .tiare-typing {
+            display: flex;
+            gap: 5px;
+            padding: 14px 18px;
+            background: white;
+            border-radius: 18px;
+            border-bottom-left-radius: 6px;
+            align-self: flex-start;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+        }
+
+        .tiare-typing span {
+            width: 8px;
+            height: 8px;
+            background: var(--atn-teal);
+            border-radius: 50%;
+            animation: typingBounce 1.4s infinite ease-in-out;
+        }
+
+        .tiare-typing span:nth-child(1) { animation-delay: -0.32s; }
+        .tiare-typing span:nth-child(2) { animation-delay: -0.16s; }
+
+        @keyframes typingBounce {
+            0%, 80%, 100% { transform: scale(0.6); opacity: 0.5; }
+            40% { transform: scale(1); opacity: 1; }
+        }
+
+        .tiare-input {
+            padding: 20px;
+            background: white;
+            border-top: 1px solid #e5e7eb;
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .tiare-input input {
+            flex: 1;
+            padding: 14px 20px;
+            border: 2px solid #e5e7eb;
+            border-radius: 50px;
+            font-size: 14px;
+            font-family: inherit;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        .tiare-input input:focus {
+            border-color: var(--atn-teal);
+        }
+
+        .tiare-send {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--atn-gold) 0%, var(--atn-gold-light) 100%);
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+            flex-shrink: 0;
+        }
+
+        .tiare-send:hover {
+            transform: scale(1.08);
+        }
+
+        .tiare-send svg {
+            width: 20px;
+            height: 20px;
+            fill: var(--atn-navy);
+        }
+
+        /* Scrollbar */
+        .tiare-messages::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .tiare-messages::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .tiare-messages::-webkit-scrollbar-thumb {
+            background: #d1d5db;
+            border-radius: 3px;
+        }
+
+        /* ============================================
+           MODAL NEWSLETTER
+           ============================================ */
+
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(13, 33, 55, 0.8);
+            backdrop-filter: blur(8px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal-overlay.show {
+            display: flex;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 24px;
+            width: 90%;
+            max-width: 480px;
+            padding: 48px;
+            position: relative;
+            animation: modalSlideUp 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        @keyframes modalSlideUp {
+            from { opacity: 0; transform: translateY(32px) scale(0.96); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: none;
+            background: var(--atn-gray-light);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: var(--atn-gray-dark);
+            transition: all 0.3s;
+        }
+
+        .modal-close:hover {
+            background: var(--atn-teal);
+            color: white;
+        }
+
+        .modal-header {
+            text-align: center;
+            margin-bottom: 32px;
+        }
+
+        .modal-icon {
+            width: 72px;
+            height: 72px;
+            background: linear-gradient(135deg, var(--atn-teal) 0%, var(--atn-teal-dark) 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+        }
+
+        .modal-icon img {
+            width: 40px;
+            height: 40px;
+            filter: brightness(0) invert(1);
+        }
+
+        .modal-header h3 {
+            font-size: 26px;
+            color: var(--atn-navy);
+            margin-bottom: 8px;
+        }
+
+        .modal-header p {
+            font-size: 15px;
+            color: var(--atn-gray-dark);
+        }
+
+        .interests-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 28px;
+        }
+
+        .interest-option {
+            position: relative;
+        }
+
+        .interest-option input {
+            position: absolute;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .interest-option label {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px 16px;
+            border: 2px solid var(--atn-gray);
+            border-radius: 16px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-align: center;
+        }
+
+        .interest-option label:hover {
+            border-color: var(--atn-teal);
+            background: rgba(44, 204, 212, 0.05);
+        }
+
+        .interest-option input:checked + label {
+            border-color: var(--atn-teal);
+            background: rgba(44, 204, 212, 0.1);
+        }
+
+        .interest-option input:checked + label::after {
+            content: '';
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 24px;
+            height: 24px;
+            background: var(--atn-teal);
+            border-radius: 50%;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'%3E%3C/polyline%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+
+        .interest-icon {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        .interest-name {
+            font-weight: 700;
+            color: var(--atn-navy);
+            font-size: 14px;
+        }
+
+        .interest-desc {
+            font-size: 12px;
+            color: var(--atn-gray-dark);
+            margin-top: 4px;
+        }
+
+        .modal-submit {
+            width: 100%;
+            padding: 18px;
+            background: linear-gradient(135deg, var(--atn-teal) 0%, var(--atn-teal-dark) 100%);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .modal-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(44, 204, 212, 0.4);
+        }
+
+        .newsletter-success {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .success-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #10B981 0%, #059669 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 24px;
+            font-size: 36px;
+            color: white;
+        }
+
+        .newsletter-success h4 {
+            font-size: 24px;
+            color: var(--atn-navy);
+            margin-bottom: 8px;
+        }
+
+        .newsletter-success p {
+            font-size: 15px;
+            color: var(--atn-gray-dark);
+        }
+
+        /* ============================================
+           RESPONSIVE
+           ============================================ */
+
+        @media (max-width: 1200px) {
+            .form-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .destinations-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 992px) {
+            .nav-main {
+                display: none;
+            }
+            .experience-grid {
+                grid-template-columns: 1fr;
+                gap: 60px;
+            }
+            .experience-content {
+                padding-left: 0;
+            }
+            .classes-grid {
+                grid-template-columns: 1fr;
+                max-width: 500px;
+                margin: 0 auto;
+            }
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .stat-item::after {
+                display: none;
+            }
+            .newsletter-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            .footer-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-content {
+                padding: 120px 0 180px;
+            }
+            .booking-card {
+                padding: 32px 24px;
+            }
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+            .destinations-grid {
+                grid-template-columns: 1fr;
+            }
+            .destination-card {
+                aspect-ratio: 4/3;
+            }
+            .newsletter-card {
+                padding: 48px 24px;
+            }
+            .footer-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            .footer-brand {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+            .footer-social {
+                justify-content: center;
+            }
+            .footer-bottom {
+                flex-direction: column;
+                gap: 20px;
+                text-align: center;
+            }
+            .cursor-dot{display:none}
+            .tiare-window {
+                width: calc(100% - 32px);
+                height: calc(100% - 140px);
+                right: 16px;
+                bottom: 96px;
+                border-radius: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 36px;
+            }
+            .hero-description {
+                font-size: 16px;
+            }
+            .hero-ctas {
+                flex-direction: column;
+            }
+            .btn {
+                width: 100%;
+            }
+            .interests-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* ============================================
+           PREMIUM ANIMATIONS — Marquee, Circle Reveal
+           ============================================ */
+        .marquee{overflow:hidden;padding:40px 0;border-top:1px solid rgba(44,204,212,.08);border-bottom:1px solid rgba(44,204,212,.08)}
+        .marquee-track{display:flex;gap:60px;white-space:nowrap;will-change:transform}
+        .marquee-text{font-size:clamp(14px,2vw,20px);letter-spacing:.15em;text-transform:uppercase;opacity:.25;flex-shrink:0}
+        .circle-reveal{clip-path:circle(0% at 50% 50%);transition:clip-path 1.2s cubic-bezier(.25,.46,.45,.94)}
+        .circle-reveal.revealed{clip-path:circle(75% at 50% 50%)}
+    </style>
+</head>
+<body>
+    <div class="cursor-dot" id="cursor"></div>
+    <div class="scroll-progress"><div class="scroll-progress-bar" id="scrollProgress"></div></div>
+
+    <!-- Header -->
+    <header class="header" id="header">
+        <div class="header-top">
+            <div class="container">
+                <a href="#">Club Tiare</a>
+                <a href="#">Aide & Contact</a>
+                <a href="#">FR</a>
+            </div>
+        </div>
+        <div class="header-main">
+            <div class="container">
+                <a href="index.html" class="logo">
+                    <img src="images/logo-full-color.svg" alt="Air Tahiti Nui">
+                </a>
+                <nav class="nav-main">
+                    <a href="#" class="active">Reserver</a>
+                    <a href="#">Destinations</a>
+                    <a href="#">Experience</a>
+                    <a href="blog.html">Blog</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-bg">
+            <img class="scale-scroll" src="images/hero-4k.jpg" alt="Polynesie francaise" data-parallax>
+        </div>
+
+        <!-- Animated Waves -->
+        <div class="hero-waves">
+            <svg class="wave-1" viewBox="0 0 1440 320" preserveAspectRatio="none">
+                <path fill="#ffffff" d="M0,96L48,112C96,128,192,160,288,186.7C384,213,480,235,576,213.3C672,192,768,128,864,128C960,128,1056,192,1152,208C1248,224,1344,192,1392,176L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+            </svg>
+            <svg class="wave-2" viewBox="0 0 1440 320" preserveAspectRatio="none">
+                <path fill="#ffffff" d="M0,192L48,176C96,160,192,128,288,138.7C384,149,480,203,576,213.3C672,224,768,192,864,165.3C960,139,1056,117,1152,128C1248,139,1344,181,1392,202.7L1440,224L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+            </svg>
+            <svg class="wave-3" viewBox="0 0 1440 320" preserveAspectRatio="none">
+                <path fill="#ffffff" d="M0,288L48,272C96,256,192,224,288,213.3C384,203,480,213,576,229.3C672,245,768,267,864,261.3C960,256,1056,224,1152,213.3C1248,203,1344,213,1392,218.7L1440,224L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+            </svg>
+        </div>
+
+        <!-- Floating Particles -->
+        <div class="hero-particles">
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+        </div>
+
+        <div class="container">
+            <div class="hero-content">
+                <span class="hero-badge">Offre Speciale 2026</span>
+                <h1>Decouvrez la magie de la <span>Polynesie</span></h1>
+                <p class="hero-description">Envolez-vous vers le paradis a bord de nos Boeing 787-9 Dreamliner. Tahiti, Bora Bora, Moorea... votre reve polynesien commence ici.</p>
+                <div class="hero-ctas">
+                    <a href="#booking" class="btn btn-primary">Reserver un vol</a>
+                    <a href="#destinations" class="btn btn-secondary">Explorer les iles</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Booking Section -->
+    <section class="booking-section" id="booking">
+        <div class="container">
+            <div class="booking-card">
+                <div class="booking-header">
+                    <h3>Rechercher un vol</h3>
+                    <div class="booking-tabs">
+                        <button class="booking-tab active">Aller-retour</button>
+                        <button class="booking-tab">Aller simple</button>
+                    </div>
+                </div>
+                <form class="booking-form">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label>Depart</label>
+                            <select>
+                                <option>Paris (CDG)</option>
+                                <option>Los Angeles (LAX)</option>
+                                <option>Tokyo (NRT)</option>
+                                <option>Auckland (AKL)</option>
+                                <option>Sydney (SYD)</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Destination</label>
+                            <select>
+                                <option>Papeete (PPT)</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Date aller</label>
+                            <input type="date" value="2026-03-15">
+                        </div>
+                        <div class="form-group">
+                            <label>Date retour</label>
+                            <input type="date" value="2026-03-30">
+                        </div>
+                        <button type="button" class="btn btn-teal btn-search">Rechercher</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Destinations -->
+    <section class="destinations" id="destinations">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-subtitle">Nos Destinations</span>
+                <h2 class="word-reveal">Les plus belles iles du Pacifique</h2>
+                <p>Explorez les joyaux de la Polynesie francaise, des lagons turquoise aux sommets volcaniques majestueux.</p>
+            </div>
+            <div class="destinations-grid stagger-grid">
+                <div class="destination-card">
+                    <img class="circle-reveal" src="images/bora-bora.jpg" alt="Bora Bora">
+                    <div class="destination-content">
+                        <span class="destination-tag">Incontournable</span>
+                        <h4>Bora Bora</h4>
+                        <p>La perle du Pacifique et ses bungalows sur pilotis</p>
+                        <div class="destination-price">
+                            <span class="amount">1 299</span>
+                            <span class="currency">EUR</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="destination-card">
+                    <img class="circle-reveal" src="images/moorea.jpg" alt="Moorea">
+                    <div class="destination-content">
+                        <span class="destination-tag">Nature</span>
+                        <h4>Moorea</h4>
+                        <p>L'ile soeur de Tahiti et ses montagnes dramatiques</p>
+                        <div class="destination-price">
+                            <span class="amount">899</span>
+                            <span class="currency">EUR</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="destination-card">
+                    <img class="circle-reveal" src="images/los-angeles.jpg" alt="Los Angeles">
+                    <div class="destination-content">
+                        <span class="destination-tag">Stopover</span>
+                        <h4>Los Angeles</h4>
+                        <p>Escale glamour sur la cote californienne</p>
+                        <div class="destination-price">
+                            <span class="amount">699</span>
+                            <span class="currency">USD</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="destination-card">
+                    <img class="circle-reveal" src="images/tokyo.jpg" alt="Tokyo">
+                    <div class="destination-content">
+                        <span class="destination-tag">Nouveau</span>
+                        <h4>Tokyo</h4>
+                        <p>Tradition et modernite au coeur du Japon</p>
+                        <div class="destination-price">
+                            <span class="amount">159 000</span>
+                            <span class="currency">JPY</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience -->
+    <section class="experience">
+        <div class="container">
+            <div class="experience-grid">
+                <div class="experience-visual">
+                    <div class="experience-blob"></div>
+                    <div class="experience-image-main">
+                        <img class="scale-scroll" src="images/hospitality-polynesian.jpg" alt="Hospitalité polynésienne" data-parallax>
+                    </div>
+                    <div class="experience-image-float">
+                        <img src="images/bungalow.jpg" alt="Service a bord">
+                    </div>
+                </div>
+                <div class="experience-content">
+                    <span class="section-subtitle">L'Experience</span>
+                    <h2 class="word-reveal">L'hospitalite <span>polynesienne</span> dans les airs</h2>
+                    <p class="line-reveal">Vivez le legendaire accueil tahitien des que vous montez a bord. Notre equipage vous transporte vers le paradis avec attention, chaleur et authenticite.</p>
+                    <div class="experience-features stagger-grid">
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                            </div>
+                            <div class="feature-text">
+                                <h5>Boeing 787 Dreamliner</h5>
+                                <p>Confort nouvelle generation</p>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <svg viewBox="0 0 24 24"><path d="M3 3h18v18H3zM12 8v8m-4-4h8"/></svg>
+                            </div>
+                            <div class="feature-text">
+                                <h5>Cuisine Gastronomique</h5>
+                                <p>Saveurs du Pacifique</p>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                            </div>
+                            <div class="feature-text">
+                                <h5>Vols Directs</h5>
+                                <p>8h vers Los Angeles</p>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                            </div>
+                            <div class="feature-text">
+                                <h5>Club Tiare</h5>
+                                <p>Fidelite recompensee</p>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="#" class="btn btn-teal">Decouvrir nos classes</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Classes -->
+    <section class="classes">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-subtitle">Nos Classes</span>
+                <h2 class="word-reveal">Choisissez votre experience</h2>
+                <p>De l'economie au luxe absolu, trouvez la classe qui correspond a vos envies.</p>
+            </div>
+            <div class="classes-grid stagger-grid">
+                <div class="class-card">
+                    <div class="class-card-image">
+                        <img src="images/economy-cabin.jpg" alt="Moana Economy">
+                    </div>
+                    <div class="class-card-content">
+                        <span class="class-name">Economie</span>
+                        <h4>Moana Economy</h4>
+                        <p>Le confort essentiel avec l'accueil polynesien legendaire.</p>
+                        <ul class="class-features">
+                            <li>Siege ergonomique 18"</li>
+                            <li>Ecran tactile 12 pouces</li>
+                            <li>Repas polynesien inclus</li>
+                            <li>2 bagages x 23kg</li>
+                        </ul>
+                        <button class="btn-class">En savoir plus</button>
+                    </div>
+                </div>
+                <div class="class-card">
+                    <div class="class-card-image">
+                        <span class="class-badge">Populaire</span>
+                        <img src="images/premium-service.jpg" alt="Manava Premium">
+                    </div>
+                    <div class="class-card-content">
+                        <span class="class-name">Premium</span>
+                        <h4>Manava Premium</h4>
+                        <p>Plus d'espace et de confort pour un voyage serein.</p>
+                        <ul class="class-features">
+                            <li>Siege plus large 19"</li>
+                            <li>Inclinaison 40% superieure</li>
+                            <li>Ecran 13 pouces HD</li>
+                            <li>Menu ameliore</li>
+                        </ul>
+                        <button class="btn-class">En savoir plus</button>
+                    </div>
+                </div>
+                <div class="class-card">
+                    <div class="class-card-image">
+                        <span class="class-badge">Excellence</span>
+                        <img src="images/business-luxury.jpg" alt="Poerava Business">
+                    </div>
+                    <div class="class-card-content">
+                        <span class="class-name">Business</span>
+                        <h4>Poerava Business</h4>
+                        <p>L'excellence polynesienne dans les airs.</p>
+                        <ul class="class-features">
+                            <li>Siege-lit full flat 180</li>
+                            <li>Ecran 18 pouces 4K</li>
+                            <li>Menu gastronomique</li>
+                            <li>Acces salon Poerava</li>
+                        </ul>
+                        <button class="btn-class">En savoir plus</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats -->
+    <section class="stats">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number" data-counter="25" data-suffix="+" data-count="25" data-suffix="+">0<span>+</span></div>
+                    <div class="stat-label">Annees d'experience</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" data-counter="5" data-count="5">0</div>
+                    <div class="stat-label">Destinations</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" data-counter="787" data-count="787">0</div>
+                    <div class="stat-label">Boeing Dreamliner</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" data-counter="500" data-suffix="K" data-count="500" data-suffix="K">0<span>K</span></div>
+                    <div class="stat-label">Passagers par an</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Marquee Ticker -->
+    <div class="marquee">
+        <div class="marquee-track">
+            <span class="marquee-text">AIR TAHITI NUI</span>
+            <span class="marquee-text">—</span>
+            <span class="marquee-text">POLYNESIE</span>
+            <span class="marquee-text">—</span>
+            <span class="marquee-text">DREAMLINER</span>
+            <span class="marquee-text">—</span>
+            <span class="marquee-text">PAPEETE</span>
+            <span class="marquee-text">—</span>
+            <span class="marquee-text">LOS ANGELES</span>
+            <span class="marquee-text">—</span>
+            <span class="marquee-text">PARIS</span>
+            <span class="marquee-text">—</span>
+            <span class="marquee-text">TOKYO</span>
+            <span class="marquee-text">—</span>
+            <span class="marquee-text">AUCKLAND</span>
+            <span class="marquee-text">—</span>
+        </div>
+    </div>
+
+    <!-- Newsletter -->
+    <section class="newsletter">
+        <div class="container">
+            <div class="newsletter-card">
+                <div class="newsletter-content">
+                    <div class="newsletter-text">
+                        <h2 class="word-reveal">Recevez nos <span>offres exclusives</span></h2>
+                        <p>Inscrivez-vous et soyez le premier informe de nos promotions, conseils de voyage et inspirations polynesiennes.</p>
+                    </div>
+                    <div class="newsletter-form-wrapper">
+                        <form class="newsletter-form" id="newsletterForm">
+                            <input type="email" id="newsletterEmail" placeholder="Votre adresse email" required>
+                            <button type="submit" class="btn btn-primary">S'inscrire</button>
+                        </form>
+                        <p class="newsletter-privacy">En vous inscrivant, vous acceptez notre politique de confidentialite.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- HORIZONTAL SCROLL SHOWCASE -->
+    <section class="horizontal-scroll">
+      <div class="scroll-track">
+        <div class="scroll-item"><img src="images/business-luxury.jpg" alt="Classe Poerava Business" loading="lazy"></div>
+        <div class="scroll-item"><img src="images/bora-bora.jpg" alt="Bora Bora lagon turquoise" loading="lazy"></div>
+        <div class="scroll-item"><img src="images/hospitality-polynesian.jpg" alt="Hospitalite polynesienne" loading="lazy"></div>
+        <div class="scroll-item"><img src="images/moorea.jpg" alt="Moorea vue aerienne" loading="lazy"></div>
+        <div class="scroll-item"><img src="images/premium-service.jpg" alt="Classe Manava Premium" loading="lazy"></div>
+        <div class="scroll-item"><img src="images/economy-cabin.jpg" alt="Cabine Moana Economy" loading="lazy"></div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <img src="images/logo_flower.svg" alt="Air Tahiti Nui">
+                    <p>La compagnie aerienne internationale de la Polynesie francaise. Depuis 1996, nous relions Tahiti au monde avec le legendaire accueil polynesien.</p>
+                    <div class="footer-social">
+                        <a href="#" title="Facebook">f</a>
+                        <a href="#" title="Instagram">ig</a>
+                        <a href="#" title="YouTube">yt</a>
+                        <a href="#" title="LinkedIn">in</a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h5>Reserver</h5>
+                    <ul>
+                        <li><a href="#">Rechercher un vol</a></li>
+                        <li><a href="#">Nos offres</a></li>
+                        <li><a href="#">Sejours</a></li>
+                        <li><a href="#">Groupes</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h5>Preparer</h5>
+                    <ul>
+                        <li><a href="#">Bagages</a></li>
+                        <li><a href="#">Enregistrement</a></li>
+                        <li><a href="#">A bord</a></li>
+                        <li><a href="#">Documents</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h5>Club Tiare</h5>
+                    <ul>
+                        <li><a href="#">Adherer</a></li>
+                        <li><a href="#">Avantages</a></li>
+                        <li><a href="#">Partenaires</a></li>
+                        <li><a href="#">Mon compte</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h5>A propos</h5>
+                    <ul>
+                        <li><a href="#">Notre compagnie</a></li>
+                        <li><a href="#">Carrieres</a></li>
+                        <li><a href="#">Presse</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>2026 Air Tahiti Nui - Site de demonstration PACIFIK'AI</p>
+                <div class="footer-legal">
+                    <a href="#">Mentions legales</a>
+                    <a href="#">Confidentialite</a>
+                    <a href="#">Cookies</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Tiare Chatbot -->
+    <button class="tiare-toggle" id="tiareToggle" aria-label="Ouvrir le chat">
+        <svg class="icon-chat" viewBox="0 0 24 24">
+            <path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H6l-2 2V4h16v12z"/>
+        </svg>
+        <svg class="icon-close" viewBox="0 0 24 24">
+            <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+        </svg>
+    </button>
+
+    <div class="tiare-window" id="tiareWindow">
+        <div class="tiare-header">
+            <div class="tiare-avatar">
+                <img src="images/logo_flower.svg" alt="Tiare">
+            </div>
+            <div class="tiare-info">
+                <h4>Tiare</h4>
+                <p><span class="tiare-status"></span> Concierge Air Tahiti Nui</p>
+            </div>
+        </div>
+        <div class="tiare-messages" id="tiareMessages">
+            <div class="tiare-message bot">
+                Ia ora na ! Je suis Tiare, votre concierge virtuelle. Comment puis-je vous aider a preparer votre voyage en Polynesie ?
+            </div>
+        </div>
+        <div class="tiare-input">
+            <input type="text" id="tiareInput" placeholder="Posez votre question..." autocomplete="off">
+            <button class="tiare-send" id="tiareSend" aria-label="Envoyer">
+                <svg viewBox="0 0 24 24">
+                    <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    <!-- Modal Newsletter -->
+    <div class="modal-overlay" id="interestsModal">
+        <div class="modal-content">
+            <button class="modal-close" id="modalClose">x</button>
+            <div id="modalFormView">
+                <div class="modal-header">
+                    <div class="modal-icon">
+                        <img src="images/logo_flower.svg" alt="Air Tahiti Nui">
+                    </div>
+                    <h3>Personnalisez votre experience</h3>
+                    <p>Selectionnez vos centres d'interet</p>
+                </div>
+                <div class="interests-grid">
+                    <div class="interest-option">
+                        <input type="checkbox" name="interest" value="plongee" id="int-plongee">
+                        <label for="int-plongee">
+                            <span class="interest-icon">🤿</span>
+                            <span class="interest-name">Plongee</span>
+                            <span class="interest-desc">Spots, faune marine</span>
+                        </label>
+                    </div>
+                    <div class="interest-option">
+                        <input type="checkbox" name="interest" value="lune-de-miel" id="int-lune">
+                        <label for="int-lune">
+                            <span class="interest-icon">💑</span>
+                            <span class="interest-name">Lune de miel</span>
+                            <span class="interest-desc">Romance, intimite</span>
+                        </label>
+                    </div>
+                    <div class="interest-option">
+                        <input type="checkbox" name="interest" value="famille" id="int-famille">
+                        <label for="int-famille">
+                            <span class="interest-icon">👨‍👩‍👧‍👦</span>
+                            <span class="interest-name">Famille</span>
+                            <span class="interest-desc">Activites enfants</span>
+                        </label>
+                    </div>
+                    <div class="interest-option">
+                        <input type="checkbox" name="interest" value="business" id="int-business">
+                        <label for="int-business">
+                            <span class="interest-icon">💼</span>
+                            <span class="interest-name">Business</span>
+                            <span class="interest-desc">Voyages d'affaires</span>
+                        </label>
+                    </div>
+                </div>
+                <button class="modal-submit" id="submitInterests">Confirmer mon inscription</button>
+            </div>
+            <div id="modalSuccessView" class="newsletter-success" style="display:none;">
+                <div class="success-icon">✓</div>
+                <h4>Mauruuru ! (Merci)</h4>
+                <p>Vous etes maintenant inscrit a notre newsletter.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- GSAP + Lenis + SplitType CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/split-type@0.3.4/umd/index.min.js"></script>
+
+    <script>
+    /* ============================================
+       GSAP ANIMATIONS — Air Tahiti Nui
+       ============================================ */
+    (function() {
+        'use strict';
+
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        // ---- Lenis Smooth Scroll ----
+        let lenis;
+        if (!prefersReducedMotion) {
+            lenis = new Lenis({ duration: 1.3, easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)) });
+            lenis.on('scroll', ScrollTrigger.update);
+            gsap.ticker.add((time) => lenis.raf(time * 1000));
+            gsap.ticker.lagSmoothing(0);
+        }
+
+        // === MAGNETIC CURSOR ===
+        const cursor = document.getElementById('cursor');
+        if (cursor && window.matchMedia('(pointer: fine)').matches) {
+          let mx = 0, my = 0, cx = 0, cy = 0;
+          document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+          (function loop() {
+            cx += (mx - cx) * 0.12; cy += (my - cy) * 0.12;
+            cursor.style.left = cx + 'px'; cursor.style.top = cy + 'px';
+            requestAnimationFrame(loop);
+          })();
+          document.querySelectorAll('a, button, .cta-btn, .class-card, .route-card').forEach(el => {
+            el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
+            el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
+          });
+        }
+
+        gsap.registerPlugin(ScrollTrigger);
+
+        // ---- Scroll Progress Bar ----
+        gsap.to('#scrollProgress', {
+            scaleX: 1,
+            ease: 'none',
+            scrollTrigger: {
+                trigger: document.documentElement,
+                start: 'top top',
+                end: 'bottom bottom',
+                scrub: 0.3
+            }
+        });
+
+        // ---- Header hide/show on scroll direction ----
+        const header = document.getElementById('header');
+        let lastScrollY = 0;
+
+        ScrollTrigger.create({
+            start: 'top top',
+            end: 99999,
+            onUpdate: (self) => {
+                const scrollY = self.scroll();
+                // Add/remove scrolled class
+                if (scrollY > 100) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+                // Hide on scroll down, show on scroll up
+                if (!prefersReducedMotion) {
+                    if (scrollY > 300) {
+                        if (self.direction === 1) {
+                            gsap.to(header, { y: -header.offsetHeight, duration: 0.3, ease: 'power2.out' });
+                        } else {
+                            gsap.to(header, { y: 0, duration: 0.3, ease: 'power2.out' });
+                        }
+                    } else {
+                        gsap.set(header, { y: 0 });
+                    }
+                }
+                lastScrollY = scrollY;
+            }
+        });
+
+        // ---- Hero entrance animation ----
+        if (!prefersReducedMotion) {
+            const heroTL = gsap.timeline({ defaults: { ease: 'power3.out' } });
+            const heroH1 = document.querySelector('.hero h1');
+            if (heroH1) {
+                const heroSplit = new SplitType(heroH1, { types: 'words', tagName: 'span' });
+                gsap.set(heroSplit.words, { y: 60, opacity: 0 });
+                heroTL.to(heroSplit.words, { y: 0, opacity: 1, duration: 0.8, stagger: 0.06, delay: 0.3 });
+            }
+            heroTL.from('.hero-badge', { y: 30, opacity: 0, duration: 0.6 }, '<0.1');
+            heroTL.from('.hero-description', { y: 30, opacity: 0, duration: 0.6 }, '<0.2');
+            heroTL.from('.hero-ctas', { y: 30, opacity: 0, duration: 0.6 }, '<0.15');
+        }
+
+        // ---- Word reveal on .word-reveal h2s ----
+        if (!prefersReducedMotion) {
+            document.querySelectorAll('.word-reveal').forEach((el) => {
+                const split = new SplitType(el, { types: 'words', tagName: 'span' });
+                gsap.set(split.words, { y: 40, opacity: 0 });
+                ScrollTrigger.create({
+                    trigger: el,
+                    start: 'top 85%',
+                    once: true,
+                    onEnter: () => {
+                        gsap.to(split.words, { y: 0, opacity: 1, duration: 0.7, stagger: 0.04, ease: 'power3.out' });
+                    }
+                });
+            });
+        }
+
+        // ---- Parallax on [data-parallax] images ----
+        if (!prefersReducedMotion) {
+            document.querySelectorAll('[data-parallax]').forEach((img) => {
+                gsap.to(img, {
+                    yPercent: -15,
+                    ease: 'none',
+                    scrollTrigger: {
+                        trigger: img.closest('section') || img.parentElement,
+                        start: 'top bottom',
+                        end: 'bottom top',
+                        scrub: 0.5
+                    }
+                });
+            });
+        }
+
+        // ---- Section reveals (fade up) ----
+        if (!prefersReducedMotion) {
+            const revealSections = [
+                '.booking-card',
+                '.section-header',
+                '.experience-visual',
+                '.experience-content',
+                '.newsletter-card'
+            ];
+            revealSections.forEach((sel) => {
+                document.querySelectorAll(sel).forEach((el) => {
+                    gsap.from(el, {
+                        y: 30,
+                        opacity: 0,
+                        duration: 0.8,
+                        ease: 'power3.out',
+                        scrollTrigger: {
+                            trigger: el,
+                            start: 'top 85%',
+                            once: true
+                        }
+                    });
+                });
+            });
+        }
+
+        // ---- Stagger destination cards ----
+        if (!prefersReducedMotion) {
+            const destCards = gsap.utils.toArray('.destination-card');
+            if (destCards.length) {
+                gsap.from(destCards, {
+                    y: 50,
+                    opacity: 0,
+                    duration: 0.7,
+                    stagger: 0.12,
+                    ease: 'power3.out',
+                    scrollTrigger: {
+                        trigger: '.destinations-grid',
+                        start: 'top 80%',
+                        once: true
+                    }
+                });
+            }
+        }
+
+        // ---- Stagger class cards ----
+        if (!prefersReducedMotion) {
+            const classCards = gsap.utils.toArray('.class-card');
+            if (classCards.length) {
+                gsap.from(classCards, {
+                    y: 50,
+                    opacity: 0,
+                    duration: 0.7,
+                    stagger: 0.15,
+                    ease: 'power3.out',
+                    scrollTrigger: {
+                        trigger: '.classes-grid',
+                        start: 'top 80%',
+                        once: true
+                    }
+                });
+            }
+        }
+
+        // ---- Counter animation for stats ----
+        document.querySelectorAll('[data-counter]').forEach((el) => {
+            const target = parseInt(el.getAttribute('data-counter'), 10);
+            const suffix = el.getAttribute('data-suffix') || '';
+            const obj = { val: 0 };
+
+            ScrollTrigger.create({
+                trigger: el,
+                start: 'top 85%',
+                once: true,
+                onEnter: () => {
+                    gsap.to(obj, {
+                        val: target,
+                        duration: prefersReducedMotion ? 0 : 2,
+                        ease: 'power2.out',
+                        onUpdate: () => {
+                            const v = Math.round(obj.val);
+                            if (suffix) {
+                                el.innerHTML = v.toLocaleString('fr-FR') + '<span>' + suffix + '</span>';
+                            } else {
+                                el.textContent = v.toLocaleString('fr-FR');
+                            }
+                        }
+                    });
+                }
+            });
+        });
+
+        // ---- Gallery / fleet images scale on scroll ----
+        if (!prefersReducedMotion) {
+            document.querySelectorAll('.experience-image-main, .experience-image-float').forEach((el) => {
+                gsap.from(el, {
+                    scale: 0.92,
+                    opacity: 0,
+                    duration: 1,
+                    ease: 'power3.out',
+                    scrollTrigger: {
+                        trigger: el,
+                        start: 'top 85%',
+                        once: true
+                    }
+                });
+            });
+        }
+
+        // ---- Feature items stagger ----
+        if (!prefersReducedMotion) {
+            const featureItems = gsap.utils.toArray('.feature-item');
+            if (featureItems.length) {
+                gsap.from(featureItems, {
+                    x: -20,
+                    opacity: 0,
+                    duration: 0.5,
+                    stagger: 0.1,
+                    ease: 'power3.out',
+                    scrollTrigger: {
+                        trigger: '.experience-features',
+                        start: 'top 85%',
+                        once: true
+                    }
+                });
+            }
+        }
+
+        // ---- Stat items stagger ----
+        if (!prefersReducedMotion) {
+            const statItems = gsap.utils.toArray('.stat-item');
+            if (statItems.length) {
+                gsap.from(statItems, {
+                    y: 30,
+                    opacity: 0,
+                    duration: 0.6,
+                    stagger: 0.12,
+                    ease: 'power3.out',
+                    scrollTrigger: {
+                        trigger: '.stats-grid',
+                        start: 'top 85%',
+                        once: true
+                    }
+                });
+            }
+        }
+
+        // ---- Anchor smooth scroll via Lenis ----
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetEl = document.querySelector(this.getAttribute('href'));
+                if (targetEl) {
+                    if (lenis) {
+                        lenis.scrollTo(targetEl, { offset: 0, duration: 1.2 });
+                    } else {
+                        targetEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                }
+            });
+        });
+
+        // ---- PREMIUM: Marquee Infinite Ticker ----
+        document.querySelectorAll('.marquee-track').forEach(track => {
+            const items = track.innerHTML;
+            track.innerHTML += items + items;
+            gsap.to(track, { x: '-50%', duration: 30, ease: 'none', repeat: -1 });
+        });
+
+        // ---- PREMIUM: Image Scale-on-Scroll ----
+        gsap.utils.toArray('.scale-scroll').forEach(img => {
+            gsap.from(img, {
+                scale: 1.15, ease: 'none',
+                scrollTrigger: { trigger: img.parentElement, start: 'top bottom', end: 'bottom top', scrub: 1 }
+            });
+        });
+
+        // ---- PREMIUM: Circle Reveal ----
+        document.querySelectorAll('.circle-reveal').forEach(el => {
+            ScrollTrigger.create({ trigger: el, start: 'top 80%', onEnter: () => el.classList.add('revealed') });
+        });
+
+        // ---- PREMIUM: Counter Animation ----
+        document.querySelectorAll('[data-count]').forEach(el => {
+            const target = parseInt(el.dataset.count);
+            const suffix = el.dataset.suffix || '';
+            ScrollTrigger.create({
+                trigger: el, start: 'top 85%',
+                onEnter: () => {
+                    gsap.to({ val: 0 }, {
+                        val: target, duration: 2, ease: 'power2.out',
+                        onUpdate: function() { el.textContent = Math.round(this.targets()[0].val) + suffix; }
+                    });
+                }, once: true
+            });
+        });
+
+        // ---- PREMIUM: Line-by-Line Text Reveal ----
+        document.querySelectorAll('.line-reveal').forEach(el => {
+            const split = new SplitType(el, { types: 'lines' });
+            split.lines.forEach(line => { line.style.overflow = 'hidden'; });
+            gsap.from(split.lines, {
+                yPercent: 100, opacity: 0, stagger: 0.1, duration: 0.8, ease: 'power3.out',
+                scrollTrigger: { trigger: el, start: 'top 85%' }
+            });
+        });
+
+        // ---- PREMIUM: Stagger Grid ----
+        document.querySelectorAll('.stagger-grid').forEach(grid => {
+            gsap.from(grid.children, {
+                y: 60, opacity: 0, stagger: 0.12, duration: 0.8, ease: 'power3.out',
+                scrollTrigger: { trigger: grid, start: 'top 85%' }
+            });
+        });
+
+    })();
+
+    // Tiare Chatbot (preserved)
+    (function() {
+        const toggle = document.getElementById('tiareToggle');
+        const chatWindow = document.getElementById('tiareWindow');
+        const messages = document.getElementById('tiareMessages');
+        const input = document.getElementById('tiareInput');
+        const sendBtn = document.getElementById('tiareSend');
+
+        let sessionId = sessionStorage.getItem('tiare-session');
+        if (!sessionId) {
+            sessionId = 'tiare-' + Date.now() + '-' + Math.random().toString(36).substring(2, 9);
+            sessionStorage.setItem('tiare-session', sessionId);
+        }
+
+        const WEBHOOK_URL = 'https://n8n.srv1140766.hstgr.cloud/webhook/atn-concierge-demo/chat';
+
+        toggle.addEventListener('click', () => {
+            const isOpen = chatWindow.classList.toggle('open');
+            toggle.classList.toggle('open');
+            if (isOpen) input.focus();
+        });
+
+        if (localStorage.getItem('openChatbot') === 'true') {
+            localStorage.removeItem('openChatbot');
+            setTimeout(() => {
+                chatWindow.classList.add('open');
+                toggle.classList.add('open');
+                input.focus();
+            }, 500);
+        }
+
+        if (window.location.hash === '#chatbot') {
+            setTimeout(() => {
+                chatWindow.classList.add('open');
+                toggle.classList.add('open');
+                input.focus();
+            }, 500);
+        }
+
+        async function sendMessage() {
+            const text = input.value.trim();
+            if (!text) return;
+
+            addMessage(text, 'user');
+            input.value = '';
+            sendBtn.disabled = true;
+
+            const typing = showTyping();
+
+            try {
+                const response = await fetch(WEBHOOK_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+                    body: JSON.stringify({ action: 'sendMessage', sessionId: sessionId, chatInput: text })
+                });
+
+                typing.remove();
+
+                if (response.ok) {
+                    const data = await response.json();
+                    let botText = data.output || data.text || data.response || data.message;
+                    if (Array.isArray(data)) {
+                        botText = data[0]?.output || data[0]?.text || JSON.stringify(data[0]);
+                    }
+                    addMessage(botText || "Reponse recue.", 'bot');
+                } else {
+                    addMessage("Desole, une erreur s'est produite. Veuillez reessayer.", 'bot');
+                }
+            } catch (error) {
+                typing.remove();
+                addMessage("Desole, je ne peux pas me connecter au serveur.", 'bot');
+            }
+
+            sendBtn.disabled = false;
+        }
+
+        function addMessage(text, type) {
+            const msg = document.createElement('div');
+            msg.className = 'tiare-message ' + type;
+            msg.innerHTML = formatMessage(text);
+            messages.appendChild(msg);
+            messages.scrollTop = messages.scrollHeight;
+        }
+
+        function formatMessage(text) {
+            return text
+                .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+                .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+                .replace(/\*(.+?)\*/g, '<em>$1</em>')
+                .replace(/^- (.+)$/gm, '• $1')
+                .replace(/\n\n/g, '<br><br>')
+                .replace(/\n/g, '<br>');
+        }
+
+        function showTyping() {
+            const typing = document.createElement('div');
+            typing.className = 'tiare-typing';
+            typing.innerHTML = '<span></span><span></span><span></span>';
+            messages.appendChild(typing);
+            messages.scrollTop = messages.scrollHeight;
+            return typing;
+        }
+
+        sendBtn.addEventListener('click', sendMessage);
+        input.addEventListener('keypress', (e) => { if (e.key === 'Enter') sendMessage(); });
+    })();
+
+    // Newsletter Modal (preserved)
+    (function() {
+        const form = document.getElementById('newsletterForm');
+        const emailInput = document.getElementById('newsletterEmail');
+        const modal = document.getElementById('interestsModal');
+        const modalClose = document.getElementById('modalClose');
+        const submitBtn = document.getElementById('submitInterests');
+        const formView = document.getElementById('modalFormView');
+        const successView = document.getElementById('modalSuccessView');
+
+        let userEmail = '';
+
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            userEmail = emailInput.value.trim();
+            if (userEmail && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(userEmail)) {
+                modal.classList.add('show');
+                formView.style.display = 'block';
+                successView.style.display = 'none';
+            }
+        });
+
+        modalClose.addEventListener('click', () => modal.classList.remove('show'));
+        modal.addEventListener('click', (e) => { if (e.target === modal) modal.classList.remove('show'); });
+
+        submitBtn.addEventListener('click', async () => {
+            const interests = [];
+            document.querySelectorAll('.interest-option input:checked').forEach(cb => interests.push(cb.value));
+            const segment = interests.length > 0 ? interests[0] : 'general';
+
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Inscription en cours...';
+
+            try {
+                const response = await fetch('https://n8n.srv1140766.hstgr.cloud/webhook/atn-newsletter-signup', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        email: userEmail,
+                        segment: segment,
+                        interests: interests,
+                        source: 'website-popup',
+                        timestamp: new Date().toISOString()
+                    })
+                });
+
+                if (response.ok) {
+                    formView.style.display = 'none';
+                    successView.style.display = 'block';
+                    emailInput.value = '';
+                    document.querySelectorAll('.interest-option input:checked').forEach(cb => cb.checked = false);
+                    setTimeout(() => modal.classList.remove('show'), 3000);
+                } else {
+                    throw new Error('Erreur serveur');
+                }
+            } catch (error) {
+                alert('Une erreur est survenue. Veuillez reessayer.');
+            }
+
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Confirmer mon inscription';
+        });
+    })();
+
+    // === HORIZONTAL SCROLL GALLERY ===
+    const hTrack = document.querySelector('.scroll-track');
+    if (hTrack) {
+      gsap.to(hTrack, {
+        x: () => -(hTrack.scrollWidth - window.innerWidth + 100),
+        ease: 'none',
+        scrollTrigger: {
+          trigger: '.horizontal-scroll',
+          start: 'top top',
+          end: () => '+=' + (hTrack.scrollWidth - window.innerWidth),
+          scrub: 1,
+          pin: true,
+          anticipatePin: 1
+        }
+      });
+    }
+
+    // === TEXT SCRAMBLE EFFECT ===
+    class TextScramble {
+      constructor(el) { this.el = el; this.chars = '!<>-_\\/[]{}—=+*^?#'; this.update = this.update.bind(this); }
+      setText(newText) {
+        const oldText = this.el.innerText;
+        const length = Math.max(oldText.length, newText.length);
+        const promise = new Promise(resolve => this.resolve = resolve);
+        this.queue = [];
+        for (let i = 0; i < length; i++) {
+          const from = oldText[i] || '';
+          const to = newText[i] || '';
+          const start = Math.floor(Math.random() * 40);
+          const end = start + Math.floor(Math.random() * 40);
+          this.queue.push({ from, to, start, end });
+        }
+        cancelAnimationFrame(this.frameRequest);
+        this.frame = 0;
+        this.update();
+        return promise;
+      }
+      update() {
+        let output = '';
+        let complete = 0;
+        for (let i = 0, n = this.queue.length; i < n; i++) {
+          let { from, to, start, end, char } = this.queue[i];
+          if (this.frame >= end) { complete++; output += to; }
+          else if (this.frame >= start) {
+            if (!char || Math.random() < 0.28) { char = this.chars[Math.floor(Math.random() * this.chars.length)]; this.queue[i].char = char; }
+            output += '<span style="opacity:.4">' + char + '</span>';
+          } else { output += from; }
+        }
+        this.el.innerHTML = output;
+        if (complete === this.queue.length) { this.resolve(); }
+        else { this.frameRequest = requestAnimationFrame(this.update); this.frame++; }
+      }
+    }
+    setTimeout(() => {
+      const heroP = document.querySelector('.hero-content p, .hero p, .hero-text p, .hero-subtitle');
+      if (heroP) { const fx = new TextScramble(heroP); fx.setText(heroP.textContent); }
+    }, 1200);
+    </script>
+</body>
+</html>

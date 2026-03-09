@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Te Fare Ora — Bien-être traditionnel</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;1,300;1,400&family=Karla:wght@300;400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.css">
+<style>
+  :root {
+    --off-white: #FAFAF7;
+    --sage: #8B9D77;
+    --earth: #6B5B4E;
+    --sand: #D4C5A9;
+    --dark: #2D2D2D;
+  }
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  html { /* scroll-behavior handled by Lenis */ }
+  /* ===== CUSTOM CURSOR ===== */
+  .cursor-dot{position:fixed;width:12px;height:12px;background:var(--teal, #2CCCD4);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .3s,height .3s,background .3s;mix-blend-mode:difference}
+  .cursor-dot.hover{width:48px;height:48px;background:var(--white, #FFFFFF)}
+  @media (max-width: 768px) { .cursor-dot{display:none} }
+
+  .scroll-progress{position:fixed;top:0;left:0;width:100%;height:3px;z-index:10000;}
+  .scroll-progress-bar{height:100%;width:100%;background:linear-gradient(90deg,var(--sage),var(--sand));transform-origin:left;transform:scaleX(0);}
+  body {
+    background: var(--off-white);
+    color: var(--dark);
+    font-family: 'Karla', sans-serif;
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 1.8;
+    overflow-x: hidden;
+  }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 80px 24px 60px;
+    position: relative;
+    overflow: hidden;
+  }
+  .breathe-wrap {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    z-index: 0;
+  }
+  .breathe {
+    width: 340px;
+    height: 340px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(139,157,119,.18), transparent 70%);
+    animation: breathe 6s ease-in-out infinite;
+  }
+  @keyframes breathe {
+    0%, 100% { transform: scale(1); opacity: .35; }
+    50%       { transform: scale(1.35); opacity: .65; }
+  }
+  .hero-inner { position: relative; z-index: 1; }
+  .hero-eyebrow {
+    font-family: 'Karla', sans-serif;
+    font-size: 11px;
+    letter-spacing: .25em;
+    text-transform: uppercase;
+    color: var(--sage);
+    margin-bottom: 36px;
+  }
+  .hero-title {
+    font-family: 'Cormorant', serif;
+    font-size: clamp(60px, 10vw, 110px);
+    font-weight: 300;
+    color: var(--dark);
+    line-height: 1;
+    margin-bottom: 32px;
+    overflow: hidden;
+  }
+  .hero-sub {
+    font-family: 'Cormorant', serif;
+    font-size: clamp(18px, 2.5vw, 24px);
+    font-style: italic;
+    font-weight: 300;
+    color: var(--earth);
+    max-width: 440px;
+    margin: 0 auto 80px;
+  }
+  .hero-strip {
+    width: 100%;
+    height: 40vh;
+    overflow: hidden;
+    position: relative;
+  }
+  .hero-strip img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+  }
+  .scroll-hint {
+    margin-top: 48px;
+    color: var(--sand);
+    font-size: 12px;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    animation: fade-down 3s ease-in-out infinite;
+  }
+  .scroll-hint span { width: 1px; height: 40px; background: var(--sand); }
+  @keyframes fade-down { 0%,100%{opacity:.3;transform:translateY(-4px)} 50%{opacity:.8;transform:translateY(4px)} }
+
+  /* WORD FADE */
+  .word { display: inline-block; opacity: 0; transform: translateY(10px); transition: opacity .6s ease, transform .6s ease; }
+  .word.visible { opacity: 1; transform: translateY(0); }
+
+  /* LINE GROW */
+  .line-grow {
+    width: 0;
+    height: 1px;
+    background: var(--sage);
+    margin: 56px auto;
+    transition: width 1.4s cubic-bezier(.4,0,.2,1);
+  }
+  .line-grow.visible { width: 100px; }
+
+  /* PHILOSOPHY */
+  .philosophy {
+    padding: 200px 24px;
+    text-align: center;
+  }
+  .philosophy-quote {
+    font-family: 'Cormorant', serif;
+    font-size: clamp(22px, 3.5vw, 34px);
+    font-style: italic;
+    font-weight: 300;
+    color: var(--earth);
+    max-width: 560px;
+    margin: 0 auto;
+    line-height: 1.5;
+  }
+  .philosophy-body {
+    max-width: 480px;
+    margin: 0 auto;
+    font-size: 15px;
+    color: #6B6B6B;
+    line-height: 2;
+  }
+
+  /* SERVICES */
+  .services {
+    padding: 160px 24px 200px;
+    max-width: 640px;
+    margin: 0 auto;
+  }
+  .services-label {
+    font-size: 11px;
+    letter-spacing: .25em;
+    text-transform: uppercase;
+    color: var(--sage);
+    text-align: center;
+    margin-bottom: 100px;
+  }
+  .service-item { padding: 0 0 80px; }
+  .service-top-line { width: 100%; height: 1px; background: var(--sand); margin-bottom: 40px; }
+  .service-name {
+    font-family: 'Cormorant', serif;
+    font-size: clamp(28px, 4vw, 42px);
+    font-weight: 300;
+    color: var(--dark);
+    margin-bottom: 16px;
+  }
+  .service-desc {
+    font-size: 14px;
+    color: #7A7A7A;
+    max-width: 440px;
+    line-height: 2;
+    margin-bottom: 20px;
+  }
+  .service-price {
+    font-family: 'Cormorant', serif;
+    font-size: 18px;
+    color: var(--sage);
+  }
+  .service-img {
+    width: 100%;
+    height: 260px;
+    overflow: hidden;
+    margin: 60px 0;
+  }
+  .service-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+    transition: transform .6s ease;
+  }
+  .service-img:hover img { transform: scale(1.02); }
+
+  /* NATURE */
+  .nature-section {
+    width: 100%;
+    height: 65vh;
+    overflow: hidden;
+    position: relative;
+  }
+  .nature-section img {
+    width: 100%;
+    height: 120%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+  }
+
+  /* SUNSET CTA */
+  .cta-section {
+    position: relative;
+    min-height: 60vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    overflow: hidden;
+  }
+  .cta-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+  .cta-bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+  .cta-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(45,45,45,.52);
+    z-index: 1;
+  }
+  .cta-inner {
+    position: relative;
+    z-index: 2;
+    padding: 80px 24px;
+  }
+  .cta-title {
+    font-family: 'Cormorant', serif;
+    font-size: clamp(26px, 4vw, 44px);
+    font-weight: 300;
+    color: var(--off-white);
+    margin-bottom: 24px;
+    line-height: 1.4;
+    max-width: 480px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .cta-sub {
+    font-size: 14px;
+    color: rgba(250,250,247,.7);
+    letter-spacing: .05em;
+    margin-bottom: 40px;
+  }
+  .cta-link {
+    font-family: 'Cormorant', serif;
+    font-size: 18px;
+    font-style: italic;
+    color: var(--off-white);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(250,250,247,.4);
+    padding-bottom: 4px;
+    transition: border-color .3s;
+  }
+  .cta-link:hover { border-color: var(--off-white); }
+
+  /* FOOTER */
+  footer {
+    background: var(--off-white);
+    padding: 80px 24px;
+    text-align: center;
+    border-top: 1px solid var(--sand);
+  }
+  .footer-name {
+    font-family: 'Cormorant', serif;
+    font-size: 22px;
+    font-weight: 300;
+    color: var(--sage);
+    margin-bottom: 16px;
+  }
+  .footer-info {
+    font-size: 13px;
+    color: #ABABAB;
+    line-height: 2;
+  }
+  .footer-info a { color: var(--sage); text-decoration: none; }
+  .footer-credit {
+    margin-top: 48px;
+    font-size: 11px;
+    letter-spacing: .15em;
+    text-transform: uppercase;
+    color: #C8C8C8;
+  }
+  .footer-credit a { color: var(--sage); text-decoration: none; }
+
+  /* FADE IN */
+  .fade-in { opacity: 0; transform: translateY(24px); transition: opacity .9s ease, transform .9s ease; }
+  .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+  @media (max-width: 600px) {
+    .breathe { width: 220px; height: 220px; }
+    .philosophy { padding: 120px 24px; }
+    .services { padding: 100px 24px 140px; }
+    .service-img { height: 200px; }
+  }
+
+  /* MARQUEE */
+  .marquee{overflow:hidden;padding:40px 0;border-top:1px solid rgba(0,0,0,.06);border-bottom:1px solid rgba(0,0,0,.06)}
+  .marquee-track{display:flex;gap:60px;white-space:nowrap;will-change:transform}
+  .marquee-text{font-size:clamp(14px,2vw,20px);letter-spacing:.15em;text-transform:uppercase;opacity:.25;flex-shrink:0;font-family:'Cormorant',serif;font-weight:400;font-style:italic}
+
+  /* CIRCLE REVEAL */
+  .circle-reveal{clip-path:circle(0% at 50% 50%);transition:clip-path 1.2s cubic-bezier(.25,.46,.45,.94)}
+  .circle-reveal.revealed{clip-path:circle(75% at 50% 50%)}
+
+  /* COUNTER STATS */
+  .stats-band{padding:80px 24px;background:var(--sage)}
+  .stats-row{display:flex;justify-content:center;gap:80px;flex-wrap:wrap}
+  .stat{text-align:center}
+  .stat .num{font-family:'Cormorant',serif;font-size:clamp(48px,6vw,72px);font-weight:300;color:var(--off-white);line-height:1}
+  .stat .label{color:rgba(250,250,247,.7);font-size:13px;margin-top:8px;text-transform:uppercase;letter-spacing:2px;font-family:'Karla',sans-serif}
+
+  /* ===== HORIZONTAL SCROLL SHOWCASE ===== */
+  .horizontal-scroll{position:relative;overflow:hidden}
+  .horizontal-scroll .scroll-track{display:flex;gap:20px;width:max-content;padding:40px 0}
+  .horizontal-scroll .scroll-item{flex-shrink:0;width:70vw;max-width:500px;overflow:hidden;border-radius:8px}
+  .horizontal-scroll .scroll-item img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease}
+  .horizontal-scroll .scroll-item:hover img{transform:scale(1.05)}
+  @media (max-width: 768px) { .horizontal-scroll .scroll-item{width:85vw} }
+
+  @media(prefers-reduced-motion:reduce){
+    *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
+  }
+</style>
+</head>
+<body>
+<div class="cursor-dot" id="cursor"></div>
+<div class="scroll-progress"><div class="scroll-progress-bar" id="scrollProgress"></div></div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="breathe-wrap"><div class="breathe"></div></div>
+  <div class="hero-inner">
+    <p class="hero-eyebrow">Bien-être — Polynésie</p>
+    <h1 class="hero-title" id="hero-title">Te Fare Ora</h1>
+    <p class="hero-sub">Retrouver l'équilibre.<br>Naturellement.</p>
+  </div>
+</section>
+
+<div class="hero-strip">
+  <img src="images/te-fare-ora/hero.jpg" alt="Paysage zen de Polynésie" loading="lazy">
+</div>
+
+<div style="display:flex;justify-content:center;padding:56px 0 0;">
+  <div class="scroll-hint"><span></span>Descendre</div>
+</div>
+
+<div class="marquee">
+  <div class="marquee-track">
+    <span class="marquee-text">Bien-être</span>
+    <span class="marquee-text">—</span>
+    <span class="marquee-text">Taurumi</span>
+    <span class="marquee-text">—</span>
+    <span class="marquee-text">Détente</span>
+    <span class="marquee-text">—</span>
+    <span class="marquee-text">Polynésie</span>
+    <span class="marquee-text">—</span>
+    <span class="marquee-text">Harmonie</span>
+    <span class="marquee-text">—</span>
+    <span class="marquee-text">Sérénité</span>
+    <span class="marquee-text">—</span>
+    <span class="marquee-text">Équilibre</span>
+    <span class="marquee-text">—</span>
+  </div>
+</div>
+
+<!-- PHILOSOPHY -->
+<section class="philosophy">
+  <p class="philosophy-quote fade-in line-reveal">
+    "Le bien-être n'est pas une destination,<br>c'est un chemin quotidien."
+  </p>
+  <div class="line-grow"></div>
+  <p class="philosophy-body fade-in">
+    Ancrée dans la tradition polynésienne, Te Fare Ora — la maison de la vie — est un espace de soin profond. Chaque soin puise dans le savoir ancestral du taurumi, l'art du massage traditionnel tahitien transmis de génération en génération. Ici, le temps ralentit.
+  </p>
+</section>
+
+<!-- SERVICES -->
+<section class="services">
+  <p class="services-label fade-in">Soins & Thérapies</p>
+
+  <div class="service-item fade-in">
+    <div class="service-top-line"></div>
+    <h2 class="service-name">Taurumi Traditionnel</h2>
+    <p class="service-desc">Le massage polynésien ancestral. Longues pressions profondes, huiles de monoï et de tamanu, pour libérer les tensions accumulées et restaurer la circulation d'énergie.</p>
+    <p class="service-price">6 000 XPF — 60 min</p>
+  </div>
+
+  <div class="service-img fade-in circle-reveal">
+    <img src="images/te-fare-ora/massage.jpg" alt="Soin Taurumi" loading="lazy">
+  </div>
+
+  <div class="service-item fade-in">
+    <div class="service-top-line"></div>
+    <h2 class="service-name">Rituel aux Pierres Chaudes</h2>
+    <p class="service-desc">Des pierres volcaniques basaltiques chauffées, posées sur les méridiens d'énergie. La chaleur pénètre en profondeur, fondant les nœuds de tension et invitant à une détente totale.</p>
+    <p class="service-price">8 500 XPF — 75 min</p>
+  </div>
+
+  <div class="service-img fade-in circle-reveal">
+    <img src="images/te-fare-ora/stones.jpg" alt="Pierres chaudes" loading="lazy">
+  </div>
+
+  <div class="service-item fade-in">
+    <div class="service-top-line"></div>
+    <h2 class="service-name">Séance Bien-être Globale</h2>
+    <p class="service-desc">Un parcours complet : consultation initiale, soin corps, travail sur la respiration consciente, et intégration en silence. Pour les moments où l'on a besoin de revenir à soi.</p>
+    <p class="service-price">14 000 XPF — 2h</p>
+  </div>
+
+  <div class="service-img fade-in circle-reveal">
+    <img src="images/te-fare-ora/session.jpg" alt="Séance complète" loading="lazy">
+  </div>
+</section>
+
+<!-- NATURE -->
+<div class="nature-section">
+  <img src="images/te-fare-ora/nature.jpg" alt="Nature polynésienne" class="gentle-parallax scale-scroll" data-speed="0.08" loading="lazy">
+</div>
+
+<!-- STATS -->
+<div class="stats-band">
+  <div class="stats-row">
+    <div class="stat fade-in"><div class="num" data-count="12">0</div><div class="label">Années d'expérience</div></div>
+    <div class="stat fade-in"><div class="num" data-count="3500" data-suffix="+">0</div><div class="label">Clients accompagnés</div></div>
+    <div class="stat fade-in"><div class="num" data-count="8">0</div><div class="label">Soins signatures</div></div>
+    <div class="stat fade-in"><div class="num" data-count="99" data-suffix="%">0</div><div class="label">De satisfaction</div></div>
+  </div>
+</div>
+
+<!-- SUNSET CTA -->
+<section class="cta-section">
+  <div class="cta-bg">
+    <img src="images/te-fare-ora/sunset.jpg" alt="Coucher de soleil Tahiti" loading="lazy">
+  </div>
+  <div class="cta-overlay"></div>
+  <div class="cta-inner">
+    <h2 class="cta-title">Prêt à commencer<br>votre voyage intérieur ?</h2>
+    <p class="cta-sub">Chaque soin est unique. Chaque rencontre, un nouveau départ.</p>
+    <a href="mailto:contact@tefaraora.pf" class="cta-link">Prendre rendez-vous</a>
+  </div>
+</section>
+
+<!-- HORIZONTAL SCROLL SHOWCASE -->
+<section class="horizontal-scroll">
+  <div class="scroll-track">
+    <div class="scroll-item"><img src="images/te-fare-ora/massage.jpg" alt="Massage traditionnel" loading="lazy"></div>
+    <div class="scroll-item"><img src="images/te-fare-ora/nature.jpg" alt="Nature et bien-etre" loading="lazy"></div>
+    <div class="scroll-item"><img src="images/te-fare-ora/session.jpg" alt="Seance de soins" loading="lazy"></div>
+    <div class="scroll-item"><img src="images/te-fare-ora/stones.jpg" alt="Pierres chaudes therapie" loading="lazy"></div>
+    <div class="scroll-item"><img src="images/te-fare-ora/sunset.jpg" alt="Coucher de soleil zen" loading="lazy"></div>
+    <div class="scroll-item"><img src="images/te-fare-ora/hero.jpg" alt="Te Fare Ora Centre Bien-Etre" loading="lazy"></div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p class="footer-name">Te Fare Ora</p>
+  <div class="footer-info">
+    <p>Punaauia, Tahiti — Polynésie française</p>
+    <p><a href="mailto:contact@tefaraora.pf">contact@tefaraora.pf</a></p>
+  </div>
+  <p class="footer-credit">Site créé par <a href="https://pacifikai.com" target="_blank">PACIFIK'AI</a></p>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/split-type@0.3.4/umd/index.min.js"></script>
+<script>
+// === LENIS SMOOTH SCROLL ===
+const lenis = new Lenis({ duration: 1.6, easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)) });
+lenis.on('scroll', ScrollTrigger.update);
+gsap.ticker.add((time) => lenis.raf(time * 1000));
+gsap.ticker.lagSmoothing(0);
+
+// === MAGNETIC CURSOR ===
+const cursor = document.getElementById('cursor');
+if (cursor && window.matchMedia('(pointer: fine)').matches) {
+  let mx = 0, my = 0, cx = 0, cy = 0;
+  document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+  (function loop() {
+    cx += (mx - cx) * 0.12; cy += (my - cy) * 0.12;
+    cursor.style.left = cx + 'px'; cursor.style.top = cy + 'px';
+    requestAnimationFrame(loop);
+  })();
+  document.querySelectorAll('a, button, .cta-btn, .service-card, .program-card').forEach(el => {
+    el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
+    el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
+  });
+}
+
+// === SCROLL PROGRESS BAR ===
+gsap.to('#scrollProgress', {
+  scaleX: 1, ease: 'none',
+  scrollTrigger: { trigger: document.body, start: 'top top', end: 'bottom bottom', scrub: 0.3 }
+});
+
+// === FADE IN SECTIONS ===
+gsap.utils.toArray('.fade-in').forEach(el => {
+  gsap.from(el, {
+    y: 24, opacity: 0, duration: 0.9, ease: 'power2.out',
+    scrollTrigger: { trigger: el, start: 'top 85%' }
+  });
+});
+
+// === LINE GROW ===
+document.querySelectorAll('.line-grow').forEach(el => {
+  ScrollTrigger.create({
+    trigger: el, start: 'top 85%',
+    onEnter: () => el.classList.add('visible')
+  });
+});
+
+// === GENTLE PARALLAX (nature section) ===
+document.querySelectorAll('.gentle-parallax').forEach(el => {
+  const speed = parseFloat(el.dataset.speed) || 0.1;
+  gsap.to(el, {
+    yPercent: speed * 20, ease: 'none',
+    scrollTrigger: { trigger: el.parentElement, start: 'top bottom', end: 'bottom top', scrub: 1 }
+  });
+});
+
+// === HERO TITLE WORD FADE (preserved logic, GSAP-enhanced) ===
+const titleEl = document.getElementById('hero-title');
+if (titleEl) {
+  const words = titleEl.textContent.split(' ');
+  titleEl.innerHTML = words.map(w => `<span class="word">${w}</span>`).join(' ');
+  gsap.from(titleEl.querySelectorAll('.word'), {
+    y: 10, opacity: 0, stagger: 0.22, duration: 0.6, ease: 'power2.out', delay: 0.3
+  });
+}
+
+// === SERVICE ITEMS STAGGER ===
+gsap.utils.toArray('.service-item').forEach(el => {
+  gsap.from(el, {
+    y: 30, opacity: 0, duration: 0.8, ease: 'power2.out',
+    scrollTrigger: { trigger: el, start: 'top 85%' }
+  });
+});
+
+// === MARQUEE INFINITE ===
+document.querySelectorAll('.marquee-track').forEach(track => {
+  const items = track.innerHTML;
+  track.innerHTML += items + items;
+  gsap.to(track, { x: '-50%', duration: 30, ease: 'none', repeat: -1 });
+});
+
+// === IMAGE SCALE-ON-SCROLL ===
+gsap.utils.toArray('.scale-scroll').forEach(img => {
+  gsap.from(img, {
+    scale: 1.15, ease: 'none',
+    scrollTrigger: { trigger: img.parentElement, start: 'top bottom', end: 'bottom top', scrub: 1 }
+  });
+});
+
+// === CIRCLE REVEAL ===
+document.querySelectorAll('.circle-reveal').forEach(el => {
+  ScrollTrigger.create({
+    trigger: el, start: 'top 80%',
+    onEnter: () => el.classList.add('revealed')
+  });
+});
+
+// === COUNTER ANIMATION ===
+document.querySelectorAll('[data-count]').forEach(el => {
+  const target = parseInt(el.dataset.count);
+  const suffix = el.dataset.suffix || '';
+  ScrollTrigger.create({
+    trigger: el, start: 'top 85%',
+    onEnter: () => {
+      gsap.to({ val: 0 }, {
+        val: target, duration: 2, ease: 'power2.out',
+        onUpdate: function() { el.textContent = Math.round(this.targets()[0].val).toLocaleString('fr-FR') + suffix; }
+      });
+    }, once: true
+  });
+});
+
+// === LINE REVEAL (line-by-line text) ===
+document.querySelectorAll('.line-reveal').forEach(el => {
+  const split = new SplitType(el, { types: 'lines' });
+  split.lines.forEach(line => { line.style.overflow = 'hidden'; });
+  gsap.from(split.lines, {
+    yPercent: 100, opacity: 0, stagger: 0.1, duration: 0.8, ease: 'power3.out',
+    scrollTrigger: { trigger: el, start: 'top 85%' }
+  });
+});
+
+// === HORIZONTAL SCROLL GALLERY ===
+const hTrack = document.querySelector('.scroll-track');
+if (hTrack) {
+  gsap.to(hTrack, {
+    x: () => -(hTrack.scrollWidth - window.innerWidth + 100),
+    ease: 'none',
+    scrollTrigger: {
+      trigger: '.horizontal-scroll',
+      start: 'top top',
+      end: () => '+=' + (hTrack.scrollWidth - window.innerWidth),
+      scrub: 1,
+      pin: true,
+      anticipatePin: 1
+    }
+  });
+}
+
+// === TEXT SCRAMBLE EFFECT ===
+class TextScramble {
+  constructor(el) { this.el = el; this.chars = '!<>-_\\/[]{}—=+*^?#'; this.update = this.update.bind(this); }
+  setText(newText) {
+    const oldText = this.el.innerText;
+    const length = Math.max(oldText.length, newText.length);
+    const promise = new Promise(resolve => this.resolve = resolve);
+    this.queue = [];
+    for (let i = 0; i < length; i++) {
+      const from = oldText[i] || '';
+      const to = newText[i] || '';
+      const start = Math.floor(Math.random() * 40);
+      const end = start + Math.floor(Math.random() * 40);
+      this.queue.push({ from, to, start, end });
+    }
+    cancelAnimationFrame(this.frameRequest);
+    this.frame = 0;
+    this.update();
+    return promise;
+  }
+  update() {
+    let output = '';
+    let complete = 0;
+    for (let i = 0, n = this.queue.length; i < n; i++) {
+      let { from, to, start, end, char } = this.queue[i];
+      if (this.frame >= end) { complete++; output += to; }
+      else if (this.frame >= start) {
+        if (!char || Math.random() < 0.28) { char = this.chars[Math.floor(Math.random() * this.chars.length)]; this.queue[i].char = char; }
+        output += '<span style="opacity:.4">' + char + '</span>';
+      } else { output += from; }
+    }
+    this.el.innerHTML = output;
+    if (complete === this.queue.length) { this.resolve(); }
+    else { this.frameRequest = requestAnimationFrame(this.update); this.frame++; }
+  }
+}
+setTimeout(() => {
+  const heroP = document.querySelector('.hero-content p, .hero p, .hero-text p');
+  if (heroP) { const fx = new TextScramble(heroP); fx.setText(heroP.textContent); }
+}, 1200);
+</script>
+</body>
+</html>

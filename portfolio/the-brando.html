@@ -1,0 +1,1471 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Brando — Tetiaroa Private Island | PACIFIK'AI Portfolio</title>
+    <meta name="description" content="The Brando, resort eco-luxe sur l'atoll prive de Tetiaroa. L'ile de Marlon Brando, sanctuaire ecologique au coeur du Pacifique Sud.">
+    <meta property="og:title" content="The Brando — Tetiaroa Private Island">
+    <meta property="og:description" content="Resort eco-luxe sur l'atoll prive de Tetiaroa. 35 villas, 100% energie renouvelable.">
+    <meta property="og:type" content="website">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --green:   #2D5A3D;
+            --green-l: #3A7350;
+            --sand:    #D4C5A9;
+            --sand-l:  #EDE5D5;
+            --white:   #FAF9F6;
+            --dark:    #1A1A1A;
+            --mid:     #4A4A4A;
+            --cream:   #F2EDE4;
+        }
+
+        html.lenis, html.lenis body { height: auto; }
+        .lenis.lenis-smooth { scroll-behavior: auto !important; }
+        .lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+        .lenis.lenis-stopped { overflow: clip; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            font-size: 17px;
+            line-height: 1.85;
+            color: var(--dark);
+            background: var(--white);
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Instrument Serif', serif;
+            font-weight: 400;
+            line-height: 1.05;
+        }
+
+        img { display: block; width: 100%; height: 100%; object-fit: cover; }
+        a { color: inherit; text-decoration: none; }
+
+        /* ===== SCROLL PROGRESS ===== */
+        .scroll-progress {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%;
+            height: 3px;
+            z-index: 10000;
+        }
+        .scroll-progress-bar {
+            height: 100%;
+            width: 100%;
+            background: linear-gradient(90deg, #2D5016, #8B7355);
+            transform-origin: left;
+            transform: scaleX(0);
+        }
+
+        /* ===== WORD REVEAL ===== */
+        .word-reveal .word {
+            display: inline-block;
+            overflow: hidden;
+            vertical-align: top;
+        }
+        .word-reveal .word-inner {
+            display: inline-block;
+        }
+
+        /* ===== NAVBAR ===== */
+        .nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 22px 52px;
+            transition: background 0.5s, backdrop-filter 0.5s, box-shadow 0.5s;
+        }
+        .nav.scrolled {
+            background: rgba(250,249,246,0.94);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            box-shadow: 0 1px 28px rgba(0,0,0,0.06);
+        }
+        .nav__brand {
+            font-family: 'Instrument Serif', serif;
+            font-size: 1.25rem;
+            letter-spacing: 0.1em;
+            color: #fff;
+            transition: color 0.5s;
+        }
+        .nav.scrolled .nav__brand { color: var(--green); }
+        .nav__links {
+            display: flex;
+            gap: 38px;
+            list-style: none;
+        }
+        .nav__links a {
+            font-size: 0.72rem;
+            font-weight: 500;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.8);
+            transition: color 0.3s;
+            position: relative;
+        }
+        .nav.scrolled .nav__links a { color: var(--mid); }
+        .nav__links a::after {
+            content: '';
+            position: absolute;
+            bottom: -3px; left: 0;
+            width: 0; height: 1px;
+            background: var(--green);
+            transition: width 0.3s;
+        }
+        .nav__links a:hover { color: var(--green); }
+        .nav__links a:hover::after { width: 100%; }
+        .nav__burger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 6px;
+        }
+        .nav__burger span {
+            display: block;
+            width: 22px; height: 1.5px;
+            background: #fff;
+            transition: transform 0.3s, opacity 0.3s, background 0.5s;
+        }
+        .nav.scrolled .nav__burger span { background: var(--dark); }
+        .nav__burger.open span:nth-child(1) { transform: rotate(45deg) translate(4.5px,4px); }
+        .nav__burger.open span:nth-child(2) { opacity: 0; }
+        .nav__burger.open span:nth-child(3) { transform: rotate(-45deg) translate(4.5px,-4px); }
+
+        /* Mobile overlay */
+        .mob-menu {
+            display: none;
+            position: fixed; inset: 0;
+            z-index: 999;
+            background: var(--white);
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 40px;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s;
+        }
+        .mob-menu.open { opacity: 1; pointer-events: all; }
+        .mob-menu a {
+            font-family: 'Instrument Serif', serif;
+            font-size: 2.2rem;
+            color: var(--green);
+        }
+
+        /* ===== HERO — 3-LAYER PARALLAX ===== */
+        .hero {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            min-height: 680px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .layer-bg {
+            position: absolute;
+            inset: -15%;
+            will-change: transform;
+        }
+        .layer-bg img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transform: scale(1.1);
+            animation: heroZoom 16s ease-out forwards;
+        }
+        @keyframes heroZoom { to { transform: scale(1); } }
+
+        .hero__veil {
+            position: absolute; inset: 0;
+            background: linear-gradient(
+                170deg,
+                rgba(0,0,0,0.05) 0%,
+                rgba(26,26,26,0.3) 45%,
+                rgba(26,26,26,0.65) 100%
+            );
+            z-index: 1;
+        }
+
+        .layer-text {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            will-change: transform;
+            padding: 0 24px;
+        }
+        .hero__eyebrow {
+            font-size: 0.68rem;
+            font-weight: 500;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--sand);
+            margin-bottom: 18px;
+            opacity: 0;
+            animation: fadeUp 1s 0.5s ease forwards;
+        }
+        .hero__title {
+            font-size: clamp(5rem, 12vw, 10.5rem);
+            color: #fff;
+            letter-spacing: 0.04em;
+            line-height: 0.9;
+            opacity: 0;
+            animation: fadeUp 1.2s 0.75s ease forwards;
+        }
+        .hero__subtitle {
+            font-family: 'Instrument Serif', serif;
+            font-style: italic;
+            font-size: clamp(1rem, 2vw, 1.45rem);
+            color: var(--sand);
+            margin-top: 20px;
+            opacity: 0;
+            animation: fadeUp 1s 1.05s ease forwards;
+        }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(28px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Foreground palm SVG layer */
+        .layer-fg {
+            position: absolute;
+            inset: 0;
+            z-index: 3;
+            pointer-events: none;
+            will-change: transform;
+        }
+        .layer-fg svg {
+            position: absolute;
+            bottom: -5%;
+            right: -4%;
+            width: 42vw;
+            max-width: 680px;
+            opacity: 0.18;
+        }
+
+        /* Scroll cue */
+        .hero__cue {
+            position: absolute;
+            bottom: 38px; left: 50%;
+            transform: translateX(-50%);
+            z-index: 4;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            opacity: 0;
+            animation: fadeUp 1s 1.5s ease forwards;
+        }
+        .hero__cue span {
+            font-size: 0.6rem;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.45);
+        }
+        .hero__cue-line {
+            width: 1px;
+            height: 56px;
+            background: rgba(255,255,255,0.2);
+            overflow: hidden;
+            position: relative;
+        }
+        .hero__cue-line::after {
+            content: '';
+            position: absolute;
+            top: -100%; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(255,255,255,0.75);
+            animation: drip 2.6s ease-in-out infinite;
+        }
+        @keyframes drip { 0%,100%{top:-100%} 60%{top:100%} }
+
+        /* ===== SECTION SCALE TRANSITIONS ===== */
+        .section-reveal {
+            opacity: 0;
+            transform: scale(0.96) translateY(32px);
+            transition: opacity 0.95s cubic-bezier(0.22,1,0.36,1),
+                        transform 0.95s cubic-bezier(0.22,1,0.36,1);
+        }
+        .section-reveal.visible {
+            opacity: 1;
+            transform: scale(1) translateY(0);
+        }
+        .reveal {
+            opacity: 0;
+            transform: translateY(36px);
+            transition: opacity 0.85s cubic-bezier(0.22,1,0.36,1),
+                        transform 0.85s cubic-bezier(0.22,1,0.36,1);
+        }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+        .d1 { transition-delay: 0.12s; }
+        .d2 { transition-delay: 0.24s; }
+        .d3 { transition-delay: 0.36s; }
+
+        /* ===== MAGAZINE SPREAD ===== */
+        .mag {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            min-height: 88vh;
+            overflow: hidden;
+        }
+        .mag__img-wrap {
+            position: relative;
+            overflow: hidden;
+        }
+        .mag__img-wrap img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            transition: transform 0.1s linear;
+        }
+        .zoom-img { transform-origin: center center; }
+
+        .mag__text {
+            background: var(--white);
+            padding: 88px 80px 88px 72px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            z-index: 2;
+            margin-left: -56px;
+        }
+        .mag__label {
+            font-size: 0.68rem;
+            font-weight: 600;
+            letter-spacing: 0.26em;
+            text-transform: uppercase;
+            color: var(--green);
+            margin-bottom: 20px;
+        }
+        .mag__heading {
+            font-size: clamp(2.4rem, 4.5vw, 3.8rem);
+            color: var(--dark);
+            margin-bottom: 28px;
+            line-height: 1.08;
+        }
+        .mag__body {
+            font-size: 0.96rem;
+            color: var(--mid);
+            line-height: 1.9;
+            margin-bottom: 18px;
+        }
+        .mag__body:first-of-type::first-letter {
+            font-family: 'Instrument Serif', serif;
+            font-size: 3.8rem;
+            float: left;
+            line-height: 0.78;
+            margin-right: 10px;
+            margin-top: 6px;
+            color: var(--green);
+        }
+        .mag__stats {
+            display: flex;
+            gap: 40px;
+            margin-top: 40px;
+            padding-top: 32px;
+            border-top: 1px solid var(--sand);
+        }
+        .mag__stat-n {
+            font-family: 'Instrument Serif', serif;
+            font-size: 2.6rem;
+            color: var(--green);
+            line-height: 1;
+        }
+        .mag__stat-l {
+            font-size: 0.72rem;
+            color: var(--mid);
+            letter-spacing: 0.05em;
+            margin-top: 4px;
+        }
+
+        /* ===== EXPERIENCES — VERTICAL STACK ===== */
+        .exp-section {
+            background: var(--cream);
+            padding: 100px 0;
+        }
+        .exp-section__header {
+            text-align: center;
+            padding: 0 48px 72px;
+        }
+        .exp-section__label {
+            font-size: 0.68rem;
+            font-weight: 600;
+            letter-spacing: 0.26em;
+            text-transform: uppercase;
+            color: var(--green);
+            margin-bottom: 16px;
+        }
+        .exp-section__title {
+            font-size: clamp(2.8rem, 5.5vw, 4.6rem);
+            color: var(--dark);
+            margin-bottom: 12px;
+        }
+        .exp-section__sub {
+            font-family: 'Instrument Serif', serif;
+            font-style: italic;
+            font-size: 1.1rem;
+            color: var(--mid);
+            max-width: 520px;
+            margin: 0 auto;
+        }
+
+        .exp-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            min-height: 68vh;
+            overflow: hidden;
+        }
+        .exp-row.flip { direction: rtl; }
+        .exp-row.flip > * { direction: ltr; }
+
+        .exp-row__img {
+            position: relative;
+            overflow: hidden;
+        }
+        .exp-row__img img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            transition: transform 0.1s linear;
+        }
+
+        .exp-row__copy {
+            background: var(--white);
+            padding: 72px 72px 72px 80px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .exp-row.flip .exp-row__copy {
+            padding: 72px 80px 72px 72px;
+            background: var(--cream);
+        }
+        .exp-row__num {
+            font-family: 'Instrument Serif', serif;
+            font-size: 5rem;
+            color: var(--sand);
+            line-height: 1;
+            margin-bottom: -8px;
+        }
+        .exp-row__label {
+            font-size: 0.68rem;
+            font-weight: 600;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: var(--green);
+            margin-bottom: 12px;
+        }
+        .exp-row__title {
+            font-size: clamp(1.8rem, 3vw, 2.6rem);
+            color: var(--dark);
+            margin-bottom: 18px;
+        }
+        .exp-row__desc {
+            font-size: 0.94rem;
+            color: var(--mid);
+            line-height: 1.88;
+            max-width: 440px;
+        }
+
+        /* ===== NATURE BANNER ===== */
+        .banner {
+            position: relative;
+            height: 70vh;
+            min-height: 480px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .banner__img {
+            position: absolute; inset: 0;
+        }
+        .banner__img img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            transition: transform 0.1s linear;
+        }
+        .banner__overlay {
+            position: absolute; inset: 0;
+            background: linear-gradient(
+                135deg,
+                rgba(45,90,61,0.72) 0%,
+                rgba(26,26,26,0.55) 100%
+            );
+        }
+        .banner__content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            padding: 0 48px;
+            max-width: 860px;
+        }
+        .banner__quote {
+            font-family: 'Instrument Serif', serif;
+            font-style: italic;
+            font-size: clamp(1.5rem, 3.2vw, 2.5rem);
+            color: #fff;
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+        .banner__attr {
+            font-size: 0.74rem;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: var(--sand);
+        }
+
+        /* ===== NIGHT STATS ===== */
+        .night {
+            position: relative;
+            min-height: 72vh;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+        }
+        .night__img {
+            position: absolute; inset: 0;
+        }
+        .night__img img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            filter: brightness(0.55);
+        }
+        .night__content {
+            position: relative;
+            z-index: 2;
+            padding: 80px 72px;
+            max-width: 960px;
+        }
+        .night__label {
+            font-size: 0.68rem;
+            font-weight: 600;
+            letter-spacing: 0.26em;
+            text-transform: uppercase;
+            color: var(--sand);
+            margin-bottom: 20px;
+        }
+        .night__heading {
+            font-size: clamp(2.4rem, 5vw, 4rem);
+            color: #fff;
+            margin-bottom: 52px;
+            max-width: 560px;
+        }
+        .night__stats {
+            display: flex;
+            gap: 64px;
+            flex-wrap: wrap;
+        }
+        .night__stat-n {
+            font-family: 'Instrument Serif', serif;
+            font-size: 4rem;
+            color: #fff;
+            line-height: 1;
+            transition: all 0.5s;
+        }
+        .night__stat-l {
+            font-size: 0.8rem;
+            letter-spacing: 0.1em;
+            color: var(--sand);
+            margin-top: 6px;
+            text-transform: uppercase;
+        }
+        /* Counter shimmer */
+        .night__stat-n.counting {
+            opacity: 0.6;
+        }
+
+        /* ===== HORIZONTAL SCROLL SHOWCASE ===== */
+        .horizontal-scroll{position:relative;overflow:hidden}
+        .horizontal-scroll .scroll-track{display:flex;gap:20px;width:max-content;padding:40px 0}
+        .horizontal-scroll .scroll-item{flex-shrink:0;width:70vw;max-width:500px;overflow:hidden;border-radius:8px}
+        .horizontal-scroll .scroll-item img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease}
+        .horizontal-scroll .scroll-item:hover img{transform:scale(1.05)}
+        @media (max-width: 768px) { .horizontal-scroll .scroll-item{width:85vw} }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            background: var(--white);
+            padding: 88px 52px 52px;
+            text-align: center;
+            border-top: 1px solid var(--sand-l);
+        }
+        .footer__brand {
+            font-family: 'Instrument Serif', serif;
+            font-size: 2.4rem;
+            letter-spacing: 0.12em;
+            color: var(--green);
+            margin-bottom: 14px;
+        }
+        .footer__line {
+            width: 48px; height: 2px;
+            background: var(--green);
+            margin: 0 auto 24px;
+        }
+        .footer p {
+            font-size: 0.88rem;
+            color: var(--mid);
+            line-height: 2.2;
+        }
+        .footer a { color: var(--green); transition: opacity 0.3s; }
+        .footer a:hover { opacity: 0.65; }
+        .footer__copy {
+            margin-top: 52px;
+            padding-top: 26px;
+            border-top: 1px solid var(--sand-l);
+            font-size: 0.72rem;
+            color: #bbb;
+        }
+        .footer__credit {
+            margin-top: 8px;
+            font-size: 0.68rem;
+            color: #ccc;
+        }
+        .footer__credit a { color: var(--green); }
+
+        /* ===== CUSTOM CURSOR ===== */
+        .cursor-dot{position:fixed;width:12px;height:12px;background:var(--green);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .3s,height .3s,background .3s;mix-blend-mode:difference}
+        .cursor-dot.hover{width:48px;height:48px;background:var(--sand)}
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 1024px) {
+            .mag { grid-template-columns: 1fr; min-height: auto; }
+            .mag__img-wrap { height: 56vw; min-height: 360px; }
+            .mag__text { margin-left: 0; padding: 64px 48px; }
+            .exp-row { grid-template-columns: 1fr; min-height: auto; }
+            .exp-row.flip { direction: ltr; }
+            .exp-row__img { height: 56vw; min-height: 320px; }
+            .exp-row__copy { padding: 56px 48px; }
+            .exp-row.flip .exp-row__copy { padding: 56px 48px; }
+        }
+        @media (max-width: 768px) {
+            .nav { padding: 18px 24px; }
+            .nav__links { display: none; }
+            .nav__burger { display: flex; }
+            .mob-menu { display: flex; }
+            .hero__title { font-size: 4.2rem; }
+            .mag__stats { gap: 24px; flex-wrap: wrap; }
+            .night__content { padding: 64px 28px; }
+            .night__stats { gap: 36px; }
+            .night__stat-n { font-size: 3rem; }
+            .exp-row__copy { padding: 48px 28px; }
+            .footer { padding: 64px 28px 40px; }
+        }
+        @media (max-width: 480px) {
+            .banner__quote { font-size: 1.35rem; }
+            .mag__text { padding: 48px 24px; }
+            .exp-section__header { padding: 0 24px 52px; }
+            .cursor-dot{display:none}
+        }
+        /* ===== REDUCED MOTION ===== */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
+            }
+        }
+
+        /* ===== PREMIUM ANIMATIONS — Marquee, Circle Reveal ===== */
+        .marquee{overflow:hidden;padding:40px 0;border-top:1px solid rgba(45,90,61,.1);border-bottom:1px solid rgba(45,90,61,.1)}
+        .marquee-track{display:flex;gap:60px;white-space:nowrap;will-change:transform}
+        .marquee-text{font-size:clamp(14px,2vw,20px);letter-spacing:.15em;text-transform:uppercase;opacity:.25;flex-shrink:0;color:var(--green)}
+        .circle-reveal{clip-path:circle(0% at 50% 50%);transition:clip-path 1.2s cubic-bezier(.25,.46,.45,.94)}
+        .circle-reveal.revealed{clip-path:circle(75% at 50% 50%)}
+    </style>
+</head>
+<body>
+    <div class="cursor-dot" id="cursor"></div>
+
+    <!-- SCROLL PROGRESS -->
+    <div class="scroll-progress"><div class="scroll-progress-bar" id="scrollProgress"></div></div>
+
+    <!-- NAVBAR -->
+    <nav class="nav" id="nav">
+        <a href="#" class="nav__brand">THE BRANDO</a>
+        <ul class="nav__links">
+            <li><a href="#spread">L'Ile</a></li>
+            <li><a href="#experiences">Experiences</a></li>
+            <li><a href="#night">Le Resort</a></li>
+            <li><a href="mailto:reservations@thebrando.com">Reserver</a></li>
+        </ul>
+        <button class="nav__burger" id="burger" aria-label="Menu">
+            <span></span><span></span><span></span>
+        </button>
+    </nav>
+
+    <!-- MOBILE MENU -->
+    <div class="mob-menu" id="mobMenu">
+        <a href="#spread"      onclick="closeMob()">L'Ile</a>
+        <a href="#experiences" onclick="closeMob()">Experiences</a>
+        <a href="#night"       onclick="closeMob()">Le Resort</a>
+        <a href="mailto:reservations@thebrando.com" onclick="closeMob()">Reserver</a>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- 1. PARALLAX HERO                                             -->
+    <!-- ============================================================ -->
+    <section class="hero" id="hero">
+
+        <!-- Layer BG — slowest scroll -->
+        <div class="layer-bg" id="layerBg">
+            <img class="scale-scroll" data-parallax="0.2" src="images/the-brando/hero.jpg" alt="Tetiaroa — vue aerienne de l'atoll depuis le ciel">
+        </div>
+
+        <!-- Veil -->
+        <div class="hero__veil"></div>
+
+        <!-- Layer TEXT — medium scroll -->
+        <div class="layer-text" id="layerText">
+            <div class="hero__eyebrow">Tetiaroa Private Island &nbsp;·&nbsp; Polynesie francaise</div>
+            <h1 class="hero__title">The<br>Brando</h1>
+            <p class="hero__subtitle">L'ile de Marlon Brando, preservee pour l'eternite</p>
+        </div>
+
+        <div class="layer-fg" id="layerFg"></div>
+
+        <!-- Scroll cue -->
+        <div class="hero__cue">
+            <span>Defiler</span>
+            <div class="hero__cue-line"></div>
+        </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- 2. MAGAZINE SPREAD                                           -->
+    <!-- ============================================================ -->
+    <section class="mag section-reveal" id="spread">
+        <div class="mag__img-wrap">
+            <img class="zoom-img scale-scroll" src="images/the-brando/villa.webp" alt="Villa The Brando — plage privee et lagon turquoise">
+        </div>
+        <div class="mag__text">
+            <div class="mag__label reveal">L'Ile</div>
+            <h2 class="mag__heading reveal word-reveal">Un sanctuaire<br>au bout<br><em>du monde</em></h2>
+            <p class="mag__body reveal d1 line-reveal">Tetiaroa est un atoll compose de treize motus — ilots de sable blanc immacule — ceinturant un lagon aux eaux d'une transparence presque irreelle. C'est en 1967, lors du tournage des Revoltes du Bounty, que Marlon Brando decouvre ce paradis perdu et acquiert un bail de 99 ans sur l'ensemble de l'ile.</p>
+            <p class="mag__body reveal d2">Son reve etait simple : prouver que le luxe absolu et le respect de la nature ne sont pas incompatibles — ils sont inseparables. Premier resort au monde certifie LEED Platinum, alimente a 100% par les energies renouvelables, The Brando est cet acte de foi devenu realite.</p>
+            <div class="mag__stats reveal d2 stagger-grid">
+                <div>
+                    <div class="mag__stat-n">35</div>
+                    <div class="mag__stat-l">Villas sur plage</div>
+                </div>
+                <div>
+                    <div class="mag__stat-n">100%</div>
+                    <div class="mag__stat-l">Energie renouvelable</div>
+                </div>
+                <div>
+                    <div class="mag__stat-n">20 min</div>
+                    <div class="mag__stat-l">Vol prive depuis Tahiti</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- 3. EXPERIENCES — VERTICAL STACKED ALTERNATING               -->
+    <!-- ============================================================ -->
+    <section class="exp-section" id="experiences">
+        <div class="exp-section__header section-reveal">
+            <div class="exp-section__label">Experiences</div>
+            <h2 class="exp-section__title word-reveal">Des moments<br><em>hors du temps</em></h2>
+            <p class="exp-section__sub">Entre ciel et lagon, chaque instant devient un souvenir que l'on n'oublie pas.</p>
+        </div>
+
+        <!-- EXP 1 — Image left -->
+        <div class="exp-row section-reveal">
+            <div class="exp-row__img">
+                <img class="zoom-img circle-reveal" src="images/the-brando/beach.webp" alt="Plage de sable blanc et lagon turquoise de Tetiaroa">
+            </div>
+            <div class="exp-row__copy">
+                <div class="exp-row__num">01</div>
+                <div class="exp-row__label reveal">Plage &amp; Lagon</div>
+                <h3 class="exp-row__title reveal">La Plage Privee</h3>
+                <p class="exp-row__desc reveal d1 line-reveal">Sable blanc immacule, lagon aux mille nuances de turquoise. Kayak, paddle, plongee libre au milieu des raies manta et des requins pointe noire. Le Pacifique dans sa forme la plus pure, la plus sauvage — votre seul horizon.</p>
+            </div>
+        </div>
+
+        <!-- EXP 2 — Image right (flip) -->
+        <div class="exp-row flip section-reveal">
+            <div class="exp-row__img">
+                <img class="zoom-img circle-reveal" src="images/the-brando/dining.webp" alt="Gastronomie au restaurant de The Brando, Tetiaroa">
+            </div>
+            <div class="exp-row__copy">
+                <div class="exp-row__num">02</div>
+                <div class="exp-row__label reveal">Gastronomie</div>
+                <h3 class="exp-row__title reveal">Gastronomie Responsable</h3>
+                <p class="exp-row__desc reveal d1 line-reveal">Cuisine francaise reinventee avec les produits du jardin biologique. Poissons peches le matin meme, herbes cueillies a l'aube. Deux restaurants, un bar ouvert sur le lagon, et des diners prives pieds dans le sable sous les etoiles australes.</p>
+            </div>
+        </div>
+
+        <!-- EXP 3 — Image left -->
+        <div class="exp-row section-reveal">
+            <div class="exp-row__img">
+                <img class="zoom-img circle-reveal" src="images/the-brando/spa.webp" alt="Le Spa Varua de The Brando, soins polynésiens traditionnels">
+            </div>
+            <div class="exp-row__copy">
+                <div class="exp-row__num">03</div>
+                <div class="exp-row__label reveal">Bien-etre</div>
+                <h3 class="exp-row__title reveal">Le Varua<br>Polynesian Spa</h3>
+                <p class="exp-row__desc reveal d1 line-reveal">Au coeur de la foret tropicale, le Varua Spa propose des soins bases sur les traditions polynesiennes ancestrales. Massages Taurumi, enveloppements aux huiles de monoï, rituels de purification inspires des anciens navigateurs du Pacifique.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- 4. NATURE BANNER                                             -->
+    <!-- ============================================================ -->
+    <section class="banner section-reveal">
+        <div class="banner__img">
+            <img class="zoom-img scale-scroll" src="images/the-brando/turtles.jpg" alt="Tortues vertes dans le lagon de Tetiaroa">
+        </div>
+        <div class="banner__overlay"></div>
+        <div class="banner__content">
+            <p class="banner__quote reveal">"L'ile de Marlon Brando, preservee pour les generations futures"</p>
+            <p class="banner__attr reveal d1">La vision fondatrice de Tetiaroa</p>
+        </div>
+    </section>
+
+    <!-- Marquee Ticker -->
+    <div class="marquee">
+        <div class="marquee-track">
+            <span class="marquee-text">THE BRANDO</span>
+            <span class="marquee-text">—</span>
+            <span class="marquee-text">TETIAROA</span>
+            <span class="marquee-text">—</span>
+            <span class="marquee-text">ECO-LUXE</span>
+            <span class="marquee-text">—</span>
+            <span class="marquee-text">SANCTUAIRE</span>
+            <span class="marquee-text">—</span>
+            <span class="marquee-text">POLYNESIE</span>
+            <span class="marquee-text">—</span>
+            <span class="marquee-text">LEED PLATINUM</span>
+            <span class="marquee-text">—</span>
+            <span class="marquee-text">ILE PRIVEE</span>
+            <span class="marquee-text">—</span>
+        </div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- 5. NIGHT — STATS                                             -->
+    <!-- ============================================================ -->
+    <section class="night" id="night">
+        <div class="night__img">
+            <img src="images/the-brando/night.webp" alt="The Brando de nuit, villas illuminees face au lagon">
+        </div>
+        <div class="night__content section-reveal">
+            <div class="night__label">Le Resort</div>
+            <h2 class="night__heading word-reveal">L'exclusivite dans sa forme la plus absolue</h2>
+            <div class="night__stats stagger-grid">
+                <div>
+                    <div class="night__stat-n counter" data-target="35" data-count="35">0</div>
+                    <div class="night__stat-l">Villas de luxe</div>
+                </div>
+                <div>
+                    <div class="night__stat-n counter" data-target="3" data-count="3">0</div>
+                    <div class="night__stat-l">Restaurants</div>
+                </div>
+                <div>
+                    <div class="night__stat-n counter-text" data-text="1 ile privee">—</div>
+                    <div class="night__stat-l">Acces exclusif</div>
+                </div>
+                <div>
+                    <div class="night__stat-n counter-text" data-text="LEED Platinum">—</div>
+                    <div class="night__stat-l">Certification eco</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- HORIZONTAL SCROLL SHOWCASE -->
+    <section class="horizontal-scroll">
+      <div class="scroll-track">
+        <div class="scroll-item"><img src="images/the-brando/villa.webp" alt="Villa sur pilotis Tetiaroa" loading="lazy"></div>
+        <div class="scroll-item"><img src="images/the-brando/beach.webp" alt="Plage privee de Tetiaroa" loading="lazy"></div>
+        <div class="scroll-item"><img src="images/the-brando/spa.webp" alt="Varua Te Ora Polynesian Spa" loading="lazy"></div>
+        <div class="scroll-item"><img src="images/the-brando/dining.webp" alt="Restaurant gastronomique" loading="lazy"></div>
+        <div class="scroll-item"><img src="images/the-brando/aerial.webp" alt="Vue aerienne atoll Tetiaroa" loading="lazy"></div>
+        <div class="scroll-item"><img src="images/the-brando/night.webp" alt="Ambiance nocturne Tetiaroa" loading="lazy"></div>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- 6. FOOTER                                                    -->
+    <!-- ============================================================ -->
+    <footer class="footer section-reveal">
+        <div class="footer__brand">THE BRANDO</div>
+        <div class="footer__line"></div>
+        <p>Tetiaroa Private Island &nbsp;·&nbsp; Polynesie francaise</p>
+        <p>Reservations&nbsp;: <a href="tel:+68940866300">+689 40 86 63 00</a></p>
+        <p><a href="mailto:reservations@thebrando.com">reservations@thebrando.com</a></p>
+        <div class="footer__copy">&copy; 2026 The Brando. Tous droits reserves.</div>
+        <div class="footer__credit">
+            Page realisee par <a href="https://pacifikai.com" target="_blank" rel="noopener">PACIFIK'AI</a>
+        </div>
+    </footer>
+
+    <!-- ============================================================ -->
+    <!-- SCRIPTS                                                      -->
+    <!-- ============================================================ -->
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/split-type@0.3.4/umd/index.min.js"></script>
+
+    <script>
+    (function () {
+        'use strict';
+
+        var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        gsap.registerPlugin(ScrollTrigger);
+
+        /* ========================================
+           LENIS SMOOTH SCROLL (duration 1.5 for resort feel)
+           ======================================== */
+        var lenis;
+        if (!prefersReduced) {
+            lenis = new Lenis({
+                duration: 1.5,
+                easing: function (t) { return Math.min(1, 1.001 - Math.pow(2, -10 * t)); },
+                orientation: 'vertical',
+                smoothWheel: true
+            });
+            lenis.on('scroll', ScrollTrigger.update);
+            gsap.ticker.add(function (time) { lenis.raf(time * 1000); });
+            gsap.ticker.lagSmoothing(0);
+        }
+
+        /* ========================================
+           SCROLL PROGRESS BAR
+           ======================================== */
+        gsap.to('#scrollProgress', {
+            scaleX: 1,
+            ease: 'none',
+            scrollTrigger: {
+                trigger: document.documentElement,
+                start: 'top top',
+                end: 'bottom bottom',
+                scrub: 0.3
+            }
+        });
+
+        /* ========================================
+           NAV HIDE/SHOW ON SCROLL DIRECTION
+           ======================================== */
+        var nav = document.getElementById('nav');
+        var lastScrollY = 0;
+        var navHidden = false;
+
+        function updateNav() {
+            if (window.scrollY > 80) nav.classList.add('scrolled');
+            else nav.classList.remove('scrolled');
+        }
+
+        ScrollTrigger.create({
+            start: 'top top',
+            end: 'max',
+            onUpdate: function (self) {
+                updateNav();
+                var direction = self.direction;
+                var scrollY = self.scroll();
+                if (scrollY < 200) {
+                    if (navHidden) {
+                        gsap.to(nav, { y: 0, duration: 0.4, ease: 'power2.out' });
+                        navHidden = false;
+                    }
+                    return;
+                }
+                if (direction === 1 && !navHidden) {
+                    gsap.to(nav, { y: -120, duration: 0.4, ease: 'power2.in' });
+                    navHidden = true;
+                } else if (direction === -1 && navHidden) {
+                    gsap.to(nav, { y: 0, duration: 0.4, ease: 'power2.out' });
+                    navHidden = false;
+                }
+                lastScrollY = scrollY;
+            }
+        });
+
+        // === MAGNETIC CURSOR ===
+        const cursor = document.getElementById('cursor');
+        if (cursor && window.matchMedia('(pointer: fine)').matches) {
+          let mx = 0, my = 0, cx = 0, cy = 0;
+          document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+          (function loop() {
+            cx += (mx - cx) * 0.12; cy += (my - cy) * 0.12;
+            cursor.style.left = cx + 'px'; cursor.style.top = cy + 'px';
+            requestAnimationFrame(loop);
+          })();
+          document.querySelectorAll('a, button, .cta-btn, .villa-card').forEach(el => {
+            el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
+            el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
+          });
+        }
+
+        /* ========================================
+           HERO ENTRANCE ANIMATION (word split)
+           ======================================== */
+        if (!prefersReduced) {
+            var heroTitle = document.querySelector('.hero__title');
+            if (heroTitle) {
+                var heroSplit = new SplitType(heroTitle, { types: 'words,chars' });
+                gsap.set(heroSplit.chars, { y: 80, opacity: 0 });
+
+                gsap.to(heroSplit.chars, {
+                    y: 0,
+                    opacity: 1,
+                    duration: 1,
+                    ease: 'power3.out',
+                    stagger: 0.04,
+                    delay: 0.6
+                });
+            }
+
+            // Eyebrow + subtitle
+            gsap.from('.hero__eyebrow', { y: 28, opacity: 0, duration: 1, ease: 'power2.out', delay: 0.4 });
+            gsap.from('.hero__subtitle', { y: 28, opacity: 0, duration: 1, ease: 'power2.out', delay: 1 });
+            gsap.from('.hero__cue', { y: 28, opacity: 0, duration: 1, ease: 'power2.out', delay: 1.4 });
+
+            // Remove CSS animation classes so GSAP handles it
+            document.querySelectorAll('.hero__eyebrow, .hero__title, .hero__subtitle, .hero__cue').forEach(function (el) {
+                el.style.animation = 'none';
+                el.style.opacity = '';
+            });
+        }
+
+        /* ========================================
+           SCALE-ON-SCROLL HERO (zoom out effect)
+           ======================================== */
+        if (!prefersReduced) {
+            var heroBgImg = document.querySelector('.layer-bg img');
+            if (heroBgImg) {
+                heroBgImg.style.animation = 'none';
+                gsap.fromTo(heroBgImg,
+                    { scale: 1.15 },
+                    {
+                        scale: 1,
+                        ease: 'none',
+                        scrollTrigger: {
+                            trigger: '.hero',
+                            start: 'top top',
+                            end: 'bottom top',
+                            scrub: 1
+                        }
+                    }
+                );
+            }
+        }
+
+        /* ========================================
+           PARALLAX HERO LAYERS
+           ======================================== */
+        if (!prefersReduced) {
+            gsap.to('#layerBg', {
+                y: function () { return window.innerHeight * 0.3; },
+                ease: 'none',
+                scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: 1 }
+            });
+            gsap.to('#layerText', {
+                y: function () { return window.innerHeight * 0.5; },
+                ease: 'none',
+                scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: 1 }
+            });
+            gsap.to('#layerFg', {
+                y: function () { return window.innerHeight * 0.1; },
+                ease: 'none',
+                scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: 1 }
+            });
+        }
+
+        /* ========================================
+           PARALLAX ON [data-parallax] IMAGES
+           ======================================== */
+        if (!prefersReduced) {
+            document.querySelectorAll('[data-parallax]').forEach(function (img) {
+                var speed = parseFloat(img.getAttribute('data-parallax')) || 0.2;
+                gsap.to(img, {
+                    yPercent: speed * 100,
+                    ease: 'none',
+                    scrollTrigger: {
+                        trigger: img.closest('section') || img.parentElement,
+                        start: 'top bottom',
+                        end: 'bottom top',
+                        scrub: 1
+                    }
+                });
+            });
+        }
+
+        /* ========================================
+           WORD REVEAL ON .word-reveal ELEMENTS
+           ======================================== */
+        if (!prefersReduced) {
+            document.querySelectorAll('.word-reveal').forEach(function (el) {
+                var split = new SplitType(el, { types: 'words' });
+                if (split.words) {
+                    gsap.set(split.words, { y: 40, opacity: 0 });
+                    ScrollTrigger.create({
+                        trigger: el,
+                        start: 'top 85%',
+                        once: true,
+                        onEnter: function () {
+                            gsap.to(split.words, {
+                                y: 0,
+                                opacity: 1,
+                                duration: 0.8,
+                                ease: 'power3.out',
+                                stagger: 0.06
+                            });
+                        }
+                    });
+                }
+            });
+        }
+
+        /* ========================================
+           SECTION REVEALS (y:30, fade up)
+           ======================================== */
+        document.querySelectorAll('.section-reveal').forEach(function (el) {
+            if (prefersReduced) {
+                el.classList.add('visible');
+                return;
+            }
+            gsap.set(el, { y: 30, opacity: 0, scale: 0.97 });
+            ScrollTrigger.create({
+                trigger: el,
+                start: 'top 88%',
+                once: true,
+                onEnter: function () {
+                    gsap.to(el, {
+                        y: 0,
+                        opacity: 1,
+                        scale: 1,
+                        duration: 0.95,
+                        ease: 'power2.out'
+                    });
+                }
+            });
+        });
+
+        /* ========================================
+           REVEAL ELEMENTS (stagger children)
+           ======================================== */
+        document.querySelectorAll('.reveal').forEach(function (el) {
+            if (prefersReduced) {
+                el.classList.add('visible');
+                return;
+            }
+            gsap.set(el, { y: 36, opacity: 0 });
+            ScrollTrigger.create({
+                trigger: el,
+                start: 'top 90%',
+                once: true,
+                onEnter: function () {
+                    var delay = 0;
+                    if (el.classList.contains('d1')) delay = 0.12;
+                    if (el.classList.contains('d2')) delay = 0.24;
+                    if (el.classList.contains('d3')) delay = 0.36;
+                    gsap.to(el, {
+                        y: 0,
+                        opacity: 1,
+                        duration: 0.85,
+                        delay: delay,
+                        ease: 'power2.out'
+                    });
+                }
+            });
+        });
+
+        /* ========================================
+           GALLERY IMAGE SCALE ON SCROLL (zoom-img)
+           ======================================== */
+        if (!prefersReduced) {
+            document.querySelectorAll('.zoom-img').forEach(function (img) {
+                gsap.fromTo(img,
+                    { scale: 1 },
+                    {
+                        scale: 1.14,
+                        ease: 'none',
+                        scrollTrigger: {
+                            trigger: img.closest('.mag__img-wrap, .exp-row__img, .banner__img, .banner') || img.parentElement,
+                            start: 'top bottom',
+                            end: 'bottom top',
+                            scrub: 1
+                        }
+                    }
+                );
+            });
+        }
+
+        /* ========================================
+           STAGGER CARDS / ROOMS (exp-row)
+           ======================================== */
+        if (!prefersReduced) {
+            document.querySelectorAll('.exp-row').forEach(function (row, i) {
+                var copy = row.querySelector('.exp-row__copy');
+                var imgWrap = row.querySelector('.exp-row__img');
+                if (copy && imgWrap) {
+                    gsap.from(imgWrap, {
+                        xPercent: row.classList.contains('flip') ? 8 : -8,
+                        opacity: 0,
+                        duration: 1,
+                        ease: 'power2.out',
+                        scrollTrigger: { trigger: row, start: 'top 80%', once: true }
+                    });
+                    gsap.from(copy, {
+                        xPercent: row.classList.contains('flip') ? -8 : 8,
+                        opacity: 0,
+                        duration: 1,
+                        delay: 0.15,
+                        ease: 'power2.out',
+                        scrollTrigger: { trigger: row, start: 'top 80%', once: true }
+                    });
+                }
+            });
+        }
+
+        /* ========================================
+           COUNTER ANIMATION FOR STATS
+           ======================================== */
+        var countersRun = false;
+        ScrollTrigger.create({
+            trigger: '.night__stats',
+            start: 'top 80%',
+            once: true,
+            onEnter: function () {
+                if (countersRun) return;
+                countersRun = true;
+
+                // Numeric counters
+                document.querySelectorAll('.counter').forEach(function (el) {
+                    var target = parseInt(el.getAttribute('data-target'), 10);
+                    var obj = { val: 0 };
+                    gsap.to(obj, {
+                        val: target,
+                        duration: 1.8,
+                        ease: 'power2.out',
+                        onUpdate: function () {
+                            el.textContent = Math.round(obj.val);
+                        },
+                        onComplete: function () {
+                            el.textContent = target;
+                        }
+                    });
+                });
+
+                // Text counters (type-on)
+                document.querySelectorAll('.counter-text').forEach(function (el) {
+                    var text = el.getAttribute('data-text');
+                    var i = 0;
+                    el.textContent = '';
+                    var iv = setInterval(function () {
+                        el.textContent += text[i];
+                        i++;
+                        if (i >= text.length) clearInterval(iv);
+                    }, 60);
+                });
+            }
+        });
+
+        /* ========================================
+           MAG STATS STAGGER
+           ======================================== */
+        if (!prefersReduced) {
+            var magStats = document.querySelectorAll('.mag__stats > div');
+            if (magStats.length) {
+                gsap.from(magStats, {
+                    y: 20,
+                    opacity: 0,
+                    duration: 0.7,
+                    stagger: 0.12,
+                    ease: 'power2.out',
+                    scrollTrigger: { trigger: '.mag__stats', start: 'top 85%', once: true }
+                });
+            }
+        }
+
+        /* ========================================
+           MOBILE MENU (preserved)
+           ======================================== */
+        var burger  = document.getElementById('burger');
+        var mobMenu = document.getElementById('mobMenu');
+
+        burger.addEventListener('click', function () {
+            var open = mobMenu.classList.toggle('open');
+            burger.classList.toggle('open', open);
+            document.body.style.overflow = open ? 'hidden' : '';
+        });
+
+        function closeMob() {
+            mobMenu.classList.remove('open');
+            burger.classList.remove('open');
+            document.body.style.overflow = '';
+        }
+        window.closeMob = closeMob;
+
+        /* ========================================
+           SMOOTH ANCHOR SCROLL (via Lenis)
+           ======================================== */
+        document.querySelectorAll('a[href^="#"]').forEach(function (a) {
+            a.addEventListener('click', function (e) {
+                var href = this.getAttribute('href');
+                var target = document.querySelector(href);
+                if (target) {
+                    e.preventDefault();
+                    closeMob();
+                    if (lenis) {
+                        lenis.scrollTo(target, { offset: 0 });
+                    } else {
+                        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                }
+            });
+        });
+
+        /* ---- Init ---- */
+        updateNav();
+
+        /* ========================================
+           PREMIUM: Marquee Infinite Ticker
+           ======================================== */
+        document.querySelectorAll('.marquee-track').forEach(function (track) {
+            var items = track.innerHTML;
+            track.innerHTML += items + items;
+            gsap.to(track, { x: '-50%', duration: 30, ease: 'none', repeat: -1 });
+        });
+
+        /* ========================================
+           PREMIUM: Image Scale-on-Scroll
+           ======================================== */
+        gsap.utils.toArray('.scale-scroll').forEach(function (img) {
+            gsap.from(img, {
+                scale: 1.15, ease: 'none',
+                scrollTrigger: { trigger: img.parentElement, start: 'top bottom', end: 'bottom top', scrub: 1 }
+            });
+        });
+
+        /* ========================================
+           PREMIUM: Circle Reveal
+           ======================================== */
+        document.querySelectorAll('.circle-reveal').forEach(function (el) {
+            ScrollTrigger.create({ trigger: el, start: 'top 80%', onEnter: function () { el.classList.add('revealed'); } });
+        });
+
+        /* ========================================
+           PREMIUM: Counter Animation
+           ======================================== */
+        document.querySelectorAll('[data-count]').forEach(function (el) {
+            var target = parseInt(el.dataset.count);
+            var suffix = el.dataset.suffix || '';
+            ScrollTrigger.create({
+                trigger: el, start: 'top 85%',
+                onEnter: function () {
+                    gsap.to({ val: 0 }, {
+                        val: target, duration: 2, ease: 'power2.out',
+                        onUpdate: function () { el.textContent = Math.round(this.targets()[0].val) + suffix; }
+                    });
+                }, once: true
+            });
+        });
+
+        /* ========================================
+           PREMIUM: Line-by-Line Text Reveal
+           ======================================== */
+        document.querySelectorAll('.line-reveal').forEach(function (el) {
+            var split = new SplitType(el, { types: 'lines' });
+            split.lines.forEach(function (line) { line.style.overflow = 'hidden'; });
+            gsap.from(split.lines, {
+                yPercent: 100, opacity: 0, stagger: 0.1, duration: 0.8, ease: 'power3.out',
+                scrollTrigger: { trigger: el, start: 'top 85%' }
+            });
+        });
+
+        /* ========================================
+           PREMIUM: Stagger Grid
+           ======================================== */
+        document.querySelectorAll('.stagger-grid').forEach(function (grid) {
+            gsap.from(grid.children, {
+                y: 60, opacity: 0, stagger: 0.12, duration: 0.8, ease: 'power3.out',
+                scrollTrigger: { trigger: grid, start: 'top 85%' }
+            });
+        });
+
+    })();
+
+    // === HORIZONTAL SCROLL GALLERY ===
+    const hTrack = document.querySelector('.scroll-track');
+    if (hTrack) {
+      gsap.to(hTrack, {
+        x: () => -(hTrack.scrollWidth - window.innerWidth + 100),
+        ease: 'none',
+        scrollTrigger: {
+          trigger: '.horizontal-scroll',
+          start: 'top top',
+          end: () => '+=' + (hTrack.scrollWidth - window.innerWidth),
+          scrub: 1,
+          pin: true,
+          anticipatePin: 1
+        }
+      });
+    }
+
+    // === TEXT SCRAMBLE EFFECT ===
+    class TextScramble {
+      constructor(el) { this.el = el; this.chars = '!<>-_\\/[]{}—=+*^?#'; this.update = this.update.bind(this); }
+      setText(newText) {
+        const oldText = this.el.innerText;
+        const length = Math.max(oldText.length, newText.length);
+        const promise = new Promise(resolve => this.resolve = resolve);
+        this.queue = [];
+        for (let i = 0; i < length; i++) {
+          const from = oldText[i] || '';
+          const to = newText[i] || '';
+          const start = Math.floor(Math.random() * 40);
+          const end = start + Math.floor(Math.random() * 40);
+          this.queue.push({ from, to, start, end });
+        }
+        cancelAnimationFrame(this.frameRequest);
+        this.frame = 0;
+        this.update();
+        return promise;
+      }
+      update() {
+        let output = '';
+        let complete = 0;
+        for (let i = 0, n = this.queue.length; i < n; i++) {
+          let { from, to, start, end, char } = this.queue[i];
+          if (this.frame >= end) { complete++; output += to; }
+          else if (this.frame >= start) {
+            if (!char || Math.random() < 0.28) { char = this.chars[Math.floor(Math.random() * this.chars.length)]; this.queue[i].char = char; }
+            output += '<span style="opacity:.4">' + char + '</span>';
+          } else { output += from; }
+        }
+        this.el.innerHTML = output;
+        if (complete === this.queue.length) { this.resolve(); }
+        else { this.frameRequest = requestAnimationFrame(this.update); this.frame++; }
+      }
+    }
+    setTimeout(() => {
+      const heroP = document.querySelector('.hero-content p, .hero p, .hero-text p');
+      if (heroP) { const fx = new TextScramble(heroP); fx.setText(heroP.textContent); }
+    }, 1200);
+    </script>
+
+</body>
+</html>

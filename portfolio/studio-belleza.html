@@ -1,0 +1,1093 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Studio Belleza Tahiti — Prothésiste ongulaire certifiée, Paea</title>
+    <meta name="description" content="Studio Belleza Tahiti, votre prothésiste ongulaire certifiée à Paea. Pose américaine, extension gel, nail art et soins des ongles. Réservez en ligne avec Heilani.">
+    <meta property="og:title" content="Studio Belleza Tahiti — L'art des ongles, sublimé">
+    <meta property="og:image" content="images/studio-belleza/hero.jpg">
+    <meta property="og:locale" content="fr_PF">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --mauve: #9B7DA0;
+            --mauve-dark: #3D2840;
+            --gold: #D4A853;
+            --gold-dark: #C49A47;
+            --cream: #FAF7F2;
+            --ivory: #F5F0E8;
+            --sand: #EDE6D9;
+            --sage: #6B8A5E;
+            --stone: #9A8E87;
+            --text: #2D2D2D;
+            --text-light: #6B5F58;
+            --font-display: 'Cormorant Garamond', Georgia, serif;
+            --font-body: 'DM Sans', -apple-system, sans-serif;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background: var(--cream);
+            color: var(--text);
+            line-height: 1.7;
+            overflow-x: hidden;
+            cursor: none;
+        }
+
+        /* ===== CURSOR ===== */
+        .cursor-dot {
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            width: 12px;
+            height: 12px;
+            background: var(--gold);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width .3s, height .3s, background .3s;
+            mix-blend-mode: difference;
+        }
+        .cursor-dot.hover { width: 40px; height: 40px; background: var(--mauve); }
+
+        /* ===== SPARKLES ===== */
+        .sparkle {
+            position: fixed;
+            pointer-events: none;
+            z-index: 9998;
+            border-radius: 50%;
+            animation: sparkle-fade 0.7s forwards;
+        }
+        @keyframes sparkle-fade {
+            0%   { opacity: 1; transform: translate(-50%,-50%) scale(1); }
+            100% { opacity: 0; transform: translate(-50%,-50%) scale(0) translateY(-12px); }
+        }
+
+        /* ===== NAV ===== */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 100;
+            padding: 22px 48px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background 0.5s, padding 0.4s, box-shadow 0.5s;
+        }
+        nav.scrolled {
+            background: rgba(250, 247, 242, 0.96);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            padding: 14px 48px;
+            box-shadow: 0 2px 28px rgba(155, 125, 160, 0.08);
+        }
+        .nav-logo {
+            font-family: var(--font-display);
+            font-size: 1.6rem;
+            color: #fff;
+            letter-spacing: 0.06em;
+            font-weight: 600;
+            transition: color 0.5s;
+        }
+        nav.scrolled .nav-logo { color: var(--mauve-dark); }
+        .nav-logo span { color: var(--gold); font-style: italic; font-weight: 400; }
+        .nav-links { display: flex; gap: 32px; list-style: none; }
+        .nav-links a {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            font-size: 0.78rem;
+            font-weight: 500;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            transition: color 0.3s;
+        }
+        nav.scrolled .nav-links a { color: var(--stone); }
+        .nav-links a:hover { color: var(--gold); }
+        .hamburger { display: none; background: none; border: none; cursor: none; }
+        .hamburger span { display: block; width: 24px; height: 1.5px; background: #fff; margin: 5px 0; transition: background 0.5s; }
+        nav.scrolled .hamburger span { background: var(--text); }
+
+        /* ===== HERO ===== */
+        .hero {
+            min-height: 100vh;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+            gap: 40px;
+            padding: 120px 80px 80px;
+            position: relative;
+            overflow: hidden;
+        }
+        .gradient-bg {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(-45deg, #3D2840, #5a3d5e, #2D2840, #4a2840);
+            background-size: 400% 400%;
+            animation: gradientShift 14s ease infinite;
+            z-index: 0;
+        }
+        @keyframes gradientShift {
+            0%   { background-position: 0% 50%; }
+            50%  { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .hero-text { position: relative; z-index: 1; }
+        .hero-label {
+            display: inline-block;
+            font-size: 0.72rem;
+            letter-spacing: 0.28em;
+            text-transform: uppercase;
+            color: var(--gold);
+            background: rgba(212, 168, 83, 0.12);
+            padding: 6px 18px;
+            border-radius: 20px;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+        .hero-title {
+            font-family: var(--font-display);
+            font-size: clamp(3rem, 6vw, 5.5rem);
+            font-weight: 600;
+            color: #fff;
+            line-height: 1.05;
+            margin-bottom: 18px;
+        }
+        .hero-title em { color: var(--gold); font-style: italic; font-weight: 400; }
+        .hero-sub {
+            font-size: 1.05rem;
+            color: rgba(255,255,255,0.7);
+            font-weight: 300;
+            margin-bottom: 36px;
+            max-width: 400px;
+        }
+        .btn-gold {
+            display: inline-block;
+            background: var(--gold);
+            color: var(--mauve-dark);
+            padding: 14px 34px;
+            border-radius: 50px;
+            font-family: var(--font-body);
+            font-size: 0.88rem;
+            font-weight: 600;
+            text-decoration: none;
+            letter-spacing: 0.04em;
+            cursor: none;
+            transition: background 0.3s, transform 0.3s, box-shadow 0.3s;
+        }
+        .btn-gold:hover {
+            background: var(--gold-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 28px rgba(212, 168, 83, 0.4);
+        }
+        .hero-visual { position: relative; z-index: 1; display: flex; justify-content: center; }
+        .hero-blob {
+            width: 420px;
+            height: 460px;
+            object-fit: cover;
+            border-radius: 48% 52% 68% 32% / 42% 38% 62% 58%;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            transition: box-shadow 0.4s, transform 0.4s;
+            display: block;
+        }
+        .hero-blob:hover {
+            box-shadow: 0 28px 80px rgba(212, 168, 83, 0.25);
+            transform: translateY(-6px);
+        }
+        .hero-badge {
+            position: absolute;
+            bottom: 30px;
+            left: -10px;
+            background: white;
+            border-radius: 16px;
+            padding: 12px 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .hero-badge span { font-size: 1.4rem; }
+        .hero-badge p { font-size: 0.8rem; font-weight: 600; color: var(--mauve-dark); line-height: 1.3; }
+        .hero-badge small { color: var(--stone); font-weight: 400; font-size: 0.72rem; }
+
+        /* ===== SHARED ===== */
+        section { padding: 90px 0; }
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 32px; }
+        .section-label {
+            font-size: 0.7rem;
+            letter-spacing: 0.26em;
+            text-transform: uppercase;
+            color: var(--gold);
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        .section-title {
+            font-family: var(--font-display);
+            font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+            font-weight: 600;
+            color: var(--mauve-dark);
+            line-height: 1.2;
+            margin-bottom: 12px;
+        }
+        .gold-line {
+            width: 50px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--gold), var(--mauve));
+            border-radius: 2px;
+            margin: 18px 0 36px;
+        }
+
+        /* ===== SERVICES ===== */
+        .services-section { background: white; }
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 28px;
+            margin-top: 8px;
+        }
+        .service-card {
+            background: var(--cream);
+            border-radius: 24px;
+            overflow: hidden;
+            position: relative;
+            cursor: none;
+            transition: transform 0.4s, box-shadow 0.4s;
+        }
+        .service-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 16px 48px rgba(155, 125, 160, 0.15);
+        }
+        .service-card img {
+            width: 100%;
+            height: 240px;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.6s ease;
+        }
+        .service-card:hover img { transform: scale(1.06); }
+        .service-card-body { padding: 24px 28px 28px; }
+        .service-card-body h3 {
+            font-family: var(--font-display);
+            font-size: 1.25rem;
+            color: var(--mauve-dark);
+            margin-bottom: 8px;
+        }
+        .service-card-body p {
+            font-size: 0.88rem;
+            color: var(--text-light);
+            font-weight: 300;
+            line-height: 1.7;
+        }
+        .ribbon {
+            position: absolute;
+            top: 18px;
+            right: -6px;
+            background: var(--gold);
+            color: var(--mauve-dark);
+            padding: 5px 18px 5px 14px;
+            font-size: 0.78rem;
+            font-weight: 700;
+            border-radius: 4px 0 0 4px;
+            letter-spacing: 0.02em;
+        }
+        .ribbon::after {
+            content: '';
+            position: absolute;
+            bottom: -8px; right: 0;
+            border: 4px solid transparent;
+            border-top-color: #a88a3a;
+            border-left-color: #a88a3a;
+        }
+
+        /* ===== 3D CAROUSEL ===== */
+        .carousel-section { padding: 100px 0; overflow: hidden; }
+        .carousel-container {
+            perspective: 1200px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 32px;
+        }
+        .carousel-track {
+            display: flex;
+            gap: 24px;
+            transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .carousel-card {
+            flex-shrink: 0;
+            width: 380px;
+            height: 480px;
+            border-radius: 20px;
+            overflow: hidden;
+            position: relative;
+            cursor: none;
+            transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.5s;
+            transform-style: preserve-3d;
+        }
+        .carousel-card img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), filter 0.5s;
+        }
+        .carousel-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, transparent 40%, rgba(61,40,64,0.85) 100%);
+            z-index: 1;
+            opacity: 0;
+            transition: opacity 0.5s;
+        }
+        .carousel-card:hover::before { opacity: 1; }
+        .carousel-card:hover img { transform: scale(1.08); }
+        .carousel-card:hover { box-shadow: 0 24px 60px rgba(61,40,64,0.25); }
+
+        .carousel-card .card-content {
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            padding: 28px;
+            z-index: 2;
+            transform: translateY(20px);
+            opacity: 0;
+            transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.5s;
+        }
+        .carousel-card:hover .card-content {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        .card-content h3 {
+            font-family: var(--font-display);
+            font-size: 1.4rem;
+            color: #fff;
+            margin-bottom: 6px;
+            font-weight: 600;
+        }
+        .card-content p {
+            font-size: 0.82rem;
+            color: rgba(255,255,255,0.75);
+            font-weight: 300;
+            line-height: 1.6;
+        }
+
+        /* Carousel progress dots */
+        .carousel-dots {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 36px;
+        }
+        .carousel-dot {
+            width: 8px; height: 8px;
+            border-radius: 50%;
+            background: var(--sand);
+            cursor: pointer;
+            transition: background 0.3s, transform 0.3s, width 0.3s;
+            border: none;
+        }
+        .carousel-dot.active {
+            background: var(--gold);
+            width: 24px;
+            border-radius: 4px;
+        }
+
+        /* ===== ABOUT ===== */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 70px;
+            align-items: center;
+        }
+        .about-img-wrap { position: relative; }
+        .about-img {
+            width: 100%;
+            height: 480px;
+            object-fit: cover;
+            border-radius: 32px 8px 32px 8px;
+            display: block;
+            transition: box-shadow 0.4s, transform 0.4s;
+        }
+        .about-img:hover {
+            box-shadow: 0 8px 40px rgba(155, 125, 160, 0.25);
+            transform: translateY(-4px);
+        }
+        .about-deco {
+            position: absolute;
+            top: -18px;
+            left: -18px;
+            width: 80px;
+            height: 80px;
+            border: 3px solid var(--gold);
+            border-radius: 50%;
+            opacity: 0.25;
+        }
+        .about-text p {
+            font-size: 0.95rem;
+            color: var(--text-light);
+            font-weight: 300;
+            margin-bottom: 18px;
+            line-height: 1.8;
+        }
+        .about-stat {
+            display: flex;
+            gap: 32px;
+            margin-top: 28px;
+        }
+        .stat-block { text-align: center; }
+        .stat-block strong {
+            display: block;
+            font-family: var(--font-display);
+            font-size: 2rem;
+            color: var(--gold);
+            line-height: 1;
+        }
+        .stat-block span { font-size: 0.8rem; color: var(--stone); font-weight: 400; }
+
+        /* ===== TESTIMONIAL ===== */
+        .testimonial-section {
+            background: linear-gradient(135deg, var(--ivory) 0%, var(--sand) 100%);
+        }
+        .testimonial-wrap {
+            max-width: 720px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .quote-mark {
+            font-family: var(--font-display);
+            font-size: 7rem;
+            color: var(--gold);
+            opacity: 0.2;
+            line-height: 0.6;
+            margin-bottom: 16px;
+            display: block;
+        }
+        .testimonial-text {
+            font-family: var(--font-display);
+            font-size: clamp(1.15rem, 2.5vw, 1.55rem);
+            font-style: italic;
+            color: var(--mauve-dark);
+            line-height: 1.7;
+            margin-bottom: 24px;
+            font-weight: 400;
+        }
+        .testimonial-author {
+            font-size: 0.85rem;
+            color: var(--gold);
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+        .stars { color: var(--gold); font-size: 1.1rem; margin-bottom: 20px; }
+
+        /* ===== BOOKING ===== */
+        .booking-section {
+            background: linear-gradient(135deg, var(--mauve-dark) 0%, #2a1a2e 100%);
+            padding: 80px 0;
+        }
+        .booking-inner { text-align: center; }
+        .booking-inner .section-label { color: rgba(255,255,255,0.5); }
+        .booking-inner .section-title { color: white; }
+        .booking-inner .gold-line { background: linear-gradient(90deg, rgba(255,255,255,0.3), var(--gold)); margin: 18px auto 28px; }
+        .booking-inner p { color: rgba(255,255,255,0.7); font-size: 0.95rem; font-weight: 300; margin-bottom: 8px; }
+        .booking-inner p strong { color: white; font-weight: 600; }
+        .btn-white {
+            display: inline-block;
+            background: white;
+            color: var(--mauve-dark);
+            padding: 14px 36px;
+            border-radius: 50px;
+            font-family: var(--font-body);
+            font-size: 0.88rem;
+            font-weight: 700;
+            text-decoration: none;
+            letter-spacing: 0.04em;
+            cursor: none;
+            margin-top: 28px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .btn-white:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 28px rgba(0, 0, 0, 0.2);
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            padding: 36px 0;
+            background: #1a1a1a;
+            text-align: center;
+        }
+        footer p { font-size: 0.8rem; color: rgba(255,255,255,0.35); font-weight: 300; }
+        footer a { color: rgba(255,255,255,0.5); text-decoration: none; }
+        footer a:hover { color: var(--gold); }
+        .footer-logo {
+            font-family: var(--font-display);
+            font-size: 1.1rem;
+            color: var(--gold);
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        /* ===== MARQUEE ===== */
+        .marquee{overflow:hidden;padding:40px 0;border-top:1px solid rgba(212,168,83,.12);border-bottom:1px solid rgba(212,168,83,.12)}
+        .marquee-track{display:flex;gap:60px;white-space:nowrap;will-change:transform}
+        .marquee-text{font-family:var(--font-display);font-size:clamp(14px,2vw,20px);letter-spacing:.15em;text-transform:uppercase;opacity:.25;flex-shrink:0;color:var(--mauve-dark)}
+
+        /* ===== LENIS ===== */
+        html.lenis, html.lenis body { height: auto; }
+        .lenis.lenis-smooth { scroll-behavior: auto !important; }
+        .lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+        .lenis.lenis-stopped { overflow: clip; }
+
+        /* ===== SCROLL PROGRESS ===== */
+        .scroll-progress { position: fixed; top: 0; left: 0; width: 100%; height: 3px; z-index: 10000; }
+        .scroll-progress-bar { height: 100%; width: 100%; background: linear-gradient(90deg, var(--gold), var(--mauve)); transform-origin: left; transform: scaleX(0); }
+
+        /* ===== REDUCED MOTION ===== */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 900px) {
+            .hero { grid-template-columns: 1fr; padding: 110px 32px 60px; text-align: center; gap: 40px; }
+            .hero-sub { margin: 0 auto 36px; }
+            .hero-blob { width: 300px; height: 330px; }
+            .about-grid { grid-template-columns: 1fr; gap: 36px; }
+            .about-img { height: 320px; }
+            .about-stat { justify-content: center; }
+            .carousel-card { width: 300px; height: 400px; }
+        }
+        @media (max-width: 700px) {
+            nav { padding: 16px 20px; }
+            .nav-links { display: none; }
+            .hamburger { display: block; }
+            .services-grid { grid-template-columns: 1fr; }
+            section { padding: 60px 0; }
+            body { cursor: auto; }
+            .cursor-dot { display: none; }
+            .carousel-card { width: 85vw; height: 380px; }
+        }
+    </style>
+</head>
+<body>
+    <!-- SCROLL PROGRESS -->
+    <div class="scroll-progress"><div class="scroll-progress-bar" id="scrollProgress"></div></div>
+
+    <!-- CURSOR -->
+    <div class="cursor-dot" id="cursor"></div>
+
+    <!-- NAV -->
+    <nav id="navbar">
+        <div class="nav-logo">Studio <span>Belleza</span></div>
+        <ul class="nav-links">
+            <li><a href="#services">Prestations</a></li>
+            <li><a href="#galerie">Galerie</a></li>
+            <li><a href="#about">A propos</a></li>
+            <li><a href="#booking">Reserver</a></li>
+        </ul>
+        <button class="hamburger" onclick="document.querySelector('.nav-links').classList.toggle('show')" aria-label="Menu">
+            <span></span><span></span><span></span>
+        </button>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero" id="hero">
+        <div class="gradient-bg"></div>
+        <div class="hero-text">
+            <span class="hero-label">Protesiste ongulaire certifiee — Paea</span>
+            <h1 class="hero-title word-reveal">Studio<br><em>Belleza</em></h1>
+            <p class="hero-sub">L'art des ongles, sublime. Pose americaine, extension gel, nail art et soins personnalises dans un cadre intimiste a Paea.</p>
+            <a href="#booking" class="btn-gold">Reserver en ligne</a>
+        </div>
+        <div class="hero-visual">
+            <img src="images/studio-belleza/hero.jpg" alt="Heilani, fondatrice de Studio Belleza Tahiti" class="hero-blob">
+            <div class="hero-badge">
+                <span>💅</span>
+                <div>
+                    <p>Heilani<br><small>Protesiste ongulaire certifiee</small></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section id="services" class="services-section">
+        <div class="container">
+            <p class="section-label reveal">Nos prestations</p>
+            <h2 class="section-title word-reveal">Des ongles qui vous ressemblent</h2>
+            <div class="gold-line reveal"></div>
+            <div class="services-grid">
+                <div class="service-card slide-left">
+                    <img src="images/studio-belleza/nails.jpg" alt="Pose americaine couleur simple" class="scale-scroll">
+                    <span class="ribbon">5 000 XPF</span>
+                    <div class="service-card-body">
+                        <h3>Pose Americaine</h3>
+                        <p>Pose en gel sur capsule, couleur simple. 1h de soin pour des ongles impeccables et durables.</p>
+                    </div>
+                </div>
+                <div class="service-card slide-right">
+                    <img src="images/studio-belleza/salon.jpg" alt="Extension gel complète" class="scale-scroll">
+                    <span class="ribbon">8 000 XPF</span>
+                    <div class="service-card-body">
+                        <h3>Extension Gel</h3>
+                        <p>Extension complete en gel pour un resultat naturel et elegant. 2h de pose minutieuse par Heilani.</p>
+                    </div>
+                </div>
+                <div class="service-card slide-left">
+                    <img src="images/studio-belleza/facial.jpg" alt="Nail art personnalise" class="scale-scroll">
+                    <span class="ribbon">+3 000 XPF</span>
+                    <div class="service-card-body">
+                        <h3>Nail Art</h3>
+                        <p>Baby boomer, french, chrome, paillettes, strass ou decorations elaborees. Votre creativite est la limite.</p>
+                    </div>
+                </div>
+                <div class="service-card slide-right">
+                    <img src="images/studio-belleza/products.jpg" alt="Gainage ongles naturels" class="scale-scroll">
+                    <span class="ribbon">5 000 XPF</span>
+                    <div class="service-card-body">
+                        <h3>Gainage Naturel</h3>
+                        <p>Renforcement sur ongles naturels sans rallongement. 1h pour des ongles proteges et brillants.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MARQUEE -->
+    <div class="marquee">
+      <div class="marquee-track">
+        <span class="marquee-text">NAIL ART</span>
+        <span class="marquee-text">—</span>
+        <span class="marquee-text">POSE GEL</span>
+        <span class="marquee-text">—</span>
+        <span class="marquee-text">SOINS</span>
+        <span class="marquee-text">—</span>
+        <span class="marquee-text">CREATIVITE</span>
+        <span class="marquee-text">—</span>
+        <span class="marquee-text">BELLEZA</span>
+        <span class="marquee-text">—</span>
+        <span class="marquee-text">PAEA</span>
+        <span class="marquee-text">—</span>
+      </div>
+    </div>
+
+    <!-- 3D CAROUSEL GALLERY -->
+    <section id="galerie" class="carousel-section">
+        <div class="container" style="text-align:center; margin-bottom: 48px;">
+            <p class="section-label reveal">Galerie</p>
+            <h2 class="section-title word-reveal">Nos realisations</h2>
+            <div class="gold-line reveal" style="margin: 18px auto 0;"></div>
+        </div>
+        <div class="carousel-container">
+            <div class="carousel-track" id="carouselTrack">
+                <div class="carousel-card">
+                    <img src="images/studio-belleza/nails.jpg" alt="Pose americaine elegante" loading="lazy">
+                    <div class="card-content">
+                        <h3>Pose Americaine</h3>
+                        <p>Couleur unie, finition miroir. Un classique intemporel.</p>
+                    </div>
+                </div>
+                <div class="carousel-card">
+                    <img src="images/studio-belleza/salon.jpg" alt="Ambiance studio intimiste" loading="lazy">
+                    <div class="card-content">
+                        <h3>L'Atelier</h3>
+                        <p>Un espace chaleureux au coeur de la vallee Orofero.</p>
+                    </div>
+                </div>
+                <div class="carousel-card">
+                    <img src="images/studio-belleza/facial.jpg" alt="Nail art elabore" loading="lazy">
+                    <div class="card-content">
+                        <h3>Nail Art</h3>
+                        <p>Paillettes, strass, chrome — chaque detail compte.</p>
+                    </div>
+                </div>
+                <div class="carousel-card">
+                    <img src="images/studio-belleza/products.jpg" alt="Produits professionnels" loading="lazy">
+                    <div class="card-content">
+                        <h3>Produits Pro</h3>
+                        <p>Des marques selectionnees pour un resultat longue tenue.</p>
+                    </div>
+                </div>
+                <div class="carousel-card">
+                    <img src="images/studio-belleza/hair.jpg" alt="Inspiration beaute" loading="lazy">
+                    <div class="card-content">
+                        <h3>Inspiration</h3>
+                        <p>Tendances et creations originales pour chaque saison.</p>
+                    </div>
+                </div>
+                <div class="carousel-card">
+                    <img src="images/studio-belleza/hero.jpg" alt="Heilani au travail" loading="lazy">
+                    <div class="card-content">
+                        <h3>Heilani</h3>
+                        <p>La passion du detail, au service de votre beaute.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-dots" id="carouselDots"></div>
+        </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-img-wrap reveal">
+                    <div class="about-deco"></div>
+                    <img src="images/studio-belleza/salon.jpg" alt="Interieur du Studio Belleza a Paea" class="about-img scale-scroll">
+                </div>
+                <div class="reveal">
+                    <p class="section-label">Notre histoire</p>
+                    <h2 class="section-title word-reveal">Un atelier d'artiste a Paea</h2>
+                    <div class="gold-line"></div>
+                    <p class="line-reveal">Fondee par Heilani, protesiste ongulaire certifiee, Studio Belleza est un atelier intimiste niché dans la vallee Orofero a Paea. Chaque pose est une oeuvre unique, realisee avec precision et creativite.</p>
+                    <p class="line-reveal">Programme fidelite : -50% sur votre 10e prestation. Nous utilisons des produits professionnels pour un resultat impeccable et durable.</p>
+                    <div class="about-stat">
+                        <div class="stat-block">
+                            <strong data-count="300" data-suffix="+">0</strong>
+                            <span>clientes fideles</span>
+                        </div>
+                        <div class="stat-block">
+                            <strong data-count="5" data-suffix="">0</strong>
+                            <span>prestations</span>
+                        </div>
+                        <div class="stat-block">
+                            <strong data-count="10" data-suffix="+">0</strong>
+                            <span>options deco</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TESTIMONIAL -->
+    <section class="testimonial-section">
+        <div class="container">
+            <div class="testimonial-wrap reveal">
+                <span class="quote-mark">"</span>
+                <div class="stars">★★★★★</div>
+                <p class="testimonial-text line-reveal">Heilani est une vraie artiste ! Mes ongles tiennent 3 semaines sans bouger. Le nail art est toujours a la hauteur de ce que j'imagine, voire mieux. Le studio est un petit cocon, on se sent comme chez soi.</p>
+                <p class="testimonial-author">— Moea T., cliente depuis 2024</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- BOOKING -->
+    <section id="booking" class="booking-section">
+        <div class="container">
+            <div class="booking-inner reveal">
+                <p class="section-label">Rendez-vous</p>
+                <h2 class="section-title word-reveal">Reservez votre seance</h2>
+                <div class="gold-line"></div>
+                <p>📍 PK22, Vallee Orofero — Paea, Tahiti</p>
+                <p>Lundi – Vendredi · 8h00 – 17h00 | Samedi · 8h00 – 12h00</p>
+                <p style="margin-top:12px;">Acompte de 2 000 XPF pour la 1re visite</p>
+                <a href="https://studio-belleza.vercel.app/booking" class="btn-white" target="_blank">Reserver en ligne</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <span class="footer-logo">Studio Belleza Tahiti</span>
+            <p>Paea, Tahiti — Polynesie francaise</p>
+            <p style="margin-top: 10px;">Site realise par <a href="https://pacifikai.com">PACIFIK'AI</a></p>
+        </div>
+    </footer>
+
+    <!-- GSAP + Lenis + SplitType CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/split-type@0.3.4/umd/index.min.js"></script>
+
+    <script>
+        /* === MAGNETIC CURSOR === */
+        var cursor = document.getElementById('cursor');
+        var COLORS = ['#D4A853', '#9B7DA0', '#C49A47', '#E8C87A', '#B090B5'];
+        var mx = 0, my = 0, cx = 0, cy = 0;
+        var lastSparkle = 0;
+
+        if (cursor && window.matchMedia('(pointer: fine)').matches) {
+            document.addEventListener('mousemove', function(e) {
+                mx = e.clientX; my = e.clientY;
+                var now = Date.now();
+                if (now - lastSparkle > 50) {
+                    lastSparkle = now;
+                    var s = document.createElement('div');
+                    s.className = 'sparkle';
+                    s.style.left = e.clientX + 'px';
+                    s.style.top = e.clientY + 'px';
+                    s.style.background = COLORS[Math.floor(Math.random() * COLORS.length)];
+                    var size = 3 + Math.random() * 5;
+                    s.style.width = size + 'px';
+                    s.style.height = size + 'px';
+                    document.body.appendChild(s);
+                    setTimeout(function() { s.remove(); }, 700);
+                }
+            });
+            (function loop() {
+                cx += (mx - cx) * 0.12;
+                cy += (my - cy) * 0.12;
+                cursor.style.left = cx + 'px';
+                cursor.style.top = cy + 'px';
+                requestAnimationFrame(loop);
+            })();
+            document.querySelectorAll('a, button, .btn-gold, .btn-white, .carousel-card, .service-card').forEach(function(el) {
+                el.addEventListener('mouseenter', function() { cursor.classList.add('hover'); });
+                el.addEventListener('mouseleave', function() { cursor.classList.remove('hover'); });
+            });
+        }
+
+        /* === REDUCED MOTION CHECK === */
+        var prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        if (!prefersReducedMotion) {
+            gsap.registerPlugin(ScrollTrigger);
+
+            /* === LENIS SMOOTH SCROLL === */
+            var lenis = new Lenis({ duration: 1.4, easing: function(t) { return Math.min(1, 1.001 - Math.pow(2, -10 * t)); } });
+            lenis.on('scroll', ScrollTrigger.update);
+            gsap.ticker.add(function(time) { lenis.raf(time * 1000); });
+            gsap.ticker.lagSmoothing(0);
+
+            /* === NAVBAR SCROLL === */
+            var nav = document.getElementById('navbar');
+            ScrollTrigger.create({
+                start: 60,
+                onUpdate: function(self) { nav.classList.toggle('scrolled', self.scroll() > 60); }
+            });
+
+            /* === SCROLL PROGRESS BAR === */
+            gsap.to('#scrollProgress', {
+                scaleX: 1, ease: 'none',
+                scrollTrigger: { trigger: document.body, start: 'top top', end: 'bottom bottom', scrub: 0.3 }
+            });
+
+            /* === WORD REVEAL === */
+            document.querySelectorAll('.word-reveal').forEach(function(el) {
+                var split = new SplitType(el, { types: 'words' });
+                gsap.from(split.words, {
+                    yPercent: 100, opacity: 0, stagger: 0.05, duration: 0.8,
+                    ease: 'power3.out',
+                    scrollTrigger: { trigger: el, start: 'top 85%' }
+                });
+            });
+
+            /* === REVEAL SECTIONS === */
+            gsap.utils.toArray('.reveal, section').forEach(function(el) {
+                gsap.from(el, {
+                    y: 20, opacity: 0, duration: 1, ease: 'power2.out',
+                    scrollTrigger: { trigger: el, start: 'top 88%' }
+                });
+            });
+
+            /* === STAGGER SERVICE CARDS === */
+            var cards = document.querySelectorAll('.service-card');
+            if (cards.length) {
+                gsap.set(cards, { opacity: 0, y: 30 });
+                ScrollTrigger.batch(cards, {
+                    onEnter: function(batch) { gsap.to(batch, { opacity: 1, y: 0, stagger: 0.1, duration: 0.8, ease: 'power2.out' }); },
+                    start: 'top 88%'
+                });
+            }
+
+            /* === HERO ENTRANCE === */
+            gsap.from('.hero-blob', { scale: 0.9, opacity: 0, duration: 1.2, ease: 'power2.out', delay: 0.3 });
+            gsap.from('.hero-badge', { x: -30, opacity: 0, duration: 0.8, ease: 'power2.out', delay: 0.9 });
+            gsap.from('.hero-label', { y: 15, opacity: 0, duration: 0.6, ease: 'power2.out', delay: 0.1 });
+            gsap.from('.hero-sub', { y: 20, opacity: 0, duration: 0.8, ease: 'power2.out', delay: 0.5 });
+            gsap.from('.btn-gold', { y: 20, opacity: 0, duration: 0.8, ease: 'power2.out', delay: 0.7 });
+
+            /* === SLIDE ANIMATIONS === */
+            document.querySelectorAll('.slide-left').forEach(function(el) {
+                gsap.from(el, { x: -60, opacity: 0, duration: 0.8, ease: 'power2.out', scrollTrigger: { trigger: el, start: 'top 85%' } });
+            });
+            document.querySelectorAll('.slide-right').forEach(function(el) {
+                gsap.from(el, { x: 60, opacity: 0, duration: 0.8, ease: 'power2.out', scrollTrigger: { trigger: el, start: 'top 85%' } });
+            });
+
+            /* === MARQUEE INFINITE === */
+            document.querySelectorAll('.marquee-track').forEach(function(track) {
+                var items = track.innerHTML;
+                track.innerHTML += items + items;
+                gsap.to(track, { x: '-50%', duration: 25, ease: 'none', repeat: -1 });
+            });
+
+            /* === IMAGE SCALE-ON-SCROLL === */
+            gsap.utils.toArray('.scale-scroll').forEach(function(img) {
+                gsap.from(img, {
+                    scale: 1.15, ease: 'none',
+                    scrollTrigger: { trigger: img.parentElement, start: 'top bottom', end: 'bottom top', scrub: 1 }
+                });
+            });
+
+            /* === COUNTER ANIMATION === */
+            document.querySelectorAll('[data-count]').forEach(function(el) {
+                var target = parseInt(el.dataset.count);
+                var suffix = el.dataset.suffix || '';
+                ScrollTrigger.create({
+                    trigger: el, start: 'top 85%',
+                    onEnter: function() {
+                        gsap.to({ val: 0 }, {
+                            val: target, duration: 2, ease: 'power2.out',
+                            onUpdate: function() { el.textContent = Math.round(this.targets()[0].val) + suffix; }
+                        });
+                    }, once: true
+                });
+            });
+
+            /* === LINE-BY-LINE TEXT REVEAL === */
+            document.querySelectorAll('.line-reveal').forEach(function(el) {
+                var split = new SplitType(el, { types: 'lines' });
+                split.lines.forEach(function(line) { line.style.overflow = 'hidden'; });
+                gsap.from(split.lines, {
+                    yPercent: 100, opacity: 0, stagger: 0.1, duration: 0.8, ease: 'power3.out',
+                    scrollTrigger: { trigger: el, start: 'top 85%' }
+                });
+            });
+
+            /* === 3D CAROUSEL === */
+            var track = document.getElementById('carouselTrack');
+            var cardsArr = track.querySelectorAll('.carousel-card');
+            var dotsContainer = document.getElementById('carouselDots');
+            var cardWidth = 380 + 24; /* card width + gap */
+            var currentIndex = 0;
+            var autoplayTimer;
+
+            /* Create dots */
+            cardsArr.forEach(function(_, i) {
+                var dot = document.createElement('button');
+                dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+                dot.setAttribute('aria-label', 'Slide ' + (i + 1));
+                dot.addEventListener('click', function() { goTo(i); });
+                dotsContainer.appendChild(dot);
+            });
+
+            function goTo(index) {
+                currentIndex = index;
+                var offset = -index * cardWidth;
+                track.style.transform = 'translateX(' + offset + 'px)';
+                /* Update dots */
+                dotsContainer.querySelectorAll('.carousel-dot').forEach(function(d, i) {
+                    d.classList.toggle('active', i === index);
+                });
+                /* 3D depth effect — cards away from center are slightly rotated */
+                cardsArr.forEach(function(card, i) {
+                    var dist = i - index;
+                    var rotateY = dist * 4;
+                    var scale = Math.abs(dist) > 1 ? 0.92 : (Math.abs(dist) === 1 ? 0.96 : 1);
+                    var opacity = Math.abs(dist) > 2 ? 0.5 : 1;
+                    card.style.transform = 'rotateY(' + rotateY + 'deg) scale(' + scale + ')';
+                    card.style.opacity = opacity;
+                });
+                resetAutoplay();
+            }
+
+            function nextSlide() {
+                goTo((currentIndex + 1) % cardsArr.length);
+            }
+
+            function resetAutoplay() {
+                clearInterval(autoplayTimer);
+                autoplayTimer = setInterval(nextSlide, 4000);
+            }
+
+            /* Initial state */
+            goTo(0);
+
+            /* Drag support */
+            var startX = 0, isDragging = false;
+            track.addEventListener('mousedown', function(e) { startX = e.clientX; isDragging = true; });
+            track.addEventListener('touchstart', function(e) { startX = e.touches[0].clientX; isDragging = true; }, { passive: true });
+            document.addEventListener('mouseup', function(e) {
+                if (!isDragging) return;
+                isDragging = false;
+                var diff = e.clientX - startX;
+                if (Math.abs(diff) > 50) {
+                    if (diff < 0 && currentIndex < cardsArr.length - 1) goTo(currentIndex + 1);
+                    else if (diff > 0 && currentIndex > 0) goTo(currentIndex - 1);
+                }
+            });
+            document.addEventListener('touchend', function(e) {
+                if (!isDragging) return;
+                isDragging = false;
+                var diff = e.changedTouches[0].clientX - startX;
+                if (Math.abs(diff) > 50) {
+                    if (diff < 0 && currentIndex < cardsArr.length - 1) goTo(currentIndex + 1);
+                    else if (diff > 0 && currentIndex > 0) goTo(currentIndex - 1);
+                }
+            });
+
+            /* GSAP entrance for carousel cards */
+            gsap.from(cardsArr, {
+                y: 60, opacity: 0, stagger: 0.12, duration: 0.9, ease: 'power2.out',
+                scrollTrigger: { trigger: '.carousel-section', start: 'top 75%' }
+            });
+
+        } else {
+            /* Reduced motion fallback */
+            document.querySelectorAll('.reveal, .slide-left, .slide-right').forEach(function(el) {
+                el.style.opacity = '1';
+                el.style.transform = 'none';
+            });
+            var nav = document.getElementById('navbar');
+            window.addEventListener('scroll', function() {
+                nav.classList.toggle('scrolled', window.scrollY > 60);
+            });
+        }
+
+        /* === TEXT SCRAMBLE EFFECT === */
+        var TextScramble = function(el) {
+            this.el = el;
+            this.chars = '!<>-_\\/[]{}—=+*^?#';
+            this.update = this.update.bind(this);
+        };
+        TextScramble.prototype.setText = function(newText) {
+            var self = this;
+            var oldText = this.el.innerText;
+            var length = Math.max(oldText.length, newText.length);
+            this.queue = [];
+            for (var i = 0; i < length; i++) {
+                var from = oldText[i] || '';
+                var to = newText[i] || '';
+                var start = Math.floor(Math.random() * 40);
+                var end = start + Math.floor(Math.random() * 40);
+                this.queue.push({ from: from, to: to, start: start, end: end });
+            }
+            cancelAnimationFrame(this.frameRequest);
+            this.frame = 0;
+            this.update();
+        };
+        TextScramble.prototype.update = function() {
+            var output = '';
+            var complete = 0;
+            for (var i = 0; i < this.queue.length; i++) {
+                var item = this.queue[i];
+                if (this.frame >= item.end) { complete++; output += item.to; }
+                else if (this.frame >= item.start) {
+                    if (!item.char || Math.random() < 0.28) {
+                        item.char = this.chars[Math.floor(Math.random() * this.chars.length)];
+                    }
+                    output += '<span style="opacity:.4">' + item.char + '</span>';
+                } else { output += item.from; }
+            }
+            this.el.innerHTML = output;
+            if (complete === this.queue.length) return;
+            this.frameRequest = requestAnimationFrame(this.update);
+            this.frame++;
+        };
+        setTimeout(function() {
+            var heroP = document.querySelector('.hero-sub');
+            if (heroP) {
+                var fx = new TextScramble(heroP);
+                fx.setText(heroP.textContent);
+            }
+        }, 1200);
+    </script>
+</body>
+</html>
