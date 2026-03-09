@@ -148,9 +148,10 @@ section { position: relative; z-index: 1; }
   background: var(--bg-card); border: 1px solid var(--border); border-radius: 18px;
   overflow: hidden; cursor: pointer; text-decoration: none; color: inherit;
   display: flex; flex-direction: column;
-  transition: all 0.7s cubic-bezier(.25,.46,.45,.94);
-  transform-style: preserve-3d; will-change: transform, opacity;
+  transition: transform 0.6s cubic-bezier(.25,.46,.45,.94), opacity 0.6s ease, box-shadow 0.6s ease, border-color 0.4s ease;
+  backface-visibility: hidden; -webkit-backface-visibility: hidden;
 }
+.portfolio-card.transitioning { will-change: transform, opacity; }
 .portfolio-card[data-pos="0"] {
   transform: translateX(0) scale(1) rotateY(0deg);
   z-index: 5; opacity: 1;
@@ -174,10 +175,11 @@ section { position: relative; z-index: 1; }
 }
 .portfolio-card[data-pos="0"]:hover::before { opacity: 1; }
 .portfolio-thumb { position: relative; height: 400px; overflow: hidden; border-bottom: 1px solid var(--border); }
-.portfolio-thumb iframe { position: absolute; top: 0; left: 0; width: 1440px; height: 1600px; border: none; transform: scale(0.264); transform-origin: top left; pointer-events: none; z-index: 5; }
+.portfolio-thumb iframe { position: absolute; top: 0; left: 0; width: 1440px; height: 1600px; border: none; transform: scale(0.264); transform-origin: top left; pointer-events: none; z-index: 5; backface-visibility: hidden; -webkit-backface-visibility: hidden; }
+.portfolio-card[data-pos="hidden"] .portfolio-thumb iframe { visibility: hidden; }
 .portfolio-thumb::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, var(--bg-card) 0%, rgba(13,20,36,0.3) 40%, transparent 100%); pointer-events: none; z-index: 3; }
 .portfolio-card[data-pos="0"] .portfolio-thumb::after { background: linear-gradient(to top, var(--bg-card) 0%, transparent 20%); }
-.portfolio-thumb .thumb-label { position: absolute; top: 16px; left: 16px; z-index: 3; padding: 5px 14px; border-radius: 6px; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; background: rgba(0,0,0,0.55); backdrop-filter: blur(8px); color: #fff; border: 1px solid rgba(255,255,255,0.1); }
+.portfolio-thumb .thumb-label { position: absolute; top: 16px; left: 16px; z-index: 6; padding: 5px 14px; border-radius: 6px; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; background: rgba(0,0,0,0.75); color: #fff; border: 1px solid rgba(255,255,255,0.1); }
 .portfolio-card-info { padding: 20px 24px; }
 .portfolio-card-info h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 6px; }
 .portfolio-card-info p { font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 12px; line-height: 1.5; }
@@ -848,10 +850,18 @@ fadeEls.forEach(el => fadeObs.observe(el));
         if (counterEl) counterEl.textContent = currentIndex + 1;
     }
 
+    let isTransitioning = false;
     function goTo(idx) {
+        if (isTransitioning) return;
+        isTransitioning = true;
         currentIndex = ((idx % total) + total) % total;
+        cards.forEach(function(c) { c.classList.add('transitioning'); });
         updateUI();
         resetAutoplay();
+        setTimeout(function() {
+            cards.forEach(function(c) { c.classList.remove('transitioning'); });
+            isTransitioning = false;
+        }, 650);
     }
 
     function next() { goTo(currentIndex + 1); }
