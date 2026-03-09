@@ -173,13 +173,11 @@ section { position: relative; z-index: 1; }
   opacity: 0; transition: opacity 0.4s; pointer-events: none; border-radius: 18px;
 }
 .portfolio-card[data-pos="0"]:hover::before { opacity: 1; }
-.portfolio-iframe-wrap { position: relative; flex: 1; min-height: 400px; overflow: hidden; border-bottom: 1px solid var(--border); pointer-events: none; background: linear-gradient(135deg, rgba(249,112,102,0.05), rgba(20,184,166,0.05)); }
-.portfolio-iframe-wrap iframe { width: 200%; height: 200%; transform: scale(0.5); transform-origin: top left; border: none; pointer-events: none; opacity: 0; transition: opacity 0.5s ease; }
-.portfolio-iframe-wrap iframe.loaded { opacity: 1; }
-.portfolio-iframe-wrap::before { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.03), transparent); background-size: 200% 100%; animation: shimmer 2s infinite; z-index: 1; }
-.portfolio-iframe-wrap iframe.loaded + .portfolio-iframe-wrap::before { display: none; }
-@keyframes shimmer { 0%{background-position:200% 0} 100%{background-position:-200% 0} }
-.portfolio-iframe-wrap::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 60px; background: linear-gradient(transparent, var(--bg-card)); pointer-events: none; z-index: 2; }
+.portfolio-thumb { position: relative; flex: 1; min-height: 400px; overflow: hidden; border-bottom: 1px solid var(--border); }
+.portfolio-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.6s cubic-bezier(.25,.46,.45,.94); }
+.portfolio-card[data-pos="0"]:hover .portfolio-thumb img { transform: scale(1.06); }
+.portfolio-thumb::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, var(--bg-card) 0%, rgba(13,20,36,0.3) 40%, transparent 100%); pointer-events: none; }
+.portfolio-thumb .thumb-label { position: absolute; top: 16px; left: 16px; z-index: 3; padding: 5px 14px; border-radius: 6px; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; background: rgba(0,0,0,0.55); backdrop-filter: blur(8px); color: #fff; border: 1px solid rgba(255,255,255,0.1); }
 .portfolio-card-info { padding: 20px 24px; }
 .portfolio-card-info h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 6px; }
 .portfolio-card-info p { font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 12px; line-height: 1.5; }
@@ -512,8 +510,9 @@ footer a:hover { color: var(--text); }
         <button class="carousel-btn carousel-btn--next" aria-label="Suivant">&#8594;</button>
         <div class="portfolio-carousel" id="portfolioCarousel">
             <a href="/portfolio/air-tahiti-nui.html" target="_blank" class="portfolio-card">
-                <div class="portfolio-iframe-wrap">
-                    <iframe data-src="/portfolio/air-tahiti-nui.html" scrolling="no" tabindex="-1"></iframe>
+                <div class="portfolio-thumb">
+                    <img src="/portfolio/images/air-tahiti-nui-hero.jpg" alt="Air Tahiti Nui" loading="lazy">
+                    <span class="thumb-label">Site vitrine</span>
                 </div>
                 <div class="portfolio-card-info">
                     <h3>Air Tahiti Nui</h3>
@@ -526,8 +525,9 @@ footer a:hover { color: var(--text); }
                 </div>
             </a>
             <a href="/portfolio/hinano.html" target="_blank" class="portfolio-card">
-                <div class="portfolio-iframe-wrap">
-                    <iframe data-src="/portfolio/hinano.html" scrolling="no" tabindex="-1"></iframe>
+                <div class="portfolio-thumb">
+                    <img src="/portfolio/images/hinano/hero.jpg" alt="Hinano Brasserie de Tahiti" loading="lazy">
+                    <span class="thumb-label">Site vitrine</span>
                 </div>
                 <div class="portfolio-card-info">
                     <h3>Hinano / Brasserie de Tahiti</h3>
@@ -540,8 +540,9 @@ footer a:hover { color: var(--text); }
                 </div>
             </a>
             <a href="/portfolio/the-brando.html" target="_blank" class="portfolio-card">
-                <div class="portfolio-iframe-wrap">
-                    <iframe data-src="/portfolio/the-brando.html" scrolling="no" tabindex="-1"></iframe>
+                <div class="portfolio-thumb">
+                    <img src="/portfolio/images/the-brando/hero.jpg" alt="The Brando Tetiaroa" loading="lazy">
+                    <span class="thumb-label">Site vitrine</span>
                 </div>
                 <div class="portfolio-card-info">
                     <h3>The Brando</h3>
@@ -554,8 +555,9 @@ footer a:hover { color: var(--text); }
                 </div>
             </a>
             <a href="/portfolio/robert-wan.html" target="_blank" class="portfolio-card">
-                <div class="portfolio-iframe-wrap">
-                    <iframe data-src="/portfolio/robert-wan.html" scrolling="no" tabindex="-1"></iframe>
+                <div class="portfolio-thumb">
+                    <img src="/portfolio/images/robert-wan/hero.jpg" alt="Robert Wan Perles" loading="lazy">
+                    <span class="thumb-label">Site vitrine</span>
                 </div>
                 <div class="portfolio-card-info">
                     <h3>Robert Wan Perles</h3>
@@ -568,8 +570,9 @@ footer a:hover { color: var(--text); }
                 </div>
             </a>
             <a href="/portfolio/tahiti-nui-travel.html" target="_blank" class="portfolio-card">
-                <div class="portfolio-iframe-wrap">
-                    <iframe data-src="/portfolio/tahiti-nui-travel.html" scrolling="no" tabindex="-1"></iframe>
+                <div class="portfolio-thumb">
+                    <img src="/portfolio/images/tahiti-nui-travel/hero.jpg" alt="Tahiti Nui Travel" loading="lazy">
+                    <span class="thumb-label">Site vitrine</span>
                 </div>
                 <div class="portfolio-card-info">
                     <h3>Tahiti Nui Travel</h3>
@@ -582,8 +585,9 @@ footer a:hover { color: var(--text); }
                 </div>
             </a>
             <a href="/portfolio/mama-roti.html" target="_blank" class="portfolio-card">
-                <div class="portfolio-iframe-wrap">
-                    <iframe data-src="/portfolio/mama-roti.html" scrolling="no" tabindex="-1"></iframe>
+                <div class="portfolio-thumb">
+                    <img src="/portfolio/images/mama-roti/hero.jpg" alt="Chez Mama Roti" loading="lazy">
+                    <span class="thumb-label">Site vitrine</span>
                 </div>
                 <div class="portfolio-card-info">
                     <h3>Chez Mama Roti</h3>
@@ -596,8 +600,9 @@ footer a:hover { color: var(--text); }
                 </div>
             </a>
             <a href="/portfolio/moana-ink.html" target="_blank" class="portfolio-card">
-                <div class="portfolio-iframe-wrap">
-                    <iframe data-src="/portfolio/moana-ink.html" scrolling="no" tabindex="-1"></iframe>
+                <div class="portfolio-thumb">
+                    <img src="/portfolio/images/moana-ink/hero.jpg" alt="Moana Ink Tatouage" loading="lazy">
+                    <span class="thumb-label">Site vitrine</span>
                 </div>
                 <div class="portfolio-card-info">
                     <h3>Moana Ink</h3>
@@ -610,8 +615,9 @@ footer a:hover { color: var(--text); }
                 </div>
             </a>
             <a href="/portfolio/lagon-bleu.html" target="_blank" class="portfolio-card">
-                <div class="portfolio-iframe-wrap">
-                    <iframe data-src="/portfolio/lagon-bleu.html" scrolling="no" tabindex="-1"></iframe>
+                <div class="portfolio-thumb">
+                    <img src="/portfolio/images/lagon-bleu/hero.jpg" alt="Lagon Bleu Plongee Moorea" loading="lazy">
+                    <span class="thumb-label">Site vitrine</span>
                 </div>
                 <div class="portfolio-card-info">
                     <h3>Lagon Bleu Plongee</h3>
@@ -624,8 +630,9 @@ footer a:hover { color: var(--text); }
                 </div>
             </a>
             <a href="/portfolio/studio-belleza.html" target="_blank" class="portfolio-card">
-                <div class="portfolio-iframe-wrap">
-                    <iframe data-src="https://studio-belleza.vercel.app" scrolling="no" tabindex="-1"></iframe>
+                <div class="portfolio-thumb">
+                    <img src="/portfolio/images/studio-belleza/hero.jpg" alt="Studio Belleza Tahiti" loading="lazy">
+                    <span class="thumb-label">Client reel</span>
                 </div>
                 <div class="portfolio-card-info">
                     <h3>Studio Belleza Tahiti</h3>
@@ -638,8 +645,9 @@ footer a:hover { color: var(--text); }
                 </div>
             </a>
             <a href="/portfolio/te-fare-ora.html" target="_blank" class="portfolio-card">
-                <div class="portfolio-iframe-wrap">
-                    <iframe data-src="/portfolio/te-fare-ora.html" scrolling="no" tabindex="-1"></iframe>
+                <div class="portfolio-thumb">
+                    <img src="/portfolio/images/te-fare-ora/hero.jpg" alt="Te Fare Ora Bien-etre" loading="lazy">
+                    <span class="thumb-label">Site vitrine</span>
                 </div>
                 <div class="portfolio-card-info">
                     <h3>Te Fare Ora</h3>
@@ -938,22 +946,8 @@ fadeEls.forEach(el => fadeObs.observe(el));
                 card.setAttribute('data-pos', 'hidden');
             }
         });
-        loadVisibleIframes();
     }
 
-    // Lazy-load iframes — load all 5 visible positions + preload neighbors
-    function loadVisibleIframes() {
-        cards.forEach(function(card, i) {
-            const iframe = card.querySelector('iframe');
-            if (!iframe || !iframe.dataset.src) return;
-            const diff = Math.abs(i - currentIndex);
-            const wrapDiff = Math.min(diff, total - diff);
-            if (wrapDiff <= 2 && !iframe.getAttribute('src')) {
-                iframe.src = iframe.dataset.src;
-                iframe.addEventListener('load', function() { iframe.classList.add('loaded'); }, { once: true });
-            }
-        });
-    }
 
     function updateUI() {
         positionCards();
