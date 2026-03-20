@@ -370,23 +370,14 @@
             overflow: hidden;
             position: relative;
         }
-        .btn-primary .btn-text-wrap,
-        .btn-primary .btn-text-clone {
+        .btn-primary .btn-text-wrap {
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
-            transition: transform 0.35s var(--ease-spring);
         }
         .btn-primary .btn-text-clone {
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            transform: translateY(110%);
+            display: none;
         }
-        .btn-primary:hover .btn-text-wrap { transform: translateY(-110%); }
-        .btn-primary:hover .btn-text-clone { transform: translateY(0); }
 
         .btn-primary:hover {
             box-shadow: 0 0 30px var(--accent-glow);
@@ -2200,7 +2191,7 @@
         <a href="#process">Processus</a>
         <a href="#infrastructure">Infrastructure</a>
         <a href="blog/index.html">Blog</a>
-        <a href="#contact" class="btn-primary" style="text-align:center;justify-content:center;"><span class="btn-text-wrap">Nous contacter</span><span class="btn-text-clone">Nous contacter</span></a>
+        <a href="#contact" class="btn-primary" style="text-align:center;justify-content:center;">Nous contacter</a>
     </div>
 
     <main>
@@ -2215,8 +2206,8 @@
             </p>
             <div class="hero-buttons">
                 <a href="#services-bento" class="btn-primary">
-                    <span class="btn-text-wrap">Découvrir nos services <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
-                    <span class="btn-text-clone">Découvrir nos services <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+                    Découvrir nos services
+                    <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                 </a>
                 <a href="#contact" class="btn-secondary">Nous contacter</a>
             </div>
