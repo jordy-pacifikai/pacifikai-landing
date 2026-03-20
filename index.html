@@ -33,7 +33,7 @@
 
     <style>
         :root {
-            --announce-height: 40px;
+            --announce-height: 44px;
             --bg: #080c14;
             --bg-card: #0d1424;
             --bg-card-hover: #111b30;
@@ -171,10 +171,12 @@
             text-decoration: none;
             display: flex;
             align-items: center;
+            min-height: 44px;
+            padding: 4px 0;
         }
 
         .logo-img {
-            height: 42px;
+            height: 36px;
             width: auto;
             filter: drop-shadow(0 0 10px rgba(255,255,255,0.1));
         }
@@ -515,8 +517,8 @@
             pointer-events: none;
             z-index: 0;
         }
-        .card:hover::before { opacity: 1; }
-        .card:hover {
+        .card:hover::before, .card:focus-within::before { opacity: 1; }
+        .card:hover, .card:focus-within {
             background: var(--bg-card-hover);
             border-color: rgba(249,112,102,0.3);
             box-shadow: 0 8px 30px rgba(249,112,102,0.1);
@@ -836,7 +838,7 @@
         .bento-tile[data-accent="gold"]     { --tile-accent: var(--gold); --tile-glow: rgba(245,197,66,0.3); --tile-soft: rgba(245,197,66,0.1); }
         .bento-tile[data-accent="violet"]   { --tile-accent: #a78bfa; --tile-glow: rgba(167,139,250,0.3); --tile-soft: rgba(167,139,250,0.1); }
 
-        .bento-tile:hover {
+        .bento-tile:hover, .bento-tile:focus-within {
             border-color: var(--tile-accent, var(--accent));
             box-shadow: 0 0 40px var(--tile-glow, var(--accent-glow));
         }
@@ -847,7 +849,7 @@
             opacity: 0; transition: opacity 0.4s;
             background: radial-gradient(600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), var(--tile-glow, var(--accent-glow)), transparent 40%);
         }
-        .bento-tile:hover .bento-glow { opacity: 0.5; }
+        .bento-tile:hover .bento-glow, .bento-tile:focus-within .bento-glow { opacity: 0.5; }
 
         /* Front content */
         .bento-front {
@@ -855,7 +857,7 @@
             padding: 28px;
             transition: transform 0.5s var(--ease-out-expo);
         }
-        .bento-tile:hover .bento-front { transform: translateY(-8px); }
+        .bento-tile:hover .bento-front, .bento-tile:focus-within .bento-front { transform: translateY(-8px); }
 
         .bento-icon {
             width: 44px; height: 44px; border-radius: 12px;
@@ -2237,7 +2239,7 @@
                     <div class="bento-icon">🌐</div>
                     <h3 class="bento-title">Sites & Applications</h3>
                     <p class="bento-desc">Sites vitrines, landing pages, dashboards, apps métier et portails clients. Du design au déploiement, tout inclus.</p>
-                    <div class="card-stack">
+                    <div class="card-stack" aria-hidden="true">
                         <!-- Dashboard Analytics -->
                         <div class="card-stack-item cs-visual"><div class="cs-mini-vis"><div class="fk fk-dashboard"><div class="fk-nav"><div class="fk-logo"></div><div class="fk-nav-links"><div class="fk-nav-link"></div><div class="fk-nav-link"></div><div class="fk-nav-link"></div></div><div class="fk-nav-btn"></div></div><div class="fk-body"><div class="fk-side"><div class="fk-side-item active"></div><div class="fk-side-item"></div><div class="fk-side-item"></div><div class="fk-side-item"></div><div class="fk-side-item"></div></div><div class="fk-main"><div class="fk-stats-row" style="display:flex;gap:4px"><div class="fk-stat"><div class="fk-stat-val"></div><div class="fk-stat-label"></div></div><div class="fk-stat"><div class="fk-stat-val"></div><div class="fk-stat-label"></div></div><div class="fk-stat"><div class="fk-stat-val"></div><div class="fk-stat-label"></div></div></div><div class="fk-chart"><div class="fk-bar" style="height:45%;animation-delay:0.1s"></div><div class="fk-bar" style="height:70%;animation-delay:0.2s"></div><div class="fk-bar" style="height:55%;animation-delay:0.3s"></div><div class="fk-bar" style="height:85%;animation-delay:0.4s"></div><div class="fk-bar" style="height:60%;animation-delay:0.5s"></div><div class="fk-bar" style="height:90%;animation-delay:0.6s"></div><div class="fk-bar" style="height:50%;animation-delay:0.7s"></div><div class="fk-bar" style="height:75%;animation-delay:0.8s"></div></div></div></div></div></div><span class="cs-label">Dashboard Analytics</span></div>
                         <!-- Landing Page -->
@@ -2271,7 +2273,7 @@
                     <div class="bento-icon">🧠</div>
                     <h3 class="bento-title">Solutions IA</h3>
                     <p class="bento-desc">Chatbots, agents IA, automatisation des process, marketing IA et extraction de documents.</p>
-                    <div class="card-stack">
+                    <div class="card-stack" aria-hidden="true">
                         <!-- WhatsApp Chat -->
                         <div class="card-stack-item cs-visual"><div class="cs-mini-vis"><div class="fk fk-whatsapp"><div class="fk-wa-header"><div class="fk-wa-avatar"></div><div style="display:flex;flex-direction:column;gap:1px"><div class="fk-wa-name"></div><div class="fk-wa-status"></div></div></div><div class="fk-wa-chat"><div class="fk-wa-msg them"><div class="fk-wa-msg-text" style="width:80%"></div><div class="fk-wa-msg-text" style="width:55%"></div></div><div class="fk-wa-msg me"><div class="fk-wa-msg-text" style="width:70%"></div></div><div class="fk-wa-msg them"><div class="fk-wa-msg-text" style="width:60%"></div><div class="fk-wa-msg-text" style="width:45%"></div></div><div class="fk-wa-msg me"><div class="fk-wa-msg-text" style="width:85%"></div><div class="fk-wa-msg-text" style="width:40%"></div></div><div class="fk-wa-typing"><div class="fk-wa-typing-dot"></div><div class="fk-wa-typing-dot"></div><div class="fk-wa-typing-dot"></div></div></div><div class="fk-wa-input"><div class="fk-wa-inputbox"></div><div class="fk-wa-send"></div></div></div></div><span class="cs-label">Chatbot WhatsApp 24/7</span></div>
                         <!-- Workflow Builder -->
@@ -2308,7 +2310,7 @@
                     <div class="bento-icon">🎓</div>
                     <h3 class="bento-title">Conseil & Formation</h3>
                     <p class="bento-desc">Audit de vos process, stratégie IA personnalisée, formation de vos équipes et accompagnement continu.</p>
-                    <div class="card-stack">
+                    <div class="card-stack" aria-hidden="true">
                         <!-- Audit Report -->
                         <div class="card-stack-item cs-visual"><div class="cs-mini-vis"><div class="fk fk-audit"><div class="fk-nav"><div class="fk-logo"></div><div class="fk-nav-links"><div class="fk-nav-link"></div><div class="fk-nav-link"></div></div><div class="fk-nav-btn"></div></div><div class="fk-main"><div class="fk-audit-score"><div class="fk-score-ring good"><div class="fk-score-text"></div></div><div class="fk-score-details"><div class="fk-text" style="width:50px;background:rgba(255,255,255,0.25);height:4px"></div><div class="fk-text" style="width:35px"></div></div></div><div class="fk-audit-items"><div class="fk-audit-row"><div class="fk-audit-check pass"></div><div class="fk-audit-bar"><div class="fk-audit-fill" style="width:90%;background:var(--lagoon);animation-delay:0.3s"></div></div></div><div class="fk-audit-row"><div class="fk-audit-check pass"></div><div class="fk-audit-bar"><div class="fk-audit-fill" style="width:75%;background:var(--lagoon);animation-delay:0.6s"></div></div></div><div class="fk-audit-row"><div class="fk-audit-check warn"></div><div class="fk-audit-bar"><div class="fk-audit-fill" style="width:55%;background:var(--gold);animation-delay:0.9s"></div></div></div><div class="fk-audit-row"><div class="fk-audit-check fail"></div><div class="fk-audit-bar"><div class="fk-audit-fill" style="width:30%;background:var(--accent);animation-delay:1.2s"></div></div></div></div></div></div></div><span class="cs-label">Audit de Process</span></div>
                         <!-- Roadmap Timeline -->
@@ -2986,15 +2988,16 @@
             background: linear-gradient(90deg, var(--accent), #e85d5a, var(--accent));
             background-size: 200% 100%;
             animation: announceShimmer 4s ease infinite;
-            padding: 8px 48px 8px 1rem;
+            padding: 10px 48px 10px 1rem; min-height: 44px;
             text-align: center; font-size: 0.82rem; font-weight: 600; color: #fff;
             cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px;
         }
-        .announce-bar a { color: #fff; text-decoration: underline; }
+        .announce-bar a { color: #fff; text-decoration: underline; padding: 8px 4px; min-height: 44px; display: inline-flex; align-items: center; }
         .announce-bar .announce-close {
-            position: absolute; right: 12px; top: 50%; transform: translateY(-50%);
+            position: absolute; right: 8px; top: 50%; transform: translateY(-50%);
             background: none; border: none; color: rgba(255,255,255,0.7);
-            font-size: 18px; cursor: pointer; padding: 4px;
+            font-size: 18px; cursor: pointer; padding: 12px; min-width: 44px; min-height: 44px;
+            display: flex; align-items: center; justify-content: center;
         }
         .announce-bar .announce-close:hover { color: #fff; }
         .announce-bar.hidden { display: none; }
@@ -3091,7 +3094,8 @@
             </div>
             <div class="mana-messages" id="mana-messages"></div>
             <div class="mana-input-area">
-                <textarea class="mana-input" id="mana-input" placeholder="Ecris ton message..." rows="1" onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();sendManaMessage()}"></textarea>
+                <label for="mana-input" class="sr-only">Message</label>
+                <textarea class="mana-input" id="mana-input" placeholder="Ecris ton message..." rows="1" aria-label="Ecris ton message" onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();sendManaMessage()}"></textarea>
                 <button class="mana-send" id="mana-send" onclick="sendManaMessage()" aria-label="Envoyer le message">
                     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
                 </button>
