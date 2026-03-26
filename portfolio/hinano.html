@@ -156,7 +156,7 @@
             background: var(--cream);
             display: flex;
             align-items: center;
-            padding: 140px 64px 80px 64px;
+            padding: 60px 64px 60px 64px;
             position: relative;
             z-index: 1;
         }
@@ -311,7 +311,7 @@
         /* ===== HISTOIRE ===== */
         .histoire {
             background: var(--cream);
-            padding: 120px 0;
+            padding: 56px 0;
         }
         .histoire .inner {
             max-width: 1260px;
@@ -327,8 +327,10 @@
         }
         .histoire-img-wrap img {
             width: 100%;
-            height: 460px;
-            object-fit: cover;
+            height: auto;
+            max-height: 520px;
+            object-fit: contain;
+            border-radius: 12px;
         }
         /* Vertical timeline accent */
         .histoire-img-wrap::before {
@@ -401,7 +403,7 @@
         /* ===== STATS ===== */
         .stats {
             background: var(--cream-dark);
-            padding: 100px 0;
+            padding: 48px 0;
         }
         .stats .inner {
             max-width: 1260px;
@@ -471,7 +473,7 @@
         /* ===== HORIZONTAL GALLERY ===== */
         .gallery {
             background: var(--brown);
-            padding: 100px 0;
+            padding: 48px 0;
         }
         .gallery .inner {
             max-width: 1260px;
@@ -516,9 +518,15 @@
         .hscroll-item img {
             width: 100%;
             height: 420px;
-            object-fit: cover;
             display: block;
             transition: transform 0.6s cubic-bezier(.25,.46,.45,.94);
+        }
+        .hscroll-item img[src$=".png"] {
+            object-fit: contain;
+            background: linear-gradient(135deg, var(--brown) 0%, #2a1a0e 100%);
+        }
+        .hscroll-item img[src$=".jpg"] {
+            object-fit: cover;
         }
         .hscroll-item:hover img { transform: scale(1.04); }
         .hscroll-caption {
@@ -565,24 +573,24 @@
         }
 
         /* ===== REVEAL CLASSES ===== */
-        .reveal {
+        .reveal.js-reveal {
             opacity: 0;
             transform: translateY(40px);
             transition: opacity 0.7s ease-out, transform 0.7s ease-out;
         }
-        .reveal.visible { opacity: 1; transform: translateY(0); }
-        .reveal-left {
+        .reveal.visible { opacity: 1; transform: translateY(0) !important; }
+        .reveal-left.js-reveal {
             opacity: 0;
             transform: translateX(-50px);
             transition: opacity 0.8s ease-out, transform 0.8s ease-out;
         }
-        .reveal-left.visible { opacity: 1; transform: translateX(0); }
-        .reveal-right {
+        .reveal-left.visible { opacity: 1; transform: translateX(0) !important; }
+        .reveal-right.js-reveal {
             opacity: 0;
             transform: translateX(50px);
             transition: opacity 0.8s ease-out, transform 0.8s ease-out;
         }
-        .reveal-right.visible { opacity: 1; transform: translateX(0); }
+        .reveal-right.visible { opacity: 1; transform: translateX(0) !important; }
 
         /* ===== FOOTER ===== */
         .footer {
@@ -646,7 +654,7 @@
         .circle-reveal.revealed{clip-path:circle(75% at 50% 50%)}
 
         /* ===== HORIZONTAL SCROLL SECTION ===== */
-        .horizontal-scroll{position:relative;overflow:hidden}
+        .horizontal-scroll{position:relative;overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch;scrollbar-width:none}
         .horizontal-scroll .scroll-track{display:flex;gap:20px;width:max-content;padding:40px 0}
         .horizontal-scroll .scroll-item{flex-shrink:0;width:70vw;max-width:500px;overflow:hidden;border-radius:8px}
         .horizontal-scroll .scroll-item img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease}
@@ -659,7 +667,7 @@
 
             .hero { grid-template-columns: 1fr; min-height: auto; }
             .hero-left {
-                padding: 120px 32px 60px;
+                padding: 56px 32px 48px;
                 order: 1;
             }
             .hero-left::after { display: none; }
@@ -676,7 +684,7 @@
             }
             .histoire-img-wrap::before,
             .histoire-img-wrap::after { display: none; }
-            .histoire-img-wrap img { height: 280px; }
+            .histoire-img-wrap img { max-height: 320px; }
 
             .stats-grid { grid-template-columns: 1fr; gap: 2px; }
 
@@ -691,7 +699,7 @@
         }
 
         @media (max-width: 600px) {
-            .hero-left { padding: 100px 24px 48px; }
+            .hero-left { padding: 56px 24px 40px; }
             .histoire .inner { padding: 0 24px; }
             .stats .inner { padding: 0 24px; }
             .gallery .inner { padding: 0 0 0 24px; }
@@ -801,7 +809,7 @@
 <section class="histoire" id="histoire">
     <div class="inner">
         <div class="histoire-img-wrap reveal-left">
-            <img src="images/hinano/brewery.jpg" alt="Brasserie de Tahiti — Punaauia" loading="lazy" class="scale-scroll circle-reveal">
+            <img src="images/hinano/brewery.jpg" alt="Brasserie de Tahiti — Punaauia" class="scale-scroll circle-reveal">
         </div>
         <div class="histoire-content reveal-right">
             <div class="section-label">Notre Histoire</div>
@@ -866,35 +874,35 @@
         </div>
         <div class="hscroll-container" id="hscroll">
             <div class="hscroll-item">
-                <img src="images/hinano/bottle.png" alt="La bouteille Hinano" loading="lazy">
+                <img src="images/hinano/bottle.png" alt="La bouteille Hinano">
                 <div class="hscroll-caption">
                     <h3>La bouteille iconique</h3>
                     <p>Un design reconnu dans le monde entier</p>
                 </div>
             </div>
             <div class="hscroll-item">
-                <img src="images/hinano/bar.jpg" alt="Bar polynesien" loading="lazy">
+                <img src="images/hinano/bar.jpg" alt="Bar polynesien">
                 <div class="hscroll-caption">
                     <h3>Au comptoir du Pacifique</h3>
                     <p>Le rendez-vous des locaux depuis toujours</p>
                 </div>
             </div>
             <div class="hscroll-item">
-                <img src="images/hinano/glass.png" alt="Verre Hinano" loading="lazy">
+                <img src="images/hinano/glass.png" alt="Verre Hinano">
                 <div class="hscroll-caption">
                     <h3>Servie a la perfection</h3>
                     <p>Bien froide, bien fraiche, bien tahitienne</p>
                 </div>
             </div>
             <div class="hscroll-item">
-                <img src="images/hinano/lifestyle.jpg" alt="Lifestyle Hinano" loading="lazy">
+                <img src="images/hinano/lifestyle.jpg" alt="Lifestyle Hinano">
                 <div class="hscroll-caption">
                     <h3>L'art de vivre polynesien</h3>
                     <p>Fetes, couchers de soleil, moments entre amis</p>
                 </div>
             </div>
             <div class="hscroll-item">
-                <img src="images/hinano/export.png" alt="Hinano export" loading="lazy">
+                <img src="images/hinano/export.png" alt="Hinano export">
                 <div class="hscroll-caption">
                     <h3>Ambassadrice du Pacifique</h3>
                     <p>Exportee dans plus de 50 pays</p>
@@ -1025,8 +1033,23 @@
         });
     }
 
-    /* === REVEAL SECTIONS === */
-    gsap.utils.toArray('.reveal, .reveal-left, .reveal-right, section').forEach(el => {
+    // === REVEAL SECTIONS — IntersectionObserver (no GSAP pin dependency) ===
+    const revealEls = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
+    revealEls.forEach(el => el.classList.add('js-reveal'));
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0, rootMargin: '50px 0px 50px 0px' });
+    revealEls.forEach(el => revealObserver.observe(el));
+    // Safety: reveal all after 1.5s if observer never fires
+    setTimeout(() => { revealEls.forEach(el => { el.classList.add('visible'); el.classList.remove('js-reveal'); }); }, 1500);
+
+    /* === REVEAL SECTIONS — REPLACED === */
+    if (false) gsap.utils.toArray('.reveal, .reveal-left, .reveal-right, section').forEach(el => {
         gsap.from(el, {
             y: el.classList.contains('reveal-left') ? 0 : (el.classList.contains('reveal-right') ? 0 : 30),
             x: el.classList.contains('reveal-left') ? -50 : (el.classList.contains('reveal-right') ? 50 : 0),
@@ -1035,11 +1058,27 @@
         });
     });
 
-    /* === STAGGER CARDS === */
+    /* === STAGGER CARDS — IntersectionObserver === */
     const cards = document.querySelectorAll('.card, .product-card, .beer-card, .variant-card');
     if (cards.length) {
-        gsap.set(cards, { opacity: 0, y: 40 });
-        ScrollTrigger.batch(cards, {
+        cards.forEach((card, i) => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(40px)';
+            card.style.transition = `opacity 0.8s ease ${i * 0.12}s, transform 0.8s ease ${i * 0.12}s`;
+        });
+        const cardObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                    cardObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0, rootMargin: '50px 0px 50px 0px' });
+        cards.forEach(card => cardObserver.observe(card));
+        // Safety: reveal all cards after 1.5s
+        setTimeout(() => { cards.forEach(c => { c.style.opacity='1'; c.style.transform='none'; }); }, 1500);
+        if (false) ScrollTrigger.batch(cards, {
             onEnter: batch => gsap.to(batch, { opacity: 1, y: 0, stagger: 0.12, duration: 0.8, ease: 'power3.out' }),
             start: 'top 88%'
         });
@@ -1180,19 +1219,7 @@
     });
 
     /* === HORIZONTAL SCROLL SECTION (GSAP PINNED) === */
-    const hTrack = document.querySelector('.scroll-track');
-    if (hTrack) {
-        gsap.to(hTrack, {
-            x: () => -(hTrack.scrollWidth - window.innerWidth + 100),
-            ease: 'none',
-            scrollTrigger: {
-                trigger: '.horizontal-scroll',
-                start: 'top top',
-                end: () => '+=' + (hTrack.scrollWidth - window.innerWidth),
-                scrub: 1, pin: true, anticipatePin: 1
-            }
-        });
-    }
+    // Horizontal scroll: CSS overflow-x:auto (no GSAP pin)
 
     // === TEXT SCRAMBLE EFFECT ===
     class TextScramble {
@@ -1234,6 +1261,33 @@
       const heroP = document.querySelector('.hero-content p, .hero p, .hero-text p');
       if (heroP) { const fx = new TextScramble(heroP); fx.setText(heroP.textContent); }
     }, 1200);
+</script>
+
+
+<!-- SAFETY: Force all content visible after 2s (kills GSAP ticker to prevent re-override) -->
+<script>
+setTimeout(function(){
+  // Kill ALL GSAP ScrollTrigger-based animations
+  if(typeof ScrollTrigger!=="undefined"){
+    ScrollTrigger.getAll().forEach(function(st){st.kill()});
+  }
+  if(typeof gsap!=="undefined"){
+    gsap.globalTimeline.getChildren(true,true,true).forEach(function(t){
+      try{t.progress(1);t.kill()}catch(e){}
+    });
+  }
+  // Force everything visible
+  var all=document.querySelectorAll("*");
+  for(var i=0;i<all.length;i++){
+    var el=all[i];
+    var s=window.getComputedStyle(el);
+    if(parseFloat(s.opacity)<0.15&&el.offsetHeight>50&&s.display!=="none"){
+      var c=el.className||"";
+      if(c.indexOf("bubble")>-1||c.indexOf("cursor")>-1||c.indexOf("scroll-progress")>-1||c.indexOf("modal")>-1||c.indexOf("overlay")>-1)continue;
+      el.style.cssText+="opacity:1!important;transform:none!important;";
+    }
+  }
+},2000);
 </script>
 </body>
 </html>

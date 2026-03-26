@@ -334,7 +334,7 @@
             position: relative;
             z-index: 2;
             max-width: 800px;
-            padding: 140px 0 200px;
+            padding: 60px 0 80px;
         }
 
         .hero-badge {
@@ -609,7 +609,7 @@
            ============================================ */
 
         .destinations {
-            padding: 120px 0;
+            padding: 56px 0;
             background: var(--atn-cream);
             position: relative;
         }
@@ -777,7 +777,7 @@
            ============================================ */
 
         .experience {
-            padding: 140px 0;
+            padding: 60px 0;
             background: var(--atn-white);
             position: relative;
             overflow: hidden;
@@ -932,7 +932,7 @@
            ============================================ */
 
         .classes {
-            padding: 140px 0;
+            padding: 60px 0;
             background: linear-gradient(180deg, var(--atn-navy) 0%, #0a1929 100%);
             position: relative;
             overflow: hidden;
@@ -1109,7 +1109,7 @@
            ============================================ */
 
         .stats {
-            padding: 100px 0;
+            padding: 48px 0;
             background: linear-gradient(135deg, var(--atn-teal) 0%, var(--atn-teal-dark) 100%);
             position: relative;
             overflow: hidden;
@@ -1176,7 +1176,7 @@
            ============================================ */
 
         .newsletter {
-            padding: 120px 0;
+            padding: 56px 0;
             background: var(--atn-cream);
             position: relative;
         }
@@ -1286,7 +1286,7 @@
         }
 
         /* ===== HORIZONTAL SCROLL SHOWCASE ===== */
-        .horizontal-scroll{position:relative;overflow:hidden}
+        .horizontal-scroll{position:relative;overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch;scrollbar-width:none}
         .horizontal-scroll .scroll-track{display:flex;gap:20px;width:max-content;padding:40px 0}
         .horizontal-scroll .scroll-item{flex-shrink:0;width:70vw;max-width:500px;overflow:hidden;border-radius:8px}
         .horizontal-scroll .scroll-item img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease}
@@ -1923,7 +1923,7 @@
 
         @media (max-width: 768px) {
             .hero-content {
-                padding: 120px 0 180px;
+                padding: 56px 0 80px;
             }
             .booking-card {
                 padding: 32px 24px;
@@ -2368,12 +2368,12 @@
     <!-- HORIZONTAL SCROLL SHOWCASE -->
     <section class="horizontal-scroll">
       <div class="scroll-track">
-        <div class="scroll-item"><img src="images/business-luxury.jpg" alt="Classe Poerava Business" loading="lazy"></div>
-        <div class="scroll-item"><img src="images/bora-bora.jpg" alt="Bora Bora lagon turquoise" loading="lazy"></div>
-        <div class="scroll-item"><img src="images/hospitality-polynesian.jpg" alt="Hospitalite polynesienne" loading="lazy"></div>
-        <div class="scroll-item"><img src="images/moorea.jpg" alt="Moorea vue aerienne" loading="lazy"></div>
-        <div class="scroll-item"><img src="images/premium-service.jpg" alt="Classe Manava Premium" loading="lazy"></div>
-        <div class="scroll-item"><img src="images/economy-cabin.jpg" alt="Cabine Moana Economy" loading="lazy"></div>
+        <div class="scroll-item"><img src="images/business-luxury.jpg" alt="Classe Poerava Business"></div>
+        <div class="scroll-item"><img src="images/bora-bora.jpg" alt="Bora Bora lagon turquoise"></div>
+        <div class="scroll-item"><img src="images/hospitality-polynesian.jpg" alt="Hospitalite polynesienne"></div>
+        <div class="scroll-item"><img src="images/moorea.jpg" alt="Moorea vue aerienne"></div>
+        <div class="scroll-item"><img src="images/premium-service.jpg" alt="Classe Manava Premium"></div>
+        <div class="scroll-item"><img src="images/economy-cabin.jpg" alt="Cabine Moana Economy"></div>
       </div>
     </section>
 
@@ -2629,19 +2629,19 @@
             heroTL.from('.hero-ctas', { y: 30, opacity: 0, duration: 0.6 }, '<0.15');
         }
 
-        // ---- Word reveal on .word-reveal h2s ----
+        // ---- Word reveal on .word-reveal h2s — IntersectionObserver ----
         if (!prefersReducedMotion) {
             document.querySelectorAll('.word-reveal').forEach((el) => {
                 const split = new SplitType(el, { types: 'words', tagName: 'span' });
-                gsap.set(split.words, { y: 40, opacity: 0 });
-                ScrollTrigger.create({
-                    trigger: el,
-                    start: 'top 85%',
-                    once: true,
-                    onEnter: () => {
-                        gsap.to(split.words, { y: 0, opacity: 1, duration: 0.7, stagger: 0.04, ease: 'power3.out' });
-                    }
-                });
+                split.words.forEach(w => { w.style.opacity = '0'; w.style.transform = 'translateY(40px)'; w.style.transition = 'opacity 0.7s ease, transform 0.7s ease'; });
+                const wObs = new IntersectionObserver((entries) => {
+                    entries.forEach(e => { if (e.isIntersecting) {
+                        split.words.forEach((w, i) => { setTimeout(() => { w.style.opacity = '1'; w.style.transform = 'none'; }, i * 40); });
+                        wObs.unobserve(e.target);
+                    }});
+                }, { threshold: 0, rootMargin: '50px 0px 50px 0px' });
+                wObs.observe(el);
+                setTimeout(() => { split.words.forEach(w => { w.style.opacity = '1'; w.style.transform = 'none'; }); }, 1500);
             });
         }
 
@@ -2661,68 +2661,39 @@
             });
         }
 
-        // ---- Section reveals (fade up) ----
+        // ---- Section reveals (fade up) — IntersectionObserver ----
         if (!prefersReducedMotion) {
-            const revealSections = [
-                '.booking-card',
-                '.section-header',
-                '.experience-visual',
-                '.experience-content',
-                '.newsletter-card'
-            ];
-            revealSections.forEach((sel) => {
-                document.querySelectorAll(sel).forEach((el) => {
-                    gsap.from(el, {
-                        y: 30,
-                        opacity: 0,
-                        duration: 0.8,
-                        ease: 'power3.out',
-                        scrollTrigger: {
-                            trigger: el,
-                            start: 'top 85%',
-                            once: true
-                        }
-                    });
-                });
-            });
+            const revealSections = document.querySelectorAll('.booking-card, .section-header, .experience-visual, .experience-content, .newsletter-card');
+            revealSections.forEach(el => { el.style.opacity = '0'; el.style.transform = 'translateY(30px)'; el.style.transition = 'opacity 0.8s ease, transform 0.8s ease'; });
+            setTimeout(() => { revealSections.forEach(el => { el.style.opacity = '1'; el.style.transform = 'none'; }); }, 1500);
+            const sectionObs = new IntersectionObserver((entries) => {
+                entries.forEach(e => { if (e.isIntersecting) { e.target.style.opacity = '1'; e.target.style.transform = 'none'; sectionObs.unobserve(e.target); } });
+            }, { threshold: 0, rootMargin: '50px 0px 50px 0px' });
+            revealSections.forEach(el => sectionObs.observe(el));
         }
 
-        // ---- Stagger destination cards ----
+        // ---- Stagger destination cards — IntersectionObserver ----
         if (!prefersReducedMotion) {
-            const destCards = gsap.utils.toArray('.destination-card');
-            if (destCards.length) {
-                gsap.from(destCards, {
-                    y: 50,
-                    opacity: 0,
-                    duration: 0.7,
-                    stagger: 0.12,
-                    ease: 'power3.out',
-                    scrollTrigger: {
-                        trigger: '.destinations-grid',
-                        start: 'top 80%',
-                        once: true
-                    }
-                });
-            }
+            const destCards = document.querySelectorAll('.destination-card');
+            destCards.forEach(el => { el.style.opacity = '0'; el.style.transform = 'translateY(50px)'; el.style.transition = 'opacity 0.7s ease, transform 0.7s ease'; });
+            setTimeout(() => { destCards.forEach(el => { el.style.opacity = '1'; el.style.transform = 'none'; }); }, 1500);
+            const destObs = new IntersectionObserver((entries) => {
+                let d = 0;
+                entries.forEach(e => { if (e.isIntersecting) { setTimeout(() => { e.target.style.opacity = '1'; e.target.style.transform = 'none'; }, d); d += 120; destObs.unobserve(e.target); } });
+            }, { threshold: 0, rootMargin: '50px 0px 50px 0px' });
+            destCards.forEach(el => destObs.observe(el));
         }
 
-        // ---- Stagger class cards ----
+        // ---- Stagger class cards — IntersectionObserver ----
         if (!prefersReducedMotion) {
-            const classCards = gsap.utils.toArray('.class-card');
-            if (classCards.length) {
-                gsap.from(classCards, {
-                    y: 50,
-                    opacity: 0,
-                    duration: 0.7,
-                    stagger: 0.15,
-                    ease: 'power3.out',
-                    scrollTrigger: {
-                        trigger: '.classes-grid',
-                        start: 'top 80%',
-                        once: true
-                    }
-                });
-            }
+            const classCards = document.querySelectorAll('.class-card');
+            classCards.forEach(el => { el.style.opacity = '0'; el.style.transform = 'translateY(50px)'; el.style.transition = 'opacity 0.7s ease, transform 0.7s ease'; });
+            setTimeout(() => { classCards.forEach(el => { el.style.opacity = '1'; el.style.transform = 'none'; }); }, 1500);
+            const classObs = new IntersectionObserver((entries) => {
+                let d = 0;
+                entries.forEach(e => { if (e.isIntersecting) { setTimeout(() => { e.target.style.opacity = '1'; e.target.style.transform = 'none'; }, d); d += 150; classObs.unobserve(e.target); } });
+            }, { threshold: 0, rootMargin: '50px 0px 50px 0px' });
+            classCards.forEach(el => classObs.observe(el));
         }
 
         // ---- Counter animation for stats ----
@@ -2753,50 +2724,40 @@
             });
         });
 
-        // ---- Gallery / fleet images scale on scroll ----
+        // ---- Gallery / fleet images — IntersectionObserver ----
         if (!prefersReducedMotion) {
-            document.querySelectorAll('.experience-image-main, .experience-image-float').forEach((el) => {
-                gsap.from(el, {
-                    scale: 0.92,
-                    opacity: 0,
-                    duration: 1,
-                    ease: 'power3.out',
-                    scrollTrigger: {
-                        trigger: el,
-                        start: 'top 85%',
-                        once: true
-                    }
-                });
-            });
+            const expImgs = document.querySelectorAll('.experience-image-main, .experience-image-float');
+            expImgs.forEach(el => { el.style.opacity = '0'; el.style.transform = 'scale(0.92)'; el.style.transition = 'opacity 1s ease, transform 1s ease'; });
+            setTimeout(() => { expImgs.forEach(el => { el.style.opacity = '1'; el.style.transform = 'none'; }); }, 1500);
+            const imgObs = new IntersectionObserver((entries) => {
+                entries.forEach(e => { if (e.isIntersecting) { e.target.style.opacity = '1'; e.target.style.transform = 'none'; imgObs.unobserve(e.target); } });
+            }, { threshold: 0, rootMargin: '50px 0px 50px 0px' });
+            expImgs.forEach(el => imgObs.observe(el));
         }
 
-        // ---- Feature items stagger ----
+        // ---- Feature items stagger — IntersectionObserver ----
         if (!prefersReducedMotion) {
-            const featureItems = gsap.utils.toArray('.feature-item');
-            if (featureItems.length) {
-                gsap.from(featureItems, {
-                    x: -20,
-                    opacity: 0,
-                    duration: 0.5,
-                    stagger: 0.1,
-                    ease: 'power3.out',
-                    scrollTrigger: {
-                        trigger: '.experience-features',
-                        start: 'top 85%',
-                        once: true
-                    }
-                });
-            }
+            const featureItems = document.querySelectorAll('.feature-item');
+            featureItems.forEach(el => { el.style.opacity = '0'; el.style.transform = 'translateX(-20px)'; el.style.transition = 'opacity 0.5s ease, transform 0.5s ease'; });
+            setTimeout(() => { featureItems.forEach(el => { el.style.opacity = '1'; el.style.transform = 'none'; }); }, 1500);
+            const featObs = new IntersectionObserver((entries) => {
+                let d = 0;
+                entries.forEach(e => { if (e.isIntersecting) { setTimeout(() => { e.target.style.opacity = '1'; e.target.style.transform = 'none'; }, d); d += 100; featObs.unobserve(e.target); } });
+            }, { threshold: 0, rootMargin: '50px 0px 50px 0px' });
+            featureItems.forEach(el => featObs.observe(el));
         }
 
-        // ---- Stat items stagger ----
+        // ---- Stat items stagger — IntersectionObserver ----
         if (!prefersReducedMotion) {
-            const statItems = gsap.utils.toArray('.stat-item');
-            if (statItems.length) {
-                gsap.from(statItems, {
-                    y: 30,
-                    opacity: 0,
-                    duration: 0.6,
+            const statItems = document.querySelectorAll('.stat-item');
+            statItems.forEach(el => { el.style.opacity = '0'; el.style.transform = 'translateY(30px)'; el.style.transition = 'opacity 0.6s ease, transform 0.6s ease'; });
+            setTimeout(() => { statItems.forEach(el => { el.style.opacity = '1'; el.style.transform = 'none'; }); }, 1500);
+            const statObs = new IntersectionObserver((entries) => {
+                let d = 0;
+                entries.forEach(e => { if (e.isIntersecting) { setTimeout(() => { e.target.style.opacity = '1'; e.target.style.transform = 'none'; }, d); d += 100; statObs.unobserve(e.target); } });
+            }, { threshold: 0, rootMargin: '50px 0px 50px 0px' });
+            statItems.forEach(el => statObs.observe(el));
+        }
                     stagger: 0.12,
                     ease: 'power3.out',
                     scrollTrigger: {
@@ -2858,23 +2819,21 @@
             });
         });
 
-        // ---- PREMIUM: Line-by-Line Text Reveal ----
+        // ---- PREMIUM: Line-by-Line Text Reveal — IntersectionObserver ----
         document.querySelectorAll('.line-reveal').forEach(el => {
             const split = new SplitType(el, { types: 'lines' });
-            split.lines.forEach(line => { line.style.overflow = 'hidden'; });
-            gsap.from(split.lines, {
-                yPercent: 100, opacity: 0, stagger: 0.1, duration: 0.8, ease: 'power3.out',
-                scrollTrigger: { trigger: el, start: 'top 85%' }
-            });
+            split.lines.forEach(line => { line.style.overflow = 'hidden'; line.style.opacity = '0'; line.style.transform = 'translateY(100%)'; line.style.transition = 'opacity 0.8s ease, transform 0.8s ease'; });
+            const lObs = new IntersectionObserver((entries) => {
+                entries.forEach(e => { if (e.isIntersecting) {
+                    split.lines.forEach((line, i) => { setTimeout(() => { line.style.opacity = '1'; line.style.transform = 'none'; }, i * 100); });
+                    lObs.unobserve(e.target);
+                }});
+            }, { threshold: 0, rootMargin: '50px 0px 50px 0px' });
+            lObs.observe(el);
+            setTimeout(() => { split.lines.forEach(l => { l.style.opacity = '1'; l.style.transform = 'none'; }); }, 1500);
         });
 
-        // ---- PREMIUM: Stagger Grid ----
-        document.querySelectorAll('.stagger-grid').forEach(grid => {
-            gsap.from(grid.children, {
-                y: 60, opacity: 0, stagger: 0.12, duration: 0.8, ease: 'power3.out',
-                scrollTrigger: { trigger: grid, start: 'top 85%' }
-            });
-        });
+        // ---- PREMIUM: Stagger Grid — removed (handled by IntersectionObserver above) ----
 
     })();
 
@@ -3049,22 +3008,7 @@
         });
     })();
 
-    // === HORIZONTAL SCROLL GALLERY ===
-    const hTrack = document.querySelector('.scroll-track');
-    if (hTrack) {
-      gsap.to(hTrack, {
-        x: () => -(hTrack.scrollWidth - window.innerWidth + 100),
-        ease: 'none',
-        scrollTrigger: {
-          trigger: '.horizontal-scroll',
-          start: 'top top',
-          end: () => '+=' + (hTrack.scrollWidth - window.innerWidth),
-          scrub: 1,
-          pin: true,
-          anticipatePin: 1
-        }
-      });
-    }
+    // === HORIZONTAL SCROLL GALLERY — CSS overflow, no GSAP pin (no blank space) ===
 
     // === TEXT SCRAMBLE EFFECT ===
     class TextScramble {
@@ -3107,5 +3051,32 @@
       if (heroP) { const fx = new TextScramble(heroP); fx.setText(heroP.textContent); }
     }, 1200);
     </script>
+
+
+<!-- SAFETY: Force all content visible after 2s (kills GSAP ticker to prevent re-override) -->
+<script>
+setTimeout(function(){
+  // Kill ALL GSAP ScrollTrigger-based animations
+  if(typeof ScrollTrigger!=="undefined"){
+    ScrollTrigger.getAll().forEach(function(st){st.kill()});
+  }
+  if(typeof gsap!=="undefined"){
+    gsap.globalTimeline.getChildren(true,true,true).forEach(function(t){
+      try{t.progress(1);t.kill()}catch(e){}
+    });
+  }
+  // Force everything visible
+  var all=document.querySelectorAll("*");
+  for(var i=0;i<all.length;i++){
+    var el=all[i];
+    var s=window.getComputedStyle(el);
+    if(parseFloat(s.opacity)<0.15&&el.offsetHeight>50&&s.display!=="none"){
+      var c=el.className||"";
+      if(c.indexOf("bubble")>-1||c.indexOf("cursor")>-1||c.indexOf("scroll-progress")>-1||c.indexOf("modal")>-1||c.indexOf("overlay")>-1)continue;
+      el.style.cssText+="opacity:1!important;transform:none!important;";
+    }
+  }
+},2000);
+</script>
 </body>
 </html>

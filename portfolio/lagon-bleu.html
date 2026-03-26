@@ -101,7 +101,7 @@ nav.scrolled{background:rgba(3,29,48,.9);backdrop-filter:blur(12px)}
 .wave-divider svg{display:block;width:100%}
 
 /* SECTION COMMON */
-section{padding:120px 48px;position:relative;z-index:2}
+section{padding:56px 48px;position:relative;z-index:2}
 .label{font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--coral);margin-bottom:12px;font-weight:500}
 .stitle{font-family:'Instrument Serif',serif;font-size:clamp(28px,3.5vw,44px);margin-bottom:48px;line-height:1.2}
 
@@ -145,7 +145,7 @@ section{padding:120px 48px;position:relative;z-index:2}
 .stat-label{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--w50);margin-top:4px}
 
 /* CTA — deepest level */
-.cta-deep{text-align:center;padding:160px 48px;position:relative}
+.cta-deep{text-align:center;padding:70px 48px;position:relative}
 .cta-deep .stitle{color:var(--white);margin-bottom:16px}
 .cta-deep p{color:var(--w50);margin-bottom:40px;font-size:16px}
 /* Bioluminescence dots */
@@ -166,11 +166,11 @@ footer p{color:var(--w50);font-size:13px}
 footer a{color:var(--w50);text-decoration:none}
 footer a:hover{color:var(--coral)}
 
-/* REVEAL */
-.reveal{opacity:0;transform:translateY(30px);transition:opacity .8s,transform .8s}
-.reveal.visible{opacity:1;transform:translateY(0)}
-.reveal-left{opacity:0;transform:translateX(-40px);transition:opacity .8s,transform .8s}
-.reveal-left.visible{opacity:1;transform:translateX(0)}
+/* REVEAL — only hidden when JS has run (js-reveal class added by script) */
+.reveal.js-reveal{opacity:0;transform:translateY(30px);transition:opacity .8s,transform .8s}
+.reveal.visible{opacity:1;transform:translateY(0) !important}
+.reveal-left.js-reveal{opacity:0;transform:translateX(-40px);transition:opacity .8s,transform .8s}
+.reveal-left.visible{opacity:1;transform:translateX(0) !important}
 
 @media(max-width:768px){
   nav{padding:16px 24px}
@@ -188,9 +188,10 @@ footer a:hover{color:var(--coral)}
   footer{padding:32px 24px;flex-direction:column;text-align:center}
 }
 /* HORIZONTAL SCROLL GALLERY */
-.horizontal-scroll{position:relative;overflow:hidden}
-.horizontal-scroll .scroll-track{display:flex;gap:20px;width:max-content;padding:40px 0}
-.horizontal-scroll .scroll-item{flex-shrink:0;width:70vw;max-width:500px;overflow:hidden;border-radius:12px}
+.horizontal-scroll{position:relative;overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.horizontal-scroll::-webkit-scrollbar{display:none}
+.horizontal-scroll .scroll-track{display:flex;gap:20px;width:max-content;padding:40px 48px}
+.horizontal-scroll .scroll-item{flex-shrink:0;width:70vw;max-width:500px;height:340px;overflow:hidden;border-radius:12px}
 .horizontal-scroll .scroll-item img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease}
 .horizontal-scroll .scroll-item:hover img{transform:scale(1.05)}
 
@@ -271,7 +272,7 @@ footer a:hover{color:var(--coral)}
   <h2 class="stitle reveal word-reveal">Chaque Niveau,<br>Son Aventure</h2>
   <div class="exp-grid">
     <div class="exp-card reveal">
-      <img src="images/lagon-bleu/coral.jpg" alt="Baptême snorkeling Moorea" loading="lazy">
+      <img src="images/lagon-bleu/coral.jpg" alt="Baptême snorkeling Moorea">
       <div class="exp-body">
         <h3>Baptême Lagon</h3>
         <p>Première rencontre avec le monde sous-marin. Masque, palmes et tuba dans les eaux calmes du lagon.</p>
@@ -284,7 +285,7 @@ footer a:hover{color:var(--coral)}
       </div>
     </div>
     <div class="exp-card reveal">
-      <img src="images/lagon-bleu/shark.jpg" alt="Plongée récif Moorea" loading="lazy">
+      <img src="images/lagon-bleu/shark.jpg" alt="Plongée récif Moorea">
       <div class="exp-body">
         <h3>Récif & Requins</h3>
         <p>Face-à-face avec les requins pointe noire et les tortues sur le récif extérieur.</p>
@@ -297,7 +298,7 @@ footer a:hover{color:var(--coral)}
       </div>
     </div>
     <div class="exp-card reveal">
-      <img src="images/lagon-bleu/manta.jpg" alt="Plongée profonde raies manta" loading="lazy">
+      <img src="images/lagon-bleu/manta.jpg" alt="Plongée profonde raies manta">
       <div class="exp-body">
         <h3>Grand Bleu</h3>
         <p>Plongée dérivante en plein océan. Raies manta, requins gris, pélagiques. Niveau 2 requis.</p>
@@ -333,12 +334,12 @@ footer a:hover{color:var(--coral)}
 <!-- HORIZONTAL SCROLL IMMERSION -->
 <section class="horizontal-scroll depth-3" style="padding:0">
   <div class="scroll-track">
-    <div class="scroll-item"><img src="images/lagon-bleu/diver.jpg" alt="Plongeur" loading="lazy"></div>
-    <div class="scroll-item"><img src="images/lagon-bleu/shark.jpg" alt="Requin pointe noire" loading="lazy"></div>
-    <div class="scroll-item"><img src="images/lagon-bleu/coral.jpg" alt="Jardin de corail" loading="lazy"></div>
-    <div class="scroll-item"><img src="images/lagon-bleu/manta.jpg" alt="Raie manta" loading="lazy"></div>
-    <div class="scroll-item"><img src="images/lagon-bleu/hero.jpg" alt="Lagon Moorea" loading="lazy"></div>
-    <div class="scroll-item"><img src="images/lagon-bleu/boat.jpg" alt="Le bateau" loading="lazy"></div>
+    <div class="scroll-item"><img src="images/lagon-bleu/diver.jpg" alt="Plongeur"></div>
+    <div class="scroll-item"><img src="images/lagon-bleu/shark.jpg" alt="Requin pointe noire"></div>
+    <div class="scroll-item"><img src="images/lagon-bleu/coral.jpg" alt="Jardin de corail"></div>
+    <div class="scroll-item"><img src="images/lagon-bleu/manta.jpg" alt="Raie manta"></div>
+    <div class="scroll-item"><img src="images/lagon-bleu/hero.jpg" alt="Lagon Moorea"></div>
+    <div class="scroll-item"><img src="images/lagon-bleu/boat.jpg" alt="Le bateau"></div>
   </div>
 </section>
 
@@ -347,10 +348,10 @@ footer a:hover{color:var(--coral)}
   <div class="label reveal">Galerie</div>
   <h2 class="stitle reveal word-reveal">Sous la Surface</h2>
   <div class="uw-gallery reveal">
-    <img src="images/lagon-bleu/diver.jpg" alt="Plongeur sous-marin Moorea" loading="lazy">
-    <img src="images/lagon-bleu/shark.jpg" alt="Requin pointe noire" loading="lazy">
-    <img src="images/lagon-bleu/coral.jpg" alt="Jardin de corail" loading="lazy">
-    <img src="images/lagon-bleu/manta.jpg" alt="Raie manta" loading="lazy">
+    <img src="images/lagon-bleu/diver.jpg" alt="Plongeur sous-marin Moorea">
+    <img src="images/lagon-bleu/shark.jpg" alt="Requin pointe noire">
+    <img src="images/lagon-bleu/coral.jpg" alt="Jardin de corail">
+    <img src="images/lagon-bleu/manta.jpg" alt="Raie manta">
   </div>
 </section>
 
@@ -358,7 +359,7 @@ footer a:hover{color:var(--coral)}
 <section class="depth-4" id="equipe" data-section="3">
   <div class="equipe-split">
     <div class="equipe-img reveal-left">
-      <img src="images/lagon-bleu/boat.jpg" alt="L'équipe Lagon Bleu" loading="lazy" class="circle-reveal">
+      <img src="images/lagon-bleu/boat.jpg" alt="L'équipe Lagon Bleu" class="circle-reveal">
       <div class="sonar-ring"></div>
       <div class="sonar-ring"></div>
       <div class="sonar-ring"></div>
@@ -468,28 +469,54 @@ sections.forEach(sec => {
   });
 });
 
-// === REVEAL SECTIONS ===
-gsap.utils.toArray('.reveal').forEach(el => {
-  gsap.from(el, {
-    y: 30, opacity: 0, duration: 0.8, ease: 'power3.out',
-    scrollTrigger: { trigger: el, start: 'top 85%' }
+// === REVEAL SECTIONS — IntersectionObserver (no GSAP pin dependency) ===
+const revealEls = document.querySelectorAll('.reveal, .reveal-left');
+revealEls.forEach(el => el.classList.add('js-reveal'));
+// Safety: reveal everything immediately after first paint (bot/static render)
+const revealTimeout = setTimeout(() => {
+  revealEls.forEach(el => { el.classList.add('visible'); el.classList.remove('js-reveal'); });
+}, 1500);
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      revealObserver.unobserve(entry.target);
+    }
   });
-});
-
-// === REVEAL LEFT ===
-gsap.utils.toArray('.reveal-left').forEach(el => {
-  gsap.from(el, {
-    x: -40, opacity: 0, duration: 0.8, ease: 'power3.out',
-    scrollTrigger: { trigger: el, start: 'top 85%' }
+}, { threshold: 0, rootMargin: '50px 0px 50px 0px' });
+revealEls.forEach(el => revealObserver.observe(el));
+// Reveal elements already in viewport on load immediately
+setTimeout(() => {
+  revealEls.forEach(el => {
+    const rect = el.getBoundingClientRect();
+    if (rect.top < window.innerHeight) {
+      el.classList.add('visible');
+      revealObserver.unobserve(el);
+    }
   });
-});
+}, 100);
 
-// === STAGGER EXPERIENCE CARDS ===
-ScrollTrigger.batch('.exp-card', {
-  onEnter: batch => gsap.to(batch, { opacity: 1, y: 0, stagger: 0.15, duration: 0.8, ease: 'power3.out' }),
-  start: 'top 85%'
-});
-gsap.set('.exp-card', { opacity: 0, y: 40 });
+// === STAGGER EXPERIENCE CARDS — IntersectionObserver ===
+const cards = document.querySelectorAll('.exp-card');
+cards.forEach(card => { card.style.opacity = '0'; card.style.transform = 'translateY(40px)'; card.style.transition = 'opacity 0.6s ease, transform 0.6s ease'; });
+// Safety: reveal all cards after 1.5s
+setTimeout(() => { cards.forEach(card => { card.style.opacity = '1'; card.style.transform = 'translateY(0)'; }); }, 1500);
+const cardObserver = new IntersectionObserver((entries) => {
+  let delay = 0;
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      setTimeout(() => {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+      }, delay);
+      delay += 120;
+      cardObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0, rootMargin: '50px 0px 50px 0px' });
+cards.forEach(card => cardObserver.observe(card));
+// Immediate reveal for cards already in viewport
+setTimeout(() => { cards.forEach(card => { if (card.getBoundingClientRect().top < window.innerHeight) { card.style.opacity='1'; card.style.transform='translateY(0)'; cardObserver.unobserve(card); } }); }, 100);
 
 // === COUNTER ANIMATION ===
 document.querySelectorAll('[data-target]').forEach(el => {
@@ -514,22 +541,8 @@ gsap.utils.toArray('.uw-gallery img').forEach(img => {
   });
 });
 
-// === HORIZONTAL SCROLL GALLERY ===
-const hTrack = document.querySelector('.scroll-track');
-if (hTrack) {
-  gsap.to(hTrack, {
-    x: () => -(hTrack.scrollWidth - window.innerWidth + 100),
-    ease: 'none',
-    scrollTrigger: {
-      trigger: '.horizontal-scroll',
-      start: 'top top',
-      end: () => '+=' + (hTrack.scrollWidth - window.innerWidth),
-      scrub: 1,
-      pin: true,
-      anticipatePin: 1
-    }
-  });
-}
+// === HORIZONTAL SCROLL GALLERY — CSS overflow, no GSAP pin (no blank space) ===
+// Scroll handled natively by overflow-x:auto
 
 // === IMAGE SCALE ON SCROLL ===
 gsap.utils.toArray('.scale-scroll').forEach(img => {
@@ -627,6 +640,33 @@ setTimeout(() => {
     fx.setText(heroSub.textContent);
   }
 }, 1200);
+</script>
+
+
+<!-- SAFETY: Force all content visible after 2s (kills GSAP ticker to prevent re-override) -->
+<script>
+setTimeout(function(){
+  // Kill ALL GSAP ScrollTrigger-based animations
+  if(typeof ScrollTrigger!=="undefined"){
+    ScrollTrigger.getAll().forEach(function(st){st.kill()});
+  }
+  if(typeof gsap!=="undefined"){
+    gsap.globalTimeline.getChildren(true,true,true).forEach(function(t){
+      try{t.progress(1);t.kill()}catch(e){}
+    });
+  }
+  // Force everything visible
+  var all=document.querySelectorAll("*");
+  for(var i=0;i<all.length;i++){
+    var el=all[i];
+    var s=window.getComputedStyle(el);
+    if(parseFloat(s.opacity)<0.15&&el.offsetHeight>50&&s.display!=="none"){
+      var c=el.className||"";
+      if(c.indexOf("bubble")>-1||c.indexOf("cursor")>-1||c.indexOf("scroll-progress")>-1||c.indexOf("modal")>-1||c.indexOf("overlay")>-1)continue;
+      el.style.cssText+="opacity:1!important;transform:none!important;";
+    }
+  }
+},2000);
 </script>
 </body>
 </html>

@@ -46,7 +46,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 .btn-ghost:hover{border-color:var(--amber);color:var(--amber)}
 
 /* SECTION */
-section{padding:100px 6%;position:relative}
+section{padding:56px 6%;position:relative}
 .section-header{text-align:center;margin-bottom:56px}
 .section-header h2{font-family:var(--serif);font-size:clamp(32px,4vw,48px);font-weight:700;margin-bottom:12px}
 .section-header p{font-size:16px;color:var(--dim);max-width:480px;margin:0 auto}
@@ -103,7 +103,7 @@ footer{padding:40px 6%;display:flex;align-items:center;justify-content:space-bet
 /* MOBILE */
 @media(max-width:768px){
   nav{padding:12px 20px}.nav-links,.nav-cta{display:none}
-  .hero-content{padding:100px 24px 60px}
+  .hero-content{padding:56px 24px 48px}
   section{padding:60px 24px}
   .info-grid{grid-template-columns:1fr;gap:16px}
   .stats-row{gap:32px}
@@ -219,12 +219,12 @@ footer{padding:40px 6%;display:flex;align-items:center;justify-content:space-bet
     <p>Place Vaiete le soir, c'est la que ca se passe</p>
   </div>
   <div class="gallery">
-    <img src="images/mama-roti/cook.jpg" alt="Cuisine ouverte" loading="lazy">
-    <img src="images/mama-roti/food1.jpg" alt="Poisson cru" loading="lazy">
-    <img src="images/mama-roti/food2.jpg" alt="Brochettes" loading="lazy">
-    <img src="images/mama-roti/food3.jpg" alt="Fruits tropicaux" loading="lazy">
-    <img src="images/mama-roti/ambiance.jpg" alt="Ambiance nocturne" loading="lazy">
-    <img src="images/mama-roti/hero.jpg" alt="Chez Mama Roti" loading="lazy">
+    <img src="images/mama-roti/cook.jpg" alt="Cuisine ouverte">
+    <img src="images/mama-roti/food1.jpg" alt="Poisson cru">
+    <img src="images/mama-roti/food2.jpg" alt="Brochettes">
+    <img src="images/mama-roti/food3.jpg" alt="Fruits tropicaux">
+    <img src="images/mama-roti/ambiance.jpg" alt="Ambiance nocturne">
+    <img src="images/mama-roti/hero.jpg" alt="Chez Mama Roti">
   </div>
 </section>
 
@@ -243,6 +243,33 @@ const obs = new IntersectionObserver((entries) => {
   entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
 }, { threshold: 0.15 });
 reveals.forEach(el => obs.observe(el));
+</script>
+
+
+<!-- SAFETY: Force all content visible after 2s (kills GSAP ticker to prevent re-override) -->
+<script>
+setTimeout(function(){
+  // Kill ALL GSAP ScrollTrigger-based animations
+  if(typeof ScrollTrigger!=="undefined"){
+    ScrollTrigger.getAll().forEach(function(st){st.kill()});
+  }
+  if(typeof gsap!=="undefined"){
+    gsap.globalTimeline.getChildren(true,true,true).forEach(function(t){
+      try{t.progress(1);t.kill()}catch(e){}
+    });
+  }
+  // Force everything visible
+  var all=document.querySelectorAll("*");
+  for(var i=0;i<all.length;i++){
+    var el=all[i];
+    var s=window.getComputedStyle(el);
+    if(parseFloat(s.opacity)<0.15&&el.offsetHeight>50&&s.display!=="none"){
+      var c=el.className||"";
+      if(c.indexOf("bubble")>-1||c.indexOf("cursor")>-1||c.indexOf("scroll-progress")>-1||c.indexOf("modal")>-1||c.indexOf("overlay")>-1)continue;
+      el.style.cssText+="opacity:1!important;transform:none!important;";
+    }
+  }
+},2000);
 </script>
 </body>
 </html>

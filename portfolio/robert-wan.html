@@ -181,7 +181,7 @@
         /* ── MANIFESTO ── */
         .manifesto {
             background: var(--black);
-            padding: 160px 40px;
+            padding: 70px 40px;
             text-align: center;
             position: relative; overflow: hidden;
         }
@@ -273,7 +273,7 @@
 
         /* ── SINGLE STAT ── */
         .stat-section {
-            background: var(--black); padding: 180px 40px;
+            background: var(--black); padding: 80px 40px;
             text-align: center;
         }
         .stat-number {
@@ -355,11 +355,11 @@
         .footer-credit a:hover { color: var(--gold); }
 
         /* ── REVEAL GENERIC ── */
-        .reveal {
+        .reveal.js-reveal {
             opacity: 0; transform: translateY(28px);
             transition: opacity .85s ease, transform .85s ease;
         }
-        .reveal.visible { opacity: 1; transform: translateY(0); }
+        .reveal.visible { opacity: 1; transform: translateY(0) !important; }
         .reveal-d1 { transition-delay: .12s; }
         .reveal-d2 { transition-delay: .24s; }
         .reveal-d3 { transition-delay: .38s; }
@@ -419,7 +419,7 @@
         .circle-reveal.revealed{clip-path:circle(75% at 50% 50%)}
 
         /* ── HORIZONTAL SCROLL SECTION ── */
-        .horizontal-scroll{position:relative;overflow:hidden}
+        .horizontal-scroll{position:relative;overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch;scrollbar-width:none}
         .horizontal-scroll .scroll-track{display:flex;gap:20px;width:max-content;padding:40px 0}
         .horizontal-scroll .scroll-item{flex-shrink:0;width:70vw;max-width:500px;overflow:hidden;border-radius:8px}
         .horizontal-scroll .scroll-item img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease}
@@ -472,7 +472,7 @@
 
     <!-- ── 2. FULL IMAGE — museum ── -->
     <section class="full-image-section">
-        <img src="images/robert-wan/museum.jpg" alt="Musee de la Perle Robert Wan" class="clip-reveal scale-scroll" data-parallax="0.2" loading="lazy">
+        <img src="images/robert-wan/museum.jpg" alt="Musee de la Perle Robert Wan" class="clip-reveal scale-scroll" data-parallax="0.2">
         <div class="full-image-caption">
             <p class="caption-label reveal">Papeete — Boulevard Pomare</p>
             <h2 class="caption-title reveal reveal-d1 word-reveal">La Maison<br>de la Perle</h2>
@@ -517,7 +517,7 @@
 
         <!-- 4a. Full-bleed: Perle Noire — overlay right -->
         <div class="alt-block full-bleed">
-            <img src="images/robert-wan/pearl-black.jpg" alt="Perle noire de Tahiti" class="clip-reveal scale-scroll" loading="lazy">
+            <img src="images/robert-wan/pearl-black.jpg" alt="Perle noire de Tahiti" class="clip-reveal scale-scroll">
             <div class="overlay-text right">
                 <p class="block-label reveal">01 — Collection</p>
                 <h2 class="block-title reveal reveal-d1 word-reveal">Perle de Tahiti<br>Noire</h2>
@@ -529,7 +529,7 @@
         <!-- 4b. Split: text left, collection right -->
         <div class="alt-block split reverse">
             <div class="split-img">
-                <img src="images/robert-wan/collection.jpg" alt="Collection Robert Wan" class="clip-reveal scale-scroll" loading="lazy">
+                <img src="images/robert-wan/collection.jpg" alt="Collection Robert Wan" class="clip-reveal scale-scroll">
             </div>
             <div class="split-txt">
                 <p class="block-label reveal">02 — Haute Joaillerie</p>
@@ -541,7 +541,7 @@
 
         <!-- 4c. Full-bleed: Necklace — overlay left -->
         <div class="alt-block full-bleed">
-            <img src="images/robert-wan/necklace.jpg" alt="Haute Joaillerie Robert Wan" class="clip-reveal scale-scroll" loading="lazy">
+            <img src="images/robert-wan/necklace.jpg" alt="Haute Joaillerie Robert Wan" class="clip-reveal scale-scroll">
             <div class="overlay-text left">
                 <p class="block-label reveal">03 — Haute Joaillerie</p>
                 <h2 class="block-title reveal reveal-d1 word-reveal">Haute<br>Joaillerie</h2>
@@ -553,7 +553,7 @@
         <!-- 4d. Split: earrings left, text right -->
         <div class="alt-block split">
             <div class="split-img">
-                <img src="images/robert-wan/earrings.jpg" alt="Boucles d'oreilles Robert Wan" class="clip-reveal" loading="lazy">
+                <img src="images/robert-wan/earrings.jpg" alt="Boucles d'oreilles Robert Wan" class="clip-reveal">
             </div>
             <div class="split-txt">
                 <p class="block-label reveal">04 — Savoir-Faire</p>
@@ -597,10 +597,10 @@
         </div>
         <div class="boutique-duo reveal stagger-grid">
             <div class="boutique-img-wrap">
-                <img src="images/robert-wan/ring1.jpg" alt="Bague Robert Wan" loading="lazy" class="circle-reveal">
+                <img src="images/robert-wan/ring1.jpg" alt="Bague Robert Wan" class="circle-reveal">
             </div>
             <div class="boutique-img-wrap">
-                <img src="images/robert-wan/ring2.jpg" alt="Bague Robert Wan" loading="lazy" class="circle-reveal">
+                <img src="images/robert-wan/ring2.jpg" alt="Bague Robert Wan" class="circle-reveal">
             </div>
         </div>
         <p class="boutique-address reveal reveal-d1">
@@ -742,22 +742,41 @@
             });
         });
 
-        // === REVEAL SECTIONS ===
-        gsap.utils.toArray('.reveal, section').forEach(el => {
-            gsap.from(el, {
-                y: 30, opacity: 0, duration: 0.8, ease: 'power3.out',
-                scrollTrigger: { trigger: el, start: 'top 85%' }
-            });
-        });
+        // === REVEAL SECTIONS — IntersectionObserver (no GSAP pin dependency) ===
+        const revealEls = document.querySelectorAll('.reveal');
+        revealEls.forEach(el => el.classList.add('js-reveal'));
+        const revealObserver = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('visible');
+              revealObserver.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0, rootMargin: '50px 0px 50px 0px' });
+        revealEls.forEach(el => revealObserver.observe(el));
+        // Safety: reveal all after 1.5s if observer never fires
+        setTimeout(() => { revealEls.forEach(el => { el.classList.add('visible'); el.classList.remove('js-reveal'); }); }, 1500);
 
-        // === STAGGER CARDS ===
+        // === STAGGER CARDS — IntersectionObserver ===
         const cards = document.querySelectorAll('.card, .collection-card, .product-card');
         if (cards.length) {
-            gsap.set(cards, { opacity: 0, y: 40 });
-            ScrollTrigger.batch(cards, {
-                onEnter: batch => gsap.to(batch, { opacity: 1, y: 0, stagger: 0.12, duration: 0.8, ease: 'power3.out' }),
-                start: 'top 88%'
+            cards.forEach((card, i) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(40px)';
+                card.style.transition = `opacity 0.8s ease ${i * 0.12}s, transform 0.8s ease ${i * 0.12}s`;
             });
+            const cardObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                        cardObserver.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0, rootMargin: '50px 0px 50px 0px' });
+            cards.forEach(card => cardObserver.observe(card));
+            // Safety: reveal all cards after 1.5s
+            setTimeout(() => { cards.forEach(c => { c.style.opacity='1'; c.style.transform='none'; }); }, 1500);
         }
 
         // === SVG GOLD LINE DRAW (manifesto) ===
@@ -868,20 +887,7 @@
             });
         });
 
-        // === HORIZONTAL SCROLL SECTION (GSAP PINNED) ===
-        const hTrack = document.querySelector('.scroll-track');
-        if (hTrack) {
-            gsap.to(hTrack, {
-                x: () => -(hTrack.scrollWidth - window.innerWidth + 100),
-                ease: 'none',
-                scrollTrigger: {
-                    trigger: '.horizontal-scroll',
-                    start: 'top top',
-                    end: () => '+=' + (hTrack.scrollWidth - window.innerWidth),
-                    scrub: 1, pin: true, anticipatePin: 1
-                }
-            });
-        }
+        // === HORIZONTAL SCROLL GALLERY — CSS overflow, no GSAP pin (no blank space) ===
 
         // === TEXT SCRAMBLE EFFECT ===
         class TextScramble {
@@ -925,5 +931,32 @@
         }, 1200);
     </script>
 
+
+
+<!-- SAFETY: Force all content visible after 2s (kills GSAP ticker to prevent re-override) -->
+<script>
+setTimeout(function(){
+  // Kill ALL GSAP ScrollTrigger-based animations
+  if(typeof ScrollTrigger!=="undefined"){
+    ScrollTrigger.getAll().forEach(function(st){st.kill()});
+  }
+  if(typeof gsap!=="undefined"){
+    gsap.globalTimeline.getChildren(true,true,true).forEach(function(t){
+      try{t.progress(1);t.kill()}catch(e){}
+    });
+  }
+  // Force everything visible
+  var all=document.querySelectorAll("*");
+  for(var i=0;i<all.length;i++){
+    var el=all[i];
+    var s=window.getComputedStyle(el);
+    if(parseFloat(s.opacity)<0.15&&el.offsetHeight>50&&s.display!=="none"){
+      var c=el.className||"";
+      if(c.indexOf("bubble")>-1||c.indexOf("cursor")>-1||c.indexOf("scroll-progress")>-1||c.indexOf("modal")>-1||c.indexOf("overlay")>-1)continue;
+      el.style.cssText+="opacity:1!important;transform:none!important;";
+    }
+  }
+},2000);
+</script>
 </body>
 </html>

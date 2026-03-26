@@ -3,26 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PACIFIK'AI | Agence Digitale & IA en Polynésie</title>
-    <meta name="description" content="PACIFIK'AI : sites web, apps, chatbots, automatisation IA et conseil digital pour les entreprises en Polynésie française.">
+    <title>PACIFIK'AI | Solutions Digitales & IA a Tahiti — Polynesie francaise</title>
+    <meta name="description" content="PACIFIK'AI, agence digitale et intelligence artificielle a Papeete, Tahiti. Creation de sites web, chatbots IA, automatisation, applications sur mesure et conseil digital pour entreprises en Polynesie francaise. Devis gratuit.">
+    <meta name="keywords" content="agence digitale tahiti, agence ia polynesie, creation site web tahiti, chatbot ia papeete, automatisation entreprise polynesie, developpeur web tahiti, application mobile polynesie francaise, marketing digital tahiti, transformation digitale polynesie francaise, site internet papeete, agence web polynesie, intelligence artificielle tahiti, creation application tahiti, referencement seo polynesie">
 
     <link rel="canonical" href="https://pacifikai.com/">
     <link rel="icon" type="image/png" href="/assets/favicon.png">
     <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
 
+    <!-- Geo Meta Tags — Local SEO PF + NC -->
+    <meta name="geo.region" content="PF">
+    <meta name="geo.placename" content="Papeete, Tahiti">
+    <meta name="geo.position" content="-17.535;-149.5696">
+    <meta name="ICBM" content="-17.535, -149.5696">
+    <meta name="language" content="fr">
+    <link rel="alternate" hreflang="fr" href="https://pacifikai.com/">
+    <link rel="alternate" hreflang="x-default" href="https://pacifikai.com/">
+
     <!-- Open Graph -->
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="PACIFIK'AI">
-    <meta property="og:title" content="PACIFIK'AI | Agence Digitale & IA en Polynésie">
-    <meta property="og:description" content="PACIFIK'AI : sites web, apps, chatbots, automatisation IA et conseil digital pour les entreprises en Polynésie française.">
+    <meta property="og:title" content="PACIFIK'AI | Solutions Digitales & IA a Tahiti — Polynesie francaise">
+    <meta property="og:description" content="Agence digitale et IA a Papeete, Tahiti. Sites web, chatbots, automatisation et conseil pour entreprises en Polynesie francaise.">
     <meta property="og:url" content="https://pacifikai.com/">
     <meta property="og:image" content="https://pacifikai.com/assets/og-image.png">
-    <meta property="og:locale" content="fr_FR">
+    <meta property="og:locale" content="fr_PF">
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="PACIFIK'AI | Agence Digitale & IA en Polynésie">
-    <meta name="twitter:description" content="PACIFIK'AI : sites web, apps, chatbots, automatisation IA et conseil digital pour les entreprises en Polynésie française.">
+    <meta name="twitter:title" content="PACIFIK'AI | Solutions Digitales & IA a Tahiti">
+    <meta name="twitter:description" content="Agence digitale et IA a Papeete. Sites web, chatbots, automatisation pour entreprises en Polynesie francaise.">
     <meta name="twitter:image" content="https://pacifikai.com/assets/og-image.png">
 
     <meta name="referrer" content="strict-origin-when-cross-origin">
@@ -211,6 +221,10 @@
             font-weight: 500;
             border-radius: 6px;
             transition: all 0.2s;
+            white-space: nowrap;
+            min-height: 44px;
+            display: inline-flex;
+            align-items: center;
         }
 
         .nav-cta:hover {
@@ -271,8 +285,25 @@
         .mobile-menu a:hover { color: var(--text); }
 
         @media (max-width: 1024px) {
+            nav { padding: 0.75rem 1.5rem; }
+            .nav-links { display: none; }
             .nav-hamburger { display: block; }
             .nav-cta { display: none; }
+            .hero { min-height: 85vh; padding: 6rem 1.5rem 3rem; }
+            .hero-sub { font-size: 1rem; }
+        }
+        @media (max-width: 768px) {
+            :root { --announce-height: 28px; }
+            nav { padding: 0.4rem 0.75rem; }
+            .logo-img { height: 26px; }
+            .nav-hamburger { width: 28px; height: 20px; }
+            .nav-hamburger span:nth-child(2) { top: 9px; }
+            .nav-hamburger span:nth-child(3) { top: 18px; }
+        }
+        @media (max-width: 640px) {
+            .hero { min-height: 75vh; padding: 5rem 1.25rem 2.5rem; }
+            .hero-sub { font-size: 0.9rem; max-width: 100%; }
+            .hero-title-reveal { font-size: 2rem; }
         }
 
         /* Hero */
@@ -708,18 +739,33 @@
 
         /* Responsive */
         @media (max-width: 1024px) {
-            nav { padding: 1rem 1.5rem; }
-            .nav-links { display: none; }
             .section { padding: 3rem 1.5rem; }
+            .bento-section { padding: 60px 1.5rem 40px; }
             .process-grid { grid-template-columns: 1fr; }
             .cta-section { padding: 3rem 1.5rem; }
             .cta-box { padding: 2.5rem 1.5rem; }
             footer { padding: 1.5rem; flex-direction: column; gap: 1rem; }
         }
+        @media (max-width: 640px) {
+            .section { padding: 2rem 1rem; }
+            .section-header { margin-bottom: 1.5rem; }
+            .bento-section { padding: 40px 1rem 30px; }
+            .bento-grid { gap: 1rem; padding: 0 8px; }
+            .cta-section { padding: 2rem 1rem; }
+            .cta-box { padding: 2rem 1rem; }
+            .cta-box h2 { font-size: 1.3rem; }
+            footer { padding: 1rem; font-size: 0.8rem; }
+            .footer-links { flex-wrap: wrap; gap: 0.5rem; }
+        }
 
         @media (max-width: 768px) {
             .card-visual {
-                height: 160px;
+                height: 200px;
+                overflow: hidden;
+            }
+            .card-visual > * {
+                transform: scale(0.88);
+                transform-origin: center center;
             }
             .card-visual .radar-svg {
                 width: 70px;
@@ -735,10 +781,16 @@
 
         @media (max-width: 480px) {
             .card-visual {
-                height: 140px;
+                height: 190px;
+                overflow: hidden;
+            }
+            .card-visual > * {
+                transform: scale(0.82);
+                transform-origin: center center;
             }
             .card {
                 padding: 1rem;
+                overflow: hidden;
             }
             .card h3 {
                 font-size: 1rem;
@@ -2129,28 +2181,211 @@
         /* Showcase section CSS removed */
     </style>
 
-    <!-- JSON-LD Organization -->
+    <!-- JSON-LD: LocalBusiness (SEO local PF + NC) -->
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
-        "@type": "Organization",
+        "@type": "ProfessionalService",
         "name": "PACIFIK'AI",
+        "alternateName": "PACIFIKAI",
         "url": "https://pacifikai.com",
         "logo": "https://pacifikai.com/assets/logo.png",
-        "description": "Agence digitale IA en Polynésie française. Sites web, applications, chatbots, automatisation et conseil.",
+        "image": "https://pacifikai.com/assets/og-image.png",
+        "description": "Agence digitale et intelligence artificielle a Papeete, Tahiti. Creation de sites web, chatbots IA, automatisation, applications et conseil digital pour entreprises en Polynesie francaise.",
         "address": {
             "@type": "PostalAddress",
+            "streetAddress": "Papeete",
             "addressLocality": "Papeete",
-            "addressRegion": "Polynésie française",
+            "addressRegion": "Tahiti",
+            "postalCode": "98714",
             "addressCountry": "PF"
         },
-        "contactPoint": {
-            "@type": "ContactPoint",
-            "email": "contact@pacifikai.com",
-            "contactType": "sales"
+        "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": -17.535,
+            "longitude": -149.5696
+        },
+        "contactPoint": [
+            {
+                "@type": "ContactPoint",
+                "email": "contact@pacifikai.com",
+                "contactType": "sales",
+                "availableLanguage": ["French", "English"]
+            },
+            {
+                "@type": "ContactPoint",
+                "email": "jordy@pacifikai.com",
+                "contactType": "customer service",
+                "availableLanguage": ["French", "English"]
+            }
+        ],
+        "areaServed": [
+            {
+                "@type": "AdministrativeArea",
+                "name": "Polynesie francaise",
+                "sameAs": "https://en.wikipedia.org/wiki/French_Polynesia"
+            },
+            {
+                "@type": "City",
+                "name": "Papeete"
+            },
+            {
+                "@type": "City",
+                "name": "Moorea"
+            },
+            {
+                "@type": "City",
+                "name": "Bora Bora"
+            }
+        ],
+        "priceRange": "$$",
+        "currenciesAccepted": "XPF,EUR",
+        "paymentAccepted": "Virement bancaire, Carte bancaire",
+        "openingHoursSpecification": {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+            "opens": "08:00",
+            "closes": "18:00"
+        },
+        "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": "Services PACIFIK'AI",
+            "itemListElement": [
+                {
+                    "@type": "Offer",
+                    "itemOffered": {
+                        "@type": "Service",
+                        "name": "Creation de sites web et applications",
+                        "description": "Sites internet professionnels, landing pages et applications sur mesure pour entreprises en Polynesie francaise"
+                    }
+                },
+                {
+                    "@type": "Offer",
+                    "itemOffered": {
+                        "@type": "Service",
+                        "name": "Chatbots et agents IA",
+                        "description": "Chatbots intelligents pour service client automatise, disponibles 24/7 sur WhatsApp, Messenger et site web"
+                    }
+                },
+                {
+                    "@type": "Offer",
+                    "itemOffered": {
+                        "@type": "Service",
+                        "name": "Automatisation et workflows IA",
+                        "description": "Automatisation des processus metier avec intelligence artificielle — devis, factures, relances, marketing"
+                    }
+                },
+                {
+                    "@type": "Offer",
+                    "itemOffered": {
+                        "@type": "Service",
+                        "name": "Marketing digital et SEO",
+                        "description": "Strategies marketing digital, referencement Google, publicite Meta Ads pour entreprises du Pacifique"
+                    }
+                },
+                {
+                    "@type": "Offer",
+                    "itemOffered": {
+                        "@type": "Service",
+                        "name": "Conseil et formation IA",
+                        "description": "Accompagnement a la transformation digitale et formation aux outils IA pour equipes en Polynesie francaise"
+                    }
+                }
+            ]
         },
         "sameAs": [
-            "https://www.facebook.com/profile.php?id=61573aborni"
+            "https://www.facebook.com/profile.php?id=61587101037690"
+        ],
+        "founder": {
+            "@type": "Person",
+            "name": "Jordy Toofa",
+            "jobTitle": "Fondateur & Directeur Technique"
+        },
+        "foundingDate": "2025",
+        "knowsAbout": ["Intelligence artificielle", "Developpement web", "Chatbots", "Automatisation", "Marketing digital", "Transformation digitale"],
+        "slogan": "Transformez votre business avec l'IA"
+    }
+    </script>
+
+    <!-- JSON-LD: WebSite (sitelinks Google) -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "PACIFIK'AI",
+        "alternateName": "PACIFIKAI Agence IA Tahiti",
+        "url": "https://pacifikai.com",
+        "inLanguage": "fr",
+        "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://pacifikai.com/blog/index.html?q={search_term_string}",
+            "query-input": "required name=search_term_string"
+        }
+    }
+    </script>
+
+    <!-- JSON-LD: FAQ (rich snippets Google) -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "Combien coute un site web en Polynesie francaise ?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Chez PACIFIK'AI, un site internet professionnel demarre a partir de 100 000 XPF (environ 838 EUR). Ce prix comprend le design sur mesure, le developpement, l'hebergement et le nom de domaine. Chaque projet est adapte aux besoins specifiques de l'entreprise."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "PACIFIK'AI intervient-il sur toute la Polynesie francaise ?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Oui, PACIFIK'AI accompagne les entreprises de toute la Polynesie francaise : Tahiti, Moorea, Bora Bora, Raiatea et les iles eloignees. Nous travaillons en presentiel a Papeete et a distance avec des outils collaboratifs modernes pour livrer des projets partout dans les 5 archipels."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Qu'est-ce qu'un chatbot IA et comment ca peut aider mon entreprise a Tahiti ?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Un chatbot IA est un assistant virtuel qui repond automatiquement aux questions de vos clients 24h/24. Pour les entreprises a Tahiti et en Polynesie, c'est ideal pour gerer les demandes en dehors des heures de bureau, qualifier les prospects et automatiser les reservations ou devis."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Quels services d'automatisation proposez-vous aux entreprises du Pacifique ?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Nous automatisons les processus repetitifs : envoi de devis et factures, relances clients, publication sur les reseaux sociaux, extraction de documents, synchronisation de donnees entre outils. Nos solutions permettent aux PME polynosiennes de gagner en moyenne 10 heures par semaine."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Comment PACIFIK'AI peut aider ma PME a se digitaliser ?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Nous proposons un accompagnement complet : audit de vos processus actuels, creation de votre site web ou application, mise en place de chatbots et automations, formation de vos equipes. Notre approche est adaptee aux realites des entreprises en Polynesie francaise — decalage horaire, connectivite inter-iles, specificites du marche local."
+                }
+            }
+        ]
+    }
+    </script>
+
+    <!-- JSON-LD: BreadcrumbList -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Accueil",
+                "item": "https://pacifikai.com/"
+            }
         ]
     }
     </script>
@@ -2166,7 +2401,7 @@
     </div>
 
     <div class="announce-bar" id="announceBar" onclick="window.location.href='/offre-site-web'" tabindex="0" role="link" onkeydown="if(event.key==='Enter')window.location.href='/offre-site-web'">
-        <span>Offre limitee : Site internet pro a partir de 100 000 F — <a href="/offre-site-web" onclick="event.stopPropagation()">En savoir plus</a></span>
+        <span><span class="announce-full">Offre limitee : Site internet pro a partir de 100 000 F — </span><span class="announce-short">Site pro dès 100 000 F — </span><a href="/offre-site-web" onclick="event.stopPropagation()">En savoir plus</a></span>
         <button class="announce-close" onclick="event.stopPropagation();closeAnnounce()" aria-label="Fermer">&times;</button>
     </div>
 
@@ -2179,7 +2414,6 @@
             <li><a href="#process">Processus</a></li>
             <li><a href="#infrastructure">Infrastructure</a></li>
             <li><a href="blog/index.html">Blog</a></li>
-            <li><a href="#contact">Contact</a></li>
         </ul>
         <a href="#contact" class="nav-cta">Nous contacter</a>
         <button class="nav-hamburger" aria-label="Menu" aria-expanded="false">
@@ -2202,7 +2436,7 @@
             <span style="font-family:var(--font-display);font-size:0.85rem;letter-spacing:0.15em;color:var(--accent);text-transform:uppercase;opacity:0.8;margin-bottom:12px;display:block;">PACIFIK'AI</span>
             <h1 class="hero-title-reveal"><span class="hero-word" style="--i:0">Transformez</span> <span class="hero-word" style="--i:1">votre</span> <span class="hero-word highlight" style="--i:2">business</span> <span class="hero-word" style="--i:3">avec</span> <span class="hero-word highlight" style="--i:4">l'IA.</span></h1>
             <p class="hero-sub">
-                Sites, apps, chatbots, automatisation, conseil — on construit l'infrastructure digitale qui fait décoller votre entreprise.
+                Agence digitale et IA a Tahiti — sites web, applications, chatbots, automatisation et conseil pour les entreprises en Polynesie francaise.
             </p>
             <div class="hero-buttons">
                 <a href="#services-bento" class="btn-primary">
@@ -2706,11 +2940,22 @@
     </main>
     <footer>
         <div class="footer-left">
-            © 2026 PACIFIK'AI — Tahiti, Polynésie française
+            <strong>PACIFIK'AI</strong> — Agence digitale & IA a Papeete, Tahiti<br>
+            <span style="font-size:0.75rem;color:var(--text-dim);line-height:1.8;">
+                Sites web, chatbots IA, automatisation, applications et conseil digital<br>
+                Tahiti · Moorea · Bora Bora · Raiatea · Polynesie francaise<br>
+                © 2026 PACIFIK'AI — contact@pacifikai.com
+            </span>
         </div>
         <div class="footer-links">
+            <a href="/services/chatbots.html">Chatbots IA</a>
+            <a href="/services/apps.html">Applications</a>
+            <a href="/services/workflows.html">Automatisation</a>
+            <a href="/blog/index.html">Blog</a>
             <a href="https://www.facebook.com/profile.php?id=61587101037690" target="_blank" rel="noopener noreferrer">Facebook</a>
             <a href="mailto:contact@pacifikai.com">Contact</a>
+            <a href="/cgu.html" style="font-size:0.7rem;opacity:0.6;">CGU</a>
+            <a href="/confidentialite.html" style="font-size:0.7rem;opacity:0.6;">Confidentialite</a>
         </div>
     </footer>
 
@@ -2982,6 +3227,14 @@
             padding: 10px 48px 10px 1rem; min-height: 44px;
             text-align: center; font-size: 0.82rem; font-weight: 600; color: #fff;
             cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px;
+        }
+        .announce-short { display: none; }
+        @media (max-width: 768px) {
+            .announce-bar { font-size: 0.72rem; padding: 4px 32px 4px 8px; gap: 2px; min-height: 28px; }
+            .announce-bar a { font-size: 0.72rem; padding: 2px; min-height: 28px; }
+            .announce-bar .announce-close { padding: 6px; min-width: 28px; min-height: 28px; font-size: 14px; right: 2px; }
+            .announce-full { display: none; }
+            .announce-short { display: inline; }
         }
         .announce-bar a { color: #fff; text-decoration: underline; padding: 8px 4px; min-height: 44px; display: inline-flex; align-items: center; }
         .announce-bar .announce-close {

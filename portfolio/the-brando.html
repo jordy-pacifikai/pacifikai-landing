@@ -295,7 +295,7 @@
         @keyframes drip { 0%,100%{top:-100%} 60%{top:100%} }
 
         /* ===== SECTION SCALE TRANSITIONS ===== */
-        .section-reveal {
+        .section-reveal.js-reveal {
             opacity: 0;
             transform: scale(0.96) translateY(32px);
             transition: opacity 0.95s cubic-bezier(0.22,1,0.36,1),
@@ -303,15 +303,15 @@
         }
         .section-reveal.visible {
             opacity: 1;
-            transform: scale(1) translateY(0);
+            transform: scale(1) translateY(0) !important;
         }
-        .reveal {
+        .reveal.js-reveal {
             opacity: 0;
             transform: translateY(36px);
             transition: opacity 0.85s cubic-bezier(0.22,1,0.36,1),
                         transform 0.85s cubic-bezier(0.22,1,0.36,1);
         }
-        .reveal.visible { opacity: 1; transform: translateY(0); }
+        .reveal.visible { opacity: 1; transform: translateY(0) !important; }
         .d1 { transition-delay: 0.12s; }
         .d2 { transition-delay: 0.24s; }
         .d3 { transition-delay: 0.36s; }
@@ -590,7 +590,7 @@
         }
 
         /* ===== HORIZONTAL SCROLL SHOWCASE ===== */
-        .horizontal-scroll{position:relative;overflow:hidden}
+        .horizontal-scroll{position:relative;overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch;scrollbar-width:none}
         .horizontal-scroll .scroll-track{display:flex;gap:20px;width:max-content;padding:40px 0}
         .horizontal-scroll .scroll-item{flex-shrink:0;width:70vw;max-width:500px;overflow:hidden;border-radius:8px}
         .horizontal-scroll .scroll-item img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease}
@@ -892,12 +892,12 @@
     <!-- HORIZONTAL SCROLL SHOWCASE -->
     <section class="horizontal-scroll">
       <div class="scroll-track">
-        <div class="scroll-item"><img src="images/the-brando/villa.webp" alt="Villa sur pilotis Tetiaroa" loading="lazy"></div>
-        <div class="scroll-item"><img src="images/the-brando/beach.webp" alt="Plage privee de Tetiaroa" loading="lazy"></div>
-        <div class="scroll-item"><img src="images/the-brando/spa.webp" alt="Varua Te Ora Polynesian Spa" loading="lazy"></div>
-        <div class="scroll-item"><img src="images/the-brando/dining.webp" alt="Restaurant gastronomique" loading="lazy"></div>
-        <div class="scroll-item"><img src="images/the-brando/aerial.webp" alt="Vue aerienne atoll Tetiaroa" loading="lazy"></div>
-        <div class="scroll-item"><img src="images/the-brando/night.webp" alt="Ambiance nocturne Tetiaroa" loading="lazy"></div>
+        <div class="scroll-item"><img src="images/the-brando/villa.webp" alt="Villa sur pilotis Tetiaroa"></div>
+        <div class="scroll-item"><img src="images/the-brando/beach.webp" alt="Plage privee de Tetiaroa"></div>
+        <div class="scroll-item"><img src="images/the-brando/spa.webp" alt="Varua Te Ora Polynesian Spa"></div>
+        <div class="scroll-item"><img src="images/the-brando/dining.webp" alt="Restaurant gastronomique"></div>
+        <div class="scroll-item"><img src="images/the-brando/aerial.webp" alt="Vue aerienne atoll Tetiaroa"></div>
+        <div class="scroll-item"><img src="images/the-brando/night.webp" alt="Ambiance nocturne Tetiaroa"></div>
       </div>
     </section>
 
@@ -1136,58 +1136,25 @@
         }
 
         /* ========================================
-           SECTION REVEALS (y:30, fade up)
+           SECTION REVEALS — IntersectionObserver (no GSAP pin dependency)
            ======================================== */
-        document.querySelectorAll('.section-reveal').forEach(function (el) {
-            if (prefersReduced) {
-                el.classList.add('visible');
-                return;
-            }
-            gsap.set(el, { y: 30, opacity: 0, scale: 0.97 });
-            ScrollTrigger.create({
-                trigger: el,
-                start: 'top 88%',
-                once: true,
-                onEnter: function () {
-                    gsap.to(el, {
-                        y: 0,
-                        opacity: 1,
-                        scale: 1,
-                        duration: 0.95,
-                        ease: 'power2.out'
-                    });
-                }
-            });
-        });
-
-        /* ========================================
-           REVEAL ELEMENTS (stagger children)
-           ======================================== */
-        document.querySelectorAll('.reveal').forEach(function (el) {
-            if (prefersReduced) {
-                el.classList.add('visible');
-                return;
-            }
-            gsap.set(el, { y: 36, opacity: 0 });
-            ScrollTrigger.create({
-                trigger: el,
-                start: 'top 90%',
-                once: true,
-                onEnter: function () {
-                    var delay = 0;
-                    if (el.classList.contains('d1')) delay = 0.12;
-                    if (el.classList.contains('d2')) delay = 0.24;
-                    if (el.classList.contains('d3')) delay = 0.36;
-                    gsap.to(el, {
-                        y: 0,
-                        opacity: 1,
-                        duration: 0.85,
-                        delay: delay,
-                        ease: 'power2.out'
-                    });
-                }
-            });
-        });
+        var allRevealEls = document.querySelectorAll('.section-reveal, .reveal');
+        if (prefersReduced) {
+            allRevealEls.forEach(function(el) { el.classList.add('visible'); });
+        } else {
+            allRevealEls.forEach(function(el) { el.classList.add('js-reveal'); });
+            var revealObserver = new IntersectionObserver(function(entries) {
+                entries.forEach(function(entry) {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        revealObserver.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0, rootMargin: '50px 0px 50px 0px' });
+            allRevealEls.forEach(function(el) { revealObserver.observe(el); });
+            // Safety: reveal all after 1.5s if observer never fires
+            setTimeout(function() { allRevealEls.forEach(function(el) { el.classList.add('visible'); el.classList.remove('js-reveal'); }); }, 1500);
+        }
 
         /* ========================================
            GALLERY IMAGE SCALE ON SCROLL (zoom-img)
@@ -1405,22 +1372,7 @@
 
     })();
 
-    // === HORIZONTAL SCROLL GALLERY ===
-    const hTrack = document.querySelector('.scroll-track');
-    if (hTrack) {
-      gsap.to(hTrack, {
-        x: () => -(hTrack.scrollWidth - window.innerWidth + 100),
-        ease: 'none',
-        scrollTrigger: {
-          trigger: '.horizontal-scroll',
-          start: 'top top',
-          end: () => '+=' + (hTrack.scrollWidth - window.innerWidth),
-          scrub: 1,
-          pin: true,
-          anticipatePin: 1
-        }
-      });
-    }
+    // === HORIZONTAL SCROLL GALLERY — CSS overflow, no GSAP pin (no blank space) ===
 
     // === TEXT SCRAMBLE EFFECT ===
     class TextScramble {
@@ -1464,5 +1416,32 @@
     }, 1200);
     </script>
 
+
+
+<!-- SAFETY: Force all content visible after 2s (kills GSAP ticker to prevent re-override) -->
+<script>
+setTimeout(function(){
+  // Kill ALL GSAP ScrollTrigger-based animations
+  if(typeof ScrollTrigger!=="undefined"){
+    ScrollTrigger.getAll().forEach(function(st){st.kill()});
+  }
+  if(typeof gsap!=="undefined"){
+    gsap.globalTimeline.getChildren(true,true,true).forEach(function(t){
+      try{t.progress(1);t.kill()}catch(e){}
+    });
+  }
+  // Force everything visible
+  var all=document.querySelectorAll("*");
+  for(var i=0;i<all.length;i++){
+    var el=all[i];
+    var s=window.getComputedStyle(el);
+    if(parseFloat(s.opacity)<0.15&&el.offsetHeight>50&&s.display!=="none"){
+      var c=el.className||"";
+      if(c.indexOf("bubble")>-1||c.indexOf("cursor")>-1||c.indexOf("scroll-progress")>-1||c.indexOf("modal")>-1||c.indexOf("overlay")>-1)continue;
+      el.style.cssText+="opacity:1!important;transform:none!important;";
+    }
+  }
+},2000);
+</script>
 </body>
 </html>

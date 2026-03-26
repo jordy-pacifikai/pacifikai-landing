@@ -93,7 +93,7 @@
     font-weight: 300;
     color: var(--earth);
     max-width: 440px;
-    margin: 0 auto 80px;
+    margin: 0 auto 40px;
   }
   .hero-strip {
     width: 100%;
@@ -138,7 +138,7 @@
 
   /* PHILOSOPHY */
   .philosophy {
-    padding: 200px 24px;
+    padding: 100px 24px;
     text-align: center;
   }
   .philosophy-quote {
@@ -161,7 +161,7 @@
 
   /* SERVICES */
   .services {
-    padding: 160px 24px 200px;
+    padding: 80px 24px 100px;
     max-width: 640px;
     margin: 0 auto;
   }
@@ -171,10 +171,10 @@
     text-transform: uppercase;
     color: var(--sage);
     text-align: center;
-    margin-bottom: 100px;
+    margin-bottom: 48px;
   }
-  .service-item { padding: 0 0 80px; }
-  .service-top-line { width: 100%; height: 1px; background: var(--sand); margin-bottom: 40px; }
+  .service-item { padding: 0 0 48px; }
+  .service-top-line { width: 100%; height: 1px; background: var(--sand); margin-bottom: 24px; }
   .service-name {
     font-family: 'Cormorant', serif;
     font-size: clamp(28px, 4vw, 42px);
@@ -198,7 +198,7 @@
     width: 100%;
     height: 260px;
     overflow: hidden;
-    margin: 60px 0;
+    margin: 32px 0;
   }
   .service-img img {
     width: 100%;
@@ -316,13 +316,13 @@
   .footer-credit a { color: var(--sage); text-decoration: none; }
 
   /* FADE IN */
-  .fade-in { opacity: 0; transform: translateY(24px); transition: opacity .9s ease, transform .9s ease; }
-  .fade-in.visible { opacity: 1; transform: translateY(0); }
+  .fade-in.js-reveal { opacity: 0; transform: translateY(24px); transition: opacity .9s ease, transform .9s ease; }
+  .fade-in.visible { opacity: 1; transform: translateY(0) !important; }
 
   @media (max-width: 600px) {
     .breathe { width: 220px; height: 220px; }
-    .philosophy { padding: 120px 24px; }
-    .services { padding: 100px 24px 140px; }
+    .philosophy { padding: 60px 24px; }
+    .services { padding: 60px 24px 80px; }
     .service-img { height: 200px; }
   }
 
@@ -343,7 +343,7 @@
   .stat .label{color:rgba(250,250,247,.7);font-size:13px;margin-top:8px;text-transform:uppercase;letter-spacing:2px;font-family:'Karla',sans-serif}
 
   /* ===== HORIZONTAL SCROLL SHOWCASE ===== */
-  .horizontal-scroll{position:relative;overflow:hidden}
+  .horizontal-scroll{position:relative;overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch;scrollbar-width:none}
   .horizontal-scroll .scroll-track{display:flex;gap:20px;width:max-content;padding:40px 0}
   .horizontal-scroll .scroll-item{flex-shrink:0;width:70vw;max-width:500px;overflow:hidden;border-radius:8px}
   .horizontal-scroll .scroll-item img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease}
@@ -370,7 +370,7 @@
 </section>
 
 <div class="hero-strip">
-  <img src="images/te-fare-ora/hero.jpg" alt="Paysage zen de Polynésie" loading="lazy">
+  <img src="images/te-fare-ora/hero.jpg" alt="Paysage zen de Polynésie">
 </div>
 
 <div style="display:flex;justify-content:center;padding:56px 0 0;">
@@ -419,7 +419,7 @@
   </div>
 
   <div class="service-img fade-in circle-reveal">
-    <img src="images/te-fare-ora/massage.jpg" alt="Soin Taurumi" loading="lazy">
+    <img src="images/te-fare-ora/massage.jpg" alt="Soin Taurumi">
   </div>
 
   <div class="service-item fade-in">
@@ -430,7 +430,7 @@
   </div>
 
   <div class="service-img fade-in circle-reveal">
-    <img src="images/te-fare-ora/stones.jpg" alt="Pierres chaudes" loading="lazy">
+    <img src="images/te-fare-ora/stones.jpg" alt="Pierres chaudes">
   </div>
 
   <div class="service-item fade-in">
@@ -441,13 +441,13 @@
   </div>
 
   <div class="service-img fade-in circle-reveal">
-    <img src="images/te-fare-ora/session.jpg" alt="Séance complète" loading="lazy">
+    <img src="images/te-fare-ora/session.jpg" alt="Séance complète">
   </div>
 </section>
 
 <!-- NATURE -->
 <div class="nature-section">
-  <img src="images/te-fare-ora/nature.jpg" alt="Nature polynésienne" class="gentle-parallax scale-scroll" data-speed="0.08" loading="lazy">
+  <img src="images/te-fare-ora/nature.jpg" alt="Nature polynésienne" class="gentle-parallax scale-scroll" data-speed="0.08">
 </div>
 
 <!-- STATS -->
@@ -463,7 +463,7 @@
 <!-- SUNSET CTA -->
 <section class="cta-section">
   <div class="cta-bg">
-    <img src="images/te-fare-ora/sunset.jpg" alt="Coucher de soleil Tahiti" loading="lazy">
+    <img src="images/te-fare-ora/sunset.jpg" alt="Coucher de soleil Tahiti">
   </div>
   <div class="cta-overlay"></div>
   <div class="cta-inner">
@@ -476,12 +476,12 @@
 <!-- HORIZONTAL SCROLL SHOWCASE -->
 <section class="horizontal-scroll">
   <div class="scroll-track">
-    <div class="scroll-item"><img src="images/te-fare-ora/massage.jpg" alt="Massage traditionnel" loading="lazy"></div>
-    <div class="scroll-item"><img src="images/te-fare-ora/nature.jpg" alt="Nature et bien-etre" loading="lazy"></div>
-    <div class="scroll-item"><img src="images/te-fare-ora/session.jpg" alt="Seance de soins" loading="lazy"></div>
-    <div class="scroll-item"><img src="images/te-fare-ora/stones.jpg" alt="Pierres chaudes therapie" loading="lazy"></div>
-    <div class="scroll-item"><img src="images/te-fare-ora/sunset.jpg" alt="Coucher de soleil zen" loading="lazy"></div>
-    <div class="scroll-item"><img src="images/te-fare-ora/hero.jpg" alt="Te Fare Ora Centre Bien-Etre" loading="lazy"></div>
+    <div class="scroll-item"><img src="images/te-fare-ora/massage.jpg" alt="Massage traditionnel"></div>
+    <div class="scroll-item"><img src="images/te-fare-ora/nature.jpg" alt="Nature et bien-etre"></div>
+    <div class="scroll-item"><img src="images/te-fare-ora/session.jpg" alt="Seance de soins"></div>
+    <div class="scroll-item"><img src="images/te-fare-ora/stones.jpg" alt="Pierres chaudes therapie"></div>
+    <div class="scroll-item"><img src="images/te-fare-ora/sunset.jpg" alt="Coucher de soleil zen"></div>
+    <div class="scroll-item"><img src="images/te-fare-ora/hero.jpg" alt="Te Fare Ora Centre Bien-Etre"></div>
   </div>
 </section>
 
@@ -528,13 +528,20 @@ gsap.to('#scrollProgress', {
   scrollTrigger: { trigger: document.body, start: 'top top', end: 'bottom bottom', scrub: 0.3 }
 });
 
-// === FADE IN SECTIONS ===
-gsap.utils.toArray('.fade-in').forEach(el => {
-  gsap.from(el, {
-    y: 24, opacity: 0, duration: 0.9, ease: 'power2.out',
-    scrollTrigger: { trigger: el, start: 'top 85%' }
+// === FADE IN SECTIONS — IntersectionObserver (no GSAP pin dependency) ===
+const revealEls = document.querySelectorAll('.fade-in');
+revealEls.forEach(el => el.classList.add('js-reveal'));
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      revealObserver.unobserve(entry.target);
+    }
   });
-});
+}, { threshold: 0, rootMargin: '50px 0px 50px 0px' });
+revealEls.forEach(el => revealObserver.observe(el));
+// Safety: reveal all after 1.5s if observer never fires
+setTimeout(() => { revealEls.forEach(el => { el.classList.add('visible'); el.classList.remove('js-reveal'); }); }, 1500);
 
 // === LINE GROW ===
 document.querySelectorAll('.line-grow').forEach(el => {
@@ -611,22 +618,7 @@ document.querySelectorAll('.line-reveal').forEach(el => {
   });
 });
 
-// === HORIZONTAL SCROLL GALLERY ===
-const hTrack = document.querySelector('.scroll-track');
-if (hTrack) {
-  gsap.to(hTrack, {
-    x: () => -(hTrack.scrollWidth - window.innerWidth + 100),
-    ease: 'none',
-    scrollTrigger: {
-      trigger: '.horizontal-scroll',
-      start: 'top top',
-      end: () => '+=' + (hTrack.scrollWidth - window.innerWidth),
-      scrub: 1,
-      pin: true,
-      anticipatePin: 1
-    }
-  });
-}
+// === HORIZONTAL SCROLL GALLERY — CSS overflow, no GSAP pin (no blank space) ===
 
 // === TEXT SCRAMBLE EFFECT ===
 class TextScramble {
@@ -668,6 +660,33 @@ setTimeout(() => {
   const heroP = document.querySelector('.hero-content p, .hero p, .hero-text p');
   if (heroP) { const fx = new TextScramble(heroP); fx.setText(heroP.textContent); }
 }, 1200);
+</script>
+
+
+<!-- SAFETY: Force all content visible after 2s (kills GSAP ticker to prevent re-override) -->
+<script>
+setTimeout(function(){
+  // Kill ALL GSAP ScrollTrigger-based animations
+  if(typeof ScrollTrigger!=="undefined"){
+    ScrollTrigger.getAll().forEach(function(st){st.kill()});
+  }
+  if(typeof gsap!=="undefined"){
+    gsap.globalTimeline.getChildren(true,true,true).forEach(function(t){
+      try{t.progress(1);t.kill()}catch(e){}
+    });
+  }
+  // Force everything visible
+  var all=document.querySelectorAll("*");
+  for(var i=0;i<all.length;i++){
+    var el=all[i];
+    var s=window.getComputedStyle(el);
+    if(parseFloat(s.opacity)<0.15&&el.offsetHeight>50&&s.display!=="none"){
+      var c=el.className||"";
+      if(c.indexOf("bubble")>-1||c.indexOf("cursor")>-1||c.indexOf("scroll-progress")>-1||c.indexOf("modal")>-1||c.indexOf("overlay")>-1)continue;
+      el.style.cssText+="opacity:1!important;transform:none!important;";
+    }
+  }
+},2000);
 </script>
 </body>
 </html>

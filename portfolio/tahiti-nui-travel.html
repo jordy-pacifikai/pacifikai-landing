@@ -108,8 +108,8 @@ footer a:hover{color:var(--orange)}
 .footer-bottom p{color:rgba(255,255,255,.3);font-size:13px}
 
 /* REVEAL */
-.reveal{opacity:0;transform:translateY(40px);transition:opacity .8s cubic-bezier(.25,.46,.45,.94),transform .8s cubic-bezier(.25,.46,.45,.94)}
-.reveal.visible{opacity:1;transform:translateY(0)}
+.reveal.js-reveal{opacity:0;transform:translateY(40px);transition:opacity .8s cubic-bezier(.25,.46,.45,.94),transform .8s cubic-bezier(.25,.46,.45,.94)}
+.reveal.visible{opacity:1;transform:translateY(0) !important}
 
 /* MOBILE */
 @media(max-width:768px){
@@ -137,7 +137,7 @@ footer a:hover{color:var(--orange)}
 .circle-reveal.revealed{clip-path:circle(75% at 50% 50%)}
 
 /* ===== HORIZONTAL SCROLL SHOWCASE ===== */
-.horizontal-scroll{position:relative;overflow:hidden}
+.horizontal-scroll{position:relative;overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch;scrollbar-width:none}
 .horizontal-scroll .scroll-track{display:flex;gap:20px;width:max-content;padding:40px 0}
 .horizontal-scroll .scroll-item{flex-shrink:0;width:70vw;max-width:500px;overflow:hidden;border-radius:8px}
 .horizontal-scroll .scroll-item img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease}
@@ -201,32 +201,32 @@ footer a:hover{color:var(--orange)}
   </div>
   <div class="bento">
     <div class="bento-item reveal">
-      <img src="images/tahiti-nui-travel/bora-bora.jpg" alt="Bora Bora" loading="lazy">
+      <img src="images/tahiti-nui-travel/bora-bora.jpg" alt="Bora Bora">
       <div class="bento-ov"></div>
       <div class="bento-info"><h3>Bora Bora</h3><p>L'île mythique aux eaux turquoise</p></div>
     </div>
     <div class="bento-item reveal">
-      <img src="images/tahiti-nui-travel/moorea.jpg" alt="Moorea" loading="lazy">
+      <img src="images/tahiti-nui-travel/moorea.jpg" alt="Moorea">
       <div class="bento-ov"></div>
       <div class="bento-info"><h3>Moorea</h3><p>L'île sœur, à 30 min de Tahiti</p></div>
     </div>
     <div class="bento-item reveal">
-      <img src="images/tahiti-nui-travel/marquises.jpg" alt="Les Marquises" loading="lazy">
+      <img src="images/tahiti-nui-travel/marquises.jpg" alt="Les Marquises">
       <div class="bento-ov"></div>
       <div class="bento-info"><h3>Les Marquises</h3><p>Terres sauvages et mystiques</p></div>
     </div>
     <div class="bento-item reveal">
-      <img src="images/tahiti-nui-travel/tuamotu.jpg" alt="Les Tuamotu" loading="lazy">
+      <img src="images/tahiti-nui-travel/tuamotu.jpg" alt="Les Tuamotu">
       <div class="bento-ov"></div>
       <div class="bento-info"><h3>Les Tuamotu</h3><p>Atolls et fonds marins uniques</p></div>
     </div>
     <div class="bento-item reveal">
-      <img src="images/tahiti-nui-travel/couple.jpg" alt="Voyage de noces Polynésie" loading="lazy">
+      <img src="images/tahiti-nui-travel/couple.jpg" alt="Voyage de noces Polynésie">
       <div class="bento-ov"></div>
       <div class="bento-info"><h3>Voyages de Noces</h3><p>La destination romantique par excellence</p></div>
     </div>
     <div class="bento-item reveal">
-      <img src="images/tahiti-nui-travel/office.jpg" alt="Notre équipe" loading="lazy">
+      <img src="images/tahiti-nui-travel/office.jpg" alt="Notre équipe">
       <div class="bento-ov"></div>
       <div class="bento-info"><h3>Notre Équipe</h3><p>Des experts locaux à votre service</p></div>
     </div>
@@ -270,7 +270,7 @@ footer a:hover{color:var(--orange)}
 </section>
 
 <div class="cta" id="contact">
-  <img src="images/tahiti-nui-travel/couple.jpg" alt="Voyage Polynésie" loading="lazy" class="scale-scroll">
+  <img src="images/tahiti-nui-travel/couple.jpg" alt="Voyage Polynésie" class="scale-scroll">
   <div class="cta-ov"></div>
   <div class="cta-content reveal">
     <h2 class="section-title">Prêt à Découvrir la Polynésie ?</h2>
@@ -282,12 +282,12 @@ footer a:hover{color:var(--orange)}
 <!-- HORIZONTAL SCROLL SHOWCASE -->
 <section class="horizontal-scroll">
   <div class="scroll-track">
-    <div class="scroll-item"><img src="images/tahiti-nui-travel/bora-bora.jpg" alt="Bora Bora lagon turquoise" loading="lazy"></div>
-    <div class="scroll-item"><img src="images/tahiti-nui-travel/moorea.jpg" alt="Moorea vue aerienne" loading="lazy"></div>
-    <div class="scroll-item"><img src="images/tahiti-nui-travel/marquises.jpg" alt="Iles Marquises" loading="lazy"></div>
-    <div class="scroll-item"><img src="images/tahiti-nui-travel/tuamotu.jpg" alt="Archipel des Tuamotu" loading="lazy"></div>
-    <div class="scroll-item"><img src="images/tahiti-nui-travel/couple.jpg" alt="Voyage de reve en Polynesie" loading="lazy"></div>
-    <div class="scroll-item"><img src="images/tahiti-nui-travel/office.jpg" alt="Agence Tahiti Nui Travel" loading="lazy"></div>
+    <div class="scroll-item"><img src="images/tahiti-nui-travel/bora-bora.jpg" alt="Bora Bora lagon turquoise"></div>
+    <div class="scroll-item"><img src="images/tahiti-nui-travel/moorea.jpg" alt="Moorea vue aerienne"></div>
+    <div class="scroll-item"><img src="images/tahiti-nui-travel/marquises.jpg" alt="Iles Marquises"></div>
+    <div class="scroll-item"><img src="images/tahiti-nui-travel/tuamotu.jpg" alt="Archipel des Tuamotu"></div>
+    <div class="scroll-item"><img src="images/tahiti-nui-travel/couple.jpg" alt="Voyage de reve en Polynesie"></div>
+    <div class="scroll-item"><img src="images/tahiti-nui-travel/office.jpg" alt="Agence Tahiti Nui Travel"></div>
   </div>
 </section>
 
@@ -383,21 +383,42 @@ if (heroImg) {
   });
 }
 
-// === STAGGER BENTO GRID ===
-ScrollTrigger.batch('.bento-item', {
-  onEnter: batch => gsap.to(batch, { opacity: 1, y: 0, stagger: 0.12, duration: 0.8, ease: 'power3.out' }),
-  start: 'top 85%'
-});
-// Set initial state for bento items
-gsap.set('.bento-item', { opacity: 0, y: 40 });
-
-// === REVEAL SECTIONS ===
-gsap.utils.toArray('.reveal').forEach(el => {
-  gsap.from(el, {
-    y: 40, opacity: 0, duration: 0.8, ease: 'power3.out',
-    scrollTrigger: { trigger: el, start: 'top 85%' }
+// === STAGGER BENTO GRID — IntersectionObserver ===
+const bentoItems = document.querySelectorAll('.bento-item');
+if (bentoItems.length) {
+  bentoItems.forEach((item, i) => {
+    item.style.opacity = '0';
+    item.style.transform = 'translateY(40px)';
+    item.style.transition = `opacity 0.8s ease ${i * 0.12}s, transform 0.8s ease ${i * 0.12}s`;
   });
-});
+  const bentoObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+        bentoObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0, rootMargin: '50px 0px 50px 0px' });
+  bentoItems.forEach(item => bentoObserver.observe(item));
+  // Safety: reveal all cards after 1.5s
+  setTimeout(() => { bentoItems.forEach(c => { c.style.opacity='1'; c.style.transform='none'; }); }, 1500);
+}
+
+// === REVEAL SECTIONS — IntersectionObserver (no GSAP pin dependency) ===
+const revealEls = document.querySelectorAll('.reveal');
+revealEls.forEach(el => el.classList.add('js-reveal'));
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      revealObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0, rootMargin: '50px 0px 50px 0px' });
+revealEls.forEach(el => revealObserver.observe(el));
+// Safety: reveal all after 1.5s if observer never fires
+setTimeout(() => { revealEls.forEach(el => { el.classList.add('visible'); el.classList.remove('js-reveal'); }); }, 1500);
 
 // === COUNTER ANIMATION (data-count) ===
 document.querySelectorAll('[data-count]').forEach(el => {
@@ -460,22 +481,7 @@ document.querySelectorAll('.tilt-card').forEach(card => {
   card.addEventListener('mouseenter', () => { card.style.transition = 'transform .1s'; });
 });
 
-// === HORIZONTAL SCROLL GALLERY ===
-const hTrack = document.querySelector('.scroll-track');
-if (hTrack) {
-  gsap.to(hTrack, {
-    x: () => -(hTrack.scrollWidth - window.innerWidth + 100),
-    ease: 'none',
-    scrollTrigger: {
-      trigger: '.horizontal-scroll',
-      start: 'top top',
-      end: () => '+=' + (hTrack.scrollWidth - window.innerWidth),
-      scrub: 1,
-      pin: true,
-      anticipatePin: 1
-    }
-  });
-}
+// === HORIZONTAL SCROLL GALLERY — CSS overflow, no GSAP pin (no blank space) ===
 
 // === TEXT SCRAMBLE EFFECT ===
 class TextScramble {
@@ -517,6 +523,33 @@ setTimeout(() => {
   const heroP = document.querySelector('.hero-content p, .hero p, .hero-text p');
   if (heroP) { const fx = new TextScramble(heroP); fx.setText(heroP.textContent); }
 }, 1200);
+</script>
+
+
+<!-- SAFETY: Force all content visible after 2s (kills GSAP ticker to prevent re-override) -->
+<script>
+setTimeout(function(){
+  // Kill ALL GSAP ScrollTrigger-based animations
+  if(typeof ScrollTrigger!=="undefined"){
+    ScrollTrigger.getAll().forEach(function(st){st.kill()});
+  }
+  if(typeof gsap!=="undefined"){
+    gsap.globalTimeline.getChildren(true,true,true).forEach(function(t){
+      try{t.progress(1);t.kill()}catch(e){}
+    });
+  }
+  // Force everything visible
+  var all=document.querySelectorAll("*");
+  for(var i=0;i<all.length;i++){
+    var el=all[i];
+    var s=window.getComputedStyle(el);
+    if(parseFloat(s.opacity)<0.15&&el.offsetHeight>50&&s.display!=="none"){
+      var c=el.className||"";
+      if(c.indexOf("bubble")>-1||c.indexOf("cursor")>-1||c.indexOf("scroll-progress")>-1||c.indexOf("modal")>-1||c.indexOf("overlay")>-1)continue;
+      el.style.cssText+="opacity:1!important;transform:none!important;";
+    }
+  }
+},2000);
 </script>
 </body>
 </html>
