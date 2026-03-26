@@ -1,0 +1,1195 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Plan de Campagne — Site Web Pro à 100 000 F | PACIFIK'AI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;600;700;800&family=Fragment+Mono:wght@400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --font-body: 'Bricolage Grotesque', system-ui, sans-serif;
+    --font-mono: 'Fragment Mono', 'SF Mono', Consolas, monospace;
+
+    --bg: #080c14;
+    --surface: #0f1520;
+    --surface2: #151d2c;
+    --surface-elevated: #1a2438;
+    --border: rgba(255, 255, 255, 0.06);
+    --border-bright: rgba(255, 255, 255, 0.12);
+    --text: #e8ecf4;
+    --text-dim: #7a8599;
+
+    --accent: #f97066;
+    --accent-dim: rgba(249, 112, 102, 0.12);
+    --lagoon: #14b8a6;
+    --lagoon-dim: rgba(20, 184, 166, 0.10);
+    --gold: #d4a73a;
+    --gold-dim: rgba(212, 167, 58, 0.10);
+    --blue: #3b82f6;
+    --blue-dim: rgba(59, 130, 246, 0.10);
+
+    --green: #22c55e;
+    --green-dim: rgba(34, 197, 94, 0.10);
+    --orange: #f59e0b;
+    --orange-dim: rgba(245, 158, 11, 0.10);
+    --red: #ef4444;
+    --red-dim: rgba(239, 68, 68, 0.10);
+  }
+
+  @media (prefers-color-scheme: light) {
+    :root {
+      --bg: #f5f3f0;
+      --surface: #ffffff;
+      --surface2: #faf8f5;
+      --surface-elevated: #ffffff;
+      --border: rgba(0, 0, 0, 0.07);
+      --border-bright: rgba(0, 0, 0, 0.14);
+      --text: #1a1a2e;
+      --text-dim: #6b7280;
+      --accent: #dc2626;
+      --accent-dim: rgba(220, 38, 38, 0.06);
+      --lagoon: #0d9488;
+      --lagoon-dim: rgba(13, 148, 136, 0.06);
+      --gold: #b8860b;
+      --gold-dim: rgba(184, 134, 11, 0.06);
+      --blue: #2563eb;
+      --blue-dim: rgba(37, 99, 235, 0.06);
+      --green: #16a34a;
+      --green-dim: rgba(22, 163, 74, 0.06);
+      --orange: #d97706;
+      --orange-dim: rgba(217, 119, 6, 0.06);
+      --red: #dc2626;
+      --red-dim: rgba(220, 38, 38, 0.06);
+    }
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    background-image:
+      radial-gradient(ellipse at 20% 0%, var(--accent-dim) 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 30%, var(--lagoon-dim) 0%, transparent 40%);
+    color: var(--text);
+    font-family: var(--font-body);
+    font-size: 15px;
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  /* ============ ANIMATION ============ */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeScale {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+  }
+  .animate {
+    animation: fadeUp 0.4s ease-out both;
+    animation-delay: calc(var(--i, 0) * 0.06s);
+  }
+  .animate-scale {
+    animation: fadeScale 0.4s ease-out both;
+    animation-delay: calc(var(--i, 0) * 0.08s);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  /* ============ LAYOUT ============ */
+  .wrap {
+    max-width: 1300px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    gap: 0 40px;
+    padding: 0 24px;
+  }
+  .main { min-width: 0; padding: 40px 0 80px; }
+
+  /* ============ TOC ============ */
+  .toc {
+    position: sticky;
+    top: 24px;
+    align-self: start;
+    padding: 14px 0;
+    grid-row: 1 / -1;
+    max-height: calc(100dvh - 48px);
+    overflow-y: auto;
+  }
+  .toc::-webkit-scrollbar { width: 3px; }
+  .toc::-webkit-scrollbar-thumb { background: var(--surface-elevated); border-radius: 2px; }
+  .toc-title {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--text-dim);
+    padding: 0 0 10px;
+    margin-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+  .toc a {
+    display: block;
+    font-size: 12px;
+    color: var(--text-dim);
+    text-decoration: none;
+    padding: 6px 0 6px 10px;
+    border-left: 2px solid transparent;
+    transition: all 0.2s;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .toc a:hover, .toc a.active {
+    color: var(--accent);
+    border-left-color: var(--accent);
+    background: var(--accent-dim);
+    border-radius: 0 4px 4px 0;
+  }
+
+  /* ============ HERO ============ */
+  .hero {
+    padding: 60px 0 40px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 48px;
+  }
+  .hero-label {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 12px;
+  }
+  .hero h1 {
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    font-weight: 800;
+    line-height: 1.1;
+    color: var(--text);
+    margin-bottom: 16px;
+  }
+  .hero h1 span { color: var(--accent); }
+  .hero-sub {
+    font-size: 17px;
+    color: var(--text-dim);
+    max-width: 620px;
+    line-height: 1.7;
+  }
+
+  /* ============ KPI CARDS ============ */
+  .kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin: 32px 0 48px;
+  }
+  .kpi {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+    position: relative;
+    overflow: hidden;
+  }
+  .kpi::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--kpi-color, var(--accent));
+  }
+  .kpi-value {
+    font-size: 2rem;
+    font-weight: 800;
+    line-height: 1;
+    margin-bottom: 6px;
+    color: var(--kpi-color, var(--accent));
+  }
+  .kpi-label {
+    font-size: 12px;
+    color: var(--text-dim);
+    font-family: var(--font-mono);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  /* ============ SECTIONS ============ */
+  .sec-head {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--text-dim);
+    padding: 10px 14px;
+    border-radius: 8px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    margin: 48px 0 24px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    scroll-margin-top: 20px;
+  }
+  .sec-head .dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--dot-color, var(--accent));
+    flex-shrink: 0;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 16px;
+    color: var(--text);
+  }
+  h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin: 24px 0 12px;
+    color: var(--text);
+  }
+  p { margin-bottom: 12px; color: var(--text-dim); }
+
+  /* ============ CARDS ============ */
+  .ve-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 16px;
+    transition: border-color 0.2s;
+  }
+  .ve-card:hover { border-color: var(--border-bright); }
+  .ve-card--hero {
+    background: var(--surface-elevated);
+    border-color: var(--border-bright);
+    box-shadow: 0 4px 24px rgba(0,0,0,0.15);
+  }
+
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 16px;
+    margin: 16px 0;
+  }
+
+  .card-title {
+    font-weight: 700;
+    font-size: 1rem;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .card-title .icon {
+    width: 28px; height: 28px;
+    border-radius: 6px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px;
+    flex-shrink: 0;
+  }
+
+  /* ============ BADGE ============ */
+  .badge {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    padding: 3px 8px;
+    border-radius: 4px;
+    text-transform: uppercase;
+  }
+  .badge--accent { background: var(--accent-dim); color: var(--accent); }
+  .badge--lagoon { background: var(--lagoon-dim); color: var(--lagoon); }
+  .badge--gold { background: var(--gold-dim); color: var(--gold); }
+  .badge--green { background: var(--green-dim); color: var(--green); }
+  .badge--blue { background: var(--blue-dim); color: var(--blue); }
+  .badge--orange { background: var(--orange-dim); color: var(--orange); }
+
+  /* ============ TABLE ============ */
+  .table-wrap {
+    overflow-x: auto;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    margin: 16px 0;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+  }
+  thead th {
+    position: sticky;
+    top: 0;
+    background: var(--surface-elevated);
+    font-family: var(--font-mono);
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--text-dim);
+    padding: 12px 16px;
+    text-align: left;
+    border-bottom: 1px solid var(--border-bright);
+    white-space: nowrap;
+  }
+  tbody td {
+    padding: 10px 16px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+  }
+  tbody tr:hover { background: var(--accent-dim); }
+  tbody tr:nth-child(even) { background: var(--surface); }
+  tbody tr:nth-child(even):hover { background: var(--accent-dim); }
+  td code {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    background: var(--surface2);
+    padding: 1px 5px;
+    border-radius: 3px;
+  }
+
+  /* ============ TIMELINE ============ */
+  .timeline {
+    position: relative;
+    padding-left: 28px;
+    margin: 20px 0;
+  }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 8px;
+    top: 4px;
+    bottom: 4px;
+    width: 2px;
+    background: var(--border-bright);
+  }
+  .tl-item {
+    position: relative;
+    margin-bottom: 28px;
+  }
+  .tl-item::before {
+    content: '';
+    position: absolute;
+    left: -24px;
+    top: 6px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    border: 2px solid var(--accent);
+    background: var(--bg);
+  }
+  .tl-item.active::before {
+    background: var(--accent);
+    box-shadow: 0 0 0 4px var(--accent-dim);
+  }
+  .tl-week {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--accent);
+    margin-bottom: 6px;
+  }
+  .tl-content {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px;
+  }
+  .tl-content h4 {
+    font-size: 0.95rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+  .tl-content ul {
+    margin: 0;
+    padding-left: 18px;
+    color: var(--text-dim);
+    font-size: 14px;
+  }
+  .tl-content li { margin-bottom: 4px; }
+
+  /* ============ CHECKLIST ============ */
+  .checklist {
+    list-style: none;
+    padding: 0;
+  }
+  .checklist li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 14px;
+    color: var(--text-dim);
+  }
+  .checklist li:last-child { border-bottom: none; }
+  .check-box {
+    width: 18px; height: 18px;
+    border-radius: 4px;
+    border: 2px solid var(--border-bright);
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  /* ============ PROGRESS BAR ============ */
+  .progress-bar {
+    height: 6px;
+    background: var(--surface2);
+    border-radius: 3px;
+    overflow: hidden;
+    margin: 8px 0;
+  }
+  .progress-fill {
+    height: 100%;
+    border-radius: 3px;
+    transition: width 0.6s ease;
+  }
+
+  /* ============ CALLOUT ============ */
+  .callout {
+    border-left: 3px solid var(--accent);
+    background: var(--accent-dim);
+    padding: 16px 20px;
+    border-radius: 0 8px 8px 0;
+    margin: 20px 0;
+    font-size: 14px;
+    color: var(--text);
+  }
+  .callout strong { color: var(--accent); }
+
+  /* ============ MOBILE ============ */
+  @media (max-width: 768px) {
+    .wrap {
+      grid-template-columns: 1fr;
+      padding: 0 16px;
+    }
+    .toc {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      gap: 0;
+      overflow-x: auto;
+      background: var(--bg);
+      border-bottom: 1px solid var(--border);
+      padding: 10px 0;
+      -webkit-overflow-scrolling: touch;
+    }
+    .toc-title { display: none; }
+    .toc a {
+      white-space: nowrap;
+      border-left: none;
+      border-bottom: 2px solid transparent;
+      padding: 6px 12px;
+      border-radius: 0;
+    }
+    .toc a:hover, .toc a.active {
+      border-left: none;
+      border-bottom-color: var(--accent);
+      background: transparent;
+    }
+    .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+    .card-grid { grid-template-columns: 1fr; }
+    .hero h1 { font-size: 1.8rem; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <nav class="toc" id="toc">
+    <div class="toc-title">Plan Campagne</div>
+    <a href="#s1">1. Objectif & KPIs</a>
+    <a href="#s2">2. Organique</a>
+    <a href="#s3">3. Ads Payantes</a>
+    <a href="#s4">4. Referral</a>
+    <a href="#s5">5. Outreach Direct</a>
+    <a href="#s6">6. Timeline 4 Semaines</a>
+    <a href="#s7">7. Checklist Jordy</a>
+    <a href="#s8">8. Budget</a>
+  </nav>
+
+  <div class="main">
+
+    <!-- HERO -->
+    <div class="hero animate" style="--i:0">
+      <div class="hero-label">Campagne Q1 2026</div>
+      <h1>Site Web Pro<br>a <span>100 000 F</span></h1>
+      <p class="hero-sub">
+        Remplir 50 places en 4 semaines. Strategie organique + paid + referral + outreach direct sur la base Tapiri (18K entreprises PF).
+      </p>
+    </div>
+
+    <!-- KPI CARDS -->
+    <div class="kpi-grid">
+      <div class="kpi animate-scale" style="--i:1; --kpi-color: var(--accent)">
+        <div class="kpi-value">50</div>
+        <div class="kpi-label">Places a vendre</div>
+      </div>
+      <div class="kpi animate-scale" style="--i:2; --kpi-color: var(--lagoon)">
+        <div class="kpi-value">100K F</div>
+        <div class="kpi-label">Prix par site</div>
+      </div>
+      <div class="kpi animate-scale" style="--i:3; --kpi-color: var(--gold)">
+        <div class="kpi-value">5M F</div>
+        <div class="kpi-label">CA potentiel</div>
+      </div>
+      <div class="kpi animate-scale" style="--i:4; --kpi-color: var(--green)">
+        <div class="kpi-value">4 sem</div>
+        <div class="kpi-label">Duree campagne</div>
+      </div>
+    </div>
+
+    <!-- SECTION 1: OBJECTIF & KPIS -->
+    <div id="s1" class="sec-head animate" style="--i:5">
+      <span class="dot" style="--dot-color: var(--accent)"></span>
+      1 — Objectif & KPIs
+    </div>
+
+    <div class="ve-card ve-card--hero animate" style="--i:6">
+      <h2>Objectif principal</h2>
+      <p>Vendre <strong style="color:var(--accent)">50 sites web professionnels</strong> a 100 000 XPF chacun en 4 semaines, generant un CA de 5 000 000 XPF.</p>
+      <p>Cible : TPE/PME de Polynesie francaise qui n'ont pas de site web ou ont un site obsolete.</p>
+    </div>
+
+    <h3>KPIs de suivi</h3>
+    <div class="table-wrap animate" style="--i:7">
+      <table>
+        <thead>
+          <tr>
+            <th>Metrique</th>
+            <th>Objectif / Semaine</th>
+            <th>Objectif Total</th>
+            <th>Outil de mesure</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Ventes signees</strong></td>
+            <td>12-13 / sem</td>
+            <td><span class="badge badge--accent">50</span></td>
+            <td>CRM PACIFIK'AI</td>
+          </tr>
+          <tr>
+            <td><strong>Leads qualifies</strong></td>
+            <td>30-40 / sem</td>
+            <td><span class="badge badge--lagoon">150+</span></td>
+            <td>CRM + Formulaire</td>
+          </tr>
+          <tr>
+            <td><strong>Visites page offre</strong></td>
+            <td>500+ / sem</td>
+            <td><span class="badge badge--blue">2000+</span></td>
+            <td>Vercel Analytics</td>
+          </tr>
+          <tr>
+            <td><strong>Taux conversion visite-lead</strong></td>
+            <td>8-12%</td>
+            <td><span class="badge badge--gold">10%</span></td>
+            <td>Analytics</td>
+          </tr>
+          <tr>
+            <td><strong>Taux conversion lead-vente</strong></td>
+            <td>30-40%</td>
+            <td><span class="badge badge--green">33%</span></td>
+            <td>CRM</td>
+          </tr>
+          <tr>
+            <td><strong>Cout par lead (CPL)</strong></td>
+            <td>&lt; 1 500 F</td>
+            <td><span class="badge badge--orange">&lt; 1 500 F</span></td>
+            <td>Meta Ads Manager</td>
+          </tr>
+          <tr>
+            <td><strong>ROAS</strong></td>
+            <td>--</td>
+            <td><span class="badge badge--green">&gt; 10x</span></td>
+            <td>Budget vs CA</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- SECTION 2: ORGANIQUE -->
+    <div id="s2" class="sec-head animate" style="--i:8">
+      <span class="dot" style="--dot-color: var(--lagoon)"></span>
+      2 — Strategie Organique (Facebook + Instagram)
+    </div>
+
+    <div class="callout animate" style="--i:9">
+      <strong>Cle :</strong> Publier 2x/jour minimum. Mixer contenu educatif (60%), preuve sociale (25%), et offre directe (15%). Toujours inclure un CTA vers la page offre.
+    </div>
+
+    <h3>Calendrier de publication — Semaine type</h3>
+    <div class="table-wrap animate" style="--i:10">
+      <table>
+        <thead>
+          <tr>
+            <th>Jour</th>
+            <th>Matin (9h)</th>
+            <th>Soir (18h)</th>
+            <th>Format</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Lundi</strong></td>
+            <td>Stat choc : "75% des clients verifient ton site avant d'acheter"</td>
+            <td>Before/After d'un site portfolio</td>
+            <td>Carousel + Reel</td>
+          </tr>
+          <tr>
+            <td><strong>Mardi</strong></td>
+            <td>Temoignage client (video courte ou capture)</td>
+            <td>"3 erreurs qui font fuir tes clients" (educatif)</td>
+            <td>Reel + Carousel</td>
+          </tr>
+          <tr>
+            <td><strong>Mercredi</strong></td>
+            <td>Coulisses : on construit un site en live (time-lapse)</td>
+            <td>Offre directe : "Plus que X places a 100K F"</td>
+            <td>Story + Post</td>
+          </tr>
+          <tr>
+            <td><strong>Jeudi</strong></td>
+            <td>Mini-tuto : "Comment choisir son nom de domaine"</td>
+            <td>Demo d'un site portfolio (scroll video)</td>
+            <td>Reel + Carousel</td>
+          </tr>
+          <tr>
+            <td><strong>Vendredi</strong></td>
+            <td>Success story : un commerce PF avec bon site</td>
+            <td>FAQ : reponses aux objections courantes</td>
+            <td>Post + Story</td>
+          </tr>
+          <tr>
+            <td><strong>Samedi</strong></td>
+            <td>Urgence : "Dernieres places — recap semaine"</td>
+            <td>--</td>
+            <td>Reel</td>
+          </tr>
+          <tr>
+            <td><strong>Dimanche</strong></td>
+            <td>Post inspirant : "Imagine ton business avec un vrai site"</td>
+            <td>--</td>
+            <td>Post image</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Types de contenu</h3>
+    <div class="card-grid">
+      <div class="ve-card animate" style="--i:11">
+        <div class="card-title">
+          <span class="icon" style="background: var(--lagoon-dim); color: var(--lagoon)">E</span>
+          Educatif (60%)
+        </div>
+        <p>"Pourquoi un site web en 2026", "Les 5 elements d'un bon site", "Google My Business vs site web", stats sur le digital en PF.</p>
+        <p><span class="badge badge--lagoon">Objectif : autorite</span></p>
+      </div>
+      <div class="ve-card animate" style="--i:12">
+        <div class="card-title">
+          <span class="icon" style="background: var(--gold-dim); color: var(--gold)">P</span>
+          Preuve Sociale (25%)
+        </div>
+        <p>Screenshots des 10 sites portfolio (ATN, Hinano, The Brando...), avis clients, temoignages video, compteur de places restantes.</p>
+        <p><span class="badge badge--gold">Objectif : confiance</span></p>
+      </div>
+      <div class="ve-card animate" style="--i:13">
+        <div class="card-title">
+          <span class="icon" style="background: var(--accent-dim); color: var(--accent)">O</span>
+          Offre Directe (15%)
+        </div>
+        <p>CTA clair, prix barre (200K - 100K), urgence ("plus que X places"), lien direct vers la page offre avec formulaire.</p>
+        <p><span class="badge badge--accent">Objectif : conversion</span></p>
+      </div>
+    </div>
+
+    <h3>Hashtags PF</h3>
+    <div class="ve-card animate" style="--i:14">
+      <p style="font-family: var(--font-mono); font-size: 13px; color: var(--lagoon); line-height: 2;">
+        #Tahiti #PolynesieFrancaise #Papeete #BusinessTahiti #EntreprisePF #SiteWeb #DigitalTahiti #PACIFIKAI #WebDesignTahiti #FenualocalPF #CommercePF #TPE #PME #MadeInTahiti #NumeriquePF
+      </p>
+    </div>
+
+    <!-- SECTION 3: ADS PAYANTES -->
+    <div id="s3" class="sec-head animate" style="--i:15">
+      <span class="dot" style="--dot-color: var(--blue)"></span>
+      3 — Strategie Ads Payantes (Facebook / Instagram)
+    </div>
+
+    <h3>Structure des campagnes</h3>
+    <div class="card-grid">
+      <div class="ve-card animate" style="--i:16">
+        <div class="card-title">
+          <span class="icon" style="background: var(--blue-dim); color: var(--blue)">A</span>
+          Campagne A — Awareness
+        </div>
+        <p><strong>Objectif :</strong> Portee / Video views</p>
+        <p><strong>Budget :</strong> 30% du total ads</p>
+        <p><strong>Audience :</strong> Proprietaires d'entreprises en PF, 25-55 ans, interets : business, entrepreneuriat, commerce</p>
+        <p><strong>Crea :</strong> Reel 15s — before/after d'un site portfolio, scroll capture</p>
+        <p><strong>CTA :</strong> En savoir plus - page offre</p>
+      </div>
+      <div class="ve-card animate" style="--i:17">
+        <div class="card-title">
+          <span class="icon" style="background: var(--accent-dim); color: var(--accent)">B</span>
+          Campagne B — Conversion
+        </div>
+        <p><strong>Objectif :</strong> Lead generation (formulaire)</p>
+        <p><strong>Budget :</strong> 50% du total ads</p>
+        <p><strong>Audience :</strong> Retargeting visiteurs page offre + Lookalike clients existants</p>
+        <p><strong>Crea :</strong> Carousel 5 slides — "Ton site web en 48h" + preuves + prix + CTA</p>
+        <p><strong>CTA :</strong> Reserver ma place - formulaire</p>
+      </div>
+      <div class="ve-card animate" style="--i:18">
+        <div class="card-title">
+          <span class="icon" style="background: var(--gold-dim); color: var(--gold)">C</span>
+          Campagne C — Urgence (Sem 3-4)
+        </div>
+        <p><strong>Objectif :</strong> Conversions</p>
+        <p><strong>Budget :</strong> 20% du total ads</p>
+        <p><strong>Audience :</strong> Retargeting chaud (visiteurs formulaire non-soumis)</p>
+        <p><strong>Crea :</strong> "Plus que X places" — decompte, temoignages clients signes</p>
+        <p><strong>CTA :</strong> Derniere chance - formulaire</p>
+      </div>
+    </div>
+
+    <h3>Ciblage Facebook detaille</h3>
+    <div class="table-wrap animate" style="--i:19">
+      <table>
+        <thead>
+          <tr>
+            <th>Parametre</th>
+            <th>Valeur</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Localisation</strong></td><td>Polynesie francaise (rayon 200km Papeete + Moorea + Bora Bora)</td></tr>
+          <tr><td><strong>Age</strong></td><td>25-55 ans</td></tr>
+          <tr><td><strong>Langue</strong></td><td>Francais</td></tr>
+          <tr><td><strong>Interets</strong></td><td>Proprietaire d'entreprise, Entrepreneuriat, Commerce de detail, Restaurant, Hotellerie, Tourisme, Artisanat</td></tr>
+          <tr><td><strong>Comportements</strong></td><td>Admins de pages Facebook, Proprietaires de PME</td></tr>
+          <tr><td><strong>Exclusions</strong></td><td>Deja clients PACIFIK'AI, web developers, agences digitales</td></tr>
+          <tr><td><strong>Lookalike</strong></td><td>1% base sur visiteurs page offre (apres 500+ visites)</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>A/B Tests prevus</h3>
+    <div class="card-grid">
+      <div class="ve-card animate" style="--i:20">
+        <div class="card-title">Test 1 — Crea</div>
+        <p><span class="badge badge--blue">Variante A</span> Before/after screenshot</p>
+        <p><span class="badge badge--lagoon">Variante B</span> Video scroll du site</p>
+        <p style="color: var(--text-dim); font-size: 13px;">Metrique : CTR + CPL. Duree : 5 jours, budget 50/50.</p>
+      </div>
+      <div class="ve-card animate" style="--i:21">
+        <div class="card-title">Test 2 — Hook</div>
+        <p><span class="badge badge--blue">Variante A</span> "Ton business merite un vrai site web"</p>
+        <p><span class="badge badge--lagoon">Variante B</span> "100 000 F au lieu de 200 000 F — offre limitee"</p>
+        <p style="color: var(--text-dim); font-size: 13px;">Metrique : CPC + conversion. Duree : 5 jours.</p>
+      </div>
+      <div class="ve-card animate" style="--i:22">
+        <div class="card-title">Test 3 — Audience</div>
+        <p><span class="badge badge--blue">Variante A</span> Interets business large</p>
+        <p><span class="badge badge--lagoon">Variante B</span> Admins de pages FB seulement</p>
+        <p style="color: var(--text-dim); font-size: 13px;">Metrique : CPL + qualite lead. Duree : 7 jours.</p>
+      </div>
+    </div>
+
+    <!-- SECTION 4: REFERRAL -->
+    <div id="s4" class="sec-head animate" style="--i:23">
+      <span class="dot" style="--dot-color: var(--gold)"></span>
+      4 — Referral & Bouche-a-oreille
+    </div>
+
+    <div class="ve-card ve-card--hero animate" style="--i:24">
+      <h3 style="margin-top:0">Programme de parrainage</h3>
+      <p><strong style="color:var(--gold)">10 000 F de commission</strong> par client refere qui signe. Paiement immediat apres signature.</p>
+      <div class="card-grid" style="margin-top:16px">
+        <div class="ve-card">
+          <div class="card-title">Clients existants</div>
+          <p>Email + SMS aux clients actuels : "Recommande-nous, gagne 10 000 F par filleul"</p>
+        </div>
+        <div class="ve-card">
+          <div class="card-title">Partenaires locaux</div>
+          <p>Comptables, experts-comptables, agents immobiliers, assureurs — ils croisent des TPE sans site</p>
+        </div>
+        <div class="ve-card">
+          <div class="card-title">Micro-influenceurs PF</div>
+          <p>5-10 influenceurs locaux (5K-20K followers) : post sponsorise en echange de commission ou site gratuit</p>
+        </div>
+      </div>
+    </div>
+
+    <h3>Tactiques bouche-a-oreille</h3>
+    <div class="card-grid">
+      <div class="ve-card animate" style="--i:25">
+        <div class="card-title">Groupes Facebook PF</div>
+        <p>Poster dans "Petites Annonces Tahiti", "Entrepreneurs Polynesie", "Tahiti Business Network". Partager un conseil gratuit + CTA subtil.</p>
+      </div>
+      <div class="ve-card animate" style="--i:26">
+        <div class="card-title">WhatsApp broadcasts</div>
+        <p>Listes de diffusion ciblees (commercants, restaurateurs). Message personnalise avec lien page offre. Max 1 message / semaine.</p>
+      </div>
+      <div class="ve-card animate" style="--i:27">
+        <div class="card-title">Terrain physique</div>
+        <p>Flyers QR code au marche de Papeete, centre Vaima, galeries commerciales. Cible : commercants sans site visible.</p>
+      </div>
+    </div>
+
+    <!-- SECTION 5: OUTREACH DIRECT -->
+    <div id="s5" class="sec-head animate" style="--i:28">
+      <span class="dot" style="--dot-color: var(--green)"></span>
+      5 — Outreach Direct (Base Tapiri 18K entreprises)
+    </div>
+
+    <div class="callout animate" style="--i:29">
+      <strong>Avantage massif :</strong> La base Tapiri contient 3 568 entreprises actives avec telephone et email. C'est de l'or pour de l'outreach cible.
+    </div>
+
+    <h3>Sequence Email (Brevo)</h3>
+    <div class="timeline animate" style="--i:30">
+      <div class="tl-item active">
+        <div class="tl-week">J+0 — Email 1 : Introduction</div>
+        <div class="tl-content">
+          <h4>Objet : "Votre site web professionnel a 100 000 F — offre limitee"</h4>
+          <ul>
+            <li>Personnalise avec nom entreprise + secteur</li>
+            <li>Accroche : "Ia ora na [Nom], on a cree un site demo pour [secteur] — jetez un oeil"</li>
+            <li>Lien vers page portfolio la plus pertinente (restaurant - Le Lotus, hotel - The Brando...)</li>
+            <li>CTA : "Reserver ma place"</li>
+          </ul>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-week">J+3 — Email 2 : Preuve sociale</div>
+        <div class="tl-content">
+          <h4>Objet : "Ce que nos clients disent de leur nouveau site"</h4>
+          <ul>
+            <li>2-3 temoignages / captures d'ecran</li>
+            <li>Compteur : "Plus que X places sur 50"</li>
+            <li>CTA : "Je veux le mien"</li>
+          </ul>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-week">J+7 — Email 3 : Urgence</div>
+        <div class="tl-content">
+          <h4>Objet : "Derniere chance — [X] places restantes a 100K F"</h4>
+          <ul>
+            <li>Rappel du prix normal (200K) vs offre (100K)</li>
+            <li>FAQ rapide (combien de temps, quoi inclus, apres ?)</li>
+            <li>CTA : "Reserver avant la fin"</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <h3>Sequence SMS (optionnel)</h3>
+    <div class="ve-card animate" style="--i:31">
+      <p><strong>SMS 1 (J+1) :</strong> "Ia ora na ! PACIFIK'AI propose des sites web pro a 100K F (au lieu de 200K). 50 places seulement. Infos : pacifikai.com/offre-site-web"</p>
+      <p><strong>SMS 2 (J+5) :</strong> "Plus que [X] places pour un site web a 100K F. Votre site pret en 48h. Reservez : pacifikai.com/offre-site-web"</p>
+      <p style="font-size:13px; color:var(--text-dim)">Attention : verifier la reglementation SMS commerciaux en PF (opt-in requis). Utiliser uniquement les contacts qui ont donne leur accord.</p>
+    </div>
+
+    <h3>Segmentation de la base Tapiri</h3>
+    <div class="table-wrap animate" style="--i:32">
+      <table>
+        <thead>
+          <tr>
+            <th>Segment</th>
+            <th>Taille estimee</th>
+            <th>Priorite</th>
+            <th>Message adapte</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Restaurants / Snacks / Roulottes</strong></td>
+            <td>~800</td>
+            <td><span class="badge badge--accent">Haute</span></td>
+            <td>Demo Le Lotus + Roulottes Vaiete</td>
+          </tr>
+          <tr>
+            <td><strong>Hebergements / Pensions</strong></td>
+            <td>~400</td>
+            <td><span class="badge badge--accent">Haute</span></td>
+            <td>Demo The Brando</td>
+          </tr>
+          <tr>
+            <td><strong>Activites / Excursions</strong></td>
+            <td>~350</td>
+            <td><span class="badge badge--accent">Haute</span></td>
+            <td>Demo Moorea Dolphins + Tahiti Plongee</td>
+          </tr>
+          <tr>
+            <td><strong>Commerces / Boutiques</strong></td>
+            <td>~600</td>
+            <td><span class="badge badge--gold">Moyenne</span></td>
+            <td>Demo Robert Wan + message e-commerce</td>
+          </tr>
+          <tr>
+            <td><strong>Services (artisans, tatoueurs...)</strong></td>
+            <td>~500</td>
+            <td><span class="badge badge--gold">Moyenne</span></td>
+            <td>Demo Mana Tattoo</td>
+          </tr>
+          <tr>
+            <td><strong>Agences / Transport</strong></td>
+            <td>~300</td>
+            <td><span class="badge badge--lagoon">Standard</span></td>
+            <td>Demo Tahiti Nui Travel + ATN</td>
+          </tr>
+          <tr>
+            <td><strong>Autres (sans site detecte)</strong></td>
+            <td>~600</td>
+            <td><span class="badge badge--lagoon">Standard</span></td>
+            <td>Message generique + 3 demos varies</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- SECTION 6: TIMELINE -->
+    <div id="s6" class="sec-head animate" style="--i:33">
+      <span class="dot" style="--dot-color: var(--accent)"></span>
+      6 — Timeline Semaine par Semaine
+    </div>
+
+    <div class="timeline animate" style="--i:34">
+      <div class="tl-item active">
+        <div class="tl-week">Semaine 1 — Lancement & Buzz</div>
+        <div class="tl-content">
+          <h4>Objectif : 10 ventes + 40 leads</h4>
+          <ul>
+            <li>Lancer campagnes Facebook A (awareness) + B (conversion)</li>
+            <li>Publier 2x/jour sur Facebook + Instagram (contenu educatif + preuve sociale)</li>
+            <li>Envoyer Email 1 aux 3 segments prioritaires (~1 550 contacts)</li>
+            <li>Poster dans 5+ groupes Facebook PF</li>
+            <li>Contacter 10 partenaires locaux (comptables, assureurs)</li>
+            <li>WhatsApp broadcast aux contacts existants</li>
+            <li>A/B test crea (before/after vs video scroll)</li>
+          </ul>
+          <div class="progress-bar"><div class="progress-fill" style="width:25%; background:var(--accent)"></div></div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-week">Semaine 2 — Acceleration</div>
+        <div class="tl-content">
+          <h4>Objectif : 15 ventes + 50 leads (cumule : 25 ventes)</h4>
+          <ul>
+            <li>Analyser resultats A/B test - scaler la variante gagnante</li>
+            <li>Envoyer Email 2 (preuve sociale) aux 3 segments prioritaires</li>
+            <li>Elargir Email 1 aux segments "Moyenne" priorite (~1 100 contacts)</li>
+            <li>Publier 3 temoignages clients signes (video courte)</li>
+            <li>Activer campagne retargeting (visiteurs page offre)</li>
+            <li>Relancer leads non-convertis par WhatsApp personnel</li>
+            <li>Poster compteur : "25/50 places prises !"</li>
+          </ul>
+          <div class="progress-bar"><div class="progress-fill" style="width:50%; background:var(--lagoon)"></div></div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-week">Semaine 3 — Urgence</div>
+        <div class="tl-content">
+          <h4>Objectif : 15 ventes (cumule : 40 ventes)</h4>
+          <ul>
+            <li>Lancer Campagne C (urgence / dernieres places)</li>
+            <li>Envoyer Email 3 (urgence) a TOUTE la base</li>
+            <li>Stories quotidiennes : "Plus que X places"</li>
+            <li>Augmenter budget ads de 30% sur la meilleure campagne</li>
+            <li>Relance telephonique des leads chauds (formulaire rempli mais pas signe)</li>
+            <li>Post micro-influenceurs PF (2-3 posts sponsorises)</li>
+          </ul>
+          <div class="progress-bar"><div class="progress-fill" style="width:80%; background:var(--gold)"></div></div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-week">Semaine 4 — Cloture</div>
+        <div class="tl-content">
+          <h4>Objectif : 10 ventes (cumule : 50 ventes)</h4>
+          <ul>
+            <li>"Derniere semaine" — contenu FOMO intensif</li>
+            <li>Appels directs aux 20 leads les plus chauds non-convertis</li>
+            <li>Bonus de derniere minute : "Signez cette semaine - nom de domaine offert"</li>
+            <li>Recap video : montrer les 40+ sites deja crees cette campagne</li>
+            <li>Post de cloture : "50/50 — COMPLET. Merci !"</li>
+            <li>Couper les ads, analyser les resultats</li>
+            <li>Planifier la prochaine vague (si succes)</li>
+          </ul>
+          <div class="progress-bar"><div class="progress-fill" style="width:100%; background:var(--green)"></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 7: CHECKLIST -->
+    <div id="s7" class="sec-head animate" style="--i:35">
+      <span class="dot" style="--dot-color: var(--orange)"></span>
+      7 — Checklist Jordy
+    </div>
+
+    <h3>Avant le lancement</h3>
+    <ul class="checklist animate" style="--i:36">
+      <li><span class="check-box"></span>Finaliser les 9 pages portfolio avec vraies images (en cours)</li>
+      <li><span class="check-box"></span>Verifier la page offre <code>offre-site-web.html</code> — formulaire fonctionne, analytics OK</li>
+      <li><span class="check-box"></span>Configurer Meta Pixel sur la page offre (conversion tracking)</li>
+      <li><span class="check-box"></span>Preparer 10 creas Facebook Ads (5 images + 5 videos/reels)</li>
+      <li><span class="check-box"></span>Creer les 3 campagnes dans Meta Ads Manager</li>
+      <li><span class="check-box"></span>Segmenter la base Tapiri dans Brevo (6 segments)</li>
+      <li><span class="check-box"></span>Rediger les 3 emails de la sequence</li>
+      <li><span class="check-box"></span>Preparer le message WhatsApp broadcast</li>
+      <li><span class="check-box"></span>Identifier 5+ groupes Facebook PF pour poster</li>
+      <li><span class="check-box"></span>Contacter 10 partenaires potentiels (apporteurs d'affaires)</li>
+    </ul>
+
+    <h3>Pendant la campagne (quotidien)</h3>
+    <ul class="checklist animate" style="--i:37">
+      <li><span class="check-box"></span>Publier 2 posts/jour (matin 9h + soir 18h)</li>
+      <li><span class="check-box"></span>Repondre aux commentaires/DM dans l'heure</li>
+      <li><span class="check-box"></span>Checker les leads CRM et relancer sous 24h</li>
+      <li><span class="check-box"></span>Monitorer les KPIs ads (CPL, CTR, ROAS)</li>
+      <li><span class="check-box"></span>Mettre a jour le compteur de places restantes</li>
+    </ul>
+
+    <h3>Hebdomadaire</h3>
+    <ul class="checklist animate" style="--i:38">
+      <li><span class="check-box"></span>Rapport KPIs (ventes, leads, budget, ROAS)</li>
+      <li><span class="check-box"></span>Ajuster budget ads selon performance</li>
+      <li><span class="check-box"></span>Creer 2-3 nouveaux contenus bases sur les retours</li>
+      <li><span class="check-box"></span>Relancer les leads tiedes par WhatsApp/appel</li>
+    </ul>
+
+    <!-- SECTION 8: BUDGET -->
+    <div id="s8" class="sec-head animate" style="--i:39">
+      <span class="dot" style="--dot-color: var(--accent)"></span>
+      8 — Budget Previsionnel
+    </div>
+
+    <div class="table-wrap animate" style="--i:40">
+      <table>
+        <thead>
+          <tr>
+            <th>Poste</th>
+            <th>Detail</th>
+            <th>Cout (XPF)</th>
+            <th>% Budget</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Facebook/Instagram Ads</strong></td>
+            <td>4 semaines, 3 campagnes, ~7 500 F/jour</td>
+            <td><strong>210 000 F</strong></td>
+            <td>63%</td>
+          </tr>
+          <tr>
+            <td><strong>Brevo (Email)</strong></td>
+            <td>Plan gratuit : 300 emails/jour (suffisant pour 3 500 contacts en sequence)</td>
+            <td><strong>0 F</strong></td>
+            <td>0%</td>
+          </tr>
+          <tr>
+            <td><strong>Micro-influenceurs</strong></td>
+            <td>3-5 posts sponsorises par influenceurs locaux PF</td>
+            <td><strong>50 000 F</strong></td>
+            <td>15%</td>
+          </tr>
+          <tr>
+            <td><strong>Commissions parrainage</strong></td>
+            <td>10 000 F x ~5 filleuls estimes</td>
+            <td><strong>50 000 F</strong></td>
+            <td>15%</td>
+          </tr>
+          <tr>
+            <td><strong>Flyers / Print</strong></td>
+            <td>500 flyers QR code, A5 couleur</td>
+            <td><strong>15 000 F</strong></td>
+            <td>4%</td>
+          </tr>
+          <tr>
+            <td><strong>Nom de domaine bonus</strong></td>
+            <td>~10 domaines .pf offerts aux premiers clients</td>
+            <td><strong>10 000 F</strong></td>
+            <td>3%</td>
+          </tr>
+          <tr style="background: var(--surface-elevated); font-weight: 700;">
+            <td><strong>TOTAL</strong></td>
+            <td></td>
+            <td><strong style="color:var(--accent)">335 000 F</strong></td>
+            <td>100%</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card-grid">
+      <div class="ve-card ve-card--hero animate" style="--i:41">
+        <div class="card-title" style="color:var(--green)">Projection ROI</div>
+        <p><strong>CA cible :</strong> 50 x 100 000 F = <strong style="color:var(--green)">5 000 000 F</strong></p>
+        <p><strong>Budget total :</strong> 335 000 F</p>
+        <p><strong>Marge brute :</strong> ~4 665 000 F</p>
+        <p><strong>ROAS :</strong> <span class="badge badge--green">14.9x</span></p>
+        <p style="font-size:13px; color:var(--text-dim)">Meme a 50% de l'objectif (25 ventes), le ROAS reste a 7.5x — campagne largement rentable.</p>
+      </div>
+      <div class="ve-card animate" style="--i:42">
+        <div class="card-title">Scenarios</div>
+        <div class="table-wrap" style="margin:8px 0">
+          <table>
+            <thead>
+              <tr><th>Scenario</th><th>Ventes</th><th>CA</th><th>ROAS</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Pessimiste</td><td>20</td><td>2 000 000 F</td><td><span class="badge badge--orange">6x</span></td></tr>
+              <tr><td>Realiste</td><td>35</td><td>3 500 000 F</td><td><span class="badge badge--lagoon">10x</span></td></tr>
+              <tr><td>Optimiste</td><td>50</td><td>5 000 000 F</td><td><span class="badge badge--green">15x</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="callout animate" style="--i:43">
+      <strong>Note importante :</strong> Les 10 pages portfolio (ATN + 9 demos) sont l'arme principale de cette campagne. Chaque demo prouve qu'on peut livrer un site premium pour 100K F. Sans ces demos, le taux de conversion chute drastiquement. Priorite absolue : finir les 9 pages avec vraies images AVANT le lancement.
+    </div>
+
+  </div><!-- /main -->
+</div><!-- /wrap -->
+
+<script>
+// TOC active link tracking
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      document.querySelectorAll('.toc a').forEach(a => a.classList.remove('active'));
+      const id = e.target.id;
+      const link = document.querySelector('.toc a[href="#' + id + '"]');
+      if (link) link.classList.add('active');
+    }
+  });
+}, { rootMargin: '-20% 0px -60% 0px' });
+document.querySelectorAll('.sec-head[id]').forEach(s => observer.observe(s));
+</script>
+</body>
+</html>
