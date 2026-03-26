@@ -64,6 +64,8 @@
             line-height: 1.6;
         }
 
+        a { color: inherit; }
+
         /* ==================== BACKGROUND ANIMATION ==================== */
         .bg-animation {
             position: fixed;
@@ -145,7 +147,7 @@
             align-items: center;
             justify-content: space-between;
             padding: 1rem 3rem;
-            background: rgba(10, 10, 18, 0.85);
+            background: rgba(10, 10, 10, 0.8);
             backdrop-filter: blur(20px);
             border-bottom: 1px solid var(--border);
             gap: 1rem;
@@ -893,7 +895,7 @@
             text-align: center;
             padding: 2rem;
             border-top: 1px solid var(--border);
-            color: var(--text-dim);
+            color: var(--text);
             font-size: 0.85rem;
         }
 
@@ -902,29 +904,29 @@
             background: none;
             border: none;
             cursor: pointer;
-            width: 28px;
-            min-width: 28px;
-            height: 20px;
+            width: 44px;
+            min-width: 44px;
+            height: 44px;
             position: relative;
             z-index: 102;
             padding: 0;
         }
         .nav-hamburger span {
             display: block;
-            width: 100%;
+            width: 24px;
+            left: 10px;
             height: 2px;
             background: var(--text);
             border-radius: 2px;
             position: absolute;
-            left: 0;
             transition: all 0.3s ease;
         }
-        .nav-hamburger span:nth-child(1) { top: 0; }
-        .nav-hamburger span:nth-child(2) { top: 9px; }
-        .nav-hamburger span:nth-child(3) { top: 18px; }
-        .nav-hamburger.open span:nth-child(1) { top: 9px; transform: rotate(45deg); }
+        .nav-hamburger span:nth-child(1) { top: 12px; }
+        .nav-hamburger span:nth-child(2) { top: 21px; }
+        .nav-hamburger span:nth-child(3) { top: 30px; }
+        .nav-hamburger.open span:nth-child(1) { top: 21px; transform: rotate(45deg); }
         .nav-hamburger.open span:nth-child(2) { opacity: 0; }
-        .nav-hamburger.open span:nth-child(3) { top: 9px; transform: rotate(-45deg); }
+        .nav-hamburger.open span:nth-child(3) { top: 21px; transform: rotate(-45deg); }
 
         .mobile-menu {
             display: none;
@@ -1019,7 +1021,10 @@
         }
 
         @media (max-width: 1024px) {
-}
+            .hero { overflow: hidden; }
+            .hero .container { overflow: hidden; }
+            .hero-visual, .hero-visual-container { max-width: 100%; overflow: hidden; }
+        }
         @media (max-width: 768px) {
             nav { padding: 0.4rem 0.75rem; }
             .logo-img { height: 26px; }
