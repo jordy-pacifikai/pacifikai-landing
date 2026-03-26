@@ -111,6 +111,56 @@
     <priority>0.6</priority>
   </url>
 
+  <!-- Blog SEO local -->
+  <url>
+    <loc>https://pacifikai.com/blog/articles/creation-site-internet-tahiti.html</loc>
+    <lastmod>2026-03-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://pacifikai.com/blog/articles/chatbot-ia-polynesie.html</loc>
+    <lastmod>2026-03-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://pacifikai.com/blog/articles/automatisation-entreprise-tahiti.html</loc>
+    <lastmod>2026-03-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://pacifikai.com/blog/articles/prix-site-web-polynesie.html</loc>
+    <lastmod>2026-03-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://pacifikai.com/blog/articles/application-mobile-polynesie.html</loc>
+    <lastmod>2026-03-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://pacifikai.com/blog/articles/marketing-digital-tahiti.html</loc>
+    <lastmod>2026-03-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://pacifikai.com/blog/articles/intelligence-artificielle-polynesie.html</loc>
+    <lastmod>2026-03-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://pacifikai.com/blog/articles/digitalisation-entreprise-tahiti.html</loc>
+    <lastmod>2026-03-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
   <!-- Pages legales -->
   <url>
     <loc>https://pacifikai.com/cgu.html</loc>
