@@ -161,6 +161,32 @@
     <priority>0.7</priority>
   </url>
 
+  <!-- Blog SEO comparatifs (pas sur Facebook) -->
+  <url>
+    <loc>https://pacifikai.com/blog/articles/agences-digitales-tahiti-comparatif.html</loc>
+    <lastmod>2026-03-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://pacifikai.com/blog/articles/chatbot-ia-vs-standard-telephonique.html</loc>
+    <lastmod>2026-03-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://pacifikai.com/blog/articles/site-web-sur-mesure-vs-template-tahiti.html</loc>
+    <lastmod>2026-03-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://pacifikai.com/blog/articles/automatisation-ia-vs-employe-polynesie.html</loc>
+    <lastmod>2026-03-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
   <!-- Pages legales -->
   <url>
     <loc>https://pacifikai.com/cgu.html</loc>
