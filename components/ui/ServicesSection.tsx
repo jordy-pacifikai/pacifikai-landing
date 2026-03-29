@@ -187,8 +187,8 @@ export default function ServicesSection() {
               Nos expertises
             </p>
             <h2 className="font-display text-[clamp(2rem,5vw,3.5rem)] leading-tight">
-              Création de sites internet, IA et automatisation{" "}
-              <span className="gradient-text-coral">à Tahiti</span>
+              Tout ce qu&apos;il faut pour{" "}
+              <span className="gradient-text-coral">digitaliser</span> votre entreprise
             </h2>
           </div>
         </SectionReveal>

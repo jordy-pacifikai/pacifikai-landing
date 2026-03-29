@@ -62,9 +62,9 @@ export default function HeroSection() {
             </span>
           </div>
 
-          {/* Headline — dynamic rotating with SEO keywords in H1 */}
+          {/* Headline — dynamic rotating */}
           <RotatingText
-            prefix="L'agence digitale à Tahiti qui transforme votre"
+            prefix="Transformez votre"
             words={[
               "business.",
               "marketing.",
@@ -73,7 +73,7 @@ export default function HeroSection() {
               "croissance.",
               "présence digitale.",
             ]}
-            className="font-display font-bold text-[clamp(2rem,6vw,4.2rem)] leading-[1.1] tracking-tight mb-6 text-text"
+            className="font-display font-bold text-[clamp(2.5rem,7vw,5rem)] leading-[1.1] tracking-tight mb-6 text-text"
             interval={3000}
           />
 
