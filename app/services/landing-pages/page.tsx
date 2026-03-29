@@ -1,14 +1,15 @@
 import type { Metadata } from "next";
 import ServicePage from "@/components/ui/ServicePage";
+import ServiceWebVisual from "@/components/ui/service-visuals/ServiceWebVisual";
 
 export const metadata: Metadata = {
-  title: "Landing Pages & Sites Web | PACIFIK'AI",
+  title: "Création de Sites Internet à Tahiti | PACIFIK'AI — Sites Web Polynésie",
   description:
-    "Sites vitrines, pages de vente, blogs — design moderne et contenu généré par l'IA. Convertissez vos visiteurs en clients.",
+    "Création de sites internet à Tahiti : sites vitrines, pages de vente, e-commerce et blogs. Design moderne et optimisé SEO pour entreprises en Polynésie française.",
   openGraph: {
-    title: "Landing Pages & Sites Web | PACIFIK'AI",
+    title: "Création de Sites Internet à Tahiti | PACIFIK'AI",
     description:
-      "Sites vitrines, pages de vente, blogs — design moderne et contenu généré par l'IA.",
+      "Création de sites internet à Tahiti : sites vitrines, pages de vente, e-commerce et blogs.",
     url: "https://pacifikai.com/services/landing-pages",
     locale: "fr_FR",
     type: "website",
@@ -99,6 +100,7 @@ export default function LandingPagesPage() {
       title="Landing Pages &"
       titleHighlight="Sites Web"
       description="Sites vitrines, pages de vente, blogs — design moderne et contenu généré par l'IA. Convertissez vos visiteurs en clients."
+      heroVisual={<ServiceWebVisual />}
       ctaLabel="Demander un devis"
       steps={[
         {

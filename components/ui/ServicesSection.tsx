@@ -107,7 +107,8 @@ function BentoTile({ service }: { service: typeof SERVICES[number] }) {
     <div
       ref={tileRef}
       onMouseMove={handleMouseMove}
-      className={`relative bg-bg-card border border-border rounded-2xl overflow-hidden cursor-default transition-all duration-400 ${style.borderHover} group h-full flex flex-col`}
+      data-tilt
+      className={`relative bg-bg-card border border-border rounded-2xl overflow-hidden cursor-default transition-colors duration-400 ${style.borderHover} group h-full flex flex-col`}
     >
       {/* Mouse-tracking glow */}
       <div
@@ -118,7 +119,7 @@ function BentoTile({ service }: { service: typeof SERVICES[number] }) {
       />
 
       {/* Front content — lifts on hover */}
-      <div className="relative z-[2] p-7 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:-translate-y-2 flex-shrink-0">
+      <div className="relative z-[2] p-7 flex-shrink-0">
         {/* Icon */}
         <div
           className="w-11 h-11 rounded-xl flex items-center justify-center text-[22px] mb-3.5"
@@ -186,8 +187,8 @@ export default function ServicesSection() {
               Nos expertises
             </p>
             <h2 className="font-display text-[clamp(2rem,5vw,3.5rem)] leading-tight">
-              Tout ce qu&apos;il faut pour{" "}
-              <span className="gradient-text-coral">digitaliser</span> votre entreprise
+              Création de sites internet, IA et automatisation{" "}
+              <span className="gradient-text-coral">à Tahiti</span>
             </h2>
           </div>
         </SectionReveal>

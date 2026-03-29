@@ -1,14 +1,15 @@
 import type { Metadata } from "next";
 import ServicePage from "@/components/ui/ServicePage";
+import ServiceConseilVisual from "@/components/ui/service-visuals/ServiceConseilVisual";
 
 export const metadata: Metadata = {
-  title: "Conseil & Formation IA | PACIFIK'AI",
+  title: "Conseil & Formation IA à Tahiti | PACIFIK'AI — Stratégie Digitale Polynésie",
   description:
-    "Audit de vos processus, stratégie IA personnalisée et formation de vos équipes. Devenez autonomes dans l'utilisation de l'IA.",
+    "Conseil en intelligence artificielle et formation IA à Tahiti. Audit de processus, stratégie digitale et accompagnement pour entreprises en Polynésie française.",
   openGraph: {
-    title: "Conseil & Formation IA | PACIFIK'AI",
+    title: "Conseil & Formation IA à Tahiti | PACIFIK'AI",
     description:
-      "Audit de vos processus, stratégie IA personnalisée et formation de vos équipes.",
+      "Conseil en intelligence artificielle et formation IA à Tahiti. Audit et stratégie digitale.",
     url: "https://pacifikai.com/services/conseil",
     locale: "fr_FR",
     type: "website",
@@ -102,7 +103,8 @@ export default function ConseilPage() {
       title="Conseil &"
       titleHighlight="Formation IA"
       description="Audit de vos processus, stratégie IA personnalisée et formation de vos équipes. Devenez autonomes dans l'utilisation de l'IA."
-      ctaLabel="Réserver un audit"
+      heroVisual={<ServiceConseilVisual />}
+      ctaLabel="Discutons de votre projet"
       steps={[
         {
           number: "Étape 01",
@@ -180,7 +182,7 @@ export default function ConseilPage() {
         },
       ]}
       ctaFinalTitle="Prêt à accélérer avec l'IA ?"
-      ctaFinalSubtitle="Réservez un audit gratuit de 30 minutes pour identifier vos quick wins."
+      ctaFinalSubtitle="Écrivez-nous pour discuter de vos besoins et voir comment on peut vous aider."
     />
   );
 }

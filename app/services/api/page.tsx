@@ -1,14 +1,15 @@
 import type { Metadata } from "next";
 import ServicePage from "@/components/ui/ServicePage";
+import ServiceAPIVisual from "@/components/ui/service-visuals/ServiceAPIVisual";
 
 export const metadata: Metadata = {
-  title: "Intégrations API | PACIFIK'AI",
+  title: "Intégrations API à Tahiti | PACIFIK'AI — Connectez vos Outils Polynésie",
   description:
-    "Connexion de tous vos outils : CRM, facturation, calendrier, messaging — un écosystème unifié où tout communique automatiquement.",
+    "Intégrations API sur-mesure à Tahiti : CRM, facturation, calendrier, messaging. Un écosystème unifié pour entreprises en Polynésie française.",
   openGraph: {
-    title: "Intégrations API | PACIFIK'AI",
+    title: "Intégrations API à Tahiti | PACIFIK'AI",
     description:
-      "Connexion de tous vos outils : CRM, facturation, calendrier, messaging — un écosystème unifié où tout communique automatiquement.",
+      "Intégrations API sur-mesure à Tahiti : CRM, facturation, calendrier, messaging.",
     url: "https://pacifikai.com/services/api",
     locale: "fr_FR",
     type: "website",
@@ -102,6 +103,7 @@ export default function ApiPage() {
       title="Intégrations"
       titleHighlight="API"
       description="Connexion de tous vos outils : CRM, facturation, calendrier, messaging — un écosystème unifié où tout communique automatiquement."
+      heroVisual={<ServiceAPIVisual />}
       heroStat="0 saisie manuelle"
       ctaLabel="Demander un devis"
       steps={[

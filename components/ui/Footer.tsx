@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 
 const FOOTER_SECTIONS = [
   {
@@ -23,12 +24,24 @@ const FOOTER_SECTIONS = [
     ],
   },
   {
+    title: "Expertise",
+    links: [
+      { label: "SEO & IA", href: "/expertise/seo-referencement-ia" },
+      { label: "IA Conversationnelle", href: "/expertise/chatbots-ia" },
+      { label: "Haute Conversion", href: "/expertise/sites-web-premium" },
+      { label: "Contenu x10", href: "/expertise/contenu-ia" },
+      { label: "Zero Tache Manuelle", href: "/expertise/automatisation" },
+      { label: "Growth IA", href: "/expertise/marketing-acquisition" },
+      { label: "Transformation Digitale", href: "/expertise/strategie-digitale" },
+    ],
+  },
+  {
     title: "Ressources",
     links: [
+      { label: "Agence digitale Tahiti", href: "/agence-digitale-tahiti" },
       { label: "Blog", href: "/blog" },
-      { label: "Calculateur ROI", href: "/calculateur-roi" },
       { label: "Offre site web", href: "/offre-site-web" },
-      { label: "Tarifs", href: "/tarifs" },
+      { label: "Contact", href: "/contact" },
     ],
   },
   {
@@ -124,10 +137,13 @@ export default function Footer() {
         </div>
 
         {/* Top grid */}
-        <div className="grid grid-cols-1 md:grid-cols-5 gap-10 mb-12">
+        <div className="grid grid-cols-2 md:grid-cols-6 gap-8 mb-12">
           {/* Brand */}
           <div className="md:col-span-1">
-            <h3 className="font-display text-lg mb-3">PACIFIK&apos;AI</h3>
+            <div className="flex items-center gap-2.5 mb-3">
+              <Image src="/logo-nav.png" alt="PACIFIK'AI" width={28} height={28} className="w-7 h-7" />
+              <span className="font-semibold text-lg tracking-wide">PACIFIK&apos;AI</span>
+            </div>
             <p className="text-text-secondary text-sm leading-relaxed mb-4 max-w-[220px]">
               Agence digitale &amp; IA à Papeete, Tahiti. Sites web, chatbots,
               automatisation et conseil pour entreprises en Polynésie française.
@@ -176,7 +192,7 @@ export default function Footer() {
             réservés.
           </p>
           <p className="text-text-dim text-xs">
-            Polynésie française &middot; SIRET en cours
+            Polynésie française
           </p>
         </div>
       </div>

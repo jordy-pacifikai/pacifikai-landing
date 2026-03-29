@@ -57,6 +57,16 @@ const SEO_CITIES = [
   "faaa",
 ];
 
+const EXPERTISE_SLUGS = [
+  "seo-referencement-ia",
+  "chatbots-ia",
+  "sites-web-premium",
+  "contenu-ia",
+  "automatisation",
+  "marketing-acquisition",
+  "strategie-digitale",
+];
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticPages: MetadataRoute.Sitemap = [
     {
@@ -82,6 +92,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: NOW,
       changeFrequency: "monthly",
       priority: 0.7,
+    },
+    {
+      url: `${BASE_URL}/agence-digitale-tahiti`,
+      lastModified: NOW,
+      changeFrequency: "weekly",
+      priority: 0.9,
     },
     {
       url: `${BASE_URL}/blog`,
@@ -126,5 +142,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }))
   );
 
-  return [...staticPages, ...servicePages, ...blogPages, ...seoPages];
+  const expertisePages: MetadataRoute.Sitemap = EXPERTISE_SLUGS.map((slug) => ({
+    url: `${BASE_URL}/expertise/${slug}`,
+    lastModified: NOW,
+    changeFrequency: "monthly" as const,
+    priority: 0.8,
+  }));
+
+  return [...staticPages, ...servicePages, ...expertisePages, ...blogPages, ...seoPages];
 }

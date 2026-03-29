@@ -1,14 +1,15 @@
 import type { Metadata } from "next";
 import ServicePage from "@/components/ui/ServicePage";
+import ServiceWorkflowVisual from "@/components/ui/service-visuals/ServiceWorkflowVisual";
 
 export const metadata: Metadata = {
-  title: "Automatisation de Workflows | PACIFIK'AI",
+  title: "Automatisation IA à Tahiti | PACIFIK'AI — Workflows Polynésie",
   description:
-    "Automatisez vos processus avec l'IA : réservations, facturation, relances. Connectez vos applications et gagnez 85% de temps.",
+    "Automatisation des processus par IA à Tahiti : réservations, facturation, relances. Connectez vos applications et gagnez 85% de temps. Entreprises Polynésie française.",
   openGraph: {
-    title: "Automatisation de Workflows | PACIFIK'AI",
+    title: "Automatisation IA à Tahiti | PACIFIK'AI",
     description:
-      "Automatisez vos processus avec l'IA : réservations, facturation, relances. Connectez vos applications et gagnez 85% de temps.",
+      "Automatisation des processus par IA à Tahiti : réservations, facturation, relances.",
     url: "https://pacifikai.com/services/workflows",
     locale: "fr_FR",
     type: "website",
@@ -97,6 +98,7 @@ export default function WorkflowsPage() {
       title="Automatisation de"
       titleHighlight="Workflows"
       description="Connectez vos applications, automatisez vos processus. Réservations, commandes, facturation, relances — laissez l'IA faire le travail répétitif."
+      heroVisual={<ServiceWorkflowVisual />}
       heroStat="85% de temps gagné en moyenne"
       ctaLabel="Demander un devis"
       steps={[
@@ -176,7 +178,7 @@ export default function WorkflowsPage() {
         },
       ]}
       ctaFinalTitle="Prêt à automatiser vos processus ?"
-      ctaFinalSubtitle="Contactez-nous pour un audit gratuit de vos workflows."
+      ctaFinalSubtitle="Écrivez-nous pour discuter de vos besoins en automatisation."
     />
   );
 }

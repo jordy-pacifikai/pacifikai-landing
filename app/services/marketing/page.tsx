@@ -1,14 +1,15 @@
 import type { Metadata } from "next";
 import ServicePage from "@/components/ui/ServicePage";
+import ServiceMarketingVisual from "@/components/ui/service-visuals/ServiceMarketingVisual";
 
 export const metadata: Metadata = {
-  title: "Marketing Automatisé | PACIFIK'AI",
+  title: "Marketing Digital Automatisé à Tahiti | PACIFIK'AI — IA Polynésie",
   description:
-    "Newsletters, posts réseaux sociaux, emails de relance — générés et publiés automatiquement par l'IA. Votre marketing tourne en pilote automatique.",
+    "Marketing digital automatisé par IA à Tahiti : newsletters, réseaux sociaux, emails de relance. Votre marketing en pilote automatique en Polynésie française.",
   openGraph: {
-    title: "Marketing Automatisé | PACIFIK'AI",
+    title: "Marketing Digital Automatisé à Tahiti | PACIFIK'AI",
     description:
-      "Newsletters, posts réseaux sociaux, emails de relance — générés et publiés automatiquement par l'IA.",
+      "Marketing digital automatisé par IA à Tahiti : newsletters, réseaux sociaux, emails de relance.",
     url: "https://pacifikai.com/services/marketing",
     locale: "fr_FR",
     type: "website",
@@ -101,6 +102,7 @@ export default function MarketingPage() {
       title="Marketing"
       titleHighlight="Automatisé"
       description="Newsletters, posts réseaux sociaux, emails de relance — générés et publiés automatiquement par l'IA. Votre marketing tourne en pilote automatique."
+      heroVisual={<ServiceMarketingVisual />}
       heroStat="+45% d'engagement en moyenne"
       ctaLabel="Demander un devis"
       steps={[

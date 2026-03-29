@@ -3,6 +3,8 @@ import { Space_Grotesk, Plus_Jakarta_Sans } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
 import SmoothScroll from "@/components/providers/SmoothScroll";
+import ParticlesBackground from "@/components/effects/ParticlesBackground";
+import ManaChat from "@/components/ui/ManaChat";
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
@@ -18,28 +20,35 @@ const jakarta = Plus_Jakarta_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "PACIFIK'AI | Agence Digitale & IA à Tahiti",
+  title: "Agence Digitale & IA à Tahiti | PACIFIK'AI — Sites Web, Chatbots, Automatisation",
   description:
-    "Agence digitale et IA à Papeete, Tahiti. Sites web, chatbots, automatisation et conseil pour entreprises en Polynésie française.",
+    "PACIFIK'AI, agence digitale à Tahiti spécialisée en intelligence artificielle. Création de sites internet, chatbots IA, applications mobiles, automatisation et marketing digital pour entreprises en Polynésie française. Devis gratuit.",
   metadataBase: new URL("https://pacifikai.com"),
+  alternates: {
+    canonical: "https://pacifikai.com/",
+  },
   keywords: [
     "agence digitale tahiti",
+    "création site internet tahiti",
+    "création site internet polynésie",
     "agence ia polynesie",
-    "site web papeete",
     "chatbot ia tahiti",
+    "application mobile tahiti",
     "automatisation entreprise polynesie",
     "intelligence artificielle tahiti",
-    "creation site internet tahiti",
+    "site web papeete",
     "agence web polynesie francaise",
     "marketing digital tahiti",
     "transformation digitale polynesie",
+    "développeur web tahiti",
     "PACIFIK'AI",
     "pacifikai",
   ],
   openGraph: {
-    title: "PACIFIK'AI | Agence Digitale & IA à Tahiti",
+    title: "Agence Digitale & IA à Tahiti | PACIFIK'AI",
     description:
-      "Solutions IA sur mesure pour les PME de Tahiti et Polynésie française.",
+      "PACIFIK'AI, agence digitale à Tahiti spécialisée en intelligence artificielle. Création de sites internet, chatbots IA, applications mobiles, automatisation et marketing digital pour entreprises en Polynésie française.",
+    url: "https://pacifikai.com/",
     type: "website",
     locale: "fr_PF",
     images: [
@@ -47,15 +56,15 @@ export const metadata: Metadata = {
         url: "/assets/og-image.png",
         width: 1200,
         height: 630,
-        alt: "PACIFIK'AI — Agence Digitale & IA à Tahiti",
+        alt: "PACIFIK'AI — Agence digitale et IA à Tahiti, Polynésie française",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "PACIFIK'AI | Agence Digitale & IA à Tahiti",
+    title: "Agence Digitale & IA à Tahiti | PACIFIK'AI",
     description:
-      "Solutions IA sur mesure pour les PME de Tahiti et Polynésie française.",
+      "PACIFIK'AI, agence digitale à Tahiti spécialisée en intelligence artificielle. Sites web, chatbots IA, automatisation pour entreprises en Polynésie française.",
     images: ["/assets/og-image.png"],
   },
   icons: {
@@ -95,7 +104,7 @@ const LOCAL_BUSINESS_SCHEMA = {
     longitude: -149.5696,
   },
   telephone: "+689-89558189",
-  email: "jordy@pacifikai.com",
+  email: "contact@pacifikai.com",
   contactPoint: [
     {
       "@type": "ContactPoint",
@@ -105,7 +114,7 @@ const LOCAL_BUSINESS_SCHEMA = {
     },
     {
       "@type": "ContactPoint",
-      email: "jordy@pacifikai.com",
+      email: "contact@pacifikai.com",
       contactType: "customer service",
       availableLanguage: ["French", "English"],
     },
@@ -182,6 +191,69 @@ const LOCAL_BUSINESS_SCHEMA = {
   },
 };
 
+const FAQ_SCHEMA = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: [
+    {
+      "@type": "Question",
+      name: "Qu'est-ce qu'une agence digitale à Tahiti ?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Une agence digitale à Tahiti comme PACIFIK'AI accompagne les entreprises de Polynésie française dans leur transformation numérique : création de sites web, chatbots IA, automatisation des process, marketing digital et formation.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Combien coûte un site internet en Polynésie française ?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Un site vitrine professionnel commence à 100 000 XPF avec PACIFIK'AI. Le tarif varie selon les fonctionnalités : chatbot IA, e-commerce, dashboard analytics. Chaque projet est sur mesure avec un devis détaillé gratuit.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Comment un chatbot IA peut aider mon entreprise à Tahiti ?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Un chatbot IA répond à vos clients 24/7 sur votre site et WhatsApp, qualifie les prospects, prend les rendez-vous et réduit votre charge de service client de 57% en moyenne.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "L'intelligence artificielle est-elle accessible aux PME polynésiennes ?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Absolument. Nos solutions démarrent à 100 000 XPF/mois et s'adaptent à la taille de votre entreprise. L'IA n'est plus réservée aux grandes entreprises — c'est un levier de compétitivité pour les PME.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Quelle est la meilleure agence digitale en Polynésie française ?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "PACIFIK'AI est la première agence spécialisée en intelligence artificielle à Tahiti. Nous combinons expertise web, IA et connaissance du marché polynésien pour des solutions vraiment adaptées.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Par où commencer la digitalisation de son entreprise à Tahiti ?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Envoyez-nous un email pour nous parler de votre projet. On échange sur vos besoins, on identifie les opportunités et on vous propose une approche personnalisée.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "PACIFIK'AI intervient-il en dehors de Tahiti ?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Oui, nous intervenons sur toute la Polynésie française (Moorea, Bora Bora, Raiatea...) et auprès d'entreprises francophones dans le Pacifique. Nos solutions sont 100% en ligne.",
+      },
+    },
+  ],
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -190,7 +262,9 @@ export default function RootLayout({
   return (
     <html lang="fr" className={`${spaceGrotesk.variable} ${jakarta.variable}`}>
       <body className="bg-bg text-text font-body antialiased grain">
+        <ParticlesBackground />
         <SmoothScroll>{children}</SmoothScroll>
+        <ManaChat />
         <Script
           id="local-business-schema"
           type="application/ld+json"
@@ -198,6 +272,44 @@ export default function RootLayout({
             __html: JSON.stringify(LOCAL_BUSINESS_SCHEMA),
           }}
         />
+        <Script
+          id="faq-schema"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(FAQ_SCHEMA),
+          }}
+        />
+        <Script id="glass-spotlight" strategy="afterInteractive">{`
+          (function(){
+            var SEL='.glass,.tilt-card,[data-tilt],.svc-detail-card,.pc-card,.process-card,.fk-feat-card';
+            var cards=[];
+            function refresh(){cards=document.querySelectorAll(SEL)}
+            refresh();setInterval(refresh,2000);
+            document.addEventListener('mousemove',function(e){
+              for(var i=0;i<cards.length;i++){
+                var c=cards[i],r=c.getBoundingClientRect();
+                if(e.clientX<r.left-50||e.clientX>r.right+50||e.clientY<r.top-50||e.clientY>r.bottom+50)continue;
+                var x=e.clientX-r.left,y=e.clientY-r.top;
+                c.style.setProperty('--mx',x+'px');
+                c.style.setProperty('--my',y+'px');
+                if(c._hovered){
+                  var px=(x/r.width-.5)*2,py=(y/r.height-.5)*2;
+                  var t=parseFloat(c.dataset.tiltMax)||6;
+                  var rotY=px*t,rotX=-py*t;
+                  c.style.transform='perspective(800px) rotateX('+rotX+'deg) rotateY('+rotY+'deg) scale3d(1.02,1.02,1.02)';
+                }
+              }
+            },{passive:true});
+            document.addEventListener('mouseover',function(e){
+              var c=e.target.closest(SEL);
+              if(c){c._hovered=true;c.style.transition='transform 0.15s ease-out'}
+            });
+            document.addEventListener('mouseout',function(e){
+              var c=e.target.closest(SEL);
+              if(c){c._hovered=false;c.style.transition='transform 0.5s cubic-bezier(0.23,1,0.32,1)';c.style.transform=''}
+            });
+          })();
+        `}</Script>
       </body>
     </html>
   );

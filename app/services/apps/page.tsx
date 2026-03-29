@@ -1,14 +1,15 @@
 import type { Metadata } from "next";
 import ServicePage from "@/components/ui/ServicePage";
+import ServiceAppVisual from "@/components/ui/service-visuals/ServiceAppVisual";
 
 export const metadata: Metadata = {
-  title: "Applications Web & Mobile | PACIFIK'AI",
+  title: "Applications Web & Mobile à Tahiti | PACIFIK'AI — Développement Polynésie",
   description:
-    "Dashboards, portails clients, apps métier — conçus sur-mesure et alimentés par l'IA. Des outils qui travaillent pour vous.",
+    "Développement d'applications web et mobiles à Tahiti : dashboards, portails clients, apps métier sur-mesure alimentés par l'IA. Polynésie française.",
   openGraph: {
-    title: "Applications Web & Mobile | PACIFIK'AI",
+    title: "Applications Web & Mobile à Tahiti | PACIFIK'AI",
     description:
-      "Dashboards, portails clients, apps métier — conçus sur-mesure et alimentés par l'IA.",
+      "Développement d'applications web et mobiles à Tahiti : dashboards, portails clients, apps métier sur-mesure.",
     url: "https://pacifikai.com/services/apps",
     locale: "fr_FR",
     type: "website",
@@ -100,6 +101,7 @@ export default function AppsPage() {
       title="Applications"
       titleHighlight="Web & Mobile"
       description="Dashboards, portails clients, apps métier — conçus sur-mesure et alimentés par l'IA. Des outils qui travaillent pour vous."
+      heroVisual={<ServiceAppVisual />}
       ctaLabel="Demander un devis"
       steps={[
         {

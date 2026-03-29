@@ -5,7 +5,7 @@ import dynamic from "next/dynamic";
 import gsap from "gsap";
 import RotatingText from "@/components/effects/RotatingText";
 import MagneticButton from "@/components/effects/MagneticButton";
-import TrustBar from "@/components/ui/TrustBar";
+// import TrustBar from "@/components/ui/TrustBar";
 
 const HeroScene = dynamic(() => import("@/components/3d/HeroScene"), { ssr: false });
 
@@ -62,9 +62,9 @@ export default function HeroSection() {
             </span>
           </div>
 
-          {/* Headline — dynamic rotating */}
+          {/* Headline — dynamic rotating with SEO keywords in H1 */}
           <RotatingText
-            prefix="Transformez votre"
+            prefix="L'agence digitale à Tahiti qui transforme votre"
             words={[
               "business.",
               "marketing.",
@@ -73,7 +73,7 @@ export default function HeroSection() {
               "croissance.",
               "présence digitale.",
             ]}
-            className="font-display font-bold text-[clamp(2.5rem,7vw,5rem)] leading-[0.95] tracking-tight mb-6 text-text"
+            className="font-display font-bold text-[clamp(2rem,6vw,4.2rem)] leading-[1.1] tracking-tight mb-6 text-text"
             interval={3000}
           />
 
@@ -82,9 +82,9 @@ export default function HeroSection() {
             ref={subtitleRef}
             className="text-text-secondary text-[clamp(1rem,2vw,1.25rem)] max-w-2xl mx-auto mb-10 leading-relaxed"
           >
-            Sites web, applications, automatisation, agents IA et
-            stratégie digitale pour les entreprises de Tahiti et
-            Polynésie française.
+            Création de sites internet, applications mobiles, chatbots IA,
+            automatisation et marketing digital — votre agence digitale
+            en Polynésie française.
           </p>
 
           {/* CTAs */}
@@ -99,9 +99,24 @@ export default function HeroSection() {
         </div>
       </div>
 
-      {/* Trust bar — inside hero so it shares the same background */}
-      <div className="relative z-10">
-        <TrustBar />
+      {/* Mini trust indicators */}
+      <div className="absolute bottom-8 left-0 right-0 z-10">
+        <div className="flex items-center justify-center gap-6 md:gap-10 text-text-dim text-xs tracking-wide">
+          <span className="flex items-center gap-1.5 opacity-50 hover:opacity-80 transition-opacity">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            +20 projets livrés
+          </span>
+          <span className="w-px h-3 bg-white/10" />
+          <span className="flex items-center gap-1.5 opacity-50 hover:opacity-80 transition-opacity">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            100% sur mesure
+          </span>
+          <span className="w-px h-3 bg-white/10" />
+          <span className="flex items-center gap-1.5 opacity-50 hover:opacity-80 transition-opacity">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Basé à Tahiti
+          </span>
+        </div>
       </div>
     </section>
   );

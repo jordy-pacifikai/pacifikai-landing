@@ -1,14 +1,15 @@
 import type { Metadata } from "next";
 import ServicePage from "@/components/ui/ServicePage";
+import ServiceDocumentVisual from "@/components/ui/service-visuals/ServiceDocumentVisual";
 
 export const metadata: Metadata = {
-  title: "Extraction de Documents IA | PACIFIK'AI",
+  title: "Extraction de Documents IA à Tahiti | PACIFIK'AI — OCR Polynésie",
   description:
-    "L'IA lit vos factures, bons de commande et relevés bancaires. Extraction automatique des données — plus de saisie manuelle.",
+    "Extraction automatique de documents par IA à Tahiti : factures, bons de commande, relevés bancaires. Plus de saisie manuelle pour entreprises en Polynésie française.",
   openGraph: {
-    title: "Extraction de Documents IA | PACIFIK'AI",
+    title: "Extraction de Documents IA à Tahiti | PACIFIK'AI",
     description:
-      "L'IA lit vos factures, bons de commande et relevés bancaires. Extraction automatique des données.",
+      "Extraction automatique de documents par IA à Tahiti : factures, bons de commande, relevés bancaires.",
     url: "https://pacifikai.com/services/documents",
     locale: "fr_FR",
     type: "website",
@@ -101,6 +102,7 @@ export default function DocumentsPage() {
       title="Extraction de"
       titleHighlight="Documents IA"
       description="L'IA lit vos factures, bons de commande et relevés bancaires. Elle extrait les données automatiquement — plus de saisie manuelle."
+      heroVisual={<ServiceDocumentVisual />}
       ctaLabel="Demander un devis"
       steps={[
         {

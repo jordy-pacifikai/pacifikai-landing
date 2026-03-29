@@ -1,14 +1,15 @@
 import type { Metadata } from "next";
 import ServicePage from "@/components/ui/ServicePage";
+import ServiceChatbotVisual from "@/components/ui/service-visuals/ServiceChatbotVisual";
 
 export const metadata: Metadata = {
-  title: "Chatbots & Agents IA | PACIFIK'AI",
+  title: "Chatbots & Agents IA à Tahiti | PACIFIK'AI — Polynésie française",
   description:
-    "Chatbots et agents IA disponibles 24/7 sur WhatsApp, Messenger et votre site web. Ils répondent, réservent et vendent pendant que vous dormez.",
+    "Chatbots et agents IA à Tahiti, disponibles 24/7 sur WhatsApp, Messenger et votre site web. Service client automatisé pour entreprises en Polynésie française.",
   openGraph: {
-    title: "Chatbots & Agents IA | PACIFIK'AI",
+    title: "Chatbots & Agents IA à Tahiti | PACIFIK'AI",
     description:
-      "Chatbots et agents IA disponibles 24/7 sur WhatsApp, Messenger et votre site web.",
+      "Chatbots et agents IA à Tahiti, disponibles 24/7 sur WhatsApp, Messenger et votre site web.",
     url: "https://pacifikai.com/services/chatbots",
     locale: "fr_FR",
     type: "website",
@@ -97,6 +98,7 @@ export default function ChatbotsPage() {
       title="Chatbots &"
       titleHighlight="Agents IA"
       description="Assistants virtuels disponibles 24/7 sur WhatsApp, Messenger ou votre site web. Ils répondent, réservent et vendent — pendant que vous dormez."
+      heroVisual={<ServiceChatbotVisual />}
       ctaLabel="Demander un devis"
       steps={[
         {
