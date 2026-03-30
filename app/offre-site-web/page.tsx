@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Navbar from "@/components/ui/Navbar";
 import Footer from "@/components/ui/Footer";
+import PortfolioCarousel from "@/components/ui/PortfolioCarousel";
 
 export const metadata: Metadata = {
   title: "Offre Site Web Pro 100 000 XPF | PACIFIK'AI",
@@ -72,7 +73,7 @@ const OPTIONS = [
   {
     icon: "🌐",
     title: "Nom de domaine",
-    desc: ".com (~2 000 XPF/an) ou .pf (~8 000 XPF/an) — on s'occupe de tout",
+    desc: ".com (~2 000 XPF/an) ou .pf (~3 000 XPF HT/an via Vini) — on s'occupe de tout",
   },
   {
     icon: "☁️",
@@ -130,7 +131,7 @@ export default function OffreSiteWebPage() {
         </div>
 
         {/* HERO */}
-        <section className="relative z-10 pt-36 pb-20 text-center px-6">
+        <section className="relative z-10 min-h-screen flex items-center justify-center text-center px-6">
           <div className="max-w-4xl mx-auto">
             {/* Badge */}
             <div className="inline-flex items-center gap-2 bg-accent/10 border border-accent/30 text-accent px-5 py-2 rounded-full text-sm font-semibold mb-8">
@@ -154,8 +155,8 @@ export default function OffreSiteWebPage() {
             </p>
 
             <a
-              href="mailto:contact@pacifikai.com?subject=Offre%20Site%20Web%20100%20000%20XPF"
-              className="inline-flex items-center gap-2 bg-accent text-bg font-bold text-lg px-10 py-4 rounded-xl hover:shadow-[0_0_32px_rgba(249,112,102,0.5)] hover:-translate-y-0.5 transition-all duration-300"
+              href="/contact"
+              className="inline-flex items-center gap-2 bg-accent text-bg font-bold text-lg px-10 py-4 rounded-xl hover:shadow-[0_0_32px_rgba(249,112,102,0.5)] transition-all duration-300"
             >
               Je réserve ma place &rarr;
             </a>
@@ -188,7 +189,7 @@ export default function OffreSiteWebPage() {
               </p>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
               {INCLUS.map((item) => (
                 <div
                   key={item.title}
@@ -394,6 +395,21 @@ export default function OffreSiteWebPage() {
           </div>
         </section>
 
+        {/* PORTFOLIO SHOWCASE */}
+        <section className="relative z-10 py-20 px-6">
+          <div className="max-w-6xl mx-auto">
+            <div className="text-center mb-8">
+              <h2 className="font-display text-3xl md:text-4xl font-bold tracking-tight mb-3">
+                10 exemples de sites qu&apos;on peut créer pour vous
+              </h2>
+              <p className="text-text-secondary max-w-md mx-auto">
+                Chaque site est unique, conçu sur mesure pour votre activité.
+              </p>
+            </div>
+            <PortfolioCarousel />
+          </div>
+        </section>
+
         {/* PRICING */}
         <section className="relative z-10 py-20 px-6">
           <div className="max-w-2xl mx-auto">
@@ -430,8 +446,8 @@ export default function OffreSiteWebPage() {
               </div>
 
               <a
-                href="mailto:contact@pacifikai.com?subject=Offre%20Site%20Web%20100%20000%20XPF"
-                className="inline-flex items-center gap-2 bg-accent text-bg font-bold text-base px-10 py-4 rounded-xl hover:shadow-[0_0_32px_rgba(249,112,102,0.5)] hover:-translate-y-0.5 transition-all duration-300 w-full justify-center mb-4"
+                href="/contact"
+                className="inline-flex items-center gap-2 bg-accent text-bg font-bold text-base px-10 py-4 rounded-xl hover:shadow-[0_0_32px_rgba(249,112,102,0.5)] transition-all duration-300 w-full justify-center mb-4"
               >
                 Je réserve ma place &rarr;
               </a>
@@ -498,16 +514,16 @@ export default function OffreSiteWebPage() {
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <a
-                  href="mailto:contact@pacifikai.com?subject=Offre%20Site%20Web%20100%20000%20XPF"
-                  className="inline-flex items-center justify-center gap-2 bg-accent text-bg font-bold px-8 py-3.5 rounded-xl hover:shadow-[0_0_24px_rgba(249,112,102,0.4)] hover:-translate-y-0.5 transition-all duration-300"
+                  href="/contact"
+                  className="inline-flex items-center justify-center gap-2 bg-accent text-bg font-bold px-8 py-3.5 rounded-xl hover:shadow-[0_0_24px_rgba(249,112,102,0.4)] transition-all duration-300"
                 >
                   Nous contacter par email &rarr;
                 </a>
                 <a
-                  href="/"
+                  href="/contact"
                   className="inline-flex items-center justify-center gap-2 bg-bg-card text-text border border-border px-8 py-3.5 rounded-xl hover:border-lagoon/40 transition-colors duration-300"
                 >
-                  Discuter avec MANA
+                  Discutons de votre projet
                 </a>
               </div>
             </div>
