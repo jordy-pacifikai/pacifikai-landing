@@ -51,9 +51,6 @@
       overflow-x: hidden;
     }
 
-    html.lenis, html.lenis body { height: auto; }
-    .lenis.lenis-smooth { scroll-behavior: auto !important; }
-
     body {
       background: var(--bg);
       overflow-x: hidden;
@@ -3166,7 +3163,6 @@
             </div>
           </div>
 
-
           </div>
       </div>
 
@@ -3425,7 +3421,6 @@
   </footer>
 
   <!-- SCRIPTS -->
-  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/ScrollTrigger.min.js"></script>
   <script>
@@ -3434,12 +3429,7 @@
     ======================================== */
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    /* ========================================
-       LENIS SMOOTH SCROLL
-    ======================================== */
-    let lenis;
     if (!prefersReducedMotion) {
-      lenis = new Lenis({
       syncTouch: false,
       touchMultiplier: 0,
         duration: 1.2,
@@ -3447,8 +3437,6 @@
         smoothWheel: true,
       });
 
-      lenis.on('scroll', ScrollTrigger.update);
-      gsap.ticker.add((time) => lenis.raf(time * 1000));
       gsap.ticker.lagSmoothing(0);
 
       // Anchor links
@@ -3456,7 +3444,6 @@
         a.addEventListener('click', (e) => {
           e.preventDefault();
           const target = document.querySelector(a.getAttribute('href'));
-          if (target) lenis.scrollTo(target, { offset: -80 });
           // Close mobile menu
           document.getElementById('mobileMenu').classList.remove('active');
         });

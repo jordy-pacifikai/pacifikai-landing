@@ -48,7 +48,7 @@
 }
 
 html {
-  scroll-behavior: smooth;
+  scroll-behavior: auto;
   font-size: 16px;
 }
 
@@ -2074,8 +2074,6 @@ h1, h2, h3, h4, h5 {
         </div>
       </div>
 
-
-
       <!-- ======= SUSHIS ======= -->
       <div class="menu-category-divider" data-cat-divider="sushis">
         <span class="menu-category-divider__label">Sushis</span>
@@ -2751,7 +2749,6 @@ h1, h2, h3, h4, h5 {
         </div>
       </div>
 
-
       </div>
   </div>
 </section>
@@ -2786,7 +2783,6 @@ h1, h2, h3, h4, h5 {
              onerror="this.parentElement.style.background='linear-gradient(135deg, #E8C9A0, #F5DEB3)';">
         <div class="gallery-overlay"><span>Table de Brunch</span></div>
       </div>
-
 
       <div class="gallery-item reveal">
         <img src="images/gwaka/plateau-fruits.jpg"
@@ -3018,13 +3014,10 @@ h1, h2, h3, h4, h5 {
 <!-- ========== SCRIPTS ========== -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-<script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
-
 <script>
 (function() {
   'use strict';
 
-  /* ---- Lenis smooth scroll ---- */
   const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   /* ---- IntersectionObserver reveal (primary, no GSAP dependency) ---- */
@@ -3073,9 +3066,7 @@ h1, h2, h3, h4, h5 {
   // Run immediately (DOM already ready since script is at end of body)
   initRevealObserver();
 
-  let lenis;
   if (!prefersReduced) {
-    lenis = new Lenis({
       syncTouch: false,
       touchMultiplier: 0,
       duration: 1.2,
@@ -3084,15 +3075,12 @@ h1, h2, h3, h4, h5 {
     });
 
     function raf(time) {
-      lenis.raf(time);
       requestAnimationFrame(raf);
     }
     requestAnimationFrame(raf);
 
     // Integrate with GSAP ScrollTrigger
-    lenis.on('scroll', ScrollTrigger.update);
     gsap.ticker.add((time) => {
-      lenis.raf(time * 1000);
     });
     gsap.ticker.lagSmoothing(0);
   }
@@ -3145,10 +3133,8 @@ h1, h2, h3, h4, h5 {
   }, { passive: true });
 
   scrollTopBtn.addEventListener('click', () => {
-    if (lenis) {
-      lenis.scrollTo(0);
-    } else {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+     else {
+      window.scrollTo({ top: 0, behavior:'auto' });
     }
   });
 
@@ -3158,10 +3144,8 @@ h1, h2, h3, h4, h5 {
       const target = document.querySelector(anchor.getAttribute('href'));
       if (target) {
         e.preventDefault();
-        if (lenis) {
-          lenis.scrollTo(target, { offset: -80 });
-        } else {
-          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+         else {
+          target.scrollIntoView({ behavior:'auto', block: 'start' });
         }
       }
     });

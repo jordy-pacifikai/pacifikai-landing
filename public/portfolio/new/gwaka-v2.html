@@ -36,7 +36,7 @@
     }
 
     html {
-      scroll-behavior: smooth;
+      scroll-behavior: auto;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
     }
@@ -1970,7 +1970,6 @@
             <div class="menu-category__line"></div>
           </div>
 
-
           <div class="menu-list-item">
             <div class="menu-list-item__thumbnail-wrap"><img class="menu-list-item__thumbnail" src="images/gwaka/mini-pain-lait.jpg" alt="Mini Pain au Lait" loading="lazy" onerror="this.style.visibility='hidden';this.parentElement.style.background='linear-gradient(135deg, #4A7C3F 0%, #7CB342 100%)'"></div>
             <div class="menu-list-item__info"><div class="menu-list-item__name">Mini Pain au Lait</div><div class="menu-list-item__description">Moelleux, garni selon la saison</div></div>
@@ -1982,7 +1981,6 @@
             <div class="menu-list-item__info"><div class="menu-list-item__name">Onigiri</div><div class="menu-list-item__description">Boulette de riz japonaise, garnie</div></div>
             
           </div>
-
 
           <div class="menu-list-item">
             <div class="menu-list-item__thumbnail-wrap"><img class="menu-list-item__thumbnail" src="images/gwaka/bouchees-saumon.jpg" alt="Bouchees" loading="lazy" onerror="this.style.visibility='hidden';this.parentElement.style.background='linear-gradient(135deg, #4A7C3F 0%, #7CB342 100%)'"></div>
@@ -2726,8 +2724,6 @@
         );
       });
 
-
-
       // Contact form slide in
       gsap.fromTo('.contact-form-card',
         { opacity: 0, x: 60 },
@@ -2792,14 +2788,13 @@
         }
 
         // Scroll active tab into view (horizontal scroll on mobile)
-        tab.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+        tab.scrollIntoView({ behavior:'auto', block: 'nearest', inline: 'center' });
       });
     });
 
     // Show all on load
     menuCategories.forEach(c => c.classList.remove('hidden'));
 
-    /* ========== SMOOTH SCROLL ========== */
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function(e) {
         e.preventDefault();
@@ -2807,7 +2802,7 @@
         if (target) {
           const offset = 80;
           const y = target.getBoundingClientRect().top + window.pageYOffset - offset;
-          window.scrollTo({ top: y, behavior: 'smooth' });
+          window.scrollTo({ top: y, behavior:'auto' });
         }
       });
     });

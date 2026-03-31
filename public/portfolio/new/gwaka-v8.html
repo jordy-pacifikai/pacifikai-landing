@@ -12,7 +12,7 @@
 <style>
   /* ===== RESET & BASE ===== */
   *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
+  html { scroll-behavior: auto; }
   body {
     font-family: 'Poppins', sans-serif;
     color: #2D3436;
@@ -1168,7 +1168,6 @@
       </div>
     </div>
 
-
     <div class="menu-masonry__item" data-cat="sales">
       <span class="menu-masonry__cat">Sales</span>
       <img class="menu-masonry__img" src="images/gwaka/bagel-veggie.jpg" alt="Bagel Veggie" loading="lazy" onerror="this.style.background='linear-gradient(135deg,#B8D4A3,#F4C89E)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22/>';">
@@ -1425,7 +1424,6 @@
       </div>
     </div>
 
-
     <div class="menu-masonry__item" data-cat="sushis">
       <span class="menu-masonry__cat">Sushis</span>
       <img class="menu-masonry__img" src="images/gwaka/onigiri.jpg" alt="Onigiri" loading="lazy" onerror="this.style.background='linear-gradient(135deg,#A8D8EA,#B8D4A3)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22320%22/>';">
@@ -1434,7 +1432,6 @@
         <div class="menu-masonry__desc">Spicy tuna OU tuna-mayo</div>
       </div>
     </div>
-
 
     <div class="menu-masonry__item" data-cat="sushis">
       <span class="menu-masonry__cat">Sushis</span>
@@ -2324,34 +2321,26 @@
 </svg>
 
 <!-- ===== SCRIPTS ===== -->
-<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.1/dist/lenis.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
 <script>
 (function() {
   'use strict';
 
-  // ===== LENIS SMOOTH SCROLL =====
   const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  let lenis;
+
   if (!prefersReduced) {
-    lenis = new Lenis({
       syncTouch: false,
       touchMultiplier: 0,
       duration: 1.2,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
     });
     function raf(time) {
-      lenis.raf(time);
       requestAnimationFrame(raf);
     }
     requestAnimationFrame(raf);
 
-    // Sync Lenis with ScrollTrigger
-    lenis.on('scroll', ScrollTrigger.update);
-    gsap.ticker.add((time) => lenis.raf(time * 1000));
-    gsap.ticker.lagSmoothing(0);
-  }
+    
 
   // ===== NAVBAR SCROLL =====
   const navbar = document.getElementById('navbar');
@@ -2494,7 +2483,6 @@
     });
   }
 
-  // ===== SMOOTH SCROLL TO ANCHORS =====
   document.querySelectorAll('a[href^="#"]').forEach(link => {
     link.addEventListener('click', (e) => {
       const id = link.getAttribute('href');
@@ -2502,10 +2490,8 @@
       const target = document.querySelector(id);
       if (target) {
         e.preventDefault();
-        if (lenis) {
-          lenis.scrollTo(target, { offset: -72 });
-        } else {
-          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+         else {
+          target.scrollIntoView({ behavior:'auto', block: 'start' });
         }
       }
     });

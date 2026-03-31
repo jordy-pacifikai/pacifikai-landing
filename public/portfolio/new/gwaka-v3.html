@@ -37,8 +37,7 @@
 
 html {
   font-size: 16px;
-  scroll-behavior: auto; /* Lenis handles smooth scroll */
-}
+  scroll-behavior: auto; }
 
 body {
   font-family: var(--font-body);
@@ -2001,7 +2000,6 @@ body {
         </div>
       </div>
 
-
       <!-- STANDARD 1x1 — Bagel Veggie -->
       <div class="menu-bento__std" data-cat="sales">
         <img class="menu-bento__image" src="images/gwaka/bagel-veggie.jpg" alt="Bagel Veggie" loading="lazy" onerror="this.style.visibility='hidden'; this.closest('[class*=menu-bento]').style.background='linear-gradient(135deg, #4A7C3F 0%, #7CB342 100%)'">
@@ -2051,7 +2049,6 @@ body {
           <span class="desc">Bun charbon, oeufs brouilles, herbes fraiches</span>
         </div>
       </div>
-
 
       <!-- STANDARD 1x1 — Cake Feta -->
       <div class="menu-bento__std" data-cat="sales">
@@ -2241,7 +2238,6 @@ body {
         <span class="count">4 produits</span>
       </div>
 
-
       <!-- HERO 2x2 — Club Sandwich Gwaka (Signature) -->
       <div class="menu-bento__hero" data-cat="wraps">
         <img class="menu-bento__image" src="images/gwaka/club-sandwich.jpg" alt="Club Sandwich" loading="lazy" onerror="this.style.visibility='hidden'; this.closest('[class*=menu-bento]').style.background='linear-gradient(135deg, #4A7C3F 0%, #7CB342 100%)'">
@@ -2253,7 +2249,6 @@ body {
         </div>
       </div>
 
-
       <!-- STANDARD 1x1 — Wrap Saumon -->
       <div class="menu-bento__std" data-cat="wraps">
         <img class="menu-bento__image" src="images/gwaka/wraps.jpg" alt="Wraps" loading="lazy" onerror="this.style.visibility='hidden'; this.closest('[class*=menu-bento]').style.background='linear-gradient(135deg, #4A7C3F 0%, #7CB342 100%)'">
@@ -2263,9 +2258,6 @@ body {
           <span class="desc">Tortilla, saumon fume, cream cheese, crudites</span>
         </div>
       </div>
-
-
-
 
       <!-- ══════ SALADES ══════ -->
       <div class="menu-cat-heading" data-cat-heading="salades">
@@ -2887,7 +2879,6 @@ body {
         </div>
       </div>
 
-
     </div>
 
     <div class="menu-download">
@@ -3177,7 +3168,6 @@ window.addEventListener('load', function() {
   }
 });
 </script>
-<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" onerror="document.documentElement.classList.add('js-gsap-failed')"></script>
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
 <script>
@@ -3191,26 +3181,7 @@ if (typeof gsap !== 'undefined') window.__gsapLoaded = true;
 // Respect reduced motion
 const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-// ── LENIS SMOOTH SCROLL ──
-const lenis = new Lenis({
-      syncTouch: false,
-      touchMultiplier: 0,
-  duration: 1.2,
-  easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-  orientation: 'vertical',
-  smoothWheel: !prefersReducedMotion,
-});
-
-function raf(time) {
-  lenis.raf(time);
-  requestAnimationFrame(raf);
-}
-requestAnimationFrame(raf);
-
-// Sync Lenis with GSAP ScrollTrigger
 gsap.registerPlugin(ScrollTrigger);
-lenis.on('scroll', ScrollTrigger.update);
-gsap.ticker.add((time) => lenis.raf(time * 1000));
 gsap.ticker.lagSmoothing(0);
 
 // Smooth anchor scroll
@@ -3218,7 +3189,6 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
   a.addEventListener('click', (e) => {
     e.preventDefault();
     const target = document.querySelector(a.getAttribute('href'));
-    if (target) lenis.scrollTo(target, { offset: -80 });
     // Close mobile menu
     document.querySelector('.mobile-menu').classList.remove('open');
     document.querySelector('.nav-toggle').classList.remove('active');
@@ -3243,9 +3213,9 @@ navToggle.addEventListener('click', () => {
   navToggle.classList.toggle('active');
   navToggle.setAttribute('aria-expanded', isOpen);
   if (isOpen) {
-    lenis.stop();
+
   } else {
-    lenis.start();
+
   }
 });
 
