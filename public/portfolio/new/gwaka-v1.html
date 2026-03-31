@@ -610,7 +610,7 @@
 
     .service-card {
       position: relative;
-      padding: 48px 32px;
+      padding: 56px 36px;
       background: var(--bg-elevated);
       overflow: hidden;
       transition: background 0.4s;
@@ -659,46 +659,49 @@
     }
 
     .service-number {
-      font-size: 0.65rem;
-      font-weight: 500;
-      letter-spacing: 0.15em;
-      color: var(--text-subtle);
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      color: var(--gold);
       margin-bottom: 16px;
     }
 
     .service-title {
       font-family: var(--font-heading);
-      font-size: 1.4rem;
-      font-weight: 400;
-      color: var(--cream);
-      margin-bottom: 12px;
+      font-size: 1.75rem;
+      font-weight: 500;
+      color: var(--white);
+      margin-bottom: 16px;
+      line-height: 1.2;
     }
 
     .service-desc {
-      font-size: 0.85rem;
-      font-weight: 300;
-      line-height: 1.65;
-      color: var(--text-muted);
+      font-size: 0.95rem;
+      font-weight: 400;
+      line-height: 1.75;
+      color: var(--cream);
+      opacity: 0.85;
     }
 
     .service-link {
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      margin-top: 24px;
-      font-size: 0.75rem;
-      font-weight: 500;
+      margin-top: 28px;
+      font-size: 0.8rem;
+      font-weight: 600;
       letter-spacing: 0.1em;
       text-transform: uppercase;
       color: var(--gold);
-      opacity: 0;
-      transform: translateY(8px);
-      transition: opacity 0.4s, transform 0.4s;
+      opacity: 0.7;
+      transform: translateY(0);
+      transition: opacity 0.4s, transform 0.4s, color 0.3s;
     }
 
     .service-card:hover .service-link {
       opacity: 1;
       transform: translateY(0);
+      color: var(--gold-light);
     }
 
     @media (max-width: 1024px) {
@@ -1540,21 +1543,6 @@
     </div>
   </section>
 
-  <!-- IMAGE STRIP — 4 photos between services & gallery -->
-  <div class="image-strip">
-    <div class="strip-item">
-      <img src="images/gwaka/verrines-appetizers.jpg" alt="Food platter GWAKA" loading="lazy" onerror="this.parentElement.style.background='linear-gradient(135deg,#D4A029,#558B2F)';this.style.display='none'">
-    </div>
-    <div class="strip-item">
-      <img src="images/gwaka/buffet-corporate.jpg" alt="Corporate buffet GWAKA" loading="lazy" onerror="this.parentElement.style.background='linear-gradient(135deg,#C9A84C,#8D6E3F)';this.style.display='none'">
-    </div>
-    <div class="strip-item">
-      <img src="images/gwaka/plateau-fruits.jpg" alt="Brunch GWAKA" loading="lazy" onerror="this.parentElement.style.background='linear-gradient(135deg,#E8B84A,#BF360C)';this.style.display='none'">
-    </div>
-    <div class="strip-item">
-      <img src="images/gwaka/chef-cuisine.jpg" alt="Chef en cuisine GWAKA" loading="lazy" onerror="this.parentElement.style.background='linear-gradient(135deg,#7CB342,#33691E)';this.style.display='none'">
-    </div>
-  </div>
 
   <!-- GALLERY -->
   <section class="gallery-section" id="galerie">
@@ -3178,7 +3166,7 @@
           <!-- Plateaux de Legumes Decoupes -->
           <div class="menu-card reveal" data-hover>
             <div class="menu-card__image-wrapper">
-              <img class="menu-card__image" src="images/gwaka/buffet-corporate.jpg" alt="Plateaux de Legumes Decoupes" loading="lazy" onerror="this.style.visibility='hidden'; this.closest('.menu-card__image-wrapper').style.background='linear-gradient(135deg, #4A7C3F 0%, #7CB342 100%)'">
+              <img class="menu-card__image" src="images/gwaka/plateau-legumes.jpg" alt="Plateaux de Legumes Decoupes" loading="lazy" onerror="this.style.visibility='hidden'; this.closest('.menu-card__image-wrapper').style.background='linear-gradient(135deg, #4A7C3F 0%, #7CB342 100%)'">
               <span class="menu-card__badge">Plateau</span>
             </div>
             <div class="menu-card__info">
@@ -3194,7 +3182,7 @@
           <!-- Veggies Tacos Bar -->
           <div class="menu-card reveal" data-hover>
             <div class="menu-card__image-wrapper">
-              <img class="menu-card__image" src="images/gwaka/scene-tropical.jpg" alt="Veggies Tacos Bar" loading="lazy" onerror="this.style.visibility='hidden'; this.closest('.menu-card__image-wrapper').style.background='linear-gradient(135deg, #4A7C3F 0%, #7CB342 100%)'">
+              <img class="menu-card__image" src="images/gwaka/veggies-tacos-bar.jpg" alt="Veggies Tacos Bar" loading="lazy" onerror="this.style.visibility='hidden'; this.closest('.menu-card__image-wrapper').style.background='linear-gradient(135deg, #4A7C3F 0%, #7CB342 100%)'">
               <span class="menu-card__badge">Plateau</span>
             </div>
             <div class="menu-card__info">
@@ -3210,7 +3198,7 @@
           <!-- Plateau Fromages -->
           <div class="menu-card reveal" data-hover>
             <div class="menu-card__image-wrapper">
-              <img class="menu-card__image" src="images/gwaka/buffet-corporate.jpg" alt="Plateau Fromages" loading="lazy" onerror="this.style.visibility='hidden'; this.closest('.menu-card__image-wrapper').style.background='linear-gradient(135deg, #4A7C3F 0%, #7CB342 100%)'">
+              <img class="menu-card__image" src="images/gwaka/plateau-fromages.jpg" alt="Plateau Fromages" loading="lazy" onerror="this.style.visibility='hidden'; this.closest('.menu-card__image-wrapper').style.background='linear-gradient(135deg, #4A7C3F 0%, #7CB342 100%)'">
               <span class="menu-card__badge">Plateau</span>
             </div>
             <div class="menu-card__info">
@@ -3226,7 +3214,7 @@
           <!-- Plateau Charcuterie -->
           <div class="menu-card reveal" data-hover>
             <div class="menu-card__image-wrapper">
-              <img class="menu-card__image" src="images/gwaka/buffet-corporate.jpg" alt="Plateau Charcuterie" loading="lazy" onerror="this.style.visibility='hidden'; this.closest('.menu-card__image-wrapper').style.background='linear-gradient(135deg, #4A7C3F 0%, #7CB342 100%)'">
+              <img class="menu-card__image" src="images/gwaka/plateau-charcuterie.jpg" alt="Plateau Charcuterie" loading="lazy" onerror="this.style.visibility='hidden'; this.closest('.menu-card__image-wrapper').style.background='linear-gradient(135deg, #4A7C3F 0%, #7CB342 100%)'">
               <span class="menu-card__badge">Plateau</span>
             </div>
             <div class="menu-card__info">
@@ -3242,7 +3230,7 @@
           <!-- Plateau Mixte -->
           <div class="menu-card reveal" data-hover>
             <div class="menu-card__image-wrapper">
-              <img class="menu-card__image" src="images/gwaka/buffet-corporate.jpg" alt="Plateau Mixte" loading="lazy" onerror="this.style.visibility='hidden'; this.closest('.menu-card__image-wrapper').style.background='linear-gradient(135deg, #4A7C3F 0%, #7CB342 100%)'">
+              <img class="menu-card__image" src="images/gwaka/plateau-mixte.jpg" alt="Plateau Mixte" loading="lazy" onerror="this.style.visibility='hidden'; this.closest('.menu-card__image-wrapper').style.background='linear-gradient(135deg, #4A7C3F 0%, #7CB342 100%)'">
               <span class="menu-card__badge">Plateau</span>
             </div>
             <div class="menu-card__info">
@@ -3258,7 +3246,7 @@
           <!-- Plateaux de Sushis Maison -->
           <div class="menu-card reveal" data-hover>
             <div class="menu-card__image-wrapper">
-              <img class="menu-card__image" src="images/gwaka/chef-cuisine.jpg" alt="Plateaux Sushis" loading="lazy" onerror="this.style.visibility='hidden'; this.closest('.menu-card__image-wrapper').style.background='linear-gradient(135deg, #4A7C3F 0%, #7CB342 100%)'">
+              <img class="menu-card__image" src="images/gwaka/sushis.jpg" alt="Plateaux Sushis" loading="lazy" onerror="this.style.visibility='hidden'; this.closest('.menu-card__image-wrapper').style.background='linear-gradient(135deg, #4A7C3F 0%, #7CB342 100%)'">
               <span class="menu-card__badge">Plateau</span>
             </div>
             <div class="menu-card__info">
