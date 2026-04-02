@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>GWAKA — Traiteur Brunch & Healthy | Tahiti</title>
 <meta name="description" content="GWAKA, traiteur brunch et healthy à Tahiti. Produits frais, recettes originales, made with love for you.">
-<link rel="icon" type="image/jpeg" href="https://litter.catbox.moe/66guxd.jpg">
+<link rel="icon" type="image/jpeg" href="images/gwaka/gwaka-logo.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -961,6 +961,268 @@
     color: rgba(255,255,255,0.6);
     font-size: 2rem;
   }
+    /* ========== INSTAGRAM WIDGET (iPhone Mockup) ========== */
+    .ig-widget-section {
+      padding: 100px 0;
+      position: relative;
+      overflow: hidden;
+    }
+    .ig-widget-section__bg {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, rgba(74,124,63,0.04), rgba(74,124,63,0.08), rgba(74,124,63,0.04));
+    }
+    .ig-widget-section__title {
+      text-align: center;
+      margin-bottom: 40px;
+      position: relative;
+      z-index: 2;
+    }
+    .ig-widget-section__label {
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      opacity: 0.6;
+      margin-bottom: 8px;
+    }
+    .ig-widget-section__heading {
+      font-size: 2rem;
+      font-weight: 700;
+    }
+    .ig-widget-section__separator {
+      width: 40px;
+      height: 40px;
+      margin: 12px auto 0;
+      color: #E1306C;
+    }
+    .ig-widget-wrap {
+      position: relative;
+      z-index: 2;
+      max-width: 380px;
+      margin: 0 auto;
+      padding: 0 16px;
+    }
+    .ig-widget-glow {
+      position: absolute;
+      inset: -24px;
+      background: linear-gradient(to bottom, rgba(225,48,108,0.12), rgba(131,58,180,0.08), rgba(225,48,108,0.12));
+      border-radius: 3rem;
+      filter: blur(40px);
+    }
+    .ig-widget-phone {
+      position: relative;
+      background: #fff;
+      border-radius: 2.5rem;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.12), 0 4px 20px rgba(0,0,0,0.06);
+      border: 1px solid rgba(0,0,0,0.06);
+      overflow: hidden;
+    }
+    .ig-widget-notch {
+      display: flex;
+      justify-content: center;
+      padding: 12px 0 0;
+    }
+    .ig-widget-notch__pill {
+      width: 112px;
+      height: 24px;
+      background: #1a1a1a;
+      border-radius: 100px;
+    }
+    .ig-widget-navbar {
+      padding: 12px 16px 8px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid #eee;
+    }
+    .ig-widget-navbar__left {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .ig-widget-navbar__avatar {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 1px solid #eee;
+    }
+    .ig-widget-navbar__user {
+      line-height: 1.2;
+    }
+    .ig-widget-navbar__name {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: #262626;
+    }
+    .ig-widget-navbar__subtitle {
+      font-size: 0.6rem;
+      color: #8e8e8e;
+    }
+    .ig-widget-profile {
+      padding: 12px 16px;
+    }
+    .ig-widget-profile__top {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .ig-widget-profile__pic-wrap {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+      padding: 2.5px;
+      flex-shrink: 0;
+    }
+    .ig-widget-profile__pic {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid #fff;
+    }
+    .ig-widget-profile__stats {
+      flex: 1;
+      display: flex;
+      justify-content: space-around;
+      text-align: center;
+    }
+    .ig-widget-profile__stat-num {
+      font-size: 1rem;
+      font-weight: 700;
+      color: #262626;
+    }
+    .ig-widget-profile__stat-label {
+      font-size: 0.6rem;
+      color: #8e8e8e;
+    }
+    .ig-widget-profile__bio {
+      margin-top: 10px;
+    }
+    .ig-widget-profile__bio-name {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: #262626;
+    }
+    .ig-widget-profile__bio-desc {
+      font-size: 0.7rem;
+      color: #8e8e8e;
+      line-height: 1.4;
+      margin-top: 2px;
+    }
+    .ig-widget-follow {
+      display: block;
+      width: 100%;
+      margin-top: 12px;
+      padding: 6px 0;
+      background: linear-gradient(to right, #405DE6, #5851DB, #833AB4, #C13584, #E1306C, #FD1D1D);
+      color: #fff;
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-align: center;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: filter 0.3s;
+    }
+    .ig-widget-follow:hover {
+      filter: brightness(1.1);
+      color: #fff;
+    }
+    .ig-widget-tabs {
+      display: flex;
+      border-top: 1px solid #eee;
+      border-bottom: 1px solid #eee;
+    }
+    .ig-widget-tabs__tab {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      padding: 8px 0;
+    }
+    .ig-widget-tabs__tab--active {
+      border-bottom: 2px solid #262626;
+    }
+    .ig-widget-tabs__tab svg {
+      width: 20px;
+      height: 20px;
+      color: #8e8e8e;
+    }
+    .ig-widget-tabs__tab--active svg {
+      color: #262626;
+    }
+    .ig-widget-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5px;
+      max-height: 420px;
+      overflow-y: auto;
+      background: #fff;
+    }
+    .ig-widget-grid::-webkit-scrollbar {
+      width: 0;
+    }
+    .ig-widget-grid__item {
+      position: relative;
+      aspect-ratio: 1;
+      overflow: hidden;
+      display: block;
+      background: #fafafa;
+    }
+    .ig-widget-grid__item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease, filter 0.3s ease;
+    }
+    .ig-widget-grid__item:hover img {
+      transform: scale(1.05);
+      filter: brightness(0.9);
+    }
+    .ig-widget-grid__overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: all 0.3s ease;
+    }
+    .ig-widget-grid__item:hover .ig-widget-grid__overlay {
+      background: rgba(0,0,0,0.2);
+      opacity: 1;
+    }
+    .ig-widget-cta {
+      text-align: center;
+      margin-top: 32px;
+      position: relative;
+      z-index: 2;
+    }
+    .ig-widget-cta__btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 32px;
+      background: linear-gradient(to right, #833AB4, #E1306C, #F77737);
+      color: #fff;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      text-decoration: none;
+      transition: transform 0.3s, box-shadow 0.3s;
+      box-shadow: 0 4px 15px rgba(225,48,108,0.3);
+    }
+    .ig-widget-cta__btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(225,48,108,0.4);
+      color: #fff;
+    }
+    @media (max-width: 640px) {
+      .ig-widget-section { padding: 60px 0; }
+      .ig-widget-wrap { max-width: 340px; }
 </style>
 </head>
 <body>
@@ -968,7 +1230,7 @@
 <!-- ===== NAVBAR ===== -->
 <nav class="navbar" id="navbar">
   <a href="#accueil" class="nav-logo">
-    <img src="https://litter.catbox.moe/66guxd.jpg" alt="GWAKA" style="height:40px;width:40px;border-radius:50%;object-fit:cover;">
+    <img src="images/gwaka/gwaka-logo.jpg" alt="GWAKA" style="height:40px;width:40px;border-radius:50%;object-fit:cover;">
     <span style="font-family:'Lora',serif;font-size:22px;font-weight:700;color:#2D3436;">gwaka</span>
   </a>
   <div class="nav-links">
@@ -1148,11 +1410,13 @@
     <button class="menu-filter-pill" data-filter="salades">Salades</button>
     <button class="menu-filter-pill" data-filter="plateaux">Plateaux</button>
     <button class="menu-filter-pill" data-filter="sushis">Sushis & Mini</button>
+    <button class="menu-filter-pill" data-filter="desserts">Desserts</button>
+    <button class="menu-filter-pill" data-filter="boissons">Boissons</button>
   </div>
 
   <!-- Items counter -->
   <div class="menu-masonry__count reveal" id="menuCount">
-    <strong id="menuCountNum">94</strong> creations
+    <strong id="menuCountNum">112</strong> creations
   </div>
 
   <!-- Masonry grid -->
@@ -1161,7 +1425,7 @@
     <!-- ========== PRODUITS SALES ========== -->
     <div class="menu-masonry__item" data-cat="sales">
       <span class="menu-masonry__cat">Sales</span>
-      <img class="menu-masonry__img" src="images/gwaka/egg-muffin.jpg" alt="Egg Muffin" loading="lazy" onerror="this.style.background='linear-gradient(135deg,#B8D4A3,#F4C89E)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22/>';">
+      <img class="menu-masonry__img" src="images/gwaka/egg-muffin.jpg" alt="Egg Muffin" loading="eager" onerror="this.style.background='linear-gradient(135deg,#B8D4A3,#F4C89E)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22/>';">
       <div class="menu-masonry__overlay">
         <div class="menu-masonry__name">Egg Muffin Classique</div>
         <div class="menu-masonry__desc">Oeuf, cheddar</div>
@@ -1170,7 +1434,7 @@
 
     <div class="menu-masonry__item" data-cat="sales">
       <span class="menu-masonry__cat">Sales</span>
-      <img class="menu-masonry__img" src="images/gwaka/bagel-veggie.jpg" alt="Bagel Veggie" loading="lazy" onerror="this.style.background='linear-gradient(135deg,#B8D4A3,#F4C89E)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22/>';">
+      <img class="menu-masonry__img" src="images/gwaka/bagel-veggie.jpg" alt="Bagel Veggie" loading="eager" onerror="this.style.background='linear-gradient(135deg,#B8D4A3,#F4C89E)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22/>';">
       <div class="menu-masonry__overlay">
         <div class="menu-masonry__name">Bagel Veggie</div>
         <div class="menu-masonry__desc">Houmous, poivrons grilles, chevre frais, epinards frais</div>
@@ -1179,7 +1443,7 @@
 
     <div class="menu-masonry__item" data-cat="sales">
       <span class="menu-masonry__cat">Sales</span>
-      <img class="menu-masonry__img" src="images/gwaka/bagel-jambon.jpg" alt="Bagel Jambon de Dinde" loading="lazy" onerror="this.style.background='linear-gradient(135deg,#B8D4A3,#F4C89E)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22/>';">
+      <img class="menu-masonry__img" src="images/gwaka/bagel-jambon.jpg" alt="Bagel Jambon de Dinde" loading="eager" onerror="this.style.background='linear-gradient(135deg,#B8D4A3,#F4C89E)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22/>';">
       <div class="menu-masonry__overlay">
         <div class="menu-masonry__name">Bagel Jambon de Dinde</div>
         <div class="menu-masonry__desc">Jambon de dinde fumee, garniture fraiche</div>
@@ -1188,7 +1452,7 @@
 
     <div class="menu-masonry__item" data-cat="sales">
       <span class="menu-masonry__cat">Sales</span>
-      <img class="menu-masonry__img" src="images/gwaka/bagel-thon.jpg" alt="Bagel Thon Fume Local" loading="lazy" onerror="this.style.background='linear-gradient(135deg,#B8D4A3,#F4C89E)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22/>';">
+      <img class="menu-masonry__img" src="images/gwaka/bagel-thon.jpg" alt="Bagel Thon Fume Local" loading="eager" onerror="this.style.background='linear-gradient(135deg,#B8D4A3,#F4C89E)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22/>';">
       <div class="menu-masonry__overlay">
         <div class="menu-masonry__name">Bagel Thon Fume Local</div>
         <div class="menu-masonry__desc">Thon fume local de Tahiti</div>
@@ -1197,7 +1461,7 @@
 
     <div class="menu-masonry__item" data-cat="sales">
       <span class="menu-masonry__cat">Sales</span>
-      <img class="menu-masonry__img" src="images/gwaka/bagel-saumon.jpg" alt="Bagel Saumon Fume" loading="lazy" onerror="this.style.background='linear-gradient(135deg,#B8D4A3,#F4C89E)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22/>';">
+      <img class="menu-masonry__img" src="images/gwaka/bagel-saumon.jpg" alt="Bagel Saumon Fume" loading="eager" onerror="this.style.background='linear-gradient(135deg,#B8D4A3,#F4C89E)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22/>';">
       <div class="menu-masonry__overlay">
         <div class="menu-masonry__name">Bagel Saumon Fume</div>
         <div class="menu-masonry__desc">Saumon fume premium</div>
@@ -1206,7 +1470,7 @@
 
     <div class="menu-masonry__item" data-cat="sales">
       <span class="menu-masonry__cat">Sales</span>
-      <img class="menu-masonry__img" src="images/gwaka/black-bun.jpg" alt="Black Bun Oeufs" loading="lazy" onerror="this.style.background='linear-gradient(135deg,#B8D4A3,#F4C89E)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22/>';">
+      <img class="menu-masonry__img" src="images/gwaka/black-bun.jpg" alt="Black Bun Oeufs" loading="eager" onerror="this.style.background='linear-gradient(135deg,#B8D4A3,#F4C89E)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22/>';">
       <div class="menu-masonry__overlay">
         <div class="menu-masonry__name">Black Bun Oeufs</div>
         <div class="menu-masonry__desc">Oeufs brouilles, sriracha OU au comte, copeaux de bacon grille</div>
@@ -1215,7 +1479,7 @@
 
     <div class="menu-masonry__item" data-cat="sales">
       <span class="menu-masonry__cat">Sales</span>
-      <img class="menu-masonry__img" src="images/gwaka/cake-chevre.jpg" alt="Cake Feta" loading="lazy" onerror="this.style.background='linear-gradient(135deg,#B8D4A3,#F4C89E)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22/>';">
+      <img class="menu-masonry__img" src="images/gwaka/cake-chevre.jpg" alt="Cake Feta" loading="eager" onerror="this.style.background='linear-gradient(135deg,#B8D4A3,#F4C89E)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22/>';">
       <div class="menu-masonry__overlay">
         <div class="menu-masonry__name">Cake Feta</div>
         <div class="menu-masonry__desc">Feta, epinards, tomates sechees</div>
@@ -1224,7 +1488,7 @@
 
     <div class="menu-masonry__item" data-cat="sales">
       <span class="menu-masonry__cat">Sales</span>
-      <img class="menu-masonry__img" src="images/gwaka/toast-houmous.jpg" alt="Toast Houmous" loading="lazy" onerror="this.style.background='linear-gradient(135deg,#B8D4A3,#F4C89E)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22/>';">
+      <img class="menu-masonry__img" src="images/gwaka/toast-houmous.jpg" alt="Toast Houmous" loading="eager" onerror="this.style.background='linear-gradient(135deg,#B8D4A3,#F4C89E)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22/>';">
       <div class="menu-masonry__overlay">
         <div class="menu-masonry__name">Toast Houmous Poivrons Grilles</div>
         <div class="menu-masonry__desc">Houmous cremeux, poivrons grilles</div>
@@ -1233,7 +1497,7 @@
 
     <div class="menu-masonry__item" data-cat="sales">
       <span class="menu-masonry__cat">Sales</span>
-      <img class="menu-masonry__img" src="images/gwaka/carpaccio-tofu.jpg" alt="Carpaccio Tofu Curry Coco" loading="lazy" onerror="this.style.background='linear-gradient(135deg,#B8D4A3,#F4C89E)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22/>';">
+      <img class="menu-masonry__img" src="images/gwaka/carpaccio-tofu.jpg" alt="Carpaccio Tofu Curry Coco" loading="eager" onerror="this.style.background='linear-gradient(135deg,#B8D4A3,#F4C89E)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22/>';">
       <div class="menu-masonry__overlay">
         <div class="menu-masonry__name">Carpaccio Tofu Curry Coco</div>
         <div class="menu-masonry__desc">Carottes, tomates, concombres, capres et assaisonnement maison</div>
@@ -1242,7 +1506,7 @@
 
     <div class="menu-masonry__item" data-cat="sales">
       <span class="menu-masonry__cat">Sales</span>
-      <img class="menu-masonry__img" src="images/gwaka/carpaccio-aubergines.jpg" alt="Carpaccio Aubergines Vapeur" loading="lazy" onerror="this.style.background='linear-gradient(135deg,#B8D4A3,#F4C89E)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22/>';">
+      <img class="menu-masonry__img" src="images/gwaka/carpaccio-aubergines.jpg" alt="Carpaccio Aubergines Vapeur" loading="eager" onerror="this.style.background='linear-gradient(135deg,#B8D4A3,#F4C89E)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22/>';">
       <div class="menu-masonry__overlay">
         <div class="menu-masonry__name">Carpaccio Aubergines Vapeur</div>
         <div class="menu-masonry__desc">Feta, tomates sechees, olives vertes et assaisonnement</div>
@@ -1251,7 +1515,7 @@
 
     <div class="menu-masonry__item" data-cat="sales">
       <span class="menu-masonry__cat">Sales</span>
-      <img class="menu-masonry__img" src="images/gwaka/gaufre-salee.jpg" alt="Gaufre Salee Epinards" loading="lazy" onerror="this.style.background='linear-gradient(135deg,#B8D4A3,#F4C89E)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22/>';">
+      <img class="menu-masonry__img" src="images/gwaka/gaufre-salee.jpg" alt="Gaufre Salee Epinards" loading="eager" onerror="this.style.background='linear-gradient(135deg,#B8D4A3,#F4C89E)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22/>';">
       <div class="menu-masonry__overlay">
         <div class="menu-masonry__name">Gaufre Salee Epinards</div>
         <div class="menu-masonry__desc">Epinards, feta, cranberries</div>
@@ -1260,7 +1524,7 @@
 
     <div class="menu-masonry__item" data-cat="sales">
       <span class="menu-masonry__cat">Sales</span>
-      <img class="menu-masonry__img" src="images/gwaka/gaufre-patates-douces.jpg" alt="Gaufre Salee Patates Douces" loading="lazy" onerror="this.style.background='linear-gradient(135deg,#B8D4A3,#F4C89E)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22/>';">
+      <img class="menu-masonry__img" src="images/gwaka/gaufre-patates-douces.jpg" alt="Gaufre Salee Patates Douces" loading="eager" onerror="this.style.background='linear-gradient(135deg,#B8D4A3,#F4C89E)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22/>';">
       <div class="menu-masonry__overlay">
         <div class="menu-masonry__name">Gaufre Salee Patates Douces</div>
         <div class="menu-masonry__desc">Patates douces, feta OU oeufs brouilles, avocat, saumon</div>
@@ -1269,7 +1533,7 @@
 
     <div class="menu-masonry__item" data-cat="sales">
       <span class="menu-masonry__cat">Sales</span>
-      <img class="menu-masonry__img" src="images/gwaka/verrines.jpg" alt="Verrine Houmous" loading="lazy" onerror="this.style.background='linear-gradient(135deg,#B8D4A3,#F4C89E)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22/>';">
+      <img class="menu-masonry__img" src="images/gwaka/verrines.jpg" alt="Verrine Houmous" loading="eager" onerror="this.style.background='linear-gradient(135deg,#B8D4A3,#F4C89E)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22/>';">
       <div class="menu-masonry__overlay">
         <div class="menu-masonry__name">Verrine Houmous</div>
         <div class="menu-masonry__desc">Houmous et batonnets de legumes crus</div>
@@ -1278,7 +1542,7 @@
 
     <div class="menu-masonry__item" data-cat="sales">
       <span class="menu-masonry__cat">Sales</span>
-      <img class="menu-masonry__img" src="images/gwaka/gaspacho-pasteque.jpg" alt="Verrine Gaspacho Pasteque" loading="lazy" onerror="this.style.background='linear-gradient(135deg,#B8D4A3,#F4C89E)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22/>';">
+      <img class="menu-masonry__img" src="images/gwaka/gaspacho-pasteque.jpg" alt="Verrine Gaspacho Pasteque" loading="eager" onerror="this.style.background='linear-gradient(135deg,#B8D4A3,#F4C89E)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22/>';">
       <div class="menu-masonry__overlay">
         <div class="menu-masonry__name">Verrine Gaspacho Pasteque</div>
         <div class="menu-masonry__desc">Pasteque, poivrons, concombres</div>
@@ -1287,7 +1551,7 @@
 
     <div class="menu-masonry__item" data-cat="sales">
       <span class="menu-masonry__cat">Sales</span>
-      <img class="menu-masonry__img" src="images/gwaka/gaspacho-tomates.jpg" alt="Verrine Gaspacho Tomates" loading="lazy" onerror="this.style.background='linear-gradient(135deg,#B8D4A3,#F4C89E)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22/>';">
+      <img class="menu-masonry__img" src="images/gwaka/gaspacho-tomates.jpg" alt="Verrine Gaspacho Tomates" loading="eager" onerror="this.style.background='linear-gradient(135deg,#B8D4A3,#F4C89E)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22/>';">
       <div class="menu-masonry__overlay">
         <div class="menu-masonry__name">Verrine Gaspacho Tomates</div>
         <div class="menu-masonry__desc">Tomates, mangues, basilic</div>
@@ -1296,7 +1560,7 @@
 
     <div class="menu-masonry__item" data-cat="sales">
       <span class="menu-masonry__cat">Sales</span>
-      <img class="menu-masonry__img" src="images/gwaka/mini-shakshuka.jpg" alt="Mini Shakshuka" loading="lazy" onerror="this.style.background='linear-gradient(135deg,#B8D4A3,#F4C89E)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22/>';">
+      <img class="menu-masonry__img" src="images/gwaka/mini-shakshuka.jpg" alt="Mini Shakshuka" loading="eager" onerror="this.style.background='linear-gradient(135deg,#B8D4A3,#F4C89E)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22/>';">
       <div class="menu-masonry__overlay">
         <div class="menu-masonry__name">Mini Shakshuka</div>
         <div class="menu-masonry__desc">Base de legumes, saveurs mexicaines, oeuf poche (option : + feta)</div>
@@ -1306,7 +1570,7 @@
     <!-- ========== TOASTS SIGNATURE ========== -->
     <div class="menu-masonry__item" data-cat="toasts">
       <span class="menu-masonry__cat">Toasts</span>
-      <img class="menu-masonry__img" src="images/gwaka/avocado-toast.jpg" alt="Avocado Toast" loading="lazy" onerror="this.style.background='linear-gradient(135deg,#F4C89E,#FFE4B5)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22250%22/>';">
+      <img class="menu-masonry__img" src="images/gwaka/avocado-toast.jpg" alt="Avocado Toast" loading="eager" onerror="this.style.background='linear-gradient(135deg,#F4C89E,#FFE4B5)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22250%22/>';">
       <div class="menu-masonry__overlay">
         <div class="menu-masonry__name">Avocado Toast</div>
         <div class="menu-masonry__desc">Gwakamole maison sur toast croustillant</div>
@@ -1316,7 +1580,7 @@
     <!-- ========== WRAPS & SANDWICHES ========== -->
     <div class="menu-masonry__item" data-cat="wraps">
       <span class="menu-masonry__cat">Wraps</span>
-      <img class="menu-masonry__img" src="images/gwaka/wraps.jpg" alt="Wraps" loading="lazy" onerror="this.style.background='linear-gradient(135deg,#A8D8EA,#B8D4A3)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22267%22/>';">
+      <img class="menu-masonry__img" src="images/gwaka/wraps.jpg" alt="Wraps" loading="eager" onerror="this.style.background='linear-gradient(135deg,#A8D8EA,#B8D4A3)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22267%22/>';">
       <div class="menu-masonry__overlay">
         <div class="menu-masonry__name">Wrap Saumon</div>
         <div class="menu-masonry__desc">Saumon fume, sauce citron</div>
@@ -1325,7 +1589,7 @@
 
     <div class="menu-masonry__item" data-cat="wraps">
       <span class="menu-masonry__cat">Wraps</span>
-      <img class="menu-masonry__img" src="images/gwaka/club-sandwich.jpg" alt="Club Sandwich" loading="lazy" onerror="this.style.background='linear-gradient(135deg,#A8D8EA,#B8D4A3)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22267%22/>';">
+      <img class="menu-masonry__img" src="images/gwaka/club-sandwich.jpg" alt="Club Sandwich" loading="eager" onerror="this.style.background='linear-gradient(135deg,#A8D8EA,#B8D4A3)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22267%22/>';">
       <div class="menu-masonry__overlay">
         <div class="menu-masonry__name">Club Sandwich Saumon</div>
         <div class="menu-masonry__desc">Saumon fume, creamcheese</div>
@@ -1334,7 +1598,7 @@
 
     <div class="menu-masonry__item" data-cat="wraps">
       <span class="menu-masonry__cat">Wraps</span>
-      <img class="menu-masonry__img" src="images/gwaka/rouleaux-printemps.jpg" alt="Rouleaux de Printemps" loading="lazy" onerror="this.style.background='linear-gradient(135deg,#A8D8EA,#B8D4A3)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22267%22/>';">
+      <img class="menu-masonry__img" src="images/gwaka/rouleaux-printemps.jpg" alt="Rouleaux de Printemps" loading="eager" onerror="this.style.background='linear-gradient(135deg,#A8D8EA,#B8D4A3)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22267%22/>';">
       <div class="menu-masonry__overlay">
         <div class="menu-masonry__name">Rouleaux de Printemps Veggies</div>
         <div class="menu-masonry__desc">Sauce cacahuete & sesame</div>
@@ -1343,7 +1607,7 @@
 
     <div class="menu-masonry__item" data-cat="salades">
       <span class="menu-masonry__cat">Salades</span>
-      <img class="menu-masonry__img" src="images/gwaka/salade-italienne.jpg" alt="Salade a l'Italienne" loading="lazy" onerror="this.style.background='linear-gradient(135deg,#7CB342,#B8D4A3)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22400%22/>';">
+      <img class="menu-masonry__img" src="images/gwaka/salade-italienne.jpg" alt="Salade a l'Italienne" loading="eager" onerror="this.style.background='linear-gradient(135deg,#7CB342,#B8D4A3)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22400%22/>';">
       <div class="menu-masonry__overlay">
         <div class="menu-masonry__name">Salade a l'Italienne</div>
         <div class="menu-masonry__desc">Pates torti, tomates sechees, olives vertes, mozzarella, pesto maison, roquette</div>
@@ -1352,7 +1616,7 @@
 
     <div class="menu-masonry__item" data-cat="salades">
       <span class="menu-masonry__cat">Salades</span>
-      <img class="menu-masonry__img" src="images/gwaka/salade-med.jpg" alt="Salade Mediterraneenne" loading="lazy" onerror="this.style.background='linear-gradient(135deg,#7CB342,#B8D4A3)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22400%22/>';">
+      <img class="menu-masonry__img" src="images/gwaka/salade-med.jpg" alt="Salade Mediterraneenne" loading="eager" onerror="this.style.background='linear-gradient(135deg,#7CB342,#B8D4A3)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22400%22/>';">
       <div class="menu-masonry__overlay">
         <div class="menu-masonry__name">Salade Mediterraneenne</div>
         <div class="menu-masonry__desc">Pates Orzo, olives, feta, concombres, tomates, poivrons, pesto maison</div>
@@ -1362,7 +1626,7 @@
     <!-- ========== PLATEAUX ========== -->
     <div class="menu-masonry__item" data-cat="plateaux">
       <span class="menu-masonry__cat">Plateaux</span>
-      <img class="menu-masonry__img" src="images/gwaka/buffet-corporate.jpg" alt="Plateau Legumes" loading="lazy" onerror="this.style.background='linear-gradient(135deg,#E8B4B8,#F4C89E)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22225%22/>';">
+      <img class="menu-masonry__img" src="images/gwaka/buffet-corporate.jpg" alt="Plateau Legumes" loading="eager" onerror="this.style.background='linear-gradient(135deg,#E8B4B8,#F4C89E)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22225%22/>';">
       <div class="menu-masonry__overlay">
         <div class="menu-masonry__name">Plateau de Legumes Decoupes</div>
         <div class="menu-masonry__desc">5 varietes par plateau selon arrivage</div>
@@ -1371,7 +1635,7 @@
 
     <div class="menu-masonry__item" data-cat="plateaux">
       <span class="menu-masonry__cat">Plateaux</span>
-      <img class="menu-masonry__img" src="images/gwaka/scene-tropical.jpg" alt="Veggies Tacos Bar" loading="lazy" onerror="this.style.background='linear-gradient(135deg,#E8B4B8,#F4C89E)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22225%22/>';">
+      <img class="menu-masonry__img" src="images/gwaka/scene-tropical.jpg" alt="Veggies Tacos Bar" loading="eager" onerror="this.style.background='linear-gradient(135deg,#E8B4B8,#F4C89E)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22225%22/>';">
       <div class="menu-masonry__overlay">
         <div class="menu-masonry__name">Veggies Tacos Bar</div>
         <div class="menu-masonry__desc">Minis tortillas, 5 condiments, 2 sauces, 2 herbes aromatiques</div>
@@ -1380,7 +1644,7 @@
 
     <div class="menu-masonry__item" data-cat="plateaux">
       <span class="menu-masonry__cat">Plateaux</span>
-      <img class="menu-masonry__img" src="images/gwaka/buffet-corporate.jpg" alt="Plateau Fromages" loading="lazy" onerror="this.style.background='linear-gradient(135deg,#E8B4B8,#F4C89E)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22225%22/>';">
+      <img class="menu-masonry__img" src="images/gwaka/buffet-corporate.jpg" alt="Plateau Fromages" loading="eager" onerror="this.style.background='linear-gradient(135deg,#E8B4B8,#F4C89E)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22225%22/>';">
       <div class="menu-masonry__overlay">
         <div class="menu-masonry__name">Plateau Fromages</div>
         <div class="menu-masonry__desc">5 fromages differents selon arrivage</div>
@@ -1389,7 +1653,7 @@
 
     <div class="menu-masonry__item" data-cat="plateaux">
       <span class="menu-masonry__cat">Plateaux</span>
-      <img class="menu-masonry__img" src="images/gwaka/buffet-corporate.jpg" alt="Plateau Charcuterie" loading="lazy" onerror="this.style.background='linear-gradient(135deg,#E8B4B8,#F4C89E)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22225%22/>';">
+      <img class="menu-masonry__img" src="images/gwaka/buffet-corporate.jpg" alt="Plateau Charcuterie" loading="eager" onerror="this.style.background='linear-gradient(135deg,#E8B4B8,#F4C89E)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22225%22/>';">
       <div class="menu-masonry__overlay">
         <div class="menu-masonry__name">Plateau Charcuterie</div>
         <div class="menu-masonry__desc">5 varietes differentes selon arrivage</div>
@@ -1398,7 +1662,7 @@
 
     <div class="menu-masonry__item" data-cat="plateaux">
       <span class="menu-masonry__cat">Plateaux</span>
-      <img class="menu-masonry__img" src="images/gwaka/buffet-corporate.jpg" alt="Plateau Mixte" loading="lazy" onerror="this.style.background='linear-gradient(135deg,#E8B4B8,#F4C89E)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22225%22/>';">
+      <img class="menu-masonry__img" src="images/gwaka/buffet-corporate.jpg" alt="Plateau Mixte" loading="eager" onerror="this.style.background='linear-gradient(135deg,#E8B4B8,#F4C89E)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22225%22/>';">
       <div class="menu-masonry__overlay">
         <div class="menu-masonry__name">Plateau Mixte</div>
         <div class="menu-masonry__desc">5 varietes charcuteries et fromages selon arrivage</div>
@@ -1408,7 +1672,7 @@
     <!-- ========== SUSHIS & MINI SALES ========== -->
     <div class="menu-masonry__item" data-cat="sushis">
       <span class="menu-masonry__cat">Sushis</span>
-      <img class="menu-masonry__img" src="images/gwaka/chef-cuisine.jpg" alt="Plateaux Sushis" loading="lazy" onerror="this.style.background='linear-gradient(135deg,#A8D8EA,#B8D4A3)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22320%22/>';">
+      <img class="menu-masonry__img" src="images/gwaka/chef-cuisine.jpg" alt="Plateaux Sushis" loading="eager" onerror="this.style.background='linear-gradient(135deg,#A8D8EA,#B8D4A3)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22320%22/>';">
       <div class="menu-masonry__overlay">
         <div class="menu-masonry__name">Plateaux de Sushis Maison</div>
         <div class="menu-masonry__desc">Sur demande et par devis, a partir de 50 pieces. Sauce sushis maison</div>
@@ -1417,7 +1681,7 @@
 
     <div class="menu-masonry__item" data-cat="sushis">
       <span class="menu-masonry__cat">Sushis</span>
-      <img class="menu-masonry__img" src="images/gwaka/mini-pain-lait.jpg" alt="Mini Pain au Lait" loading="lazy" onerror="this.style.background='linear-gradient(135deg,#A8D8EA,#B8D4A3)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22320%22/>';">
+      <img class="menu-masonry__img" src="images/gwaka/mini-pain-lait.jpg" alt="Mini Pain au Lait" loading="eager" onerror="this.style.background='linear-gradient(135deg,#A8D8EA,#B8D4A3)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22320%22/>';">
       <div class="menu-masonry__overlay">
         <div class="menu-masonry__name">Mini Pain au Lait Classique</div>
         <div class="menu-masonry__desc">Cream-cheese, jambon de dinde fume, cheddar</div>
@@ -1426,7 +1690,7 @@
 
     <div class="menu-masonry__item" data-cat="sushis">
       <span class="menu-masonry__cat">Sushis</span>
-      <img class="menu-masonry__img" src="images/gwaka/onigiri.jpg" alt="Onigiri" loading="lazy" onerror="this.style.background='linear-gradient(135deg,#A8D8EA,#B8D4A3)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22320%22/>';">
+      <img class="menu-masonry__img" src="images/gwaka/onigiri.jpg" alt="Onigiri" loading="eager" onerror="this.style.background='linear-gradient(135deg,#A8D8EA,#B8D4A3)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22320%22/>';">
       <div class="menu-masonry__overlay">
         <div class="menu-masonry__name">Onigiri</div>
         <div class="menu-masonry__desc">Spicy tuna OU tuna-mayo</div>
@@ -1435,15 +1699,16 @@
 
     <div class="menu-masonry__item" data-cat="sushis">
       <span class="menu-masonry__cat">Sushis</span>
-      <img class="menu-masonry__img" src="images/gwaka/bouchees-saumon.jpg" alt="Bouchees Saumon" loading="lazy" onerror="this.style.background='linear-gradient(135deg,#A8D8EA,#B8D4A3)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22320%22/>';">
+      <img class="menu-masonry__img" src="images/gwaka/bouchees-saumon.jpg" alt="Bouchees Saumon" loading="eager" onerror="this.style.background='linear-gradient(135deg,#A8D8EA,#B8D4A3)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22320%22/>';">
       <div class="menu-masonry__overlay">
         <div class="menu-masonry__name">Bouchees Saumon</div>
         <div class="menu-masonry__desc">Saumon, creme aneth sur lamelle de concombre</div>
       </div>
+    </div>
 
     <div class="menu-masonry__item" data-cat="sales">
       <span class="menu-masonry__cat">Sales</span>
-      <img class="menu-masonry__img" src="images/gwaka/avocado-grilled-cheese.jpg" alt="Avocado Grilled Cheese" loading="lazy" onerror="this.style.background='linear-gradient(135deg,#B8D4A3,#F4C89E)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22/>';">
+      <img class="menu-masonry__img" src="images/gwaka/avocado-grilled-cheese.jpg" alt="Avocado Grilled Cheese" loading="eager" onerror="this.style.background='linear-gradient(135deg,#B8D4A3,#F4C89E)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22/>';">
       <div class="menu-masonry__overlay">
         <div class="menu-masonry__name">Avocado Grilled Cheese</div>
         <div class="menu-masonry__desc">Fait maison, produits frais</div>
@@ -1452,7 +1717,7 @@
 
     <div class="menu-masonry__item" data-cat="sales">
       <span class="menu-masonry__cat">Sales</span>
-      <img class="menu-masonry__img" src="images/gwaka/avocado-salmon-toast.jpg" alt="Avocado Salmon Toast" loading="lazy" onerror="this.style.background='linear-gradient(135deg,#B8D4A3,#F4C89E)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22/>';">
+      <img class="menu-masonry__img" src="images/gwaka/avocado-salmon-toast.jpg" alt="Avocado Salmon Toast" loading="eager" onerror="this.style.background='linear-gradient(135deg,#B8D4A3,#F4C89E)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22/>';">
       <div class="menu-masonry__overlay">
         <div class="menu-masonry__name">Avocado Salmon Toast</div>
         <div class="menu-masonry__desc">Fait maison, produits frais</div>
@@ -1461,7 +1726,7 @@
 
     <div class="menu-masonry__item" data-cat="sales">
       <span class="menu-masonry__cat">Sales</span>
-      <img class="menu-masonry__img" src="images/gwaka/black-bun-saumon.jpg" alt="Black Bun Saumon" loading="lazy" onerror="this.style.background='linear-gradient(135deg,#B8D4A3,#F4C89E)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22/>';">
+      <img class="menu-masonry__img" src="images/gwaka/black-bun-saumon.jpg" alt="Black Bun Saumon" loading="eager" onerror="this.style.background='linear-gradient(135deg,#B8D4A3,#F4C89E)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22/>';">
       <div class="menu-masonry__overlay">
         <div class="menu-masonry__name">Black Bun Saumon</div>
         <div class="menu-masonry__desc">Fait maison, produits frais</div>
@@ -1470,7 +1735,7 @@
 
     <div class="menu-masonry__item" data-cat="desserts">
       <span class="menu-masonry__cat">Sucre</span>
-      <img class="menu-masonry__img" src="images/gwaka/brioche-doree.jpg" alt="Brioche Doree" loading="lazy" onerror="this.style.background='linear-gradient(135deg,#B8D4A3,#F4C89E)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22/>';">
+      <img class="menu-masonry__img" src="images/gwaka/brioche-doree.jpg" alt="Brioche Doree" loading="eager" onerror="this.style.background='linear-gradient(135deg,#B8D4A3,#F4C89E)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22/>';">
       <div class="menu-masonry__overlay">
         <div class="menu-masonry__name">Brioche Doree</div>
         <div class="menu-masonry__desc">Fait maison, produits frais</div>
@@ -1479,7 +1744,7 @@
 
     <div class="menu-masonry__item" data-cat="sales">
       <span class="menu-masonry__cat">Sales</span>
-      <img class="menu-masonry__img" src="images/gwaka/burger-classic.jpg" alt="Burger Classic" loading="lazy" onerror="this.style.background='linear-gradient(135deg,#B8D4A3,#F4C89E)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22/>';">
+      <img class="menu-masonry__img" src="images/gwaka/burger-classic.jpg" alt="Burger Classic" loading="eager" onerror="this.style.background='linear-gradient(135deg,#B8D4A3,#F4C89E)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22/>';">
       <div class="menu-masonry__overlay">
         <div class="menu-masonry__name">Burger Classic</div>
         <div class="menu-masonry__desc">Fait maison, produits frais</div>
@@ -1488,7 +1753,7 @@
 
     <div class="menu-masonry__item" data-cat="sales">
       <span class="menu-masonry__cat">Sales</span>
-      <img class="menu-masonry__img" src="images/gwaka/burger-montagnard.jpg" alt="Burger Montagnard" loading="lazy" onerror="this.style.background='linear-gradient(135deg,#B8D4A3,#F4C89E)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22/>';">
+      <img class="menu-masonry__img" src="images/gwaka/burger-montagnard.jpg" alt="Burger Montagnard" loading="eager" onerror="this.style.background='linear-gradient(135deg,#B8D4A3,#F4C89E)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22/>';">
       <div class="menu-masonry__overlay">
         <div class="menu-masonry__name">Burger Montagnard</div>
         <div class="menu-masonry__desc">Fait maison, produits frais</div>
@@ -1497,7 +1762,7 @@
 
     <div class="menu-masonry__item" data-cat="boissons">
       <span class="menu-masonry__cat">Boissons</span>
-      <img class="menu-masonry__img" src="images/gwaka/cafe-latte.jpg" alt="Cafe Latte" loading="lazy" onerror="this.style.background='linear-gradient(135deg,#B8D4A3,#F4C89E)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22/>';">
+      <img class="menu-masonry__img" src="images/gwaka/cafe-latte.jpg" alt="Cafe Latte" loading="eager" onerror="this.style.background='linear-gradient(135deg,#B8D4A3,#F4C89E)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22/>';">
       <div class="menu-masonry__overlay">
         <div class="menu-masonry__name">Cafe Latte</div>
         <div class="menu-masonry__desc">Fait maison, produits frais</div>
@@ -1506,7 +1771,7 @@
 
     <div class="menu-masonry__item" data-cat="sales">
       <span class="menu-masonry__cat">Sales</span>
-      <img class="menu-masonry__img" src="images/gwaka/cake-feta.jpg" alt="Cake Feta" loading="lazy" onerror="this.style.background='linear-gradient(135deg,#B8D4A3,#F4C89E)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22/>';">
+      <img class="menu-masonry__img" src="images/gwaka/cake-feta.jpg" alt="Cake Feta" loading="eager" onerror="this.style.background='linear-gradient(135deg,#B8D4A3,#F4C89E)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22/>';">
       <div class="menu-masonry__overlay">
         <div class="menu-masonry__name">Cake Feta</div>
         <div class="menu-masonry__desc">Fait maison, produits frais</div>
@@ -1515,7 +1780,7 @@
 
     <div class="menu-masonry__item" data-cat="sales">
       <span class="menu-masonry__cat">Sales</span>
-      <img class="menu-masonry__img" src="images/gwaka/cake-thon.jpg" alt="Cake au Thon" loading="lazy" onerror="this.style.background='linear-gradient(135deg,#B8D4A3,#F4C89E)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22/>';">
+      <img class="menu-masonry__img" src="images/gwaka/cake-thon.jpg" alt="Cake au Thon" loading="eager" onerror="this.style.background='linear-gradient(135deg,#B8D4A3,#F4C89E)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22/>';">
       <div class="menu-masonry__overlay">
         <div class="menu-masonry__name">Cake au Thon</div>
         <div class="menu-masonry__desc">Fait maison, produits frais</div>
@@ -1524,7 +1789,7 @@
 
     <div class="menu-masonry__item" data-cat="desserts">
       <span class="menu-masonry__cat">Sucre</span>
-      <img class="menu-masonry__img" src="images/gwaka/carrot-cake.jpg" alt="Carrot Cake" loading="lazy" onerror="this.style.background='linear-gradient(135deg,#B8D4A3,#F4C89E)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22/>';">
+      <img class="menu-masonry__img" src="images/gwaka/carrot-cake.jpg" alt="Carrot Cake" loading="eager" onerror="this.style.background='linear-gradient(135deg,#B8D4A3,#F4C89E)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22/>';">
       <div class="menu-masonry__overlay">
         <div class="menu-masonry__name">Carrot Cake</div>
         <div class="menu-masonry__desc">Fait maison, produits frais</div>
@@ -1533,7 +1798,7 @@
 
     <div class="menu-masonry__item" data-cat="sales">
       <span class="menu-masonry__cat">Sales</span>
-      <img class="menu-masonry__img" src="images/gwaka/club-sandwich-saumon.jpg" alt="Club Sandwich Saumon" loading="lazy" onerror="this.style.background='linear-gradient(135deg,#B8D4A3,#F4C89E)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22/>';">
+      <img class="menu-masonry__img" src="images/gwaka/club-sandwich-saumon.jpg" alt="Club Sandwich Saumon" loading="eager" onerror="this.style.background='linear-gradient(135deg,#B8D4A3,#F4C89E)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22/>';">
       <div class="menu-masonry__overlay">
         <div class="menu-masonry__name">Club Sandwich Saumon</div>
         <div class="menu-masonry__desc">Fait maison, produits frais</div>
@@ -1542,7 +1807,7 @@
 
     <div class="menu-masonry__item" data-cat="salades">
       <span class="menu-masonry__cat">Salades</span>
-      <img class="menu-masonry__img" src="images/gwaka/coleslaw-healthy.jpg" alt="Coleslaw Healthy" loading="lazy" onerror="this.style.background='linear-gradient(135deg,#B8D4A3,#F4C89E)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22/>';">
+      <img class="menu-masonry__img" src="images/gwaka/coleslaw-healthy.jpg" alt="Coleslaw Healthy" loading="eager" onerror="this.style.background='linear-gradient(135deg,#B8D4A3,#F4C89E)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22/>';">
       <div class="menu-masonry__overlay">
         <div class="menu-masonry__name">Coleslaw Healthy</div>
         <div class="menu-masonry__desc">Fait maison, produits frais</div>
@@ -1551,7 +1816,7 @@
 
     <div class="menu-masonry__item" data-cat="desserts">
       <span class="menu-masonry__cat">Sucre</span>
-      <img class="menu-masonry__img" src="images/gwaka/cookie-chocolat.jpg" alt="Cookie Chocolat" loading="lazy" onerror="this.style.background='linear-gradient(135deg,#B8D4A3,#F4C89E)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22/>';">
+      <img class="menu-masonry__img" src="images/gwaka/cookie-chocolat.jpg" alt="Cookie Chocolat" loading="eager" onerror="this.style.background='linear-gradient(135deg,#B8D4A3,#F4C89E)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22/>';">
       <div class="menu-masonry__overlay">
         <div class="menu-masonry__name">Cookie Chocolat</div>
         <div class="menu-masonry__desc">Fait maison, produits frais</div>
@@ -1560,7 +1825,7 @@
 
     <div class="menu-masonry__item" data-cat="desserts">
       <span class="menu-masonry__cat">Sucre</span>
-      <img class="menu-masonry__img" src="images/gwaka/crepe-nutella.jpg" alt="Crepe Nutella" loading="lazy" onerror="this.style.background='linear-gradient(135deg,#B8D4A3,#F4C89E)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22/>';">
+      <img class="menu-masonry__img" src="images/gwaka/crepe-nutella.jpg" alt="Crepe Nutella" loading="eager" onerror="this.style.background='linear-gradient(135deg,#B8D4A3,#F4C89E)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22/>';">
       <div class="menu-masonry__overlay">
         <div class="menu-masonry__name">Crepe Nutella</div>
         <div class="menu-masonry__desc">Fait maison, produits frais</div>
@@ -1569,7 +1834,7 @@
 
     <div class="menu-masonry__item" data-cat="sales">
       <span class="menu-masonry__cat">Sales</span>
-      <img class="menu-masonry__img" src="images/gwaka/croque-monsieur.jpg" alt="Croque-Monsieur" loading="lazy" onerror="this.style.background='linear-gradient(135deg,#B8D4A3,#F4C89E)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22/>';">
+      <img class="menu-masonry__img" src="images/gwaka/croque-monsieur.jpg" alt="Croque-Monsieur" loading="eager" onerror="this.style.background='linear-gradient(135deg,#B8D4A3,#F4C89E)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22/>';">
       <div class="menu-masonry__overlay">
         <div class="menu-masonry__name">Croque-Monsieur</div>
         <div class="menu-masonry__desc">Fait maison, produits frais</div>
@@ -1578,7 +1843,7 @@
 
     <div class="menu-masonry__item" data-cat="sales">
       <span class="menu-masonry__cat">Sales</span>
-      <img class="menu-masonry__img" src="images/gwaka/feta-salmon-toast.jpg" alt="Feta Salmon Toast" loading="lazy" onerror="this.style.background='linear-gradient(135deg,#B8D4A3,#F4C89E)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22/>';">
+      <img class="menu-masonry__img" src="images/gwaka/feta-salmon-toast.jpg" alt="Feta Salmon Toast" loading="eager" onerror="this.style.background='linear-gradient(135deg,#B8D4A3,#F4C89E)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22/>';">
       <div class="menu-masonry__overlay">
         <div class="menu-masonry__name">Feta Salmon Toast</div>
         <div class="menu-masonry__desc">Fait maison, produits frais</div>
@@ -1587,7 +1852,7 @@
 
     <div class="menu-masonry__item" data-cat="desserts">
       <span class="menu-masonry__cat">Sucre</span>
-      <img class="menu-masonry__img" src="images/gwaka/fondant-chocolat.jpg" alt="Fondant Chocolat" loading="lazy" onerror="this.style.background='linear-gradient(135deg,#B8D4A3,#F4C89E)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22/>';">
+      <img class="menu-masonry__img" src="images/gwaka/fondant-chocolat.jpg" alt="Fondant Chocolat" loading="eager" onerror="this.style.background='linear-gradient(135deg,#B8D4A3,#F4C89E)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22/>';">
       <div class="menu-masonry__overlay">
         <div class="menu-masonry__name">Fondant Chocolat</div>
         <div class="menu-masonry__desc">Fait maison, produits frais</div>
@@ -1596,7 +1861,7 @@
 
     <div class="menu-masonry__item" data-cat="sales">
       <span class="menu-masonry__cat">Sales</span>
-      <img class="menu-masonry__img" src="images/gwaka/french-toast.jpg" alt="French Toast" loading="lazy" onerror="this.style.background='linear-gradient(135deg,#B8D4A3,#F4C89E)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22/>';">
+      <img class="menu-masonry__img" src="images/gwaka/french-toast.jpg" alt="French Toast" loading="eager" onerror="this.style.background='linear-gradient(135deg,#B8D4A3,#F4C89E)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22/>';">
       <div class="menu-masonry__overlay">
         <div class="menu-masonry__name">French Toast</div>
         <div class="menu-masonry__desc">Fait maison, produits frais</div>
@@ -1605,7 +1870,7 @@
 
     <div class="menu-masonry__item" data-cat="sales">
       <span class="menu-masonry__cat">Sales</span>
-      <img class="menu-masonry__img" src="images/gwaka/galette-bretonne.jpg" alt="Galette Bretonne" loading="lazy" onerror="this.style.background='linear-gradient(135deg,#B8D4A3,#F4C89E)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22/>';">
+      <img class="menu-masonry__img" src="images/gwaka/galette-bretonne.jpg" alt="Galette Bretonne" loading="eager" onerror="this.style.background='linear-gradient(135deg,#B8D4A3,#F4C89E)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22/>';">
       <div class="menu-masonry__overlay">
         <div class="menu-masonry__name">Galette Bretonne</div>
         <div class="menu-masonry__desc">Fait maison, produits frais</div>
@@ -1614,7 +1879,7 @@
 
     <div class="menu-masonry__item" data-cat="desserts">
       <span class="menu-masonry__cat">Sucre</span>
-      <img class="menu-masonry__img" src="images/gwaka/granola-maison.jpg" alt="Granola Maison" loading="lazy" onerror="this.style.background='linear-gradient(135deg,#B8D4A3,#F4C89E)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22/>';">
+      <img class="menu-masonry__img" src="images/gwaka/granola-maison.jpg" alt="Granola Maison" loading="eager" onerror="this.style.background='linear-gradient(135deg,#B8D4A3,#F4C89E)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22/>';">
       <div class="menu-masonry__overlay">
         <div class="menu-masonry__name">Granola Maison</div>
         <div class="menu-masonry__desc">Fait maison, produits frais</div>
@@ -1623,7 +1888,7 @@
 
     <div class="menu-masonry__item" data-cat="boissons">
       <span class="menu-masonry__cat">Boissons</span>
-      <img class="menu-masonry__img" src="images/gwaka/jus-detox.jpg" alt="Jus Detox" loading="lazy" onerror="this.style.background='linear-gradient(135deg,#B8D4A3,#F4C89E)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22/>';">
+      <img class="menu-masonry__img" src="images/gwaka/jus-detox.jpg" alt="Jus Detox" loading="eager" onerror="this.style.background='linear-gradient(135deg,#B8D4A3,#F4C89E)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22/>';">
       <div class="menu-masonry__overlay">
         <div class="menu-masonry__name">Jus Detox</div>
         <div class="menu-masonry__desc">Fait maison, produits frais</div>
@@ -1632,7 +1897,7 @@
 
     <div class="menu-masonry__item" data-cat="boissons">
       <span class="menu-masonry__cat">Boissons</span>
-      <img class="menu-masonry__img" src="images/gwaka/jus-orange.jpg" alt="Jus d'Orange" loading="lazy" onerror="this.style.background='linear-gradient(135deg,#B8D4A3,#F4C89E)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22/>';">
+      <img class="menu-masonry__img" src="images/gwaka/jus-orange.jpg" alt="Jus d'Orange" loading="eager" onerror="this.style.background='linear-gradient(135deg,#B8D4A3,#F4C89E)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22/>';">
       <div class="menu-masonry__overlay">
         <div class="menu-masonry__name">Jus d'Orange</div>
         <div class="menu-masonry__desc">Fait maison, produits frais</div>
@@ -1641,7 +1906,7 @@
 
     <div class="menu-masonry__item" data-cat="boissons">
       <span class="menu-masonry__cat">Boissons</span>
-      <img class="menu-masonry__img" src="images/gwaka/limonade.jpg" alt="Limonade Maison" loading="lazy" onerror="this.style.background='linear-gradient(135deg,#B8D4A3,#F4C89E)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22/>';">
+      <img class="menu-masonry__img" src="images/gwaka/limonade.jpg" alt="Limonade Maison" loading="eager" onerror="this.style.background='linear-gradient(135deg,#B8D4A3,#F4C89E)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22/>';">
       <div class="menu-masonry__overlay">
         <div class="menu-masonry__name">Limonade Maison</div>
         <div class="menu-masonry__desc">Fait maison, produits frais</div>
@@ -1650,7 +1915,7 @@
 
     <div class="menu-masonry__item" data-cat="boissons">
       <span class="menu-masonry__cat">Boissons</span>
-      <img class="menu-masonry__img" src="images/gwaka/matcha-latte.jpg" alt="Matcha Latte" loading="lazy" onerror="this.style.background='linear-gradient(135deg,#B8D4A3,#F4C89E)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22/>';">
+      <img class="menu-masonry__img" src="images/gwaka/matcha-latte.jpg" alt="Matcha Latte" loading="eager" onerror="this.style.background='linear-gradient(135deg,#B8D4A3,#F4C89E)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22/>';">
       <div class="menu-masonry__overlay">
         <div class="menu-masonry__name">Matcha Latte</div>
         <div class="menu-masonry__desc">Fait maison, produits frais</div>
@@ -1659,7 +1924,7 @@
 
     <div class="menu-masonry__item" data-cat="boissons">
       <span class="menu-masonry__cat">Boissons</span>
-      <img class="menu-masonry__img" src="images/gwaka/milkshake-vanille.jpg" alt="Milkshake Vanille" loading="lazy" onerror="this.style.background='linear-gradient(135deg,#B8D4A3,#F4C89E)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22/>';">
+      <img class="menu-masonry__img" src="images/gwaka/milkshake-vanille.jpg" alt="Milkshake Vanille" loading="eager" onerror="this.style.background='linear-gradient(135deg,#B8D4A3,#F4C89E)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22/>';">
       <div class="menu-masonry__overlay">
         <div class="menu-masonry__name">Milkshake Vanille</div>
         <div class="menu-masonry__desc">Fait maison, produits frais</div>
@@ -1668,7 +1933,7 @@
 
     <div class="menu-masonry__item" data-cat="sales">
       <span class="menu-masonry__cat">Sales</span>
-      <img class="menu-masonry__img" src="images/gwaka/mini-cake-sale.jpg" alt="Mini Cake Sale" loading="lazy" onerror="this.style.background='linear-gradient(135deg,#B8D4A3,#F4C89E)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22/>';">
+      <img class="menu-masonry__img" src="images/gwaka/mini-cake-sale.jpg" alt="Mini Cake Sale" loading="eager" onerror="this.style.background='linear-gradient(135deg,#B8D4A3,#F4C89E)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22/>';">
       <div class="menu-masonry__overlay">
         <div class="menu-masonry__name">Mini Cake Sale</div>
         <div class="menu-masonry__desc">Fait maison, produits frais</div>
@@ -1677,7 +1942,7 @@
 
     <div class="menu-masonry__item" data-cat="sales">
       <span class="menu-masonry__cat">Sales</span>
-      <img class="menu-masonry__img" src="images/gwaka/mini-croissant-jambon.jpg" alt="Mini Croissant Jambon" loading="lazy" onerror="this.style.background='linear-gradient(135deg,#B8D4A3,#F4C89E)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22/>';">
+      <img class="menu-masonry__img" src="images/gwaka/mini-croissant-jambon.jpg" alt="Mini Croissant Jambon" loading="eager" onerror="this.style.background='linear-gradient(135deg,#B8D4A3,#F4C89E)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22/>';">
       <div class="menu-masonry__overlay">
         <div class="menu-masonry__name">Mini Croissant Jambon</div>
         <div class="menu-masonry__desc">Fait maison, produits frais</div>
@@ -1686,7 +1951,7 @@
 
     <div class="menu-masonry__item" data-cat="sales">
       <span class="menu-masonry__cat">Sales</span>
-      <img class="menu-masonry__img" src="images/gwaka/mini-pain-lait-nutella.jpg" alt="Mini Pain au Lait Nutella" loading="lazy" onerror="this.style.background='linear-gradient(135deg,#B8D4A3,#F4C89E)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22/>';">
+      <img class="menu-masonry__img" src="images/gwaka/mini-pain-lait-nutella.jpg" alt="Mini Pain au Lait Nutella" loading="eager" onerror="this.style.background='linear-gradient(135deg,#B8D4A3,#F4C89E)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22/>';">
       <div class="menu-masonry__overlay">
         <div class="menu-masonry__name">Mini Pain au Lait Nutella</div>
         <div class="menu-masonry__desc">Fait maison, produits frais</div>
@@ -1695,7 +1960,7 @@
 
     <div class="menu-masonry__item" data-cat="sales">
       <span class="menu-masonry__cat">Sales</span>
-      <img class="menu-masonry__img" src="images/gwaka/mini-quiche.jpg" alt="Mini Quiche" loading="lazy" onerror="this.style.background='linear-gradient(135deg,#B8D4A3,#F4C89E)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22/>';">
+      <img class="menu-masonry__img" src="images/gwaka/mini-quiche.jpg" alt="Mini Quiche" loading="eager" onerror="this.style.background='linear-gradient(135deg,#B8D4A3,#F4C89E)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22/>';">
       <div class="menu-masonry__overlay">
         <div class="menu-masonry__name">Mini Quiche</div>
         <div class="menu-masonry__desc">Fait maison, produits frais</div>
@@ -1704,7 +1969,7 @@
 
     <div class="menu-masonry__item" data-cat="sales">
       <span class="menu-masonry__cat">Sales</span>
-      <img class="menu-masonry__img" src="images/gwaka/mini-wrap-poulet.jpg" alt="Mini Wrap Poulet" loading="lazy" onerror="this.style.background='linear-gradient(135deg,#B8D4A3,#F4C89E)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22/>';">
+      <img class="menu-masonry__img" src="images/gwaka/mini-wrap-poulet.jpg" alt="Mini Wrap Poulet" loading="eager" onerror="this.style.background='linear-gradient(135deg,#B8D4A3,#F4C89E)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22/>';">
       <div class="menu-masonry__overlay">
         <div class="menu-masonry__name">Mini Wrap Poulet</div>
         <div class="menu-masonry__desc">Fait maison, produits frais</div>
@@ -1713,7 +1978,7 @@
 
     <div class="menu-masonry__item" data-cat="sales">
       <span class="menu-masonry__cat">Sales</span>
-      <img class="menu-masonry__img" src="images/gwaka/mozzarella-buffala.jpg" alt="Mozzarella Buffala" loading="lazy" onerror="this.style.background='linear-gradient(135deg,#B8D4A3,#F4C89E)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22/>';">
+      <img class="menu-masonry__img" src="images/gwaka/mozzarella-buffala.jpg" alt="Mozzarella Buffala" loading="eager" onerror="this.style.background='linear-gradient(135deg,#B8D4A3,#F4C89E)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22/>';">
       <div class="menu-masonry__overlay">
         <div class="menu-masonry__name">Mozzarella Buffala</div>
         <div class="menu-masonry__desc">Fait maison, produits frais</div>
@@ -1722,7 +1987,7 @@
 
     <div class="menu-masonry__item" data-cat="desserts">
       <span class="menu-masonry__cat">Sucre</span>
-      <img class="menu-masonry__img" src="images/gwaka/muffin-myrtilles.jpg" alt="Muffin Myrtilles" loading="lazy" onerror="this.style.background='linear-gradient(135deg,#B8D4A3,#F4C89E)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22/>';">
+      <img class="menu-masonry__img" src="images/gwaka/muffin-myrtilles.jpg" alt="Muffin Myrtilles" loading="eager" onerror="this.style.background='linear-gradient(135deg,#B8D4A3,#F4C89E)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22/>';">
       <div class="menu-masonry__overlay">
         <div class="menu-masonry__name">Muffin Myrtilles</div>
         <div class="menu-masonry__desc">Fait maison, produits frais</div>
@@ -1731,7 +1996,7 @@
 
     <div class="menu-masonry__item" data-cat="desserts">
       <span class="menu-masonry__cat">Sucre</span>
-      <img class="menu-masonry__img" src="images/gwaka/pain-chocolat.jpg" alt="Pain au Chocolat" loading="lazy" onerror="this.style.background='linear-gradient(135deg,#B8D4A3,#F4C89E)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22/>';">
+      <img class="menu-masonry__img" src="images/gwaka/pain-chocolat.jpg" alt="Pain au Chocolat" loading="eager" onerror="this.style.background='linear-gradient(135deg,#B8D4A3,#F4C89E)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22/>';">
       <div class="menu-masonry__overlay">
         <div class="menu-masonry__name">Pain au Chocolat</div>
         <div class="menu-masonry__desc">Fait maison, produits frais</div>
@@ -1740,7 +2005,7 @@
 
     <div class="menu-masonry__item" data-cat="sales">
       <span class="menu-masonry__cat">Sales</span>
-      <img class="menu-masonry__img" src="images/gwaka/pain-perdu-banane.jpg" alt="Pain Perdu Banane" loading="lazy" onerror="this.style.background='linear-gradient(135deg,#B8D4A3,#F4C89E)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22/>';">
+      <img class="menu-masonry__img" src="images/gwaka/pain-perdu-banane.jpg" alt="Pain Perdu Banane" loading="eager" onerror="this.style.background='linear-gradient(135deg,#B8D4A3,#F4C89E)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22/>';">
       <div class="menu-masonry__overlay">
         <div class="menu-masonry__name">Pain Perdu Banane</div>
         <div class="menu-masonry__desc">Fait maison, produits frais</div>
@@ -1749,7 +2014,7 @@
 
     <div class="menu-masonry__item" data-cat="sales">
       <span class="menu-masonry__cat">Sales</span>
-      <img class="menu-masonry__img" src="images/gwaka/pancakes-myrtilles.jpg" alt="Pancakes Myrtilles" loading="lazy" onerror="this.style.background='linear-gradient(135deg,#B8D4A3,#F4C89E)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22/>';">
+      <img class="menu-masonry__img" src="images/gwaka/pancakes-myrtilles.jpg" alt="Pancakes Myrtilles" loading="eager" onerror="this.style.background='linear-gradient(135deg,#B8D4A3,#F4C89E)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22/>';">
       <div class="menu-masonry__overlay">
         <div class="menu-masonry__name">Pancakes Myrtilles</div>
         <div class="menu-masonry__desc">Fait maison, produits frais</div>
@@ -1758,7 +2023,7 @@
 
     <div class="menu-masonry__item" data-cat="sales">
       <span class="menu-masonry__cat">Sales</span>
-      <img class="menu-masonry__img" src="images/gwaka/panini-caprese.jpg" alt="Panini Caprese" loading="lazy" onerror="this.style.background='linear-gradient(135deg,#B8D4A3,#F4C89E)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22/>';">
+      <img class="menu-masonry__img" src="images/gwaka/panini-caprese.jpg" alt="Panini Caprese" loading="eager" onerror="this.style.background='linear-gradient(135deg,#B8D4A3,#F4C89E)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22/>';">
       <div class="menu-masonry__overlay">
         <div class="menu-masonry__name">Panini Caprese</div>
         <div class="menu-masonry__desc">Fait maison, produits frais</div>
@@ -1767,7 +2032,7 @@
 
     <div class="menu-masonry__item" data-cat="sales">
       <span class="menu-masonry__cat">Sales</span>
-      <img class="menu-masonry__img" src="images/gwaka/pita-falafel.jpg" alt="Pita Falafel" loading="lazy" onerror="this.style.background='linear-gradient(135deg,#B8D4A3,#F4C89E)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22/>';">
+      <img class="menu-masonry__img" src="images/gwaka/pita-falafel.jpg" alt="Pita Falafel" loading="eager" onerror="this.style.background='linear-gradient(135deg,#B8D4A3,#F4C89E)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22/>';">
       <div class="menu-masonry__overlay">
         <div class="menu-masonry__name">Pita Falafel</div>
         <div class="menu-masonry__desc">Fait maison, produits frais</div>
@@ -1776,7 +2041,7 @@
 
     <div class="menu-masonry__item" data-cat="salades">
       <span class="menu-masonry__cat">Salades</span>
-      <img class="menu-masonry__img" src="images/gwaka/plateau-charcuterie.jpg" alt="Plateau Charcuterie" loading="lazy" onerror="this.style.background='linear-gradient(135deg,#B8D4A3,#F4C89E)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22/>';">
+      <img class="menu-masonry__img" src="images/gwaka/plateau-charcuterie.jpg" alt="Plateau Charcuterie" loading="eager" onerror="this.style.background='linear-gradient(135deg,#B8D4A3,#F4C89E)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22/>';">
       <div class="menu-masonry__overlay">
         <div class="menu-masonry__name">Plateau Charcuterie</div>
         <div class="menu-masonry__desc">Fait maison, produits frais</div>
@@ -1785,7 +2050,7 @@
 
     <div class="menu-masonry__item" data-cat="salades">
       <span class="menu-masonry__cat">Salades</span>
-      <img class="menu-masonry__img" src="images/gwaka/plateau-fromages.jpg" alt="Plateau Fromages" loading="lazy" onerror="this.style.background='linear-gradient(135deg,#B8D4A3,#F4C89E)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22/>';">
+      <img class="menu-masonry__img" src="images/gwaka/plateau-fromages.jpg" alt="Plateau Fromages" loading="eager" onerror="this.style.background='linear-gradient(135deg,#B8D4A3,#F4C89E)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22/>';">
       <div class="menu-masonry__overlay">
         <div class="menu-masonry__name">Plateau Fromages</div>
         <div class="menu-masonry__desc">Fait maison, produits frais</div>
@@ -1794,7 +2059,7 @@
 
     <div class="menu-masonry__item" data-cat="salades">
       <span class="menu-masonry__cat">Salades</span>
-      <img class="menu-masonry__img" src="images/gwaka/plateau-legumes.jpg" alt="Plateau Legumes" loading="lazy" onerror="this.style.background='linear-gradient(135deg,#B8D4A3,#F4C89E)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22/>';">
+      <img class="menu-masonry__img" src="images/gwaka/plateau-legumes.jpg" alt="Plateau Legumes" loading="eager" onerror="this.style.background='linear-gradient(135deg,#B8D4A3,#F4C89E)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22/>';">
       <div class="menu-masonry__overlay">
         <div class="menu-masonry__name">Plateau Legumes</div>
         <div class="menu-masonry__desc">Fait maison, produits frais</div>
@@ -1803,7 +2068,7 @@
 
     <div class="menu-masonry__item" data-cat="salades">
       <span class="menu-masonry__cat">Salades</span>
-      <img class="menu-masonry__img" src="images/gwaka/plateau-mixte.jpg" alt="Plateau Mixte" loading="lazy" onerror="this.style.background='linear-gradient(135deg,#B8D4A3,#F4C89E)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22/>';">
+      <img class="menu-masonry__img" src="images/gwaka/plateau-mixte.jpg" alt="Plateau Mixte" loading="eager" onerror="this.style.background='linear-gradient(135deg,#B8D4A3,#F4C89E)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22/>';">
       <div class="menu-masonry__overlay">
         <div class="menu-masonry__name">Plateau Mixte</div>
         <div class="menu-masonry__desc">Fait maison, produits frais</div>
@@ -1812,7 +2077,7 @@
 
     <div class="menu-masonry__item" data-cat="sales">
       <span class="menu-masonry__cat">Sales</span>
-      <img class="menu-masonry__img" src="images/gwaka/quiche-epinards.jpg" alt="Quiche Epinards" loading="lazy" onerror="this.style.background='linear-gradient(135deg,#B8D4A3,#F4C89E)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22/>';">
+      <img class="menu-masonry__img" src="images/gwaka/quiche-epinards.jpg" alt="Quiche Epinards" loading="eager" onerror="this.style.background='linear-gradient(135deg,#B8D4A3,#F4C89E)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22/>';">
       <div class="menu-masonry__overlay">
         <div class="menu-masonry__name">Quiche Epinards</div>
         <div class="menu-masonry__desc">Fait maison, produits frais</div>
@@ -1821,7 +2086,7 @@
 
     <div class="menu-masonry__item" data-cat="sales">
       <span class="menu-masonry__cat">Sales</span>
-      <img class="menu-masonry__img" src="images/gwaka/quiche-lorraine.jpg" alt="Quiche Lorraine" loading="lazy" onerror="this.style.background='linear-gradient(135deg,#B8D4A3,#F4C89E)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22/>';">
+      <img class="menu-masonry__img" src="images/gwaka/quiche-lorraine.jpg" alt="Quiche Lorraine" loading="eager" onerror="this.style.background='linear-gradient(135deg,#B8D4A3,#F4C89E)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22/>';">
       <div class="menu-masonry__overlay">
         <div class="menu-masonry__name">Quiche Lorraine</div>
         <div class="menu-masonry__desc">Fait maison, produits frais</div>
@@ -1830,7 +2095,7 @@
 
     <div class="menu-masonry__item" data-cat="salades">
       <span class="menu-masonry__cat">Salades</span>
-      <img class="menu-masonry__img" src="images/gwaka/quinoa-salad.jpg" alt="Quinoa Energy" loading="lazy" onerror="this.style.background='linear-gradient(135deg,#B8D4A3,#F4C89E)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22/>';">
+      <img class="menu-masonry__img" src="images/gwaka/quinoa-salad.jpg" alt="Quinoa Energy" loading="eager" onerror="this.style.background='linear-gradient(135deg,#B8D4A3,#F4C89E)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22/>';">
       <div class="menu-masonry__overlay">
         <div class="menu-masonry__name">Quinoa Energy</div>
         <div class="menu-masonry__desc">Fait maison, produits frais</div>
@@ -1839,7 +2104,7 @@
 
     <div class="menu-masonry__item" data-cat="salades">
       <span class="menu-masonry__cat">Salades</span>
-      <img class="menu-masonry__img" src="images/gwaka/salade-caesar.jpg" alt="Salade Caesar" loading="lazy" onerror="this.style.background='linear-gradient(135deg,#B8D4A3,#F4C89E)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22/>';">
+      <img class="menu-masonry__img" src="images/gwaka/salade-caesar.jpg" alt="Salade Caesar" loading="eager" onerror="this.style.background='linear-gradient(135deg,#B8D4A3,#F4C89E)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22/>';">
       <div class="menu-masonry__overlay">
         <div class="menu-masonry__name">Salade Caesar</div>
         <div class="menu-masonry__desc">Fait maison, produits frais</div>
@@ -1848,7 +2113,7 @@
 
     <div class="menu-masonry__item" data-cat="salades">
       <span class="menu-masonry__cat">Salades</span>
-      <img class="menu-masonry__img" src="images/gwaka/salade-chevre.jpg" alt="Salade Chevre Chaud" loading="lazy" onerror="this.style.background='linear-gradient(135deg,#B8D4A3,#F4C89E)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22/>';">
+      <img class="menu-masonry__img" src="images/gwaka/salade-chevre.jpg" alt="Salade Chevre Chaud" loading="eager" onerror="this.style.background='linear-gradient(135deg,#B8D4A3,#F4C89E)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22/>';">
       <div class="menu-masonry__overlay">
         <div class="menu-masonry__name">Salade Chevre Chaud</div>
         <div class="menu-masonry__desc">Fait maison, produits frais</div>
@@ -1857,7 +2122,7 @@
 
     <div class="menu-masonry__item" data-cat="salades">
       <span class="menu-masonry__cat">Salades</span>
-      <img class="menu-masonry__img" src="images/gwaka/salade-lentilles.jpg" alt="Salade de Lentilles" loading="lazy" onerror="this.style.background='linear-gradient(135deg,#B8D4A3,#F4C89E)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22/>';">
+      <img class="menu-masonry__img" src="images/gwaka/salade-lentilles.jpg" alt="Salade de Lentilles" loading="eager" onerror="this.style.background='linear-gradient(135deg,#B8D4A3,#F4C89E)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22/>';">
       <div class="menu-masonry__overlay">
         <div class="menu-masonry__name">Salade de Lentilles</div>
         <div class="menu-masonry__desc">Fait maison, produits frais</div>
@@ -1866,7 +2131,7 @@
 
     <div class="menu-masonry__item" data-cat="salades">
       <span class="menu-masonry__cat">Salades</span>
-      <img class="menu-masonry__img" src="images/gwaka/salade-nicoise.jpg" alt="Salade Nicoise" loading="lazy" onerror="this.style.background='linear-gradient(135deg,#B8D4A3,#F4C89E)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22/>';">
+      <img class="menu-masonry__img" src="images/gwaka/salade-nicoise.jpg" alt="Salade Nicoise" loading="eager" onerror="this.style.background='linear-gradient(135deg,#B8D4A3,#F4C89E)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22/>';">
       <div class="menu-masonry__overlay">
         <div class="menu-masonry__name">Salade Nicoise</div>
         <div class="menu-masonry__desc">Fait maison, produits frais</div>
@@ -1875,7 +2140,7 @@
 
     <div class="menu-masonry__item" data-cat="salades">
       <span class="menu-masonry__cat">Salades</span>
-      <img class="menu-masonry__img" src="images/gwaka/salade-quinoa.jpg" alt="Salade Quinoa" loading="lazy" onerror="this.style.background='linear-gradient(135deg,#B8D4A3,#F4C89E)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22/>';">
+      <img class="menu-masonry__img" src="images/gwaka/salade-quinoa.jpg" alt="Salade Quinoa" loading="eager" onerror="this.style.background='linear-gradient(135deg,#B8D4A3,#F4C89E)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22/>';">
       <div class="menu-masonry__overlay">
         <div class="menu-masonry__name">Salade Quinoa</div>
         <div class="menu-masonry__desc">Fait maison, produits frais</div>
@@ -1884,7 +2149,7 @@
 
     <div class="menu-masonry__item" data-cat="boissons">
       <span class="menu-masonry__cat">Boissons</span>
-      <img class="menu-masonry__img" src="images/gwaka/smoothie-bowl-acai.jpg" alt="Smoothie Bowl Acai" loading="lazy" onerror="this.style.background='linear-gradient(135deg,#B8D4A3,#F4C89E)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22/>';">
+      <img class="menu-masonry__img" src="images/gwaka/smoothie-bowl-acai.jpg" alt="Smoothie Bowl Acai" loading="eager" onerror="this.style.background='linear-gradient(135deg,#B8D4A3,#F4C89E)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22/>';">
       <div class="menu-masonry__overlay">
         <div class="menu-masonry__name">Smoothie Bowl Acai</div>
         <div class="menu-masonry__desc">Fait maison, produits frais</div>
@@ -1893,7 +2158,7 @@
 
     <div class="menu-masonry__item" data-cat="boissons">
       <span class="menu-masonry__cat">Boissons</span>
-      <img class="menu-masonry__img" src="images/gwaka/smoothie-bowl-mangue.jpg" alt="Smoothie Bowl Mangue" loading="lazy" onerror="this.style.background='linear-gradient(135deg,#B8D4A3,#F4C89E)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22/>';">
+      <img class="menu-masonry__img" src="images/gwaka/smoothie-bowl-mangue.jpg" alt="Smoothie Bowl Mangue" loading="eager" onerror="this.style.background='linear-gradient(135deg,#B8D4A3,#F4C89E)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22/>';">
       <div class="menu-masonry__overlay">
         <div class="menu-masonry__name">Smoothie Bowl Mangue</div>
         <div class="menu-masonry__desc">Fait maison, produits frais</div>
@@ -1902,7 +2167,7 @@
 
     <div class="menu-masonry__item" data-cat="boissons">
       <span class="menu-masonry__cat">Boissons</span>
-      <img class="menu-masonry__img" src="images/gwaka/smoothie-bowl-spiruline.jpg" alt="Smoothie Bowl Spiruline" loading="lazy" onerror="this.style.background='linear-gradient(135deg,#B8D4A3,#F4C89E)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22/>';">
+      <img class="menu-masonry__img" src="images/gwaka/smoothie-bowl-spiruline.jpg" alt="Smoothie Bowl Spiruline" loading="eager" onerror="this.style.background='linear-gradient(135deg,#B8D4A3,#F4C89E)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22/>';">
       <div class="menu-masonry__overlay">
         <div class="menu-masonry__name">Smoothie Bowl Spiruline</div>
         <div class="menu-masonry__desc">Fait maison, produits frais</div>
@@ -1911,7 +2176,7 @@
 
     <div class="menu-masonry__item" data-cat="boissons">
       <span class="menu-masonry__cat">Boissons</span>
-      <img class="menu-masonry__img" src="images/gwaka/smoothie-bowl-tropical.jpg" alt="Smoothie Bowl Tropical" loading="lazy" onerror="this.style.background='linear-gradient(135deg,#B8D4A3,#F4C89E)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22/>';">
+      <img class="menu-masonry__img" src="images/gwaka/smoothie-bowl-tropical.jpg" alt="Smoothie Bowl Tropical" loading="eager" onerror="this.style.background='linear-gradient(135deg,#B8D4A3,#F4C89E)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22/>';">
       <div class="menu-masonry__overlay">
         <div class="menu-masonry__name">Smoothie Bowl Tropical</div>
         <div class="menu-masonry__desc">Fait maison, produits frais</div>
@@ -1920,7 +2185,7 @@
 
     <div class="menu-masonry__item" data-cat="sales">
       <span class="menu-masonry__cat">Sales</span>
-      <img class="menu-masonry__img" src="images/gwaka/sushis.jpg" alt="Sushis Maison" loading="lazy" onerror="this.style.background='linear-gradient(135deg,#B8D4A3,#F4C89E)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22/>';">
+      <img class="menu-masonry__img" src="images/gwaka/sushis.jpg" alt="Sushis Maison" loading="eager" onerror="this.style.background='linear-gradient(135deg,#B8D4A3,#F4C89E)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22/>';">
       <div class="menu-masonry__overlay">
         <div class="menu-masonry__name">Sushis Maison</div>
         <div class="menu-masonry__desc">Fait maison, produits frais</div>
@@ -1929,7 +2194,7 @@
 
     <div class="menu-masonry__item" data-cat="salades">
       <span class="menu-masonry__cat">Salades</span>
-      <img class="menu-masonry__img" src="images/gwaka/taboule-libanais.jpg" alt="Taboule Libanais" loading="lazy" onerror="this.style.background='linear-gradient(135deg,#B8D4A3,#F4C89E)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22/>';">
+      <img class="menu-masonry__img" src="images/gwaka/taboule-libanais.jpg" alt="Taboule Libanais" loading="eager" onerror="this.style.background='linear-gradient(135deg,#B8D4A3,#F4C89E)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22/>';">
       <div class="menu-masonry__overlay">
         <div class="menu-masonry__name">Taboule Libanais</div>
         <div class="menu-masonry__desc">Fait maison, produits frais</div>
@@ -1938,7 +2203,7 @@
 
     <div class="menu-masonry__item" data-cat="desserts">
       <span class="menu-masonry__cat">Sucre</span>
-      <img class="menu-masonry__img" src="images/gwaka/tarte-citron.jpg" alt="Tarte Citron" loading="lazy" onerror="this.style.background='linear-gradient(135deg,#B8D4A3,#F4C89E)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22/>';">
+      <img class="menu-masonry__img" src="images/gwaka/tarte-citron.jpg" alt="Tarte Citron" loading="eager" onerror="this.style.background='linear-gradient(135deg,#B8D4A3,#F4C89E)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22/>';">
       <div class="menu-masonry__overlay">
         <div class="menu-masonry__name">Tarte Citron</div>
         <div class="menu-masonry__desc">Fait maison, produits frais</div>
@@ -1947,7 +2212,7 @@
 
     <div class="menu-masonry__item" data-cat="desserts">
       <span class="menu-masonry__cat">Sucre</span>
-      <img class="menu-masonry__img" src="images/gwaka/tarte-fruits.jpg" alt="Tarte aux Fruits" loading="lazy" onerror="this.style.background='linear-gradient(135deg,#B8D4A3,#F4C89E)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22/>';">
+      <img class="menu-masonry__img" src="images/gwaka/tarte-fruits.jpg" alt="Tarte aux Fruits" loading="eager" onerror="this.style.background='linear-gradient(135deg,#B8D4A3,#F4C89E)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22/>';">
       <div class="menu-masonry__overlay">
         <div class="menu-masonry__name">Tarte aux Fruits</div>
         <div class="menu-masonry__desc">Fait maison, produits frais</div>
@@ -1956,7 +2221,7 @@
 
     <div class="menu-masonry__item" data-cat="desserts">
       <span class="menu-masonry__cat">Sucre</span>
-      <img class="menu-masonry__img" src="images/gwaka/tiramisu.jpg" alt="Tiramisu" loading="lazy" onerror="this.style.background='linear-gradient(135deg,#B8D4A3,#F4C89E)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22/>';">
+      <img class="menu-masonry__img" src="images/gwaka/tiramisu.jpg" alt="Tiramisu" loading="eager" onerror="this.style.background='linear-gradient(135deg,#B8D4A3,#F4C89E)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22/>';">
       <div class="menu-masonry__overlay">
         <div class="menu-masonry__name">Tiramisu</div>
         <div class="menu-masonry__desc">Fait maison, produits frais</div>
@@ -1965,7 +2230,7 @@
 
     <div class="menu-masonry__item" data-cat="sales">
       <span class="menu-masonry__cat">Sales</span>
-      <img class="menu-masonry__img" src="images/gwaka/toast-avocat.jpg" alt="Toast Avocat" loading="lazy" onerror="this.style.background='linear-gradient(135deg,#B8D4A3,#F4C89E)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22/>';">
+      <img class="menu-masonry__img" src="images/gwaka/toast-avocat.jpg" alt="Toast Avocat" loading="eager" onerror="this.style.background='linear-gradient(135deg,#B8D4A3,#F4C89E)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22/>';">
       <div class="menu-masonry__overlay">
         <div class="menu-masonry__name">Toast Avocat</div>
         <div class="menu-masonry__desc">Fait maison, produits frais</div>
@@ -1974,7 +2239,7 @@
 
     <div class="menu-masonry__item" data-cat="sales">
       <span class="menu-masonry__cat">Sales</span>
-      <img class="menu-masonry__img" src="images/gwaka/toast-bruschetta.jpg" alt="Toast Bruschetta" loading="lazy" onerror="this.style.background='linear-gradient(135deg,#B8D4A3,#F4C89E)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22/>';">
+      <img class="menu-masonry__img" src="images/gwaka/toast-bruschetta.jpg" alt="Toast Bruschetta" loading="eager" onerror="this.style.background='linear-gradient(135deg,#B8D4A3,#F4C89E)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22/>';">
       <div class="menu-masonry__overlay">
         <div class="menu-masonry__name">Toast Bruschetta</div>
         <div class="menu-masonry__desc">Fait maison, produits frais</div>
@@ -1983,7 +2248,7 @@
 
     <div class="menu-masonry__item" data-cat="sales">
       <span class="menu-masonry__cat">Sales</span>
-      <img class="menu-masonry__img" src="images/gwaka/toast-caviar-aubergines.jpg" alt="Toast Caviar d'Aubergines" loading="lazy" onerror="this.style.background='linear-gradient(135deg,#B8D4A3,#F4C89E)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22/>';">
+      <img class="menu-masonry__img" src="images/gwaka/toast-caviar-aubergines.jpg" alt="Toast Caviar d'Aubergines" loading="eager" onerror="this.style.background='linear-gradient(135deg,#B8D4A3,#F4C89E)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22/>';">
       <div class="menu-masonry__overlay">
         <div class="menu-masonry__name">Toast Caviar d'Aubergines</div>
         <div class="menu-masonry__desc">Fait maison, produits frais</div>
@@ -1992,7 +2257,7 @@
 
     <div class="menu-masonry__item" data-cat="sales">
       <span class="menu-masonry__cat">Sales</span>
-      <img class="menu-masonry__img" src="images/gwaka/toast-chutney-magret.jpg" alt="Toast Chutney Magret" loading="lazy" onerror="this.style.background='linear-gradient(135deg,#B8D4A3,#F4C89E)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22/>';">
+      <img class="menu-masonry__img" src="images/gwaka/toast-chutney-magret.jpg" alt="Toast Chutney Magret" loading="eager" onerror="this.style.background='linear-gradient(135deg,#B8D4A3,#F4C89E)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22/>';">
       <div class="menu-masonry__overlay">
         <div class="menu-masonry__name">Toast Chutney Magret</div>
         <div class="menu-masonry__desc">Fait maison, produits frais</div>
@@ -2001,7 +2266,7 @@
 
     <div class="menu-masonry__item" data-cat="sales">
       <span class="menu-masonry__cat">Sales</span>
-      <img class="menu-masonry__img" src="images/gwaka/toast-saumon.jpg" alt="Toast Saumon" loading="lazy" onerror="this.style.background='linear-gradient(135deg,#B8D4A3,#F4C89E)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22/>';">
+      <img class="menu-masonry__img" src="images/gwaka/toast-saumon.jpg" alt="Toast Saumon" loading="eager" onerror="this.style.background='linear-gradient(135deg,#B8D4A3,#F4C89E)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22/>';">
       <div class="menu-masonry__overlay">
         <div class="menu-masonry__name">Toast Saumon</div>
         <div class="menu-masonry__desc">Fait maison, produits frais</div>
@@ -2010,7 +2275,7 @@
 
     <div class="menu-masonry__item" data-cat="sales">
       <span class="menu-masonry__cat">Sales</span>
-      <img class="menu-masonry__img" src="images/gwaka/toast-tapenade.jpg" alt="Toast Tapenade" loading="lazy" onerror="this.style.background='linear-gradient(135deg,#B8D4A3,#F4C89E)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22/>';">
+      <img class="menu-masonry__img" src="images/gwaka/toast-tapenade.jpg" alt="Toast Tapenade" loading="eager" onerror="this.style.background='linear-gradient(135deg,#B8D4A3,#F4C89E)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22/>';">
       <div class="menu-masonry__overlay">
         <div class="menu-masonry__name">Toast Tapenade</div>
         <div class="menu-masonry__desc">Fait maison, produits frais</div>
@@ -2019,7 +2284,7 @@
 
     <div class="menu-masonry__item" data-cat="sales">
       <span class="menu-masonry__cat">Sales</span>
-      <img class="menu-masonry__img" src="images/gwaka/toast-tartare-thon.jpg" alt="Toast Tartare Thon" loading="lazy" onerror="this.style.background='linear-gradient(135deg,#B8D4A3,#F4C89E)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22/>';">
+      <img class="menu-masonry__img" src="images/gwaka/toast-tartare-thon.jpg" alt="Toast Tartare Thon" loading="eager" onerror="this.style.background='linear-gradient(135deg,#B8D4A3,#F4C89E)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22/>';">
       <div class="menu-masonry__overlay">
         <div class="menu-masonry__name">Toast Tartare Thon</div>
         <div class="menu-masonry__desc">Fait maison, produits frais</div>
@@ -2028,7 +2293,7 @@
 
     <div class="menu-masonry__item" data-cat="sales">
       <span class="menu-masonry__cat">Sales</span>
-      <img class="menu-masonry__img" src="images/gwaka/tortilla-espagnole.jpg" alt="Tortilla Espagnole" loading="lazy" onerror="this.style.background='linear-gradient(135deg,#B8D4A3,#F4C89E)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22/>';">
+      <img class="menu-masonry__img" src="images/gwaka/tortilla-espagnole.jpg" alt="Tortilla Espagnole" loading="eager" onerror="this.style.background='linear-gradient(135deg,#B8D4A3,#F4C89E)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22/>';">
       <div class="menu-masonry__overlay">
         <div class="menu-masonry__name">Tortilla Espagnole</div>
         <div class="menu-masonry__desc">Fait maison, produits frais</div>
@@ -2037,7 +2302,7 @@
 
     <div class="menu-masonry__item" data-cat="salades">
       <span class="menu-masonry__cat">Salades</span>
-      <img class="menu-masonry__img" src="images/gwaka/veggies-tacos-bar.jpg" alt="Veggies Tacos Bar" loading="lazy" onerror="this.style.background='linear-gradient(135deg,#B8D4A3,#F4C89E)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22/>';">
+      <img class="menu-masonry__img" src="images/gwaka/veggies-tacos-bar.jpg" alt="Veggies Tacos Bar" loading="eager" onerror="this.style.background='linear-gradient(135deg,#B8D4A3,#F4C89E)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22/>';">
       <div class="menu-masonry__overlay">
         <div class="menu-masonry__name">Veggies Tacos Bar</div>
         <div class="menu-masonry__desc">Fait maison, produits frais</div>
@@ -2046,7 +2311,7 @@
 
     <div class="menu-masonry__item" data-cat="sales">
       <span class="menu-masonry__cat">Sales</span>
-      <img class="menu-masonry__img" src="images/gwaka/wrap-bite.jpg" alt="Wrap Bite" loading="lazy" onerror="this.style.background='linear-gradient(135deg,#B8D4A3,#F4C89E)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22/>';">
+      <img class="menu-masonry__img" src="images/gwaka/wrap-bite.jpg" alt="Wrap Bite" loading="eager" onerror="this.style.background='linear-gradient(135deg,#B8D4A3,#F4C89E)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22/>';">
       <div class="menu-masonry__overlay">
         <div class="menu-masonry__name">Wrap Bite</div>
         <div class="menu-masonry__desc">Fait maison, produits frais</div>
@@ -2055,13 +2320,11 @@
 
     <div class="menu-masonry__item" data-cat="sales">
       <span class="menu-masonry__cat">Sales</span>
-      <img class="menu-masonry__img" src="images/gwaka/wrap-poulet.jpg" alt="Wrap Poulet" loading="lazy" onerror="this.style.background='linear-gradient(135deg,#B8D4A3,#F4C89E)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22/>';">
+      <img class="menu-masonry__img" src="images/gwaka/wrap-poulet.jpg" alt="Wrap Poulet" loading="eager" onerror="this.style.background='linear-gradient(135deg,#B8D4A3,#F4C89E)';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22/>';">
       <div class="menu-masonry__overlay">
         <div class="menu-masonry__name">Wrap Poulet</div>
         <div class="menu-masonry__desc">Fait maison, produits frais</div>
       </div>
-    </div>
-
     </div>
 
   </div><!-- end .menu-masonry -->
@@ -2174,6 +2437,121 @@
   </svg>
 </div>
 
+<!-- INSTAGRAM WIDGET -->
+<section class="ig-widget-section" id="instagram">
+  <div class="ig-widget-section__bg"></div>
+  <div class="ig-widget-section__title">
+    <p class="ig-widget-section__label">Instagram</p>
+    <h2 class="ig-widget-section__heading">Notre Feed</h2>
+    <svg class="ig-widget-section__separator" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+  </div>
+  <div class="ig-widget-wrap">
+    <div style="position:relative">
+      <div class="ig-widget-glow"></div>
+      <div class="ig-widget-phone">
+        <!-- Notch -->
+        <div class="ig-widget-notch"><div class="ig-widget-notch__pill"></div></div>
+        <!-- Nav bar -->
+        <div class="ig-widget-navbar">
+          <div class="ig-widget-navbar__left">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#262626" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+            <div style="display:flex;align-items:center;gap:10px">
+              <img class="ig-widget-navbar__avatar" src="images/gwaka/instagram/profile.jpg" alt="GWAKA" loading="eager">
+              <div class="ig-widget-navbar__user">
+                <div style="display:flex;align-items:center;gap:4px">
+                  <span class="ig-widget-navbar__name">gwaka.tahiti</span>
+                </div>
+                <span class="ig-widget-navbar__subtitle">Traiteur & Brunch</span>
+              </div>
+            </div>
+          </div>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="#262626"><circle cx="12" cy="5" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="12" cy="19" r="1.5"/></svg>
+        </div>
+        <!-- Profile -->
+        <div class="ig-widget-profile">
+          <div class="ig-widget-profile__top">
+            <a href="https://www.instagram.com/gwaka.tahiti/" target="_blank" rel="noopener">
+              <div class="ig-widget-profile__pic-wrap">
+                <img class="ig-widget-profile__pic" src="images/gwaka/instagram/profile.jpg" alt="GWAKA" loading="eager">
+              </div>
+            </a>
+            <div class="ig-widget-profile__stats">
+              <div><div class="ig-widget-profile__stat-num">47</div><div class="ig-widget-profile__stat-label">Posts</div></div>
+              <div><div class="ig-widget-profile__stat-num">1.2k</div><div class="ig-widget-profile__stat-label">Followers</div></div>
+              <div><div class="ig-widget-profile__stat-num">245</div><div class="ig-widget-profile__stat-label">Following</div></div>
+            </div>
+          </div>
+          <div class="ig-widget-profile__bio">
+            <div class="ig-widget-profile__bio-name">GWAKA | Traiteur Brunch & Healthy</div>
+            <div class="ig-widget-profile__bio-desc">Brunch, Plateaux & Traiteur sur Tahiti<br>Produits frais & faits maison</div>
+          </div>
+          <a href="https://www.instagram.com/gwaka.tahiti/" target="_blank" rel="noopener" class="ig-widget-follow">Suivre</a>
+        </div>
+        <!-- Tabs -->
+        <div class="ig-widget-tabs">
+          <div class="ig-widget-tabs__tab ig-widget-tabs__tab--active"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 3h7v7H3zM14 3h7v7h-7zM3 14h7v7H3zM14 14h7v7h-7z"/></svg></div>
+          <div class="ig-widget-tabs__tab"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M9.5 7.5v9l7-4.5z"/></svg></div>
+          <div class="ig-widget-tabs__tab"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg></div>
+        </div>
+        <!-- Grid -->
+        <div class="ig-widget-grid">
+      <a href="https://www.instagram.com/gwaka.tahiti/" target="_blank" rel="noopener" class="ig-widget-grid__item">
+        <img src="images/gwaka/instagram/1.jpg" alt="GWAKA Tahiti post #1" loading="eager">
+        <div class="ig-widget-grid__overlay"><svg viewBox="0 0 24 24" fill="white" width="32" height="32"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></div>
+      </a>
+      <a href="https://www.instagram.com/gwaka.tahiti/" target="_blank" rel="noopener" class="ig-widget-grid__item">
+        <img src="images/gwaka/instagram/2.jpg" alt="GWAKA Tahiti post #2" loading="eager">
+        <div class="ig-widget-grid__overlay"><svg viewBox="0 0 24 24" fill="white" width="32" height="32"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></div>
+      </a>
+      <a href="https://www.instagram.com/gwaka.tahiti/" target="_blank" rel="noopener" class="ig-widget-grid__item">
+        <img src="images/gwaka/instagram/3.jpg" alt="GWAKA Tahiti post #3" loading="eager">
+        <div class="ig-widget-grid__overlay"><svg viewBox="0 0 24 24" fill="white" width="32" height="32"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></div>
+      </a>
+      <a href="https://www.instagram.com/gwaka.tahiti/" target="_blank" rel="noopener" class="ig-widget-grid__item">
+        <img src="images/gwaka/instagram/4.jpg" alt="GWAKA Tahiti post #4" loading="eager">
+        <div class="ig-widget-grid__overlay"><svg viewBox="0 0 24 24" fill="white" width="32" height="32"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></div>
+      </a>
+      <a href="https://www.instagram.com/gwaka.tahiti/" target="_blank" rel="noopener" class="ig-widget-grid__item">
+        <img src="images/gwaka/instagram/5.jpg" alt="GWAKA Tahiti post #5" loading="eager">
+        <div class="ig-widget-grid__overlay"><svg viewBox="0 0 24 24" fill="white" width="32" height="32"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></div>
+      </a>
+      <a href="https://www.instagram.com/gwaka.tahiti/" target="_blank" rel="noopener" class="ig-widget-grid__item">
+        <img src="images/gwaka/instagram/6.jpg" alt="GWAKA Tahiti post #6" loading="eager">
+        <div class="ig-widget-grid__overlay"><svg viewBox="0 0 24 24" fill="white" width="32" height="32"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></div>
+      </a>
+      <a href="https://www.instagram.com/gwaka.tahiti/" target="_blank" rel="noopener" class="ig-widget-grid__item">
+        <img src="images/gwaka/instagram/7.jpg" alt="GWAKA Tahiti post #7" loading="eager">
+        <div class="ig-widget-grid__overlay"><svg viewBox="0 0 24 24" fill="white" width="32" height="32"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></div>
+      </a>
+      <a href="https://www.instagram.com/gwaka.tahiti/" target="_blank" rel="noopener" class="ig-widget-grid__item">
+        <img src="images/gwaka/instagram/8.jpg" alt="GWAKA Tahiti post #8" loading="eager">
+        <div class="ig-widget-grid__overlay"><svg viewBox="0 0 24 24" fill="white" width="32" height="32"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></div>
+      </a>
+      <a href="https://www.instagram.com/gwaka.tahiti/" target="_blank" rel="noopener" class="ig-widget-grid__item">
+        <img src="images/gwaka/instagram/9.jpg" alt="GWAKA Tahiti post #9" loading="eager">
+        <div class="ig-widget-grid__overlay"><svg viewBox="0 0 24 24" fill="white" width="32" height="32"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></div>
+      </a>
+      <a href="https://www.instagram.com/gwaka.tahiti/" target="_blank" rel="noopener" class="ig-widget-grid__item">
+        <img src="images/gwaka/instagram/10.jpg" alt="GWAKA Tahiti post #10" loading="eager">
+        <div class="ig-widget-grid__overlay"><svg viewBox="0 0 24 24" fill="white" width="32" height="32"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></div>
+      </a>
+      <a href="https://www.instagram.com/gwaka.tahiti/" target="_blank" rel="noopener" class="ig-widget-grid__item">
+        <img src="images/gwaka/instagram/11.jpg" alt="GWAKA Tahiti post #11" loading="eager">
+        <div class="ig-widget-grid__overlay"><svg viewBox="0 0 24 24" fill="white" width="32" height="32"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></div>
+      </a>
+      <a href="https://www.instagram.com/gwaka.tahiti/" target="_blank" rel="noopener" class="ig-widget-grid__item">
+        <img src="images/gwaka/instagram/12.jpg" alt="GWAKA Tahiti post #12" loading="eager">
+        <div class="ig-widget-grid__overlay"><svg viewBox="0 0 24 24" fill="white" width="32" height="32"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></div>
+      </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="ig-widget-cta">
+    <a href="https://www.instagram.com/gwaka.tahiti/" target="_blank" rel="noopener" class="ig-widget-cta__btn">Suivez-nous sur Instagram</a>
+  </div>
+</section>
+
 <!-- ===== CONTACT ===== -->
 <section class="contact wc-hibiscus" id="contact">
   <div style="text-align:center; margin-bottom:48px;">
@@ -2280,7 +2658,7 @@
   <div class="footer-content">
     <div class="footer-brand">
       <div style="display:flex;align-items:center;gap:10px;">
-        <img src="https://litter.catbox.moe/66guxd.jpg" alt="GWAKA" style="height:48px;width:48px;border-radius:50%;object-fit:cover;">
+        <img src="images/gwaka/gwaka-logo.jpg" alt="GWAKA" style="height:48px;width:48px;border-radius:50%;object-fit:cover;">
         <span style="font-family:'Lora',serif;font-size:22px;font-weight:700;color:rgba(255,255,255,0.9);">gwaka</span>
       </div>
       <p>Traiteur Brunch & Healthy a Tahiti. Des produits frais, des recettes originales, made with love for you.</p>
@@ -2329,18 +2707,17 @@
 
   const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  if (!prefersReduced) {
-      syncTouch: false,
-      touchMultiplier: 0,
-      duration: 1.2,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-    });
-    function raf(time) {
-      requestAnimationFrame(raf);
-    }
-    requestAnimationFrame(raf);
-
-    
+  // GSAP 3.12+ uses Web Animations API internally — cancel() is the ONLY way to clear
+  function clearGsap(el) {
+    if (el.getAnimations) el.getAnimations().forEach(function(a) { if (!(a instanceof CSSAnimation) && !(a instanceof CSSTransition)) a.cancel(); });
+    if (el._gsap) delete el._gsap;
+    // Force visible — CSS .reveal sets opacity:0, so we must override with inline
+    el.style.opacity = '1';
+    el.style.transform = 'none';
+    el.style.translate = '';
+    el.style.rotate = '';
+    el.style.scale = '';
+  }
 
   // ===== NAVBAR SCROLL =====
   const navbar = document.getElementById('navbar');
@@ -2475,6 +2852,22 @@
       }
     });
 
+    // Safety: cancel WAAPI animations + force visible after 3s
+    setTimeout(function() {
+      document.querySelectorAll('.reveal, .menu-bento__cell, .menu-card, .menu-polaroid, .menu-masonry__item, .menu__item, .menu-list-item, .menu-sub-card, .service-card, .gallery-item, .menu-category-divider, .contact-form, .contact-info, .footer-inner > *').forEach(function(el) {
+        if (getComputedStyle(el).opacity === '0') {
+          clearGsap(el);
+        }
+      });
+    }, 3000);
+
+    // Immediate: next frame after GSAP init, clear all stuck reveals
+    requestAnimationFrame(function() {
+      document.querySelectorAll('.reveal').forEach(function(el) {
+        if (getComputedStyle(el).opacity === '0') clearGsap(el);
+      });
+    });
+
   } else {
     // Reduced motion: show everything
     document.querySelectorAll('.reveal').forEach(el => {
@@ -2490,9 +2883,7 @@
       const target = document.querySelector(id);
       if (target) {
         e.preventDefault();
-         else {
-          target.scrollIntoView({ behavior:'auto', block: 'start' });
-        }
+        target.scrollIntoView({ behavior: 'auto', block: 'start' });
       }
     });
   });
@@ -2520,6 +2911,39 @@
   updateActiveNav();
 
 })();
+</script>
+<script>
+// Global failsafe: kill GSAP engine then force visibility after 3s
+setTimeout(function() {
+  // 0. FIRST: kill preloader if still visible
+  var preloader = document.getElementById('preloader');
+  if (preloader && getComputedStyle(preloader).display !== 'none') {
+    preloader.style.transition = 'none';
+    preloader.style.opacity = '0';
+    preloader.style.pointerEvents = 'none';
+    preloader.style.display = 'none';
+  }
+  // 1. Kill ScrollTrigger instances so GSAP stops re-creating animations
+  if (typeof ScrollTrigger !== 'undefined' && ScrollTrigger.getAll) {
+    ScrollTrigger.getAll().forEach(function(st) { st.kill(); });
+  }
+  // 2. Kill all GSAP tweens
+  if (typeof gsap !== 'undefined') gsap.killTweensOf('*');
+  // 3. Cancel GSAP-created WAAPI animations only (preserve CSS keyframes & transitions)
+  document.querySelectorAll('*').forEach(function(el) {
+    if (el.getAnimations && el.getAnimations().length) {
+      el.getAnimations().forEach(function(a) {
+        if (!(a instanceof CSSAnimation) && !(a instanceof CSSTransition)) a.cancel();
+      });
+    }
+  });
+  // 4. Force visibility — disable transitions first to prevent zombie CSSTransitions
+  document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale, .menu-category, .service-card, .insta-item, .gallery-item, .menu-list-item, .menu-card, .menu-bento__cell, .menu-polaroid, .menu-masonry__item, .menu__item, .menu-sub-card, .contact-form, .contact-info, .footer-inner > *').forEach(function(el) {
+    el.style.transition = 'none';
+    el.style.setProperty('opacity', '1', 'important');
+    el.style.setProperty('transform', 'none', 'important');
+  });
+}, 3000);
 </script>
 </body>
 </html>
