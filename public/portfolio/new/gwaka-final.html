@@ -859,6 +859,7 @@
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       grid-auto-rows: 260px;
+      grid-auto-flow: dense;
       gap: 1rem;
     }
 
@@ -1306,16 +1307,13 @@
       <div class="about-grid">
         <div class="about-text reveal">
           <span class="section-label">Qui sommes-nous</span>
-          <h2 class="section-title">Une histoire de passion</h2>
+          <h2 class="section-title">Brunch &amp; Pleasure</h2>
           <p class="section-subtitle">
-            GWAKA, c'est avant tout une histoire de famille et de passion pour la bonne cuisine. Installes a Tahiti, nous mettons un point d'honneur a travailler des produits frais, locaux et de saison. Chaque plat est prepare avec soin, comme a la maison.
-          </p>
-          <p class="section-subtitle" style="margin-top: 1rem;">
-            Notre philosophie ? Une cuisine saine, gourmande et accessible, qui fait du bien au corps et a l'esprit. Du petit brunch entre amis au grand buffet corporate, on met la meme energie et le meme amour dans chaque assiette.
+            Brunchs, buffets et evenements sur Tahiti. Produits frais et faits maison, dresses dans une vaisselle elegante. Pour les particuliers comme pour les professionnels &mdash; du brunch intime au buffet corporate.
           </p>
         </div>
         <div class="about-img-wrap reveal reveal-delay-2">
-          <img src="/portfolio/new/images/gwaka/chef-cuisine.webp" alt="Chef GWAKA en cuisine" loading="lazy">
+          <img src="/portfolio/new/images/gwaka/plateau-fruits.webp" alt="Plateau fruits frais signature GWAKA" loading="lazy">
         </div>
       </div>
     </div>
@@ -1533,7 +1531,7 @@
             </div>
             <div>
               <div class="contact-info-label">Adresse</div>
-              <div class="contact-info-value">Papeete, Tahiti</div>
+              <div class="contact-info-value">Tahiti, Polynesie francaise</div>
             </div>
           </div>
           <div class="contact-info-item">
@@ -1604,6 +1602,7 @@
                   <option value="evenement-prive">Evenement Prive</option>
                   <option value="mariage">Mariage</option>
                   <option value="baby-shower">Baby Shower</option>
+                  <option value="gender-reveal">Gender Reveal</option>
                   <option value="anniversaire">Anniversaire</option>
                   <option value="autre">Autre</option>
                 </select>
@@ -1656,7 +1655,7 @@
         <div class="footer-col">
           <h4>Contact</h4>
           <ul>
-            <li>Papeete, Tahiti</li>
+            <li>Tahiti, Polynesie francaise</li>
             <li><a href="tel:+68989537570">+689 89 53 75 70</a></li>
             <li><a href="mailto:gwakatahiti@gmail.com">gwakatahiti@gmail.com</a></li>
             <li><a href="https://www.instagram.com/gwaka.tahiti/" target="_blank" rel="noopener" aria-label="Instagram GWAKA">@gwaka.tahiti</a></li>
@@ -1785,8 +1784,15 @@
       var form = document.getElementById('contactForm');
       var formSuccess = document.getElementById('formSuccess');
 
-      form.addEventListener('submit', function(e) {
+      var submitBtn = form.querySelector('button[type="submit"]');
+      var originalBtnText = submitBtn.innerHTML;
+
+      form.addEventListener('submit', async function(e) {
         e.preventDefault();
+
+        // Reset previous errors
+        form.querySelectorAll('.form-control').forEach(function(f) { f.style.borderColor = ''; });
+        form.querySelectorAll('.form-error').forEach(function(el) { el.remove(); });
 
         // Basic validation
         var valid = true;
@@ -1803,12 +1809,40 @@
 
         if (!valid) return;
 
-        // Show success
-        form.style.display = 'none';
-        formSuccess.classList.add('show');
+        // Disable + loading
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = 'Envoi en cours...';
 
-        // Scroll to success message
-        formSuccess.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        // Build payload from form fields
+        var formData = new FormData(form);
+        var payload = {};
+        formData.forEach(function(v, k) { payload[k] = v; });
+
+        try {
+          var res = await fetch('/api/gwaka-contact', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+          });
+          var data = await res.json().catch(function() { return {}; });
+
+          if (!res.ok) {
+            throw new Error(data.error || ('HTTP ' + res.status));
+          }
+
+          // Success: show confirmation
+          form.style.display = 'none';
+          formSuccess.classList.add('show');
+          formSuccess.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        } catch (err) {
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = originalBtnText;
+          var errBox = document.createElement('div');
+          errBox.className = 'form-error';
+          errBox.style.cssText = 'background:#fee;color:#c33;padding:12px 16px;border-radius:8px;margin-top:1rem;font-size:.95rem';
+          errBox.textContent = "Une erreur est survenue. Merci de reessayer ou de nous contacter directement a gwakatahiti@gmail.com.";
+          form.appendChild(errBox);
+        }
       });
 
       /* ── Image error fallback ── */
