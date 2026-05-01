@@ -213,14 +213,16 @@
       color: var(--text-muted);
     }
 
-    .navbar-links {
+    .navbar-links-desktop {
       display: flex;
       align-items: center;
       gap: 2rem;
       list-style: none;
+      margin: 0;
+      padding: 0;
     }
 
-    .navbar-links a {
+    .navbar-links-desktop a {
       font-size: .875rem;
       font-weight: 500;
       color: rgba(255,255,255,.85);
@@ -228,7 +230,7 @@
       position: relative;
     }
 
-    .navbar-links a::after {
+    .navbar-links-desktop a::after {
       content: '';
       position: absolute;
       bottom: -4px; left: 0;
@@ -237,20 +239,20 @@
       transition: width var(--transition);
     }
 
-    .navbar-links a:hover::after,
-    .navbar-links a:focus-visible::after {
+    .navbar-links-desktop a:hover::after,
+    .navbar-links-desktop a:focus-visible::after {
       width: 100%;
     }
 
-    .navbar.scrolled .navbar-links a {
+    .navbar.scrolled .navbar-links-desktop a {
       color: var(--text-muted);
     }
 
-    .navbar.scrolled .navbar-links a:hover {
+    .navbar.scrolled .navbar-links-desktop a:hover {
       color: var(--green);
     }
 
-    .navbar-links a:hover {
+    .navbar-links-desktop a:hover {
       color: var(--white);
     }
 
@@ -291,16 +293,66 @@
     .burger span {
       display: block;
       width: 24px;
-      height: 2px;
+      height: 3px;
       background: var(--white);
-      border-radius: 2px;
+      border-radius: 3px;
       transition: transform .3s, opacity .3s, background .3s;
     }
     .navbar.scrolled .burger span { background: var(--text); }
     .burger.active span { background: var(--text) !important; }
-    .burger.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .burger.active span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
     .burger.active span:nth-child(2) { opacity: 0; }
-    .burger.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    .burger.active span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+
+    /* ──────────────────────────────
+       MOBILE DRAWER — enfant direct de body (PAS dans .navbar = evite containing block backdrop-filter)
+    ────────────────────────────── */
+    .mobile-drawer {
+      position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: min(85vw, 360px);
+      background: #fff;
+      transform: translateX(100%);
+      transition: transform .35s cubic-bezier(.4,0,.2,1);
+      z-index: 1001;
+      box-shadow: -8px 0 24px rgba(0,0,0,.12);
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+      visibility: hidden;
+    }
+    .mobile-drawer.open { transform: translateX(0); visibility: visible; }
+    @media (min-width: 769px) { .mobile-drawer { display: none; } }
+
+    .mobile-drawer ul {
+      list-style: none;
+      margin: 0;
+      padding: 88px 0 32px;
+    }
+    .mobile-drawer li {
+      border-bottom: 1px solid rgba(0,0,0,.06);
+    }
+    .mobile-drawer li:last-child { border-bottom: none; padding: 16px 24px 0; }
+    .mobile-drawer a {
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      min-height: 56px;
+      padding: 0 24px;
+      text-decoration: none;
+    }
+    .mobile-drawer a:hover { background: rgba(74,124,63,.06); }
+    .mobile-drawer .btn-nav {
+      display: inline-flex;
+      justify-content: center;
+      width: 100%;
+      font-size: 1rem;
+      padding: 14px 20px;
+      min-height: 48px;
+    }
 
     /* Backdrop sombre derriere le drawer */
     .menu-backdrop {
@@ -308,7 +360,6 @@
       position: fixed;
       inset: 0;
       background: rgba(0,0,0,.5);
-      backdrop-filter: blur(2px);
       z-index: 1000;
       opacity: 0;
       transition: opacity .3s;
@@ -317,59 +368,9 @@
 
     @media (max-width: 768px) {
       .burger { display: flex; }
+      .navbar-links-desktop { display: none; }
       .menu-backdrop { display: block; pointer-events: none; }
       .menu-backdrop.open { pointer-events: all; }
-
-      /* Drawer slide depuis la droite */
-      .navbar-links {
-        position: fixed;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        width: min(85vw, 360px);
-        background: #fff;
-        flex-direction: column;
-        justify-content: flex-start;
-        align-items: stretch;
-        gap: 0;
-        padding: 88px 0 32px;
-        margin: 0;
-        list-style: none;
-        transform: translateX(100%);
-        transition: transform .35s cubic-bezier(.4,0,.2,1);
-        z-index: 1001;
-        overflow-y: auto;
-        -webkit-overflow-scrolling: touch;
-        box-shadow: -8px 0 24px rgba(0,0,0,.12);
-      }
-      .navbar-links.open { transform: translateX(0); }
-
-      .navbar-links li {
-        list-style: none;
-        border-bottom: 1px solid rgba(0,0,0,.06);
-      }
-      .navbar-links li:last-child { border-bottom: none; padding: 16px 24px 0; }
-
-      .navbar-links a {
-        font-size: 1rem;
-        font-weight: 500;
-        color: var(--text) !important;
-        display: flex;
-        align-items: center;
-        min-height: 56px;
-        padding: 0 24px;
-        text-decoration: none;
-      }
-      .navbar-links a:hover { background: rgba(74,124,63,.06); }
-
-      .btn-nav {
-        display: inline-flex;
-        justify-content: center;
-        width: 100%;
-        font-size: 1rem;
-        padding: 14px 20px;
-        min-height: 48px;
-      }
     }
 
     /* ──────────────────────────────
@@ -1245,7 +1246,7 @@
           <small>Traiteur Brunch & Healthy</small>
         </div>
       </a>
-      <ul class="navbar-links" id="navLinks" role="menubar">
+      <ul class="navbar-links-desktop" role="menubar">
         <li role="none"><a href="#prestations" role="menuitem">Nos Prestations</a></li>
         <li role="none"><a href="#menu" role="menuitem">Menu</a></li>
         <li role="none"><a href="#galerie" role="menuitem">Galerie</a></li>
@@ -1256,6 +1257,16 @@
       </button>
     </div>
   </nav>
+
+  <!-- Drawer mobile : enfant direct de body pour eviter containing block (navbar a backdrop-filter quand scrolled) -->
+  <aside class="mobile-drawer" id="navLinks" aria-label="Menu mobile">
+    <ul role="menu">
+      <li role="none"><a href="#prestations" role="menuitem">Nos Prestations</a></li>
+      <li role="none"><a href="#menu" role="menuitem">Menu</a></li>
+      <li role="none"><a href="#galerie" role="menuitem">Galerie</a></li>
+      <li role="none"><a href="#contact" role="menuitem"><span class="btn-nav">Demande de devis</span></a></li>
+    </ul>
+  </aside>
 
   <div class="menu-backdrop" id="menuBackdrop" aria-hidden="true"></div>
 
