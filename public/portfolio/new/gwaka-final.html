@@ -274,9 +274,12 @@
     .burger {
       display: none;
       flex-direction: column;
+      justify-content: center;
       gap: 5px;
       cursor: pointer;
-      padding: 4px;
+      width: 44px;
+      height: 44px;
+      padding: 10px;
       background: none;
       border: none;
     }
@@ -318,8 +321,12 @@
       .navbar-links a {
         font-size: 1.25rem;
         color: var(--text) !important;
+        min-height: 44px;
+        display: inline-flex;
+        align-items: center;
+        padding: .5rem 1rem;
       }
-      .btn-nav { font-size: 1rem; padding: .75rem 2rem; }
+      .btn-nav { font-size: 1rem; padding: .75rem 2rem; min-height: 44px; }
     }
 
     /* ──────────────────────────────
@@ -765,8 +772,8 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      width: 20px; height: 20px;
-      font-size: .625rem;
+      width: 22px; height: 22px;
+      font-size: .75rem;
       font-weight: 700;
       color: var(--white);
       background: var(--green-accent);
@@ -1207,6 +1214,8 @@
     </div>
   </nav>
 
+  <main>
+
   <!-- ========== HERO ========== -->
   <section class="hero" aria-label="Accueil">
     <div class="hero-bg" role="img" aria-label="Buffet brunch GWAKA"></div>
@@ -1638,6 +1647,8 @@
   </section>
 
   <!-- ========== FOOTER ========== -->
+  </main>
+
   <footer class="footer">
     <div class="container">
       <div class="footer-grid">
