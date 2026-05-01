@@ -1568,6 +1568,11 @@
         <!-- RIGHT — Form -->
         <div class="reveal reveal-delay-2">
           <form class="contact-form" id="contactForm" novalidate>
+            <!-- Honeypot anti-bot: hidden from humans (CSS + aria), filled only by bots -->
+            <div aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden;opacity:0">
+              <label for="website">Website (laisser vide)</label>
+              <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
+            </div>
             <div class="form-row">
               <div class="form-group">
                 <label for="prenom">Prenom <span class="required">*</span></label>
