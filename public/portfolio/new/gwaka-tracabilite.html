@@ -250,13 +250,13 @@ body {
 
   <!-- STATS BAR -->
   <div class="stats-bar">
-    <div class="stat-item"><div class="stat-num">85</div><div class="stat-label">Exigences totales</div></div>
+    <div class="stat-item"><div class="stat-num">86</div><div class="stat-label">Exigences totales</div></div>
     <div class="stat-divider"></div>
-    <div class="stat-item"><div class="stat-num green">74</div><div class="stat-label">Conformes</div></div>
+    <div class="stat-item"><div class="stat-num green">80</div><div class="stat-label">Conformes</div></div>
     <div class="stat-divider"></div>
-    <div class="stat-item"><div class="stat-num orange">11</div><div class="stat-label">En attente Temehani</div></div>
+    <div class="stat-item"><div class="stat-num orange">6</div><div class="stat-label">En attente Temehani</div></div>
     <div class="stat-divider"></div>
-    <div class="stat-item"><div class="stat-num green">87%</div><div class="stat-label">Score conformite</div></div>
+    <div class="stat-item"><div class="stat-num green">93%</div><div class="stat-label">Score conformite</div></div>
   </div>
 
   <!-- ═══════════════════════════════════════
@@ -322,6 +322,46 @@ body {
       <div class="tl-date">14 Avril 2026 — 15h</div>
       <div class="tl-title">Images upscalees 4K</div>
       <div class="tl-detail">53 images upscalees via Aura SR (FAL.ai) x4. Hero optimise 1920px (542KB). Thumbnails 800px. Total 109MB → 38MB.</div>
+    </div>
+    <div class="tl-event">
+      <div class="tl-date">24 Avril 2026</div>
+      <div class="tl-title">Acompte 50K XPF recu</div>
+      <div class="tl-detail">Virement Temehani arrive sur le compte Banque de Tahiti PRO (PACIFIKAI). Lancement de la phase de production : reservation domaine + finalisation site.</div>
+    </div>
+    <div class="tl-event">
+      <div class="tl-date">29 Avril 2026</div>
+      <div class="tl-title">Domaine gwakatahiti.com LIVE</div>
+      <div class="tl-detail">Domaine achete sur Hostinger. DNS A record vers VPS Hetzner (178.104.131.42). Caddy reverse proxy + rewrites pour /devis, /suivi, /cdc. SSL Let's Encrypt automatique. 5 routes verifiees HTTP 200.</div>
+    </div>
+    <div class="tl-event">
+      <div class="tl-date">29 Avril 2026</div>
+      <div class="tl-title">Coordonnees reelles deployees</div>
+      <div class="tl-detail">Tel +689 89 53 75 70, email gwakatahiti@gmail.com, IG https://instagram.com/gwaka.tahiti, FB https://facebook.com/gwaka.tahiti — tous liens clickables actifs (source CONTEXT.md GWAKA).</div>
+    </div>
+    <div class="tl-event">
+      <div class="tl-date">29 Avril 2026</div>
+      <div class="tl-title">Catalogue PDF Google Drive restaure</div>
+      <div class="tl-detail">Bouton "Telecharger notre catalogue produits" pointe vers le PDF officiel GWAKA sur Google Drive (regression vs prototypes corrige).</div>
+    </div>
+    <div class="tl-event">
+      <div class="tl-date">29 Avril 2026</div>
+      <div class="tl-title">Form contact fonctionnel</div>
+      <div class="tl-detail">Endpoint /api/gwaka-contact (Next.js + Brevo SMTP). Envoie les demandes de devis vers gwakatahiti@gmail.com (cc contact@pacifikai.com). Loading state + error fallback. Replaced fake submit qui ne sendait rien.</div>
+    </div>
+    <div class="tl-event">
+      <div class="tl-date">29 Avril 2026</div>
+      <div class="tl-title">Optimisation WebP + Galerie hi-res</div>
+      <div class="tl-detail">103 images converties JPG → WebP (q80-92), -44% bandwidth (13MB → 7.3MB). Galerie 8 images uniques + grid-auto-flow:dense (fix layout). About section : smoothie-bowl-tropical hi-res 1600x872 q92.</div>
+    </div>
+    <div class="tl-event">
+      <div class="tl-date">29 Avril 2026</div>
+      <div class="tl-title">Trust grid : 6 vrais clients</div>
+      <div class="tl-detail">TotalEnergies, Banque Socredo, ICPF, Gaz de Tahiti, Direction Jeunesse et Sports, Royal Automobile — sources CONTEXT.md (mentionnes dans posts IG @gwaka.tahiti). Etait : placeholders Client 3-6.</div>
+    </div>
+    <div class="tl-event">
+      <div class="tl-date">29 Avril 2026</div>
+      <div class="tl-title">Gender Reveal ajoute au select</div>
+      <div class="tl-detail">Option ajoutee au select "Type de prestation" (vocal Audio 10 explicite). Liste finale : Brunch, Buffet Corporate, Evenement Prive, Mariage, Baby Shower, Gender Reveal, Anniversaire, Autre.</div>
     </div>
   </div>
 
@@ -801,9 +841,9 @@ body {
       <tr>
         <td class="num">5.10</td>
         <td class="exigence">Bouton "Telecharger notre catalogue produits"</td>
-        <td class="spec">Bouton btn-secondary avec alert placeholder en attente du PDF</td>
+        <td class="spec">Lien direct vers le catalogue PDF officiel sur Google Drive</td>
         <td class="src">L.1472</td>
-        <td class="status"><span class="tag tag-wait">En attente PDF</span></td>
+        <td class="status"><span class="tag tag-ok">Conforme</span></td>
         <td class="link"><a href="https://gwakatahiti.com#menu" target="_blank">↗</a></td>
       </tr>
     </tbody>
@@ -991,25 +1031,25 @@ body {
       <tr>
         <td class="num">9.3</td>
         <td class="exigence">Adresse exacte (pas Papeete)</td>
-        <td class="spec">Placeholder "Papeete, Tahiti" — Temehani precisera</td>
+        <td class="spec">"Tahiti, Polynesie francaise" — Temehani fournira adresse precise du local</td>
         <td class="src">L.1537</td>
-        <td class="status"><span class="tag tag-wait">En attente adresse</span></td>
+        <td class="status"><span class="tag tag-wait">Adresse exacte attendue</span></td>
         <td class="link"><a href="https://gwakatahiti.com#contact" target="_blank">↗</a></td>
       </tr>
       <tr>
         <td class="num">9.4</td>
         <td class="exigence">Telephone</td>
-        <td class="spec">Placeholder "+689 89 XX XX XX"</td>
+        <td class="spec">+689 89 53 75 70 (lien tel: clickable, source CONTEXT.md)</td>
         <td class="src">L.1546</td>
-        <td class="status"><span class="tag tag-wait">En attente tel</span></td>
+        <td class="status"><span class="tag tag-ok">Conforme</span></td>
         <td class="link"><a href="https://gwakatahiti.com#contact" target="_blank">↗</a></td>
       </tr>
       <tr>
         <td class="num">9.5</td>
         <td class="exigence">Email</td>
-        <td class="spec">Placeholder "contact@gwakatahiti.com"</td>
+        <td class="spec">gwakatahiti@gmail.com (lien mailto: clickable, source CONTEXT.md)</td>
         <td class="src">L.1555</td>
-        <td class="status"><span class="tag tag-wait">En attente email</span></td>
+        <td class="status"><span class="tag tag-ok">Conforme</span></td>
         <td class="link"><a href="https://gwakatahiti.com#contact" target="_blank">↗</a></td>
       </tr>
       <tr>
@@ -1096,7 +1136,7 @@ body {
       <tr><td class="num">10.1</td><td class="exigence">Mix V2 + V4 + V5</td><td class="spec">V4 hero, V5 structure/typo, V2 filtres menu</td><td class="src">Global</td><td class="status"><span class="tag tag-ok">Conforme</span></td><td class="link"><a href="https://gwakatahiti.com" target="_blank">↗</a></td></tr>
       <tr><td class="num">10.2</td><td class="exigence">Palette vert fonce + blanc + touches dorees</td><td class="spec">#4A7C3F green, #7CB342 accent, #E8F0E2, #FAFAF7, #C4A882 sand</td><td class="src">L.14-20</td><td class="status"><span class="tag tag-ok">Conforme</span></td><td class="link"><a href="https://gwakatahiti.com" target="_blank">↗</a></td></tr>
       <tr><td class="num">10.3</td><td class="exigence">Typo serif elegante + sans-serif corps</td><td class="spec">Fraunces (display) + Work Sans (body)</td><td class="src">L.11</td><td class="status"><span class="tag tag-ok">Conforme</span></td><td class="link"><a href="https://gwakatahiti.com" target="_blank">↗</a></td></tr>
-      <tr><td class="num">10.4</td><td class="exigence">Domaine gwakatahiti.com</td><td class="spec">Disponible — reservation apres acompte</td><td class="src">—</td><td class="status"><span class="tag tag-wait">En attente acompte</span></td><td class="link"></td></tr>
+      <tr><td class="num">10.4</td><td class="exigence">Domaine gwakatahiti.com</td><td class="spec">Achete sur Hostinger, DNS pointe vers VPS Hetzner, SSL Let's Encrypt actif</td><td class="src">Caddy</td><td class="status"><span class="tag tag-ok">Live</span></td><td class="link"><a href="https://gwakatahiti.com" target="_blank">↗</a></td></tr>
       <tr><td class="num">10.5</td><td class="exigence">Mobile-first (trafic Instagram)</td><td class="spec">Media queries responsive 375px/768px/1024px</td><td class="src">L.900-L.1180</td><td class="status"><span class="tag tag-ok">Conforme</span></td><td class="link"><a href="https://gwakatahiti.com" target="_blank">↗</a></td></tr>
       <tr><td class="num">10.6</td><td class="exigence">Pas de prix sur le site</td><td class="spec">Aucun prix affiche — devis personnalise uniquement</td><td class="src">Global</td><td class="status"><span class="tag tag-ok">Conforme</span></td><td class="link"><a href="https://gwakatahiti.com" target="_blank">↗</a></td></tr>
       <tr><td class="num">10.7</td><td class="exigence">Structure 11 sections sur 1 page scrollable</td><td class="spec">Single-page HTML : Navbar, Hero, Stat, Presta, About, Citation, Menu, Trust, Galerie, Contact, Footer</td><td class="src">L.1188-L.1672</td><td class="status"><span class="tag tag-ok">Conforme</span></td><td class="link"><a href="https://gwakatahiti.com" target="_blank">↗</a></td></tr>
@@ -1177,7 +1217,7 @@ body {
     <tbody>
       <tr><td class="num">12.1</td><td class="exigence">Logo + brand tagline</td><td class="spec">gwaka-logo.jpg + "Traiteur Brunch & Healthy — Tahiti"</td><td class="src">L.1641-L.1646</td><td class="status"><span class="tag tag-ok">Conforme</span></td><td class="link"><a href="https://gwakatahiti.com" target="_blank">↗</a></td></tr>
       <tr><td class="num">12.2</td><td class="exigence">Liens navigation rapide</td><td class="spec">Nos Prestations, Menu, Galerie, Demande de devis</td><td class="src">L.1648-L.1655</td><td class="status"><span class="tag tag-ok">Conforme</span></td><td class="link"><a href="https://gwakatahiti.com" target="_blank">↗</a></td></tr>
-      <tr><td class="num">12.3</td><td class="exigence">Contact repete dans footer</td><td class="spec">Adresse, tel, email, @gwaka.tahiti (placeholders)</td><td class="src">L.1657-L.1664</td><td class="status"><span class="tag tag-wait">En attente infos</span></td><td class="link"><a href="https://gwakatahiti.com" target="_blank">↗</a></td></tr>
+      <tr><td class="num">12.3</td><td class="exigence">Contact repete dans footer</td><td class="spec">Tel +689 89 53 75 70, email gwakatahiti@gmail.com, IG @gwaka.tahiti, FB GWAKA — tous liens clickables actifs</td><td class="src">L.1657-L.1665</td><td class="status"><span class="tag tag-ok">Conforme</span></td><td class="link"><a href="https://gwakatahiti.com" target="_blank">↗</a></td></tr>
       <tr><td class="num">12.4</td><td class="exigence">Credit "Site cree par PACIFIK'AI"</td><td class="spec">Lien vers pacifikai.com dans .footer-credit</td><td class="src">L.1669</td><td class="status"><span class="tag tag-ok">Conforme</span></td><td class="link"><a href="https://gwakatahiti.com" target="_blank">↗</a></td></tr>
       <tr><td class="num">12.5</td><td class="exigence">Copyright 2026</td><td class="spec">&copy; 2026 GWAKA. Tous droits reserves.</td><td class="src">L.1668</td><td class="status"><span class="tag tag-ok">Conforme</span></td><td class="link"><a href="https://gwakatahiti.com" target="_blank">↗</a></td></tr>
     </tbody>
