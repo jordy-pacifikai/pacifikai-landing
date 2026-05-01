@@ -68,7 +68,7 @@ export async function POST(request: Request): Promise<Response> {
       },
       body: JSON.stringify({
         sender: { name: "GWAKA", email: "contact@gwakatahiti.com" },
-        to: [{ email: "jordy@pacifikai.com", name: "Jordy TEST" }],
+        to: [{ email: "gwakatahiti@gmail.com", name: "GWAKA" }],
         replyTo: { email: email!.trim(), name: fullName },
         subject,
         htmlContent: html,
