@@ -882,68 +882,61 @@
       margin-bottom: 3rem;
     }
 
-    /* Trust carousel — defilement horizontal avec fleches */
-    .trust-carousel-wrap {
+    /* Trust marquee — auto-scroll infinite premium (pattern Stripe/Linear/Awwwards) */
+    .trust-marquee {
       position: relative;
+      width: 100%;
+      overflow: hidden;
+      padding: 1.5rem 0;
+      -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 8%, #000 92%, transparent 100%);
+              mask-image: linear-gradient(90deg, transparent 0, #000 8%, #000 92%, transparent 100%);
+    }
+    .trust-track {
       display: flex;
       align-items: center;
-      gap: .75rem;
+      gap: 4rem;
+      width: max-content;
+      animation: trust-scroll 55s linear infinite;
+      will-change: transform;
     }
-    .trust-carousel {
-      flex: 1;
-      display: flex;
-      gap: 1.25rem;
-      overflow-x: auto;
-      scroll-snap-type: x mandatory;
-      scroll-behavior: smooth;
-      -webkit-overflow-scrolling: touch;
-      padding: .5rem .25rem;
-      scrollbar-width: none;
-    }
-    .trust-carousel::-webkit-scrollbar { display: none; }
-    .trust-arrow {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 44px;
-      height: 44px;
-      flex-shrink: 0;
-      border: 1px solid rgba(0,0,0,.1);
-      border-radius: 50%;
-      background: #fff;
-      color: var(--green);
-      cursor: pointer;
-      transition: background .2s, border-color .2s, color .2s, transform .15s;
-      z-index: 2;
-    }
-    .trust-arrow:hover { background: var(--green); color: #fff; border-color: var(--green); transform: scale(1.05); }
-    .trust-arrow:disabled { opacity: .35; cursor: not-allowed; }
-    @media (max-width: 768px) {
-      .trust-arrow { width: 36px; height: 36px; }
+    .trust-marquee:hover .trust-track { animation-play-state: paused; }
+    @media (prefers-reduced-motion: reduce) { .trust-track { animation: none; } }
+    @keyframes trust-scroll {
+      from { transform: translateX(0); }
+      to   { transform: translateX(calc(-50% - 2rem)); }
     }
 
     .trust-item {
       display: flex;
       align-items: center;
-      justify-content: center;
-      flex: 0 0 calc((100% - 2.5rem) / 3);
-      min-width: 220px;
-      padding: 2.5rem 1.5rem;
-      border: 1px solid rgba(0,0,0,.06);
-      border-radius: var(--radius);
+      gap: 4rem;
+      flex-shrink: 0;
       font-family: var(--font-display);
-      font-weight: 400;
-      font-size: 1rem;
-      color: var(--text-muted);
-      background: var(--cream);
-      transition: border-color var(--transition);
-      scroll-snap-align: start;
+      font-weight: 300;
+      font-style: italic;
+      font-size: clamp(1.35rem, 2.5vw, 1.95rem);
+      letter-spacing: .005em;
+      color: var(--text);
+      white-space: nowrap;
+      opacity: .55;
+      transition: opacity .35s, color .35s;
+      cursor: default;
     }
+    .trust-item::after {
+      content: '';
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--green-accent);
+      opacity: .5;
+      flex-shrink: 0;
+    }
+    .trust-item:hover { opacity: 1; color: var(--green); }
     @media (max-width: 768px) {
-      .trust-item { flex: 0 0 calc((100% - 1.25rem) / 2); min-width: 160px; padding: 1.75rem 1rem; }
-    }
-    @media (max-width: 480px) {
-      .trust-item { flex: 0 0 80%; min-width: unset; }
+      .trust-track { gap: 2.5rem; animation-duration: 40s; }
+      .trust-item { gap: 2.5rem; }
+      .trust-marquee { padding: 1rem 0; }
     }
 
     .trust-item:hover { border-color: var(--green-accent); }
@@ -1450,12 +1443,9 @@
         <span class="section-label">Ils nous ont fait confiance</span>
         <h2 class="section-title">Nos references</h2>
       </div>
-      <div class="trust-carousel-wrap reveal">
-        <button class="trust-arrow trust-arrow-prev" type="button" aria-label="Precedent" id="trustPrev">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
-        </button>
-        <div class="trust-carousel" id="trustCarousel" tabindex="0" aria-label="Liste des references clients">
-          <div class="trust-item">TotalEnergies</div>
+      <div class="trust-marquee reveal" aria-label="Liste des references clients">
+        <div class="trust-track">
+          <div class="trust-item" aria-hidden="false">TotalEnergies</div>
           <div class="trust-item">Banque Socredo</div>
           <div class="trust-item">UPF</div>
           <div class="trust-item">ICPF</div>
@@ -1465,10 +1455,18 @@
           <div class="trust-item">MSH Pacifique</div>
           <div class="trust-item">Studio Te Hau</div>
           <div class="trust-item">Millesime Lotus</div>
+          <!-- Duplicate set for seamless infinite loop -->
+          <div class="trust-item" aria-hidden="true">TotalEnergies</div>
+          <div class="trust-item" aria-hidden="true">Banque Socredo</div>
+          <div class="trust-item" aria-hidden="true">UPF</div>
+          <div class="trust-item" aria-hidden="true">ICPF</div>
+          <div class="trust-item" aria-hidden="true">Gaz de Tahiti</div>
+          <div class="trust-item" aria-hidden="true">Direction Jeunesse et Sports</div>
+          <div class="trust-item" aria-hidden="true">Royal Automobile</div>
+          <div class="trust-item" aria-hidden="true">MSH Pacifique</div>
+          <div class="trust-item" aria-hidden="true">Studio Te Hau</div>
+          <div class="trust-item" aria-hidden="true">Millesime Lotus</div>
         </div>
-        <button class="trust-arrow trust-arrow-next" type="button" aria-label="Suivant" id="trustNext">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
-        </button>
       </div>
     </div>
   </section>
@@ -1715,33 +1713,6 @@
       window.addEventListener('resize', function() {
         if (window.innerWidth > 768 && navLinks.classList.contains('open')) setMenuState(false);
       });
-
-      /* ── Trust carousel scroll ── */
-      var trustCarousel = document.getElementById('trustCarousel');
-      var trustPrev = document.getElementById('trustPrev');
-      var trustNext = document.getElementById('trustNext');
-      if (trustCarousel && trustPrev && trustNext) {
-        function trustScrollStep() {
-          var item = trustCarousel.querySelector('.trust-item');
-          if (!item) return 300;
-          var gap = parseFloat(getComputedStyle(trustCarousel).gap) || 20;
-          return item.getBoundingClientRect().width + gap;
-        }
-        function updateTrustArrows() {
-          var max = trustCarousel.scrollWidth - trustCarousel.clientWidth - 1;
-          trustPrev.disabled = trustCarousel.scrollLeft <= 0;
-          trustNext.disabled = trustCarousel.scrollLeft >= max;
-        }
-        trustPrev.addEventListener('click', function() {
-          trustCarousel.scrollBy({ left: -trustScrollStep(), behavior: 'smooth' });
-        });
-        trustNext.addEventListener('click', function() {
-          trustCarousel.scrollBy({ left: trustScrollStep(), behavior: 'smooth' });
-        });
-        trustCarousel.addEventListener('scroll', updateTrustArrows, { passive: true });
-        window.addEventListener('resize', updateTrustArrows);
-        updateTrustArrows();
-      }
 
       /* ── Reveal on scroll ── */
       var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
