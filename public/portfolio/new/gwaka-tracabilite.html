@@ -236,6 +236,8 @@ body {
     <a class="toc-section" href="#s13-3">13.3 Menu — page dediee</a>
     <a class="toc-section" href="#s13-4">13.4 Contact — fond vert charte</a>
     <a class="toc-section" href="#s13-5">13.5 Adresse — Fa'a</a>
+    <a class="toc-section" href="#s13-7">13.7 Stat bar — refonte 4 stats</a>
+    <a class="toc-section" href="#s13-8">13.8 Trust — carrousel 12-15 logos</a>
     <a class="toc-section" href="#s13-6">13.6 Validations Temehani</a>
   </div>
   <div class="toc-chapter"><a class="toc-chapter-title" href="#annexe-a">Annexe A — Sources audio</a></div>
@@ -259,9 +261,9 @@ body {
 
   <!-- STATS BAR -->
   <div class="stats-bar">
-    <div class="stat-item"><div class="stat-num">99</div><div class="stat-label">Exigences totales</div></div>
+    <div class="stat-item"><div class="stat-num">102</div><div class="stat-label">Exigences totales</div></div>
     <div class="stat-divider"></div>
-    <div class="stat-item"><div class="stat-num green">80</div><div class="stat-label">Conformes</div></div>
+    <div class="stat-item"><div class="stat-num green">83</div><div class="stat-label">Conformes</div></div>
     <div class="stat-divider"></div>
     <div class="stat-item"><div class="stat-num orange">19</div><div class="stat-label">En cours iteration v2</div></div>
     <div class="stat-divider"></div>
@@ -376,6 +378,16 @@ body {
       <div class="tl-date">1er Mai 2026</div>
       <div class="tl-title">Retour Temehani v1 — 11 vocaux + 6 images</div>
       <div class="tl-detail">Premier retour apres visite du site. 13 nouvelles exigences (Chapitre 13) : Menu sur page separee, GWAKA en gros au milieu du hero, retirer "Traiteur Brunch &amp; Healthy" sous logo, fond vert charte sur Contact, adresse "Fa'a" (laboratoire a domicile, pas adresse exacte). Sections Galerie/Trust/Contact validees. Photos pro a venir via WeTransfer.</div>
+    </div>
+    <div class="tl-event">
+      <div class="tl-date">1er Mai 2026 (soir)</div>
+      <div class="tl-title">Implementation 8/13 demandes Temehani</div>
+      <div class="tl-detail">Menu sur page separee (gwaka-menu.html), Hero "GWAKA" en gros wordmark, retire "Traiteur Brunch &amp; Healthy" sous logo, Menu/Notre Carte stack vertical, filter "Sales" par defaut, adresse "Fa'a, Tahiti, Polynesie francaise". Bloque par charte verte : D1-D4 fond vert. Bloque par assets : F1-F3 photos + logos.</div>
+    </div>
+    <div class="tl-event">
+      <div class="tl-date">2 Mai 2026</div>
+      <div class="tl-title">Retour Temehani v2 — 2 vocaux supplementaires</div>
+      <div class="tl-detail">Stat bar : retirer "99%", 4 stats (Fait Maison + Sur Mesure + Circuit Court + Produit Frais). Trust : carrousel scrollable 12-15 logos avec fleches navigation, ajouter UPF (un de ses meilleurs clients). 3 nouvelles exigences (#13.14-13.16) implementees, 1 en attente logos PNG (#13.17).</div>
     </div>
   </div>
 
@@ -1445,6 +1457,66 @@ body {
         <td class="spec">Replace "Tahiti, Polynesie francaise" → "Fa'a, Tahiti, Polynesie francaise"</td>
         <td class="src">L.1537, L.1660</td>
         <td class="status"><span class="tag tag-wait">A faire</span></td>
+        <td class="link"></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div id="s13-7" class="section-header">
+    <div class="section-number">Section 13.7</div>
+    <div class="section-title-h">Stat bar — refonte 4 stats (vocal 02/05 42s)</div>
+  </div>
+  <div class="source-quote">
+    <div class="src-label">Audio retour 02/05 42s</div>
+    « Sur la ligne il y a ecrit les 99% de fait maison etc. Est-ce que tu peux enlever jusqu'a 99%, tu laisses le fait maison, le sur mesure, et on peut mettre au lieu de local et frais on peut mettre circuit court et a cote on est produit frais. »
+  </div>
+  <table class="req-table">
+    <thead><tr><th>#</th><th>Exigence CDC</th><th>Implementation</th><th>Ligne</th><th>Statut</th><th></th></tr></thead>
+    <tbody>
+      <tr>
+        <td class="num">13.14</td>
+        <td class="exigence">Stat bar : retirer "99%", separer en 4 stats (Fait Maison / Sur Mesure / Circuit Court / Produit Frais)</td>
+        <td class="spec">.stat-bar 4 items au lieu de 3, "99% Fait Maison" → "Fait Maison", "Local &amp; Frais" splitte en "Circuit Court" + "Produit Frais"</td>
+        <td class="src">L.1302-1320</td>
+        <td class="status"><span class="tag tag-ok">Conforme</span></td>
+        <td class="link"><a href="https://gwakatahiti.com" target="_blank">↗</a></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div id="s13-8" class="section-header">
+    <div class="section-number">Section 13.8</div>
+    <div class="section-title-h">Trust — carrousel 12-15 logos avec fleches (vocal 02/05 58s)</div>
+  </div>
+  <div class="source-quote">
+    <div class="src-label">Audio retour 02/05 58s</div>
+    « Pour nos references, vu qu'on n'en a pas que 6, par exemple l'UPF qui est un de nos meilleurs clients il n'y est pas. Quand je vais te donner les logos, est-ce qu'on en met 6 premiers comme tu as fait, et apres on fait un truc qui defile sur la droite avec une petite fleche ou les gens peuvent cliquer dessus pour voir les autres ? Est-ce que je peux en mettre 12-15 au lieu de 6 ? »
+  </div>
+  <table class="req-table">
+    <thead><tr><th>#</th><th>Exigence CDC</th><th>Implementation</th><th>Ligne</th><th>Statut</th><th></th></tr></thead>
+    <tbody>
+      <tr>
+        <td class="num">13.15</td>
+        <td class="exigence">Trust : transformer grid 6 fixes en carrousel scrollable horizontal avec fleches navigation</td>
+        <td class="spec">.trust-carousel-wrap : flex-nowrap overflow-x-auto + .trust-arrow buttons prev/next + JS scrollBy + scroll-snap. 10 items au depart : 6 originaux + UPF + MSH Pacifique + Studio Te Hau + Millesime Lotus.</td>
+        <td class="src">L.1412-1430</td>
+        <td class="status"><span class="tag tag-ok">Conforme (structure)</span></td>
+        <td class="link"><a href="https://gwakatahiti.com#trust" target="_blank">↗</a></td>
+      </tr>
+      <tr>
+        <td class="num">13.16</td>
+        <td class="exigence">Ajouter UPF (Universite de la Polynesie francaise) — un des meilleurs clients GWAKA</td>
+        <td class="spec">3eme item du carrousel "UPF". Texte placeholder, logo PNG/SVG en attente Temehani.</td>
+        <td class="src">L.1416</td>
+        <td class="status"><span class="tag tag-ok">Conforme (texte)</span></td>
+        <td class="link"></td>
+      </tr>
+      <tr>
+        <td class="num">13.17</td>
+        <td class="exigence">Logos PNG/SVG des 10 clients (au lieu de noms texte)</td>
+        <td class="spec">Remplacer .trust-item innerHTML par &lt;img&gt; quand Temehani fournit les fichiers logos</td>
+        <td class="src">—</td>
+        <td class="status"><span class="tag tag-wait">En attente Temehani</span></td>
         <td class="link"></td>
       </tr>
     </tbody>
