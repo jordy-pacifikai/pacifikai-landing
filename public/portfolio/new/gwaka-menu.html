@@ -10,7 +10,7 @@
   <link rel="icon" type="image/png" sizes="32x32" href="/portfolio/new/images/gwaka/favicon-32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/portfolio/new/images/gwaka/favicon-16.png">
   <link rel="apple-touch-icon" sizes="180x180" href="/portfolio/new/images/gwaka/apple-touch-icon.png">
-  <link rel="preload" as="image" href="/portfolio/new/images/gwaka/hero-brunch.webp" fetchpriority="high">
+  <link rel="preload" as="image" href="/portfolio/new/images/gwaka/buffet-corporate.webp" fetchpriority="high">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300;1,9..144,400&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -449,26 +449,38 @@
       margin: 0 0 1.5rem;
     }
 
-    /* Menu page hero — Menu / Notre Carte stack */
+    /* Menu page hero — image full + overlay sombre, meme pattern que / */
     .menu-hero {
-      padding: 8rem 0 3rem;
-      background: linear-gradient(135deg, var(--green-light), var(--cream));
+      position: relative;
+      min-height: 60vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      padding: 8rem 0 4rem;
       text-align: center;
     }
-
-    /* Menu page : navbar lisible sur fond clair (pas de hero sombre) */
-    body.menu-page .navbar { background: rgba(255,255,255,.97); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); box-shadow: 0 1px 8px rgba(0,0,0,.06); }
-    body.menu-page .navbar-logo-text span { color: var(--text); }
-    body.menu-page .navbar-logo-text small { color: var(--text-muted); }
-    body.menu-page .navbar-links-desktop a { color: var(--text-muted); }
-    body.menu-page .navbar-links-desktop a:hover { color: var(--green); }
-    body.menu-page .burger span { background: var(--text); }
+    .menu-hero-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('/portfolio/new/images/gwaka/buffet-corporate.webp');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+    .menu-hero-bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(0,0,0,.45) 0%, rgba(0,0,0,.6) 100%);
+    }
+    .menu-hero .container { position: relative; z-index: 2; }
     .menu-hero-title {
       font-family: var(--font-display);
       font-weight: 300;
       font-size: clamp(3rem, 9vw, 5.5rem);
       line-height: 1;
-      color: var(--text);
+      color: var(--white);
       margin: 0 0 .75rem;
     }
     .menu-hero-subtitle {
@@ -476,7 +488,7 @@
       font-weight: 300;
       font-style: italic;
       font-size: clamp(1.25rem, 2.5vw, 1.75rem);
-      color: var(--green);
+      color: rgba(255,255,255,.92);
       margin: 0;
     }
 
@@ -1280,7 +1292,7 @@
     }
   </style>
 </head>
-<body class="menu-page">
+<body>
 
   <!-- ========== NAVBAR ========== -->
   <nav class="navbar" role="navigation" aria-label="Navigation principale">
@@ -1319,6 +1331,7 @@
 
   <!-- ========== MENU HERO ========== -->
   <section class="menu-hero" aria-label="Menu">
+    <div class="menu-hero-bg" aria-hidden="true"></div>
     <div class="container">
       <h1 class="menu-hero-title">Menu</h1>
       <p class="menu-hero-subtitle">Notre Carte</p>
