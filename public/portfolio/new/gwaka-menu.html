@@ -455,6 +455,14 @@
       background: linear-gradient(135deg, var(--green-light), var(--cream));
       text-align: center;
     }
+
+    /* Menu page : navbar lisible sur fond clair (pas de hero sombre) */
+    body.menu-page .navbar { background: rgba(255,255,255,.97); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); box-shadow: 0 1px 8px rgba(0,0,0,.06); }
+    body.menu-page .navbar-logo-text span { color: var(--text); }
+    body.menu-page .navbar-logo-text small { color: var(--text-muted); }
+    body.menu-page .navbar-links-desktop a { color: var(--text-muted); }
+    body.menu-page .navbar-links-desktop a:hover { color: var(--green); }
+    body.menu-page .burger span { background: var(--text); }
     .menu-hero-title {
       font-family: var(--font-display);
       font-weight: 300;
@@ -1272,7 +1280,7 @@
     }
   </style>
 </head>
-<body>
+<body class="menu-page">
 
   <!-- ========== NAVBAR ========== -->
   <nav class="navbar" role="navigation" aria-label="Navigation principale">
