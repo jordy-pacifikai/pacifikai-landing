@@ -248,6 +248,9 @@
       width: 100%;
     }
 
+    /* Pas de soulignement sur le bouton CTA (interfere avec animation .btn-nav) */
+    .navbar-links-desktop a:has(.btn-nav)::after { display: none; }
+
     .navbar.scrolled .navbar-links-desktop a {
       color: var(--text-muted);
     }
