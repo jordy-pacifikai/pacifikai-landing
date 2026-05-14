@@ -285,6 +285,64 @@
     .btn-nav:focus-visible { outline: 2px solid var(--green-accent); outline-offset: 2px; }
 
     /* ──────────────────────────────
+       MODE TOGGLE — Magazine (AI) ⇄ Reel (Temehani)
+    ────────────────────────────── */
+    .mode-toggle {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      padding: 4px;
+      background: rgba(255,255,255,.15);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 1px solid rgba(255,255,255,.25);
+      border-radius: 100px;
+      cursor: pointer;
+      font-family: var(--font-tagline);
+      font-size: .72rem;
+      font-weight: 400;
+      transition: background .3s, border-color .3s;
+      user-select: none;
+    }
+    .mode-toggle-option {
+      display: inline-flex;
+      align-items: center;
+      gap: .3rem;
+      padding: .35rem .7rem;
+      border-radius: 100px;
+      color: rgba(255,255,255,.65);
+      transition: color .3s, background .3s;
+      white-space: nowrap;
+    }
+    .mode-toggle-option--active {
+      background: var(--white);
+      color: var(--green);
+      box-shadow: 0 1px 4px rgba(0,0,0,.08);
+    }
+    .navbar.scrolled .mode-toggle {
+      background: rgba(0,0,0,.04);
+      border-color: rgba(0,0,0,.08);
+    }
+    .navbar.scrolled .mode-toggle-option {
+      color: var(--text-muted);
+    }
+    .navbar.scrolled .mode-toggle-option--active {
+      background: var(--green);
+      color: var(--white);
+    }
+    @media (max-width: 768px) {
+      .mode-toggle { font-size: .68rem; }
+      .mode-toggle-option { padding: .3rem .55rem; }
+    }
+
+    /* Hero bg via CSS var pour swap dynamique */
+    .hero-bg {
+      background-image: var(--hero-bg-url, url('/portfolio/new/images/gwaka/photos-temehani/hero-sunset-moorea-ai.webp')) !important;
+    }
+    :root { --hero-bg-url: url('/portfolio/new/images/gwaka/photos-temehani/hero-sunset-moorea-ai.webp'); }
+    body.mode-real { --hero-bg-url: url('/portfolio/new/images/gwaka/photos-temehani/hero-sunset-moorea.webp'); }
+
+    /* ──────────────────────────────
        MOBILE MENU — drawer slide-in droite + overlay
     ────────────────────────────── */
     .burger {
@@ -1362,6 +1420,12 @@
         <li role="none"><a href="#prestations" role="menuitem">Nos Prestations</a></li>
         <li role="none"><a href="/menu" role="menuitem">Menu</a></li>
         <li role="none"><a href="#galerie" role="menuitem">Galerie</a></li>
+        <li role="none">
+          <button type="button" class="mode-toggle" id="modeToggle" role="switch" aria-checked="false" aria-label="Basculer entre version Magazine et Reelle">
+            <span class="mode-toggle-option mode-toggle-option--active" data-mode="ai">&#10024; Magazine</span>
+            <span class="mode-toggle-option" data-mode="real">&#128247; R&eacute;el</span>
+          </button>
+        </li>
         <li role="none"><a href="#contact" role="menuitem"><span class="btn-nav">Demande de devis</span></a></li>
       </ul>
       <button class="burger" id="burger" aria-label="Ouvrir le menu" aria-expanded="false">
@@ -1428,42 +1492,42 @@
       </div>
       <div class="prestations-grid">
         <article class="presta-card reveal reveal-delay-1">
-          <div class="presta-card-img"><img src="/portfolio/new/images/gwaka/photos-temehani/presta-brunch-gourmand-ai.webp" alt="Brunch Gourmand GWAKA" loading="lazy"></div>
+          <div class="presta-card-img"><img src="/portfolio/new/images/gwaka/photos-temehani/presta-brunch-gourmand-ai.webp" data-src-real="/portfolio/new/images/gwaka/photos-temehani/brunch-marquee-tropical.webp" alt="Brunch Gourmand GWAKA" loading="lazy"></div>
           <div class="presta-card-body">
             <h3 class="presta-card-title">Brunch Gourmand</h3>
             <p class="presta-card-desc">Un moment de partage autour de saveurs fraiches et gourmandes.</p>
           </div>
         </article>
         <article class="presta-card reveal reveal-delay-2">
-          <div class="presta-card-img"><img src="/portfolio/new/images/gwaka/photos-temehani/presta-buffet-corporate-ai.webp" alt="Buffet Corporate GWAKA" loading="lazy"></div>
+          <div class="presta-card-img"><img src="/portfolio/new/images/gwaka/photos-temehani/presta-buffet-corporate-ai.webp" data-src-real="/portfolio/new/images/gwaka/photos-temehani/corporate-aeroport-tahiti.webp" alt="Buffet Corporate GWAKA" loading="lazy"></div>
           <div class="presta-card-body">
             <h3 class="presta-card-title">Buffet Corporate</h3>
             <p class="presta-card-desc">Impressionnez vos equipes et partenaires avec un buffet sur mesure.</p>
           </div>
         </article>
         <article class="presta-card reveal reveal-delay-3">
-          <div class="presta-card-img"><img src="/portfolio/new/images/gwaka/photos-temehani/presta-cocktail-dinatoire-ai.webp" alt="Cocktail Dinatoire GWAKA" loading="lazy"></div>
+          <div class="presta-card-img"><img src="/portfolio/new/images/gwaka/photos-temehani/presta-cocktail-dinatoire-ai.webp" data-src-real="/portfolio/new/images/gwaka/photos-temehani/cocktail-bouchees-boutique.webp" alt="Cocktail Dinatoire GWAKA" loading="lazy"></div>
           <div class="presta-card-body">
             <h3 class="presta-card-title">Cocktail Dinatoire</h3>
             <p class="presta-card-desc">Des bouchees elegantes pour des soirees qui marquent les esprits.</p>
           </div>
         </article>
         <article class="presta-card reveal reveal-delay-1">
-          <div class="presta-card-img"><img src="/portfolio/new/images/gwaka/photos-temehani/presta-plateau-aperitif-ai.webp" alt="Plateau Aperitif GWAKA" loading="lazy"></div>
+          <div class="presta-card-img"><img src="/portfolio/new/images/gwaka/photos-temehani/presta-plateau-aperitif-ai.webp" data-src-real="/portfolio/new/images/gwaka/photos-temehani/vegetable-rainbow-board.webp" alt="Plateau Aperitif GWAKA" loading="lazy"></div>
           <div class="presta-card-body">
             <h3 class="presta-card-title">Plateau Aperitif</h3>
             <p class="presta-card-desc">Fromages, charcuteries et saveurs a partager entre amis.</p>
           </div>
         </article>
         <article class="presta-card reveal reveal-delay-2">
-          <div class="presta-card-img"><img src="/portfolio/new/images/gwaka/photos-temehani/presta-evenementiel-prive-ai.webp" alt="Evenementiel Prive GWAKA" loading="lazy"></div>
+          <div class="presta-card-img"><img src="/portfolio/new/images/gwaka/photos-temehani/presta-evenementiel-prive-ai.webp" data-src-real="/portfolio/new/images/gwaka/photos-temehani/evening-buffet-luxury.webp" alt="Evenementiel Prive GWAKA" loading="lazy"></div>
           <div class="presta-card-body">
             <h3 class="presta-card-title">Evenementiel Prive</h3>
             <p class="presta-card-desc">Mariages, baby showers, anniversaires — on s'occupe de tout.</p>
           </div>
         </article>
         <article class="presta-card reveal reveal-delay-3">
-          <div class="presta-card-img"><img src="/portfolio/new/images/gwaka/photos-temehani/presta-seminaire-ai.webp" alt="Seminaire GWAKA" loading="lazy"></div>
+          <div class="presta-card-img"><img src="/portfolio/new/images/gwaka/photos-temehani/presta-seminaire-ai.webp" data-src-real="/portfolio/new/images/gwaka/photos-temehani/seminaire-pauses-cafe.webp" alt="Seminaire GWAKA" loading="lazy"></div>
           <div class="presta-card-body">
             <h3 class="presta-card-title">Seminaire</h3>
             <p class="presta-card-desc">Pauses gourmandes et dejeuners pour vos journees de travail.</p>
@@ -1580,16 +1644,16 @@
         <h2 class="section-title">L'experience GWAKA</h2>
       </div>
       <div class="galerie-grid reveal">
-        <div class="gal-item"><img src="/portfolio/new/images/gwaka/photos-temehani/dessert-buffet-overwater.webp" alt="Buffet desserts GWAKA en bungalow sur lagon" loading="lazy"></div>
-        <div class="gal-item"><img src="/portfolio/new/images/gwaka/photos-temehani/fruit-platter-sculpte.webp" alt="Plateau de fruits frais sculpte GWAKA" loading="lazy"></div>
-        <div class="gal-item"><img src="/portfolio/new/images/gwaka/photos-temehani/ingredients-bowls.webp" alt="Bols d'ingredients frais GWAKA" loading="lazy"></div>
-        <div class="gal-item"><img src="/portfolio/new/images/gwaka/photos-temehani/sushi-platter-couronne.webp" alt="Plateau sushis couronne GWAKA" loading="lazy"></div>
-        <div class="gal-item"><img src="/portfolio/new/images/gwaka/photos-temehani/buffet-spread-table-fete.webp" alt="Buffet de fete GWAKA" loading="lazy"></div>
-        <div class="gal-item"><img src="/portfolio/new/images/gwaka/photos-temehani/fruits-sandwiches-boxes.webp" alt="Boxes fruits et sandwiches GWAKA" loading="lazy"></div>
-        <div class="gal-item"><img src="/portfolio/new/images/gwaka/photos-temehani/waffles-crepes-board.webp" alt="Plateau gaufres et crepes GWAKA" loading="lazy"></div>
-        <div class="gal-item"><img src="/portfolio/new/images/gwaka/photos-temehani/sandwiches-salade-spread.webp" alt="Buffet sandwiches et salade GWAKA" loading="lazy"></div>
-        <div class="gal-item"><img src="/portfolio/new/images/gwaka/photos-temehani/brunch-balloons-event.webp" alt="Brunch GWAKA evenement avec decoration balloons" loading="lazy"></div>
-        <div class="gal-item"><img src="/portfolio/new/images/gwaka/photos-temehani/table-bambou-rustique.webp" alt="Table sous bambou - cadre rustique chic GWAKA" loading="lazy"></div>
+        <div class="gal-item"><img src="/portfolio/new/images/gwaka/photos-temehani/galerie-01-desserts-overwater-ai.webp" data-src-real="/portfolio/new/images/gwaka/photos-temehani/dessert-buffet-overwater.webp" alt="Buffet desserts GWAKA en bungalow sur lagon" loading="lazy"></div>
+        <div class="gal-item"><img src="/portfolio/new/images/gwaka/photos-temehani/galerie-02-fruit-sculpture-ai.webp" data-src-real="/portfolio/new/images/gwaka/photos-temehani/fruit-platter-sculpte.webp" alt="Plateau de fruits frais sculpte GWAKA" loading="lazy"></div>
+        <div class="gal-item"><img src="/portfolio/new/images/gwaka/photos-temehani/galerie-03-ingredients-bowls-ai.webp" data-src-real="/portfolio/new/images/gwaka/photos-temehani/ingredients-bowls.webp" alt="Bols d'ingredients frais GWAKA" loading="lazy"></div>
+        <div class="gal-item"><img src="/portfolio/new/images/gwaka/photos-temehani/galerie-04-sushi-couronne-ai.webp" data-src-real="/portfolio/new/images/gwaka/photos-temehani/sushi-platter-couronne.webp" alt="Plateau sushis couronne GWAKA" loading="lazy"></div>
+        <div class="gal-item"><img src="/portfolio/new/images/gwaka/photos-temehani/galerie-05-buffet-fete-ai.webp" data-src-real="/portfolio/new/images/gwaka/photos-temehani/buffet-spread-table-fete.webp" alt="Buffet de fete GWAKA" loading="lazy"></div>
+        <div class="gal-item"><img src="/portfolio/new/images/gwaka/photos-temehani/galerie-06-fruits-sandwich-boxes-ai.webp" data-src-real="/portfolio/new/images/gwaka/photos-temehani/fruits-sandwiches-boxes.webp" alt="Boxes fruits et sandwiches GWAKA" loading="lazy"></div>
+        <div class="gal-item"><img src="/portfolio/new/images/gwaka/photos-temehani/galerie-07-waffles-crepes-ai.webp" data-src-real="/portfolio/new/images/gwaka/photos-temehani/waffles-crepes-board.webp" alt="Plateau gaufres et crepes GWAKA" loading="lazy"></div>
+        <div class="gal-item"><img src="/portfolio/new/images/gwaka/photos-temehani/galerie-08-sandwiches-salade-ai.webp" data-src-real="/portfolio/new/images/gwaka/photos-temehani/sandwiches-salade-spread.webp" alt="Buffet sandwiches et salade GWAKA" loading="lazy"></div>
+        <div class="gal-item"><img src="/portfolio/new/images/gwaka/photos-temehani/galerie-09-brunch-balloons-event-ai.webp" data-src-real="/portfolio/new/images/gwaka/photos-temehani/brunch-balloons-event.webp" alt="Brunch GWAKA evenement avec decoration balloons" loading="lazy"></div>
+        <div class="gal-item"><img src="/portfolio/new/images/gwaka/photos-temehani/galerie-10-table-bambou-ai.webp" data-src-real="/portfolio/new/images/gwaka/photos-temehani/table-bambou-rustique.webp" alt="Table sous bambou - cadre rustique chic GWAKA" loading="lazy"></div>
       </div>
     </div>
   </section>
@@ -1958,6 +2022,36 @@
           this.alt = '';
         });
       });
+
+      /* ── Mode toggle: Magazine (AI) <-> Reel (Temehani photos) ── */
+      var TOGGLE_KEY = 'gwaka-mode';
+      var toggleBtn = document.getElementById('modeToggle');
+      if (toggleBtn) {
+        var applyMode = function(mode) {
+          var isReal = mode === 'real';
+          document.body.classList.toggle('mode-real', isReal);
+          document.body.classList.toggle('mode-ai', !isReal);
+          toggleBtn.setAttribute('aria-checked', String(isReal));
+          // Switch option highlight
+          toggleBtn.querySelectorAll('.mode-toggle-option').forEach(function(opt) {
+            opt.classList.toggle('mode-toggle-option--active', opt.dataset.mode === mode);
+          });
+          // Swap all <img> with data-src-real attribute (store original AI as data-src-ai)
+          document.querySelectorAll('img[data-src-real]').forEach(function(img) {
+            if (!img.dataset.srcAi) img.dataset.srcAi = img.getAttribute('src');
+            img.setAttribute('src', isReal ? img.dataset.srcReal : img.dataset.srcAi);
+          });
+          try { localStorage.setItem(TOGGLE_KEY, mode); } catch(e) {}
+        };
+        // Default = 'ai', restore from localStorage if set
+        var saved = 'ai';
+        try { saved = localStorage.getItem(TOGGLE_KEY) || 'ai'; } catch(e) {}
+        applyMode(saved);
+        toggleBtn.addEventListener('click', function() {
+          var current = document.body.classList.contains('mode-real') ? 'real' : 'ai';
+          applyMode(current === 'ai' ? 'real' : 'ai');
+        });
+      }
 
     })();
   </script>
