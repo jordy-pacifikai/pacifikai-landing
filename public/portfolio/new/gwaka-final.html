@@ -13,7 +13,7 @@
   <link rel="preload" as="image" href="/portfolio/new/images/gwaka/hero-brunch.webp" fetchpriority="high">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300;1,9..144,400&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Yusei+Magic&family=KoHo:wght@300;400;500;600&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300;1,9..144,400&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
   <style>
     /* ──────────────────────────────
        RESET & BASE
@@ -21,17 +21,20 @@
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
     :root {
-      --green: #4A7C3F;
-      --green-accent: #7CB342;
+      --green: #62A546;
+      --green-accent: #4F8838;
       --green-light: #E8F0E2;
+      --yellow: #EFE533;
       --cream: #FAFAF7;
       --sand: #C4A882;
       --text: #1A1A1A;
       --text-muted: #6B6B6B;
       --white: #FFFFFF;
       --dark: #1A1A1A;
-      --font-display: 'Fraunces', Georgia, serif;
-      --font-body: 'Work Sans', -apple-system, sans-serif;
+      --font-brand: 'Yusei Magic', 'Fraunces', Georgia, serif;
+      --font-tagline: 'KoHo', 'Work Sans', sans-serif;
+      --font-display: 'Yusei Magic', 'Fraunces', Georgia, serif;
+      --font-body: 'KoHo', 'Work Sans', -apple-system, sans-serif;
       --radius: 12px;
       --radius-sm: 8px;
       --shadow-sm: 0 1px 3px rgba(0,0,0,.06), 0 1px 2px rgba(0,0,0,.04);
@@ -193,19 +196,21 @@
     }
 
     .navbar-logo-text span {
-      font-family: var(--font-display);
+      font-family: var(--font-brand);
       font-weight: 400;
-      font-size: 1.25rem;
+      font-size: 1.4rem;
+      letter-spacing: -.01em;
       color: var(--white);
       transition: color var(--transition);
+      text-transform: lowercase;
     }
 
     .navbar-logo-text small {
-      font-family: var(--font-body);
-      font-weight: 400;
+      font-family: var(--font-tagline);
+      font-weight: 300;
       font-size: .65rem;
-      letter-spacing: .08em;
-      color: rgba(255,255,255,.7);
+      letter-spacing: .04em;
+      color: rgba(255,255,255,.75);
       transition: color var(--transition);
     }
 
@@ -442,18 +447,28 @@
     }
 
     .hero-wordmark {
-      font-family: var(--font-display);
-      font-weight: 700;
+      font-family: var(--font-brand);
+      font-weight: 400;
       font-size: clamp(4rem, 14vw, 9rem);
       line-height: 1;
-      letter-spacing: .04em;
+      letter-spacing: .02em;
       color: var(--white);
       text-shadow: 0 4px 32px rgba(0,0,0,.45);
-      margin: 0 0 1.5rem;
+      margin: 0 0 .5rem;
+    }
+
+    .hero-tagline {
+      font-family: var(--font-tagline);
+      font-weight: 300;
+      font-style: italic;
+      font-size: clamp(1rem, 1.8vw, 1.35rem);
+      letter-spacing: .02em;
+      color: rgba(255,255,255,.92);
+      margin: 0 0 2.5rem;
     }
 
     .hero-subtitle {
-      font-family: var(--font-body);
+      font-family: var(--font-tagline);
       font-weight: 300;
       font-size: clamp(.95rem, 1.5vw, 1.1rem);
       line-height: 1.8;
@@ -916,37 +931,36 @@
     .trust-item {
       display: flex;
       align-items: center;
-      gap: 4rem;
+      justify-content: center;
       flex-shrink: 0;
-      font-family: var(--font-display);
-      font-weight: 300;
-      font-style: italic;
-      font-size: clamp(1.35rem, 2.5vw, 1.95rem);
-      letter-spacing: .005em;
-      color: var(--text);
-      white-space: nowrap;
-      opacity: .55;
-      transition: opacity .35s, color .35s;
+      height: 64px;
+      min-width: 120px;
+      max-width: 200px;
       cursor: default;
     }
-    .trust-item::after {
-      content: '';
-      display: inline-block;
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: var(--green-accent);
-      opacity: .5;
-      flex-shrink: 0;
+    .trust-item img {
+      max-height: 56px;
+      max-width: 100%;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      filter: grayscale(100%);
+      opacity: .65;
+      transition: filter .35s, opacity .35s;
+      display: block;
     }
-    .trust-item:hover { opacity: 1; color: var(--green); }
+    .trust-marquee:hover .trust-item img,
+    .trust-item:hover img,
+    .trust-item:focus-visible img {
+      filter: grayscale(0);
+      opacity: 1;
+    }
     @media (max-width: 768px) {
-      .trust-track { gap: 2.5rem; animation-duration: 40s; }
-      .trust-item { gap: 2.5rem; }
+      .trust-track { gap: 2.5rem; animation-duration: 50s; }
+      .trust-item { height: 48px; min-width: 100px; }
+      .trust-item img { max-height: 40px; }
       .trust-marquee { padding: 1rem 0; }
     }
-
-    .trust-item:hover { border-color: var(--green-accent); }
 
     /* ──────────────────────────────
        GALERIE
@@ -1294,7 +1308,8 @@
       <a href="#hero" class="navbar-logo" aria-label="GWAKA - Accueil">
         <img src="/portfolio/new/images/gwaka/gwaka-logo.webp" alt="Logo GWAKA" width="44" height="44" loading="eager">
         <div class="navbar-logo-text">
-          <span>GWAKA</span>
+          <span>gwaka</span>
+          <small>Traiteur Brunch &amp; Healthy</small>
         </div>
       </a>
       <ul class="navbar-links-desktop" role="menubar">
@@ -1328,10 +1343,7 @@
     <div class="hero-bg" role="img" aria-label="Buffet brunch GWAKA"></div>
     <div class="hero-content">
       <h1 class="hero-wordmark">GWAKA</h1>
-      <p class="hero-subtitle">
-        Traiteur Brunch &amp; Healthy &mdash; Tahiti<br>
-        Une cuisine saine, locale et faite avec amour.
-      </p>
+      <p class="hero-tagline">made with love for you</p>
       <div class="hero-ctas">
         <a href="#contact" class="btn-primary">Demande de devis</a>
         <a href="/menu" class="btn-outline">Voir le menu</a>
@@ -1344,19 +1356,19 @@
     <div class="container">
       <div class="stat-item">
         <div class="stat-icon" aria-hidden="true">&#127860;</div>
-        <div class="stat-text">Fait Maison</div>
+        <div class="stat-text">fait maison</div>
       </div>
       <div class="stat-item">
         <div class="stat-icon" aria-hidden="true">&#9998;</div>
-        <div class="stat-text">Sur Mesure</div>
+        <div class="stat-text">sur mesure</div>
       </div>
       <div class="stat-item">
         <div class="stat-icon" aria-hidden="true">&#128205;</div>
-        <div class="stat-text">Circuit Court</div>
+        <div class="stat-text">circuit court</div>
       </div>
       <div class="stat-item">
         <div class="stat-icon" aria-hidden="true">&#127807;</div>
-        <div class="stat-text">Produit Frais</div>
+        <div class="stat-text">produit frais</div>
       </div>
     </div>
   </div>
@@ -1366,7 +1378,7 @@
     <div class="container">
       <div class="prestations-header reveal">
         <span class="section-label">Nos Prestations</span>
-        <h2 class="section-title">Six facons de vous regaler</h2>
+        <h2 class="section-title">Une fa&ccedil;on de vous r&eacute;galer</h2>
       </div>
       <div class="prestations-grid">
         <article class="presta-card reveal reveal-delay-1">
@@ -1421,13 +1433,19 @@
       <div class="about-grid">
         <div class="about-text reveal">
           <span class="section-label">Qui sommes-nous</span>
-          <h2 class="section-title">Brunch &amp; Pleasure</h2>
+          <h2 class="section-title">L&rsquo;histoire de GWAKA</h2>
           <p class="section-subtitle">
-            Brunchs, buffets et evenements sur Tahiti. Produits frais et faits maison, dresses dans une vaisselle elegante. Pour les particuliers comme pour les professionnels &mdash; du brunch intime au buffet corporate.
+            Temehani Hue, 28 ans, dirige <strong>GWAKA</strong> depuis cinq ans. De Tahiti &agrave; Londres en passant par la Tha&iuml;lande, elle a transform&eacute; ses exp&eacute;riences internationales en une aventure entrepreneuriale 100&nbsp;% locale.
+          </p>
+          <p class="section-subtitle">
+            Apr&egrave;s un BTS Management et une licence Marketing &amp; Communication dans le luxe, elle s&rsquo;envole pour Canary Wharf, Londres. Dans une adresse de brunch healthy du quartier d&rsquo;affaires, on la surnomme <em>&laquo;&nbsp;Madame Gwaka&nbsp;&raquo;</em> &mdash; sp&eacute;cialiste du guacamole. Le d&eacute;clic. De retour &agrave; Tahiti, elle imagine ses premi&egrave;res brunch box&nbsp;: fait maison, circuits courts, produits frais et locaux, emballages &eacute;coresponsables.
+          </p>
+          <p class="section-subtitle">
+            Aujourd&rsquo;hui, GWAKA s&rsquo;est diversifi&eacute; en &eacute;v&eacute;nementiel et cocktails. Mais peu importe l&rsquo;ampleur des commandes, l&rsquo;&eacute;nergie des premiers jours reste intacte&nbsp;: des recettes simples, healthy, qui lui ressemblent &mdash; port&eacute;es par ce <em>&laquo;&nbsp;bon stress&nbsp;&raquo;</em> qui la booste au quotidien.
           </p>
         </div>
         <div class="about-img-wrap reveal reveal-delay-2">
-          <img src="/portfolio/new/images/gwaka/smoothie-bowl-tropical.webp" alt="Smoothie bowl tropical GWAKA — Brunch &amp; Pleasure" loading="lazy">
+          <img src="/portfolio/new/images/gwaka/smoothie-bowl-tropical.webp" alt="Temehani Hue, fondatrice de GWAKA Tahiti" loading="lazy">
         </div>
       </div>
     </div>
@@ -1452,27 +1470,57 @@
       </div>
       <div class="trust-marquee reveal" aria-label="Liste des references clients">
         <div class="trust-track">
-          <div class="trust-item" aria-hidden="false">TotalEnergies</div>
-          <div class="trust-item">Banque Socredo</div>
-          <div class="trust-item">UPF</div>
-          <div class="trust-item">ICPF</div>
-          <div class="trust-item">Gaz de Tahiti</div>
-          <div class="trust-item">Direction Jeunesse et Sports</div>
-          <div class="trust-item">Royal Automobile</div>
-          <div class="trust-item">MSH Pacifique</div>
-          <div class="trust-item">Studio Te Hau</div>
-          <div class="trust-item">Millesime Lotus</div>
+          <div class="trust-item"><img src="/portfolio/new/images/gwaka/clients/upf.webp" alt="UPF - Universite de la Polynesie francaise" loading="lazy"></div>
+          <div class="trust-item"><img src="/portfolio/new/images/gwaka/clients/socredo.webp" alt="Banque Socredo" loading="lazy"></div>
+          <div class="trust-item"><img src="/portfolio/new/images/gwaka/clients/banque-de-tahiti.webp" alt="Banque de Tahiti" loading="lazy"></div>
+          <div class="trust-item"><img src="/portfolio/new/images/gwaka/clients/air-tahiti-nui.webp" alt="Air Tahiti Nui" loading="lazy"></div>
+          <div class="trust-item"><img src="/portfolio/new/images/gwaka/clients/gaz-de-tahiti.webp" alt="Gaz de Tahiti" loading="lazy"></div>
+          <div class="trust-item"><img src="/portfolio/new/images/gwaka/clients/icpf.svg" alt="ICPF" loading="lazy"></div>
+          <div class="trust-item"><img src="/portfolio/new/images/gwaka/clients/djs.webp" alt="Direction Jeunesse et Sports" loading="lazy"></div>
+          <div class="trust-item"><img src="/portfolio/new/images/gwaka/clients/tahiti-tourisme.webp" alt="Tahiti Tourisme" loading="lazy"></div>
+          <div class="trust-item"><img src="/portfolio/new/images/gwaka/clients/brasserie-de-tahiti.webp" alt="Brasserie de Tahiti" loading="lazy"></div>
+          <div class="trust-item"><img src="/portfolio/new/images/gwaka/clients/assemblee-polynesie.svg" alt="Assemblee de la Polynesie francaise" loading="lazy"></div>
+          <div class="trust-item"><img src="/portfolio/new/images/gwaka/clients/haut-commissariat.webp" alt="Haut Commissariat de la Republique" loading="lazy"></div>
+          <div class="trust-item"><img src="/portfolio/new/images/gwaka/clients/ccism.webp" alt="CCISM" loading="lazy"></div>
+          <div class="trust-item"><img src="/portfolio/new/images/gwaka/clients/polynesienne-des-eaux.webp" alt="Polynesienne des Eaux" loading="lazy"></div>
+          <div class="trust-item"><img src="/portfolio/new/images/gwaka/clients/ofina.webp" alt="OFINA" loading="lazy"></div>
+          <div class="trust-item"><img src="/portfolio/new/images/gwaka/clients/adie.webp" alt="ADIE" loading="lazy"></div>
+          <div class="trust-item"><img src="/portfolio/new/images/gwaka/clients/adt.webp" alt="ADT" loading="lazy"></div>
+          <div class="trust-item"><img src="/portfolio/new/images/gwaka/clients/aoa.webp" alt="AOA" loading="lazy"></div>
+          <div class="trust-item"><img src="/portfolio/new/images/gwaka/clients/cec.webp" alt="CEC" loading="lazy"></div>
+          <div class="trust-item"><img src="/portfolio/new/images/gwaka/clients/spm.webp" alt="SPM" loading="lazy"></div>
+          <div class="trust-item"><img src="/portfolio/new/images/gwaka/clients/tnt.webp" alt="TNT" loading="lazy"></div>
+          <div class="trust-item"><img src="/portfolio/new/images/gwaka/clients/rl.webp" alt="RL" loading="lazy"></div>
+          <div class="trust-item"><img src="/portfolio/new/images/gwaka/clients/motu-prod.webp" alt="Motu Prod" loading="lazy"></div>
+          <div class="trust-item"><img src="/portfolio/new/images/gwaka/clients/nani-travels.webp" alt="Nani Travels" loading="lazy"></div>
+          <div class="trust-item"><img src="/portfolio/new/images/gwaka/clients/salt-event.webp" alt="SALT Event" loading="lazy"></div>
+          <div class="trust-item"><img src="/portfolio/new/images/gwaka/clients/jo-paris-2024.webp" alt="JO Paris 2024" loading="lazy"></div>
           <!-- Duplicate set for seamless infinite loop -->
-          <div class="trust-item" aria-hidden="true">TotalEnergies</div>
-          <div class="trust-item" aria-hidden="true">Banque Socredo</div>
-          <div class="trust-item" aria-hidden="true">UPF</div>
-          <div class="trust-item" aria-hidden="true">ICPF</div>
-          <div class="trust-item" aria-hidden="true">Gaz de Tahiti</div>
-          <div class="trust-item" aria-hidden="true">Direction Jeunesse et Sports</div>
-          <div class="trust-item" aria-hidden="true">Royal Automobile</div>
-          <div class="trust-item" aria-hidden="true">MSH Pacifique</div>
-          <div class="trust-item" aria-hidden="true">Studio Te Hau</div>
-          <div class="trust-item" aria-hidden="true">Millesime Lotus</div>
+          <div class="trust-item" aria-hidden="true"><img src="/portfolio/new/images/gwaka/clients/upf.webp" alt="" loading="lazy"></div>
+          <div class="trust-item" aria-hidden="true"><img src="/portfolio/new/images/gwaka/clients/socredo.webp" alt="" loading="lazy"></div>
+          <div class="trust-item" aria-hidden="true"><img src="/portfolio/new/images/gwaka/clients/banque-de-tahiti.webp" alt="" loading="lazy"></div>
+          <div class="trust-item" aria-hidden="true"><img src="/portfolio/new/images/gwaka/clients/air-tahiti-nui.webp" alt="" loading="lazy"></div>
+          <div class="trust-item" aria-hidden="true"><img src="/portfolio/new/images/gwaka/clients/gaz-de-tahiti.webp" alt="" loading="lazy"></div>
+          <div class="trust-item" aria-hidden="true"><img src="/portfolio/new/images/gwaka/clients/icpf.svg" alt="" loading="lazy"></div>
+          <div class="trust-item" aria-hidden="true"><img src="/portfolio/new/images/gwaka/clients/djs.webp" alt="" loading="lazy"></div>
+          <div class="trust-item" aria-hidden="true"><img src="/portfolio/new/images/gwaka/clients/tahiti-tourisme.webp" alt="" loading="lazy"></div>
+          <div class="trust-item" aria-hidden="true"><img src="/portfolio/new/images/gwaka/clients/brasserie-de-tahiti.webp" alt="" loading="lazy"></div>
+          <div class="trust-item" aria-hidden="true"><img src="/portfolio/new/images/gwaka/clients/assemblee-polynesie.svg" alt="" loading="lazy"></div>
+          <div class="trust-item" aria-hidden="true"><img src="/portfolio/new/images/gwaka/clients/haut-commissariat.webp" alt="" loading="lazy"></div>
+          <div class="trust-item" aria-hidden="true"><img src="/portfolio/new/images/gwaka/clients/ccism.webp" alt="" loading="lazy"></div>
+          <div class="trust-item" aria-hidden="true"><img src="/portfolio/new/images/gwaka/clients/polynesienne-des-eaux.webp" alt="" loading="lazy"></div>
+          <div class="trust-item" aria-hidden="true"><img src="/portfolio/new/images/gwaka/clients/ofina.webp" alt="" loading="lazy"></div>
+          <div class="trust-item" aria-hidden="true"><img src="/portfolio/new/images/gwaka/clients/adie.webp" alt="" loading="lazy"></div>
+          <div class="trust-item" aria-hidden="true"><img src="/portfolio/new/images/gwaka/clients/adt.webp" alt="" loading="lazy"></div>
+          <div class="trust-item" aria-hidden="true"><img src="/portfolio/new/images/gwaka/clients/aoa.webp" alt="" loading="lazy"></div>
+          <div class="trust-item" aria-hidden="true"><img src="/portfolio/new/images/gwaka/clients/cec.webp" alt="" loading="lazy"></div>
+          <div class="trust-item" aria-hidden="true"><img src="/portfolio/new/images/gwaka/clients/spm.webp" alt="" loading="lazy"></div>
+          <div class="trust-item" aria-hidden="true"><img src="/portfolio/new/images/gwaka/clients/tnt.webp" alt="" loading="lazy"></div>
+          <div class="trust-item" aria-hidden="true"><img src="/portfolio/new/images/gwaka/clients/rl.webp" alt="" loading="lazy"></div>
+          <div class="trust-item" aria-hidden="true"><img src="/portfolio/new/images/gwaka/clients/motu-prod.webp" alt="" loading="lazy"></div>
+          <div class="trust-item" aria-hidden="true"><img src="/portfolio/new/images/gwaka/clients/nani-travels.webp" alt="" loading="lazy"></div>
+          <div class="trust-item" aria-hidden="true"><img src="/portfolio/new/images/gwaka/clients/salt-event.webp" alt="" loading="lazy"></div>
+          <div class="trust-item" aria-hidden="true"><img src="/portfolio/new/images/gwaka/clients/jo-paris-2024.webp" alt="" loading="lazy"></div>
         </div>
       </div>
     </div>

@@ -13,7 +13,7 @@
   <link rel="preload" as="image" href="/portfolio/new/images/gwaka/hero-menu.webp" fetchpriority="high">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300;1,9..144,400&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Yusei+Magic&family=KoHo:wght@300;400;500;600&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300;1,9..144,400&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
   <style>
     /* ──────────────────────────────
        RESET & BASE
@@ -21,17 +21,20 @@
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
     :root {
-      --green: #4A7C3F;
-      --green-accent: #7CB342;
+      --green: #62A546;
+      --green-accent: #4F8838;
       --green-light: #E8F0E2;
+      --yellow: #EFE533;
       --cream: #FAFAF7;
       --sand: #C4A882;
       --text: #1A1A1A;
       --text-muted: #6B6B6B;
       --white: #FFFFFF;
       --dark: #1A1A1A;
-      --font-display: 'Fraunces', Georgia, serif;
-      --font-body: 'Work Sans', -apple-system, sans-serif;
+      --font-brand: 'Yusei Magic', 'Fraunces', Georgia, serif;
+      --font-tagline: 'KoHo', 'Work Sans', sans-serif;
+      --font-display: 'Yusei Magic', 'Fraunces', Georgia, serif;
+      --font-body: 'KoHo', 'Work Sans', -apple-system, sans-serif;
       --radius: 12px;
       --radius-sm: 8px;
       --shadow-sm: 0 1px 3px rgba(0,0,0,.06), 0 1px 2px rgba(0,0,0,.04);
@@ -193,19 +196,21 @@
     }
 
     .navbar-logo-text span {
-      font-family: var(--font-display);
+      font-family: var(--font-brand);
       font-weight: 400;
-      font-size: 1.25rem;
+      font-size: 1.4rem;
+      letter-spacing: -.01em;
       color: var(--white);
       transition: color var(--transition);
+      text-transform: lowercase;
     }
 
     .navbar-logo-text small {
-      font-family: var(--font-body);
-      font-weight: 400;
+      font-family: var(--font-tagline);
+      font-weight: 300;
       font-size: .65rem;
-      letter-spacing: .08em;
-      color: rgba(255,255,255,.7);
+      letter-spacing: .04em;
+      color: rgba(255,255,255,.75);
       transition: color var(--transition);
     }
 
@@ -1294,7 +1299,8 @@
       <a href="/" class="navbar-logo" aria-label="GWAKA - Accueil">
         <img src="/portfolio/new/images/gwaka/gwaka-logo.webp" alt="Logo GWAKA" width="44" height="44" loading="eager">
         <div class="navbar-logo-text">
-          <span>GWAKA</span>
+          <span>gwaka</span>
+          <small>Traiteur Brunch &amp; Healthy</small>
         </div>
       </a>
       <ul class="navbar-links-desktop" role="menubar">
@@ -1336,20 +1342,20 @@
   <section class="menu" id="menu" aria-label="Notre carte">
     <div class="container">
       <div class="menu-tabs reveal" role="tablist" aria-label="Filtres du menu">
-        <button class="menu-tab" role="tab" aria-selected="false" data-filter="sales">Sales</button>
+        <button class="menu-tab" role="tab" aria-selected="false" data-filter="sales">Sal&eacute;s</button>
         <button class="menu-tab" role="tab" aria-selected="false" data-filter="toasts">Toasts</button>
         <button class="menu-tab" role="tab" aria-selected="false" data-filter="wraps">Wraps</button>
         <button class="menu-tab" role="tab" aria-selected="false" data-filter="salades">Salades</button>
         <button class="menu-tab" role="tab" aria-selected="false" data-filter="plateaux">Plateaux</button>
         <button class="menu-tab" role="tab" aria-selected="false" data-filter="sushis">Sushis</button>
-        <button class="menu-tab" role="tab" aria-selected="false" data-filter="mini">Mini Sales</button>
+        <button class="menu-tab" role="tab" aria-selected="false" data-filter="mini">Mini Sal&eacute;s</button>
       </div>
 
       <!-- SALES -->
       <div class="menu-category" data-cat="sales">
         <div class="menu-category-header">
-          <img class="menu-category-thumb" src="/portfolio/new/images/gwaka/egg-muffin.webp" alt="Sales" loading="lazy">
-          <h3 class="menu-category-name">Sales</h3>
+          <img class="menu-category-thumb" src="/portfolio/new/images/gwaka/egg-muffin.webp" alt="Sal&eacute;s" loading="lazy">
+          <h3 class="menu-category-name">Sal&eacute;s</h3>
         </div>
         <div class="menu-products">
           <div class="menu-product"><div class="menu-product-img"><img src="/portfolio/new/images/gwaka/egg-muffin.webp" alt="Egg Muffin Classique" loading="lazy"></div><div class="menu-product-body"><div class="menu-product-name">Egg Muffin Classique</div><p class="menu-product-desc">Oeuf et cheddar fondant</p></div></div>
@@ -1450,8 +1456,8 @@
       <!-- MINI SALES -->
       <div class="menu-category" data-cat="mini">
         <div class="menu-category-header">
-          <img class="menu-category-thumb" src="/portfolio/new/images/gwaka/mini-quiche.webp" alt="Mini Sales" loading="lazy">
-          <h3 class="menu-category-name">Mini Sales</h3>
+          <img class="menu-category-thumb" src="/portfolio/new/images/gwaka/mini-quiche.webp" alt="Mini Sal&eacute;s" loading="lazy">
+          <h3 class="menu-category-name">Mini Sal&eacute;s</h3>
         </div>
         <div class="menu-products">
           <div class="menu-product"><div class="menu-product-img"><img src="/portfolio/new/images/gwaka/mini-quiche.webp" alt="Mini Quiche" loading="lazy"></div><div class="menu-product-body"><div class="menu-product-name">Mini Quiche</div><p class="menu-product-desc">Quiche maison en format mini</p></div></div>
@@ -1480,7 +1486,8 @@
         <div class="footer-brand">
           <div class="footer-brand-logo">
             <img src="/portfolio/new/images/gwaka/gwaka-logo.webp" alt="Logo GWAKA" width="40" height="40" loading="lazy">
-            <span>GWAKA</span>
+            <span>gwaka</span>
+          <small>Traiteur Brunch &amp; Healthy</small>
           </div>
           <p>Traiteur Brunch & Healthy — Tahiti.<br>Cuisine saine, locale et faite avec amour.</p>
         </div>
