@@ -1116,6 +1116,38 @@
       position: relative;
     }
 
+    /* "Voir plus" button + hidden items */
+    .gal-item.gal-hidden { display: none; }
+    .galerie-more-wrap {
+      display: flex;
+      justify-content: center;
+      margin-top: 2.5rem;
+    }
+    .galerie-more-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      padding: .85rem 2.5rem;
+      font-family: var(--font-tagline);
+      font-size: .95rem;
+      font-weight: 500;
+      letter-spacing: .02em;
+      color: var(--green);
+      background: var(--white);
+      border: 1.5px solid var(--green);
+      border-radius: 100px;
+      cursor: pointer;
+      transition: background .25s, color .25s, transform .2s;
+    }
+    .galerie-more-btn:hover {
+      background: var(--green);
+      color: var(--white);
+      transform: translateY(-1px);
+    }
+    .galerie-more-btn:focus-visible { outline: 2px solid var(--green-accent); outline-offset: 3px; }
+    .galerie-more-btn.hidden { display: none; }
+    .galerie-more-btn__icon { font-size: 1.1rem; line-height: 1; }
+
     .gal-item img {
       width: 100%; height: 100%;
       object-fit: cover;
@@ -1697,26 +1729,32 @@
         <div class="gal-item"><img src="/portfolio/new/images/gwaka/photos-temehani/waffles-crepes-board.webp" alt="Plateau gaufres et crepes GWAKA" loading="lazy"></div>
         <div class="gal-item"><img src="/portfolio/new/images/gwaka/photos-temehani/long-table-jungle-view.webp" alt="Buffet sur longue table vue jungle tropicale" loading="lazy"></div>
         <div class="gal-item"><img src="/portfolio/new/images/gwaka/photos-temehani/sandwiches-salade-spread.webp?v=2" alt="Buffet sandwiches et salade GWAKA" loading="lazy"></div>
-        <div class="gal-item"><img src="/portfolio/new/images/gwaka/photos-temehani/brunch-balloons-event.webp" alt="Brunch GWAKA evenement avec decoration balloons" loading="lazy"></div>
-        <div class="gal-item"><img src="/portfolio/new/images/gwaka/photos-temehani/buffet-boxes-tropical.webp" alt="Buffet boxes mixed - mini sandwiches, fruits, salade quinoa" loading="lazy"></div>
-        <div class="gal-item"><img src="/portfolio/new/images/gwaka/photos-temehani/table-bambou-rustique.webp" alt="Table sous bambou - cadre rustique chic GWAKA" loading="lazy"></div>
-        <div class="gal-item"><img src="/portfolio/new/images/gwaka/photos-temehani/aoa-bambou-foret.webp" alt="Stand AOA foret de bambous GWAKA" loading="lazy"></div>
-        <div class="gal-item"><img src="/portfolio/new/images/gwaka/photos-temehani/orama-banque-tahiti-event.webp" alt="Event corporate Orama Banque de Tahiti" loading="lazy"></div>
-        <div class="gal-item"><img src="/portfolio/new/images/gwaka/photos-temehani/pool-sport-event.webp" alt="Event GWAKA piscine sport" loading="lazy"></div>
-        <div class="gal-item"><img src="/portfolio/new/images/gwaka/photos-temehani/wraps-newspaper-styled.webp" alt="Wraps presentation style journal GWAKA" loading="lazy"></div>
-        <div class="gal-item"><img src="/portfolio/new/images/gwaka/photos-temehani/long-buffet-outdoor.webp" alt="Long buffet GWAKA en terrasse" loading="lazy"></div>
-        <div class="gal-item"><img src="/portfolio/new/images/gwaka/photos-temehani/millesime-lotus-event.webp" alt="Event GWAKA collaboration Millesime Lotus" loading="lazy"></div>
-        <div class="gal-item"><img src="/portfolio/new/images/gwaka/photos-temehani/gallery-photo-04318.webp" alt="GWAKA - prestation traiteur Tahiti" loading="lazy"></div>
-        <div class="gal-item"><img src="/portfolio/new/images/gwaka/photos-temehani/gallery-photo-05043.webp" alt="GWAKA - prestation traiteur Tahiti" loading="lazy"></div>
-        <div class="gal-item"><img src="/portfolio/new/images/gwaka/photos-temehani/gallery-photo-05369.webp" alt="GWAKA - prestation traiteur Tahiti" loading="lazy"></div>
-        <div class="gal-item"><img src="/portfolio/new/images/gwaka/photos-temehani/gallery-photo-06310.webp" alt="GWAKA - prestation traiteur Tahiti" loading="lazy"></div>
-        <div class="gal-item"><img src="/portfolio/new/images/gwaka/photos-temehani/gallery-photo-06376.webp" alt="GWAKA - prestation traiteur Tahiti" loading="lazy"></div>
-        <div class="gal-item"><img src="/portfolio/new/images/gwaka/photos-temehani/gallery-photo-06540.webp" alt="GWAKA - prestation traiteur Tahiti" loading="lazy"></div>
-        <div class="gal-item"><img src="/portfolio/new/images/gwaka/photos-temehani/gallery-photo-06795.webp" alt="GWAKA - prestation traiteur Tahiti" loading="lazy"></div>
-        <div class="gal-item"><img src="/portfolio/new/images/gwaka/photos-temehani/gallery-photo-06870.webp" alt="GWAKA - prestation traiteur Tahiti" loading="lazy"></div>
-        <div class="gal-item"><img src="/portfolio/new/images/gwaka/photos-temehani/gallery-photo-08126.webp" alt="GWAKA - prestation traiteur Tahiti" loading="lazy"></div>
-        <div class="gal-item"><img src="/portfolio/new/images/gwaka/photos-temehani/gallery-photo-09138.webp" alt="GWAKA - prestation traiteur Tahiti" loading="lazy"></div>
-        <div class="gal-item"><img src="/portfolio/new/images/gwaka/photos-temehani/gallery-photo-unnamed8.webp" alt="GWAKA - prestation traiteur Tahiti" loading="lazy"></div>
+        <div class="gal-item gal-hidden"><img src="/portfolio/new/images/gwaka/photos-temehani/brunch-balloons-event.webp" alt="Brunch GWAKA evenement avec decoration balloons" loading="lazy"></div>
+        <div class="gal-item gal-hidden"><img src="/portfolio/new/images/gwaka/photos-temehani/buffet-boxes-tropical.webp" alt="Buffet boxes mixed - mini sandwiches, fruits, salade quinoa" loading="lazy"></div>
+        <div class="gal-item gal-hidden"><img src="/portfolio/new/images/gwaka/photos-temehani/table-bambou-rustique.webp" alt="Table sous bambou - cadre rustique chic GWAKA" loading="lazy"></div>
+        <div class="gal-item gal-hidden"><img src="/portfolio/new/images/gwaka/photos-temehani/aoa-bambou-foret.webp" alt="Stand AOA foret de bambous GWAKA" loading="lazy"></div>
+        <div class="gal-item gal-hidden"><img src="/portfolio/new/images/gwaka/photos-temehani/orama-banque-tahiti-event.webp" alt="Event corporate Orama Banque de Tahiti" loading="lazy"></div>
+        <div class="gal-item gal-hidden"><img src="/portfolio/new/images/gwaka/photos-temehani/pool-sport-event.webp" alt="Event GWAKA piscine sport" loading="lazy"></div>
+        <div class="gal-item gal-hidden"><img src="/portfolio/new/images/gwaka/photos-temehani/wraps-newspaper-styled.webp" alt="Wraps presentation style journal GWAKA" loading="lazy"></div>
+        <div class="gal-item gal-hidden"><img src="/portfolio/new/images/gwaka/photos-temehani/long-buffet-outdoor.webp" alt="Long buffet GWAKA en terrasse" loading="lazy"></div>
+        <div class="gal-item gal-hidden"><img src="/portfolio/new/images/gwaka/photos-temehani/millesime-lotus-event.webp" alt="Event GWAKA collaboration Millesime Lotus" loading="lazy"></div>
+        <div class="gal-item gal-hidden"><img src="/portfolio/new/images/gwaka/photos-temehani/gallery-photo-04318.webp" alt="GWAKA - prestation traiteur Tahiti" loading="lazy"></div>
+        <div class="gal-item gal-hidden"><img src="/portfolio/new/images/gwaka/photos-temehani/gallery-photo-05043.webp" alt="GWAKA - prestation traiteur Tahiti" loading="lazy"></div>
+        <div class="gal-item gal-hidden"><img src="/portfolio/new/images/gwaka/photos-temehani/gallery-photo-05369.webp" alt="GWAKA - prestation traiteur Tahiti" loading="lazy"></div>
+        <div class="gal-item gal-hidden"><img src="/portfolio/new/images/gwaka/photos-temehani/gallery-photo-06310.webp" alt="GWAKA - prestation traiteur Tahiti" loading="lazy"></div>
+        <div class="gal-item gal-hidden"><img src="/portfolio/new/images/gwaka/photos-temehani/gallery-photo-06376.webp" alt="GWAKA - prestation traiteur Tahiti" loading="lazy"></div>
+        <div class="gal-item gal-hidden"><img src="/portfolio/new/images/gwaka/photos-temehani/gallery-photo-06540.webp" alt="GWAKA - prestation traiteur Tahiti" loading="lazy"></div>
+        <div class="gal-item gal-hidden"><img src="/portfolio/new/images/gwaka/photos-temehani/gallery-photo-06795.webp" alt="GWAKA - prestation traiteur Tahiti" loading="lazy"></div>
+        <div class="gal-item gal-hidden"><img src="/portfolio/new/images/gwaka/photos-temehani/gallery-photo-06870.webp" alt="GWAKA - prestation traiteur Tahiti" loading="lazy"></div>
+        <div class="gal-item gal-hidden"><img src="/portfolio/new/images/gwaka/photos-temehani/gallery-photo-08126.webp" alt="GWAKA - prestation traiteur Tahiti" loading="lazy"></div>
+        <div class="gal-item gal-hidden"><img src="/portfolio/new/images/gwaka/photos-temehani/gallery-photo-09138.webp" alt="GWAKA - prestation traiteur Tahiti" loading="lazy"></div>
+        <div class="gal-item gal-hidden"><img src="/portfolio/new/images/gwaka/photos-temehani/gallery-photo-unnamed8.webp" alt="GWAKA - prestation traiteur Tahiti" loading="lazy"></div>
+      </div>
+      <div class="galerie-more-wrap">
+        <button type="button" class="galerie-more-btn" id="galerieMoreBtn">
+          Voir les 20 autres photos
+          <span class="galerie-more-btn__icon" aria-hidden="true">&darr;</span>
+        </button>
       </div>
     </div>
   </section>
@@ -2085,6 +2123,17 @@
           this.alt = '';
         });
       });
+
+      /* ── Galerie "Voir plus" : reveal hidden items ── */
+      var galerieMoreBtn = document.getElementById('galerieMoreBtn');
+      if (galerieMoreBtn) {
+        galerieMoreBtn.addEventListener('click', function() {
+          document.querySelectorAll('.gal-item.gal-hidden').forEach(function(el) {
+            el.classList.remove('gal-hidden');
+          });
+          galerieMoreBtn.classList.add('hidden');
+        });
+      }
 
       /* ── Mode toggle: IA <-> Reel (Temehani photos) ── */
       var TOGGLE_KEY = 'gwaka-mode';
