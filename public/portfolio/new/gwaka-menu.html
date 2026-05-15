@@ -284,6 +284,88 @@
     .btn-nav:hover { background: var(--green-accent); transform: translateY(-1px); }
     .btn-nav:focus-visible { outline: 2px solid var(--green-accent); outline-offset: 2px; }
 
+    /* MODE TOGGLE — IA / Reel */
+    .mode-toggle {
+      display: inline-flex; align-items: center; gap: .5rem;
+      padding: 4px;
+      background: rgba(255,255,255,.15);
+      backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+      border: 1px solid rgba(255,255,255,.25);
+      border-radius: 100px; cursor: pointer;
+      font-family: var(--font-tagline); font-size: .72rem; font-weight: 400;
+      transition: background .3s, border-color .3s; user-select: none;
+    }
+    .mode-toggle-option {
+      display: inline-flex; align-items: center; gap: .3rem;
+      padding: .35rem .7rem; border-radius: 100px;
+      color: rgba(255,255,255,.65);
+      transition: color .3s, background .3s; white-space: nowrap;
+    }
+    .mode-toggle-option--active {
+      background: var(--white); color: var(--green);
+      box-shadow: 0 1px 4px rgba(0,0,0,.08);
+    }
+    .navbar.scrolled .mode-toggle { background: rgba(0,0,0,.04); border-color: rgba(0,0,0,.08); }
+    .navbar.scrolled .mode-toggle-option { color: var(--text-muted); }
+    .navbar.scrolled .mode-toggle-option--active { background: var(--green); color: var(--white); }
+
+    /* Catalogue (Reel mode): pages PDF Temehani */
+    .catalogue-pages { display: none; }
+    body.mode-real .catalogue-pages { display: block; }
+    body.mode-real .menu-tabs,
+    body.mode-real .menu-category { display: none !important; }
+
+    .catalogue-pages-header {
+      text-align: center;
+      margin-bottom: 2.5rem;
+      max-width: 640px;
+      margin-left: auto; margin-right: auto;
+    }
+    .catalogue-pages-header h2 {
+      font-family: var(--font-brand);
+      font-weight: 400;
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      margin-bottom: .75rem;
+    }
+    .catalogue-pages-header p {
+      font-family: var(--font-tagline);
+      color: var(--text-muted);
+      font-size: .95rem;
+      line-height: 1.6;
+    }
+    .catalogue-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+    }
+    @media (max-width: 1024px) { .catalogue-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 640px)  { .catalogue-grid { grid-template-columns: 1fr; } }
+    .catalogue-page-card {
+      position: relative;
+      overflow: hidden;
+      border-radius: 14px;
+      box-shadow:
+        0 1px 2px rgba(0,0,0,.04),
+        0 8px 24px rgba(0,0,0,.08),
+        0 16px 40px rgba(0,0,0,.06);
+      background: var(--white);
+      cursor: zoom-in;
+      transition: transform .35s, box-shadow .35s;
+    }
+    .catalogue-page-card:hover {
+      transform: translateY(-3px);
+      box-shadow:
+        0 1px 2px rgba(0,0,0,.04),
+        0 12px 32px rgba(98, 165, 70, .14),
+        0 24px 56px rgba(0,0,0,.12);
+    }
+    .catalogue-page-card img {
+      display: block;
+      width: 100%; height: auto;
+      aspect-ratio: 1240/1750;
+      object-fit: cover;
+    }
+
     /* ──────────────────────────────
        MOBILE MENU — drawer slide-in droite + overlay
     ────────────────────────────── */
@@ -1307,6 +1389,12 @@
         <li role="none"><a href="/#prestations" role="menuitem">Nos Prestations</a></li>
         <li role="none"><a href="/menu" role="menuitem">Menu</a></li>
         <li role="none"><a href="/#galerie" role="menuitem">Galerie</a></li>
+        <li role="none">
+          <button type="button" class="mode-toggle" id="modeToggle" role="switch" aria-checked="false" aria-label="Basculer entre version IA et Reelle">
+            <span class="mode-toggle-option mode-toggle-option--active" data-mode="ai">&#10024; IA</span>
+            <span class="mode-toggle-option" data-mode="real">&#128247; R&eacute;el</span>
+          </button>
+        </li>
         <li role="none"><a href="/#contact" role="menuitem"><span class="btn-nav">Demande de devis</span></a></li>
       </ul>
       <button class="burger" id="burger" aria-label="Ouvrir le menu" aria-expanded="false">
@@ -1473,6 +1561,35 @@
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
           Telecharger notre catalogue PDF
         </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== CATALOGUE PAGES (Mode Reel) ========== -->
+  <section class="catalogue-pages" aria-label="Catalogue GWAKA - Vraies photos">
+    <div class="container">
+      <div class="catalogue-pages-header reveal">
+        <h2>Notre catalogue officiel</h2>
+        <p>Voici notre catalogue traiteur tel que nous l'avons compose. Chaque page presente nos produits avec leurs vraies photos et ingredients exacts.</p>
+      </div>
+      <div class="catalogue-grid reveal">
+        <div class="catalogue-page-card"><img src="/portfolio/new/images/gwaka/catalogue-pages/page-01.webp" alt="Catalogue GWAKA page 1" loading="lazy"></div>
+        <div class="catalogue-page-card"><img src="/portfolio/new/images/gwaka/catalogue-pages/page-02.webp" alt="GWAKA Produits Sales - Egg muffins, Bagels, Black buns" loading="lazy"></div>
+        <div class="catalogue-page-card"><img src="/portfolio/new/images/gwaka/catalogue-pages/page-03.webp" alt="GWAKA Produits Sales - Cakes, Toasts Houmous, Carpaccio" loading="lazy"></div>
+        <div class="catalogue-page-card"><img src="/portfolio/new/images/gwaka/catalogue-pages/page-04.webp" alt="GWAKA Toasts Signature" loading="lazy"></div>
+        <div class="catalogue-page-card"><img src="/portfolio/new/images/gwaka/catalogue-pages/page-05.webp" alt="GWAKA Wraps, Club Sandwiches, Salades" loading="lazy"></div>
+        <div class="catalogue-page-card"><img src="/portfolio/new/images/gwaka/catalogue-pages/page-06.webp" alt="GWAKA Gaufres, Croque, Verrines" loading="lazy"></div>
+        <div class="catalogue-page-card"><img src="/portfolio/new/images/gwaka/catalogue-pages/page-07.webp" alt="GWAKA Mini Sales" loading="lazy"></div>
+        <div class="catalogue-page-card"><img src="/portfolio/new/images/gwaka/catalogue-pages/page-08.webp" alt="GWAKA Salades Composees" loading="lazy"></div>
+        <div class="catalogue-page-card"><img src="/portfolio/new/images/gwaka/catalogue-pages/page-09.webp" alt="GWAKA Plateaux Sales a partager" loading="lazy"></div>
+        <div class="catalogue-page-card"><img src="/portfolio/new/images/gwaka/catalogue-pages/page-10.webp" alt="GWAKA Plateaux de Sushis maison" loading="lazy"></div>
+        <div class="catalogue-page-card"><img src="/portfolio/new/images/gwaka/catalogue-pages/page-11.webp" alt="GWAKA page 11" loading="lazy"></div>
+        <div class="catalogue-page-card"><img src="/portfolio/new/images/gwaka/catalogue-pages/page-12.webp" alt="GWAKA page 12" loading="lazy"></div>
+        <div class="catalogue-page-card"><img src="/portfolio/new/images/gwaka/catalogue-pages/page-13.webp" alt="GWAKA page 13" loading="lazy"></div>
+        <div class="catalogue-page-card"><img src="/portfolio/new/images/gwaka/catalogue-pages/page-14.webp" alt="GWAKA page 14" loading="lazy"></div>
+        <div class="catalogue-page-card"><img src="/portfolio/new/images/gwaka/catalogue-pages/page-15.webp" alt="GWAKA page 15" loading="lazy"></div>
+        <div class="catalogue-page-card"><img src="/portfolio/new/images/gwaka/catalogue-pages/page-16.webp" alt="GWAKA page 16" loading="lazy"></div>
+        <div class="catalogue-page-card"><img src="/portfolio/new/images/gwaka/catalogue-pages/page-17.webp" alt="GWAKA page 17" loading="lazy"></div>
       </div>
     </div>
   </section>
@@ -1719,6 +1836,29 @@
           this.alt = '';
         });
       });
+
+      /* ── Mode toggle IA <-> Reel (sync avec localStorage de la home) ── */
+      var TOGGLE_KEY = 'gwaka-mode';
+      var toggleBtn = document.getElementById('modeToggle');
+      if (toggleBtn) {
+        var applyMode = function(mode) {
+          var isReal = mode === 'real';
+          document.body.classList.toggle('mode-real', isReal);
+          document.body.classList.toggle('mode-ai', !isReal);
+          toggleBtn.setAttribute('aria-checked', String(isReal));
+          toggleBtn.querySelectorAll('.mode-toggle-option').forEach(function(opt) {
+            opt.classList.toggle('mode-toggle-option--active', opt.dataset.mode === mode);
+          });
+          try { localStorage.setItem(TOGGLE_KEY, mode); } catch(e) {}
+        };
+        var saved = 'ai';
+        try { saved = localStorage.getItem(TOGGLE_KEY) || 'ai'; } catch(e) {}
+        applyMode(saved);
+        toggleBtn.addEventListener('click', function() {
+          var current = document.body.classList.contains('mode-real') ? 'real' : 'ai';
+          applyMode(current === 'ai' ? 'real' : 'ai');
+        });
+      }
 
     })();
   </script>
