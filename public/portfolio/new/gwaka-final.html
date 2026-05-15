@@ -1136,7 +1136,11 @@
     /* ──────────────────────────────
        CONTACT / FORM
     ────────────────────────────── */
-    .contact { background: var(--white); }
+    /* Contact section: fond vert charte (Temehani request) */
+    .contact {
+      background: linear-gradient(180deg, var(--green-light) 0%, color-mix(in srgb, var(--green-light) 60%, var(--white) 40%) 100%);
+      position: relative;
+    }
 
     .contact-header {
       text-align: center;
@@ -1150,21 +1154,34 @@
     .contact-grid {
       display: grid;
       grid-template-columns: 1fr 1.5fr;
-      gap: 4rem;
+      gap: 2rem;
       align-items: start;
     }
 
     @media (max-width: 768px) {
       .contact-grid {
         grid-template-columns: 1fr;
-        gap: 3rem;
+        gap: 2rem;
       }
     }
 
+    /* Card vert solide pour contact-info (le "cadre transparent vert" demande) */
+    .contact-info {
+      background: var(--green);
+      color: var(--white);
+      padding: 2.5rem 2rem;
+      border-radius: 16px;
+      box-shadow:
+        0 1px 2px rgba(0,0,0,.04),
+        0 12px 28px rgba(98, 165, 70, .22),
+        0 24px 56px rgba(0,0,0,.10);
+    }
+
     .contact-info h3 {
-      font-family: var(--font-display);
+      font-family: var(--font-brand);
       font-weight: 400;
-      font-size: 1.25rem;
+      font-size: 1.4rem;
+      color: var(--white);
       margin-bottom: 2rem;
     }
 
@@ -1180,30 +1197,34 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      background: var(--green-light);
+      background: rgba(255,255,255,.18);
+      backdrop-filter: blur(4px);
       border-radius: 50%;
       flex-shrink: 0;
       font-size: 1rem;
+      color: var(--white);
     }
 
     .contact-info-label {
-      font-size: .75rem;
+      font-size: .7rem;
       font-weight: 500;
-      color: var(--text-muted);
+      color: rgba(255,255,255,.7);
       text-transform: uppercase;
-      letter-spacing: .05em;
-      margin-bottom: .125rem;
+      letter-spacing: .08em;
+      margin-bottom: .15rem;
     }
 
     .contact-info-value {
       font-size: .9375rem;
-      color: var(--text);
+      color: var(--white);
     }
 
     .contact-socials {
       display: flex;
       gap: 1rem;
       margin-top: 2rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(255,255,255,.18);
     }
 
     .social-link {
@@ -1212,19 +1233,30 @@
       gap: .5rem;
       font-size: .8125rem;
       font-weight: 500;
-      color: var(--text-muted);
+      color: rgba(255,255,255,.85);
       transition: color var(--transition);
     }
 
-    .social-link:hover { color: var(--green); }
+    .social-link:hover { color: var(--yellow); }
 
     .social-link svg {
       width: 20px; height: 20px;
       fill: currentColor;
     }
 
-    /* Form */
-    .contact-form { display: flex; flex-direction: column; gap: 1.25rem; }
+    /* Form: card blanche pour contraster avec section verte */
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+      background: var(--white);
+      padding: 2.5rem 2rem;
+      border-radius: 16px;
+      box-shadow:
+        0 1px 2px rgba(0,0,0,.04),
+        0 12px 28px rgba(0,0,0,.06),
+        0 24px 56px rgba(0,0,0,.08);
+    }
 
     .form-row {
       display: grid;
