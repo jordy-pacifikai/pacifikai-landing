@@ -697,15 +697,26 @@
     }
 
     .presta-card-body {
-      padding: 1.25rem 1.5rem 1.5rem;
+      padding: 1.5rem 1.5rem 1.75rem;
     }
 
     .presta-card-title {
       font-family: var(--font-display);
       font-weight: 400;
-      font-size: 1.125rem;
-      margin-bottom: .375rem;
+      font-size: 1.25rem;
+      margin-bottom: .65rem;
       color: var(--text);
+    }
+
+    .presta-card-context {
+      font-family: var(--font-tagline);
+      font-weight: 300;
+      font-style: italic;
+      font-size: .8rem;
+      color: var(--green);
+      line-height: 1.5;
+      margin-bottom: .65rem;
+      letter-spacing: .005em;
     }
 
     .presta-card-desc {
@@ -1046,33 +1057,188 @@
       align-items: center;
       justify-content: center;
       flex-shrink: 0;
-      height: 64px;
-      min-width: 120px;
-      max-width: 200px;
+      height: 110px;
+      min-width: 180px;
+      max-width: 280px;
       cursor: default;
     }
     .trust-item img {
-      max-height: 56px;
+      max-height: 95px;
       max-width: 100%;
       width: auto;
       height: auto;
       object-fit: contain;
-      filter: grayscale(100%);
-      opacity: .65;
-      transition: filter .35s, opacity .35s;
+      opacity: .92;
+      transition: opacity .35s, transform .25s;
       display: block;
     }
-    .trust-marquee:hover .trust-item img,
     .trust-item:hover img,
     .trust-item:focus-visible img {
-      filter: grayscale(0);
       opacity: 1;
+      transform: scale(1.04);
     }
     @media (max-width: 768px) {
       .trust-track { gap: 2.5rem; animation-duration: 50s; }
-      .trust-item { height: 48px; min-width: 100px; }
-      .trust-item img { max-height: 40px; }
+      .trust-item { height: 80px; min-width: 140px; }
+      .trust-item img { max-height: 68px; }
       .trust-marquee { padding: 1rem 0; }
+    }
+
+    /* ──────────────────────────────
+       CLE EN MAIN (services inclus)
+    ────────────────────────────── */
+    .cle-en-main {
+      background: var(--white);
+      padding: clamp(4rem, 8vw, 6rem) 0;
+    }
+    .cle-en-main-header {
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto 3rem;
+    }
+    .cle-en-main-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.25rem;
+    }
+    @media (max-width: 1024px) { .cle-en-main-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 520px)  { .cle-en-main-grid { grid-template-columns: 1fr; } }
+
+    .cle-feature {
+      padding: 1.5rem 1.25rem;
+      text-align: center;
+      border-radius: 14px;
+      background: linear-gradient(180deg, color-mix(in srgb, var(--green-light) 50%, var(--white)) 0%, var(--white) 100%);
+      border: 1px solid rgba(98, 165, 70, .12);
+      transition: transform .3s, border-color .3s;
+    }
+    .cle-feature:hover {
+      transform: translateY(-3px);
+      border-color: var(--green);
+    }
+    .cle-feature-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 56px; height: 56px;
+      border-radius: 50%;
+      background: var(--green);
+      color: var(--white);
+      font-size: 1.6rem;
+      margin-bottom: 1rem;
+    }
+    .cle-feature-title {
+      font-family: var(--font-brand);
+      font-weight: 400;
+      font-size: 1.05rem;
+      color: var(--text);
+      margin-bottom: .5rem;
+    }
+    .cle-feature-desc {
+      font-family: var(--font-tagline);
+      font-weight: 300;
+      font-size: .82rem;
+      color: var(--text-muted);
+      line-height: 1.55;
+    }
+
+    /* ──────────────────────────────
+       TESTIMONIALS (Avis clients)
+    ────────────────────────────── */
+    .testimonials {
+      background: linear-gradient(180deg, var(--white) 0%, var(--green-light) 100%);
+      padding: clamp(4rem, 8vw, 6rem) 0;
+    }
+    .testimonials-header {
+      text-align: center;
+      max-width: 640px;
+      margin: 0 auto 3rem;
+    }
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+    @media (max-width: 1024px) { .testimonials-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 640px)  { .testimonials-grid { grid-template-columns: 1fr; } }
+
+    .testimonial-card {
+      position: relative;
+      background: var(--white);
+      padding: 1.75rem 1.5rem 1.5rem;
+      border-radius: 16px;
+      box-shadow:
+        0 1px 2px rgba(0,0,0,.04),
+        0 8px 24px rgba(0,0,0,.06),
+        0 16px 40px rgba(0,0,0,.05);
+      transition: transform .3s, box-shadow .3s;
+    }
+    .testimonial-card:hover {
+      transform: translateY(-3px);
+      box-shadow:
+        0 1px 2px rgba(0,0,0,.04),
+        0 12px 30px rgba(98, 165, 70, .12),
+        0 24px 50px rgba(0,0,0,.08);
+    }
+    .testimonial-card::before {
+      content: '\201C';
+      position: absolute;
+      top: -8px;
+      left: 16px;
+      font-family: var(--font-display);
+      font-size: 4rem;
+      line-height: 1;
+      color: var(--green);
+      opacity: .25;
+    }
+    .testimonial-stars {
+      color: var(--yellow);
+      font-size: .95rem;
+      letter-spacing: .15em;
+      margin-bottom: .65rem;
+    }
+    .testimonial-quote {
+      font-family: var(--font-tagline);
+      font-weight: 300;
+      font-size: .92rem;
+      line-height: 1.65;
+      color: var(--text);
+      margin-bottom: 1.25rem;
+      font-style: italic;
+    }
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: .75rem;
+      padding-top: 1rem;
+      border-top: 1px solid rgba(0,0,0,.06);
+    }
+    .testimonial-author-avatar {
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      background: var(--green);
+      color: var(--white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-brand);
+      font-size: .9rem;
+      flex-shrink: 0;
+    }
+    .testimonial-author-meta {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.25;
+    }
+    .testimonial-author-name {
+      font-size: .82rem;
+      font-weight: 500;
+      color: var(--text);
+    }
+    .testimonial-author-context {
+      font-size: .72rem;
+      color: var(--text-muted);
+      font-style: italic;
     }
 
     /* ──────────────────────────────
@@ -1568,44 +1734,75 @@
           <div class="presta-card-img"><img src="/portfolio/new/images/gwaka/photos-temehani/presta-brunch-gourmand-ai.webp" data-src-real="/portfolio/new/images/gwaka/photos-temehani/brunch-marquee-tropical.webp" alt="Brunch Gourmand GWAKA" loading="lazy"></div>
           <div class="presta-card-body">
             <h3 class="presta-card-title">Brunch Gourmand</h3>
-            <p class="presta-card-desc">Un moment de partage autour de saveurs fraiches et gourmandes.</p>
+            <p class="presta-card-context">Vous organisez un brunch entre amis ou en famille, pour un anniversaire ou juste le plaisir d&rsquo;un dimanche matin ?</p>
+            <p class="presta-card-desc">Composez votre brunch &agrave; partir de notre catalogue ou laissez-nous &eacute;laborer un menu sur mesure pour votre &eacute;v&eacute;nement priv&eacute;.</p>
           </div>
         </article>
         <article class="presta-card reveal reveal-delay-2">
-          <div class="presta-card-img"><img src="/portfolio/new/images/gwaka/photos-temehani/presta-buffet-corporate-ai.webp" data-src-real="/portfolio/new/images/gwaka/photos-temehani/corporate-aeroport-tahiti.webp" alt="Buffet Corporate GWAKA" loading="lazy"></div>
+          <div class="presta-card-img"><img src="/portfolio/new/images/gwaka/photos-temehani/presta-buffet-corporate-ai.webp" data-src-real="/portfolio/new/images/gwaka/photos-temehani/corporate-aeroport-tahiti.webp" alt="Buffet Corporate &amp; Seminaire GWAKA" loading="lazy"></div>
           <div class="presta-card-body">
-            <h3 class="presta-card-title">Buffet Corporate</h3>
-            <p class="presta-card-desc">Impressionnez vos equipes et partenaires avec un buffet sur mesure.</p>
+            <h3 class="presta-card-title">Corporate &amp; S&eacute;minaire</h3>
+            <p class="presta-card-context">Vous organisez un s&eacute;minaire, une formation, un d&eacute;jeuner d&rsquo;&eacute;quipe ou un cocktail d&rsquo;entreprise ?</p>
+            <p class="presta-card-desc">Buffets, pauses gourmandes et plateaux sur mesure pour vos &eacute;v&eacute;nements professionnels &mdash; cl&eacute; en main, livraison comprise.</p>
           </div>
         </article>
         <article class="presta-card reveal reveal-delay-3">
           <div class="presta-card-img"><img src="/portfolio/new/images/gwaka/photos-temehani/presta-cocktail-dinatoire-ai.webp" data-src-real="/portfolio/new/images/gwaka/photos-temehani/cocktail-bouchees-boutique.webp?v=2" alt="Cocktail Dinatoire GWAKA" loading="lazy"></div>
           <div class="presta-card-body">
-            <h3 class="presta-card-title">Cocktail Dinatoire</h3>
-            <p class="presta-card-desc">Des bouchees elegantes pour des soirees qui marquent les esprits.</p>
+            <h3 class="presta-card-title">Cocktail D&icirc;natoire</h3>
+            <p class="presta-card-context">Vous recevez chez vous pour un anniversaire, une cr&eacute;maill&egrave;re, un vernissage ou un &eacute;v&eacute;nement priv&eacute; ?</p>
+            <p class="presta-card-desc">Bouch&eacute;es &eacute;l&eacute;gantes, verrines et plateaux pour des soir&eacute;es qui marquent les esprits, accompagn&eacute;s de nos boissons fra&icirc;ches et nos vaisselles &eacute;coresponsables.</p>
           </div>
         </article>
         <article class="presta-card reveal reveal-delay-1">
           <div class="presta-card-img"><img src="/portfolio/new/images/gwaka/photos-temehani/presta-plateau-aperitif-ai.webp" data-src-real="/portfolio/new/images/gwaka/photos-temehani/vegetable-rainbow-board.webp" alt="Plateau Aperitif GWAKA" loading="lazy"></div>
           <div class="presta-card-body">
-            <h3 class="presta-card-title">Plateau Aperitif</h3>
-            <p class="presta-card-desc">Fromages, charcuteries et saveurs a partager entre amis.</p>
+            <h3 class="presta-card-title">Plateau Ap&eacute;ritif</h3>
+            <p class="presta-card-context">Vous &ecirc;tes invit&eacute; quelque part et ne savez pas quoi apporter, ou vous recevez chez vous ?</p>
+            <p class="presta-card-desc">Plateaux fromages, charcuteries, fruits sculpt&eacute;s, crudit&eacute;s et tapenades &mdash; cl&eacute; en main, pr&ecirc;ts &agrave; servir.</p>
           </div>
         </article>
         <article class="presta-card reveal reveal-delay-2">
           <div class="presta-card-img"><img src="/portfolio/new/images/gwaka/photos-temehani/presta-evenementiel-prive-ai.webp" data-src-real="/portfolio/new/images/gwaka/photos-temehani/evening-buffet-luxury.webp" alt="Evenementiel Prive GWAKA" loading="lazy"></div>
           <div class="presta-card-body">
-            <h3 class="presta-card-title">Evenementiel Prive</h3>
-            <p class="presta-card-desc">Mariages, baby showers, anniversaires — on s'occupe de tout.</p>
+            <h3 class="presta-card-title">&Eacute;v&eacute;nementiel Priv&eacute;</h3>
+            <p class="presta-card-context">Mariage, baby shower, gender reveal, anniversaire intime ou grande f&ecirc;te ?</p>
+            <p class="presta-card-desc">On s&rsquo;occupe de tout : menu sur mesure, mise en place avec nappes, vaisselle recyclable, boissons fra&icirc;ches et chaudes. Vous profitez, on g&egrave;re.</p>
           </div>
         </article>
-        <article class="presta-card reveal reveal-delay-3">
-          <div class="presta-card-img"><img src="/portfolio/new/images/gwaka/photos-temehani/presta-seminaire-ai.webp" data-src-real="/portfolio/new/images/gwaka/photos-temehani/seminaire-pauses-cafe.webp" alt="Seminaire GWAKA" loading="lazy"></div>
-          <div class="presta-card-body">
-            <h3 class="presta-card-title">Seminaire</h3>
-            <p class="presta-card-desc">Pauses gourmandes et dejeuners pour vos journees de travail.</p>
-          </div>
-        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== CLE EN MAIN (services inclus) ========== -->
+  <section class="cle-en-main" id="cle-en-main" aria-label="Notre service clé en main">
+    <div class="container">
+      <div class="cle-en-main-header reveal">
+        <span class="section-label">Service cl&eacute; en main</span>
+        <h2 class="section-title">Tout est compris</h2>
+        <p class="section-subtitle">Du brief jusqu&rsquo;&agrave; la derni&egrave;re bouch&eacute;e. Vous recevez vos invit&eacute;s, nous g&eacute;rons le reste.</p>
+      </div>
+      <div class="cle-en-main-grid reveal">
+        <div class="cle-feature">
+          <div class="cle-feature-icon" aria-hidden="true">&#9999;&#65039;</div>
+          <h3 class="cle-feature-title">Menu sur mesure</h3>
+          <p class="cle-feature-desc">On compose votre menu &agrave; partir de notre catalogue ou enti&egrave;rement personnalis&eacute; selon vos envies et votre budget.</p>
+        </div>
+        <div class="cle-feature">
+          <div class="cle-feature-icon" aria-hidden="true">&#127869;&#65039;</div>
+          <h3 class="cle-feature-title">Boissons incluses</h3>
+          <p class="cle-feature-desc">Infusions fruit&eacute;es maison, jus press&eacute;s, caf&eacute;s, d&eacute;caf&eacute;in&eacute;s et th&eacute;s : chaud ou froid, selon votre &eacute;v&eacute;nement.</p>
+        </div>
+        <div class="cle-feature">
+          <div class="cle-feature-icon" aria-hidden="true">&#127869;</div>
+          <h3 class="cle-feature-title">Mise en place</h3>
+          <p class="cle-feature-desc">Nappes &eacute;l&eacute;gantes, dressage et installation chez vous ou sur votre lieu d&rsquo;&eacute;v&eacute;nement. Pr&ecirc;t &agrave; servir &agrave; l&rsquo;arriv&eacute;e des invit&eacute;s.</p>
+        </div>
+        <div class="cle-feature">
+          <div class="cle-feature-icon" aria-hidden="true">&#127807;</div>
+          <h3 class="cle-feature-title">Vaisselle recyclable</h3>
+          <p class="cle-feature-desc">Vaisselle &eacute;coresponsable, emballages biod&eacute;gradables. On apporte tout, vous n&rsquo;avez rien &agrave; pr&eacute;voir.</p>
+        </div>
       </div>
     </div>
   </section>
@@ -1705,6 +1902,85 @@
           <div class="trust-item" aria-hidden="true"><img src="/portfolio/new/images/gwaka/clients/salt-event.webp" alt="" loading="lazy"></div>
           <div class="trust-item" aria-hidden="true"><img src="/portfolio/new/images/gwaka/clients/jo-paris-2024.webp" alt="" loading="lazy"></div>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== TESTIMONIALS / AVIS CLIENTS ========== -->
+  <section class="testimonials" id="avis" aria-label="Avis clients">
+    <div class="container">
+      <div class="testimonials-header reveal">
+        <span class="section-label">Avis clients</span>
+        <h2 class="section-title">Ce qu&rsquo;ils en disent</h2>
+        <p class="section-subtitle">Retours d&rsquo;exp&eacute;rience de nos client(e)s apr&egrave;s leur &eacute;v&eacute;nement GWAKA.</p>
+      </div>
+      <div class="testimonials-grid reveal">
+        <article class="testimonial-card">
+          <div class="testimonial-stars" aria-label="5 etoiles">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p class="testimonial-quote">&laquo;&nbsp;Brunch incroyable pour l&rsquo;anniversaire de ma fille. Tout &eacute;tait beau, frais et d&eacute;licieux. Mes invit&eacute;s n&rsquo;en parlent plus !&nbsp;&raquo;</p>
+          <div class="testimonial-author">
+            <div class="testimonial-author-avatar">H</div>
+            <div class="testimonial-author-meta">
+              <span class="testimonial-author-name">Heimiti R.</span>
+              <span class="testimonial-author-context">Anniversaire priv&eacute;</span>
+            </div>
+          </div>
+        </article>
+        <article class="testimonial-card">
+          <div class="testimonial-stars" aria-label="5 etoiles">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p class="testimonial-quote">&laquo;&nbsp;Un cocktail d&rsquo;entreprise parfait. Service impeccable, pr&eacute;sentation soign&eacute;e, et toutes nos &eacute;quipes se sont r&eacute;gal&eacute;es. On rappellera GWAKA sans h&eacute;siter.&nbsp;&raquo;</p>
+          <div class="testimonial-author">
+            <div class="testimonial-author-avatar">P</div>
+            <div class="testimonial-author-meta">
+              <span class="testimonial-author-name">Patrick L.</span>
+              <span class="testimonial-author-context">Direction Communication</span>
+            </div>
+          </div>
+        </article>
+        <article class="testimonial-card">
+          <div class="testimonial-stars" aria-label="5 etoiles">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p class="testimonial-quote">&laquo;&nbsp;Plateau ap&eacute;ritif command&eacute; pour une cr&eacute;maill&egrave;re. Frais, color&eacute;, partage facile. Mes invit&eacute;s ont ador&eacute; la pr&eacute;sentation.&nbsp;&raquo;</p>
+          <div class="testimonial-author">
+            <div class="testimonial-author-avatar">V</div>
+            <div class="testimonial-author-meta">
+              <span class="testimonial-author-name">Vaiana T.</span>
+              <span class="testimonial-author-context">Cr&eacute;maill&egrave;re</span>
+            </div>
+          </div>
+        </article>
+        <article class="testimonial-card">
+          <div class="testimonial-stars" aria-label="5 etoiles">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p class="testimonial-quote">&laquo;&nbsp;On a fait appel &agrave; GWAKA pour notre s&eacute;minaire de 80 personnes. R&eacute;activit&eacute;, qualit&eacute;, mise en place : tout &eacute;tait top. On recommande &agrave; 100&nbsp;%.&nbsp;&raquo;</p>
+          <div class="testimonial-author">
+            <div class="testimonial-author-avatar">M</div>
+            <div class="testimonial-author-meta">
+              <span class="testimonial-author-name">Mareva F.</span>
+              <span class="testimonial-author-context">S&eacute;minaire entreprise</span>
+            </div>
+          </div>
+        </article>
+        <article class="testimonial-card">
+          <div class="testimonial-stars" aria-label="5 etoiles">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p class="testimonial-quote">&laquo;&nbsp;Brunch pour mon baby shower : tout &eacute;tait magnifique. Photos parfaites, go&ucirc;t encore meilleur. Temehani s&rsquo;occupe de tout, on profite de la f&ecirc;te.&nbsp;&raquo;</p>
+          <div class="testimonial-author">
+            <div class="testimonial-author-avatar">A</div>
+            <div class="testimonial-author-meta">
+              <span class="testimonial-author-name">Anaiis P.</span>
+              <span class="testimonial-author-context">Baby shower</span>
+            </div>
+          </div>
+        </article>
+        <article class="testimonial-card">
+          <div class="testimonial-stars" aria-label="5 etoiles">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p class="testimonial-quote">&laquo;&nbsp;Sushis et plateaux pour notre &eacute;v&eacute;nement. Qualit&eacute; restaurant, livraison &agrave; l&rsquo;heure, dressage soign&eacute;. Une vraie valeur ajout&eacute;e pour notre soir&eacute;e.&nbsp;&raquo;</p>
+          <div class="testimonial-author">
+            <div class="testimonial-author-avatar">T</div>
+            <div class="testimonial-author-meta">
+              <span class="testimonial-author-name">Teiva H.</span>
+              <span class="testimonial-author-context">Cocktail d&rsquo;entreprise</span>
+            </div>
+          </div>
+        </article>
       </div>
     </div>
   </section>
