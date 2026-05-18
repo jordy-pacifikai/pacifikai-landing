@@ -659,12 +659,25 @@
 
     .prestations-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(6, 1fr);
       gap: 1.5rem;
     }
+    .prestations-grid .presta-card { grid-column: span 2; }
+    /* Center last 2 cards in row 2 */
+    .prestations-grid .presta-card:nth-child(4) { grid-column: 2 / span 2; }
+    .prestations-grid .presta-card:nth-child(5) { grid-column: 4 / span 2; }
 
-    @media (max-width: 1024px) { .prestations-grid { grid-template-columns: repeat(2, 1fr); } }
-    @media (max-width: 520px) { .prestations-grid { grid-template-columns: 1fr; } }
+    @media (max-width: 1024px) {
+      .prestations-grid { grid-template-columns: repeat(2, 1fr); }
+      .prestations-grid .presta-card,
+      .prestations-grid .presta-card:nth-child(4),
+      .prestations-grid .presta-card:nth-child(5) { grid-column: auto; }
+      .prestations-grid .presta-card:nth-child(5) { grid-column: 1 / -1; max-width: 50%; margin: 0 auto; }
+    }
+    @media (max-width: 520px) {
+      .prestations-grid { grid-template-columns: 1fr; }
+      .prestations-grid .presta-card:nth-child(5) { max-width: 100%; }
+    }
 
     .presta-card {
       position: relative;
@@ -1120,12 +1133,19 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      width: 56px; height: 56px;
+      width: 60px; height: 60px;
       border-radius: 50%;
       background: var(--green);
       color: var(--white);
-      font-size: 1.6rem;
       margin-bottom: 1rem;
+    }
+    .cle-feature-icon svg {
+      width: 28px; height: 28px;
+      stroke: var(--white);
+      stroke-width: 1.5;
+      fill: none;
+      stroke-linecap: round;
+      stroke-linejoin: round;
     }
     .cle-feature-title {
       font-family: var(--font-brand);
@@ -1784,22 +1804,30 @@
       </div>
       <div class="cle-en-main-grid reveal">
         <div class="cle-feature">
-          <div class="cle-feature-icon" aria-hidden="true">&#9999;&#65039;</div>
+          <div class="cle-feature-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+          </div>
           <h3 class="cle-feature-title">Menu sur mesure</h3>
           <p class="cle-feature-desc">On compose votre menu &agrave; partir de notre catalogue ou enti&egrave;rement personnalis&eacute; selon vos envies et votre budget.</p>
         </div>
         <div class="cle-feature">
-          <div class="cle-feature-icon" aria-hidden="true">&#127869;&#65039;</div>
+          <div class="cle-feature-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M17 8h1a4 4 0 0 1 0 8h-1"/><path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4Z"/><line x1="6" y1="2" x2="6" y2="4"/><line x1="10" y1="2" x2="10" y2="4"/><line x1="14" y1="2" x2="14" y2="4"/></svg>
+          </div>
           <h3 class="cle-feature-title">Boissons incluses</h3>
           <p class="cle-feature-desc">Infusions fruit&eacute;es maison, jus press&eacute;s, caf&eacute;s, d&eacute;caf&eacute;in&eacute;s et th&eacute;s : chaud ou froid, selon votre &eacute;v&eacute;nement.</p>
         </div>
         <div class="cle-feature">
-          <div class="cle-feature-icon" aria-hidden="true">&#127869;</div>
+          <div class="cle-feature-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/><path d="M7 2v20"/><path d="M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"/></svg>
+          </div>
           <h3 class="cle-feature-title">Mise en place</h3>
           <p class="cle-feature-desc">Nappes &eacute;l&eacute;gantes, dressage et installation chez vous ou sur votre lieu d&rsquo;&eacute;v&eacute;nement. Pr&ecirc;t &agrave; servir &agrave; l&rsquo;arriv&eacute;e des invit&eacute;s.</p>
         </div>
         <div class="cle-feature">
-          <div class="cle-feature-icon" aria-hidden="true">&#127807;</div>
+          <div class="cle-feature-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19.2 2.96a1 1 0 0 1 1.6.9c-.5 5.2-1.1 6.7-3.3 9.2A7 7 0 0 1 11 20z"/><path d="M2 21c0-3 1.85-5.36 5.08-6"/></svg>
+          </div>
           <h3 class="cle-feature-title">Vaisselle recyclable</h3>
           <p class="cle-feature-desc">Vaisselle &eacute;coresponsable, emballages biod&eacute;gradables. On apporte tout, vous n&rsquo;avez rien &agrave; pr&eacute;voir.</p>
         </div>
