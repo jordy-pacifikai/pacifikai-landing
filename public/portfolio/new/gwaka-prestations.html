@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Nos prestations traiteur GWAKA a Tahiti : brunchs gourmands, buffets corporate, cocktails dinatoires, plateaux aperitif, evenementiel prive. Cle en main, livraison incluse.">
+  <meta name="theme-color" content="#4A7C3F">
+  <title>Nos Prestations — GWAKA Traiteur Brunch &amp; Healthy | Tahiti</title>
+  <link rel="canonical" href="https://gwakatahiti.com/prestations">
+  <link rel="icon" type="image/x-icon" href="/portfolio/new/images/gwaka/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/portfolio/new/images/gwaka/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/portfolio/new/images/gwaka/favicon-16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/portfolio/new/images/gwaka/apple-touch-icon.png">
+  <link rel="preload" as="image" href="/portfolio/new/images/gwaka/photos-temehani/hero-brunch-marquee.webp" fetchpriority="high">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Yusei+Magic&family=KoHo:wght@300;400;500;600&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300;1,9..144,400&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Nos Prestations — GWAKA Traiteur a Tahiti">
+  <meta property="og:description" content="Brunchs, buffets corporate, cocktails dinatoires, plateaux aperitif, evenementiel prive. Cle en main, livraison incluse.">
+  <meta property="og:image" content="https://gwakatahiti.com/portfolio/new/images/gwaka/photos-temehani/hero-brunch-marquee.webp">
+  <meta property="og:url" content="https://gwakatahiti.com/prestations">
+  <meta property="og:locale" content="fr_FR">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <style>
+    /* RESET & BASE */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --gwaka-vert: #62A546;
+      --gwaka-vert-accent: #4F8838;
+      --gwaka-vert-light: #E8F0E2;
+      --gwaka-jaune: #EFE533;
+      --gwaka-cream: #FAFAF7;
+      --gwaka-sand: #C4A882;
+      --text: #1A1A1A;
+      --text-muted: #6B6B6B;
+      --white: #FFFFFF;
+      --dark: #1A1A1A;
+      --font-brand: 'Yusei Magic', 'Fraunces', Georgia, serif;
+      --font-tagline: 'KoHo', 'Work Sans', sans-serif;
+      --font-display: 'Yusei Magic', 'Fraunces', Georgia, serif;
+      --font-body: 'KoHo', 'Work Sans', -apple-system, sans-serif;
+      --radius: 12px;
+      --radius-sm: 8px;
+      --radius-lg: 20px;
+      --shadow-sm: 0 1px 3px rgba(0,0,0,.06), 0 1px 2px rgba(0,0,0,.04);
+      --shadow-md: 0 4px 16px rgba(0,0,0,.08);
+      --shadow-lg: 0 12px 40px rgba(0,0,0,.12);
+      --transition: .3s cubic-bezier(.4,0,.2,1);
+    }
+    html { scroll-behavior: smooth; }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+      .reveal { opacity: 1 !important; transform: none !important; }
+    }
+    body {
+      font-family: var(--font-body);
+      font-weight: 400;
+      color: var(--text);
+      background: var(--gwaka-cream);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden;
+    }
+    img { display: block; max-width: 100%; height: auto; }
+    a { color: inherit; text-decoration: none; }
+    button { font-family: var(--font-body); font-size: 1rem; border: none; outline: none; background: none; cursor: pointer; }
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+
+    /* TYPOGRAPHY */
+    .section-label {
+      font-family: var(--font-body);
+      font-weight: 600;
+      font-size: .75rem;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: var(--gwaka-vert);
+      margin-bottom: .75rem;
+      display: inline-block;
+    }
+    .section-title {
+      font-family: var(--font-display);
+      font-weight: 300;
+      font-size: clamp(1.75rem, 4vw, 2.75rem);
+      line-height: 1.2;
+      color: var(--dark);
+      margin-bottom: 1rem;
+    }
+    .section-subtitle {
+      font-family: var(--font-body);
+      font-weight: 300;
+      font-size: clamp(1rem, 2vw, 1.15rem);
+      color: var(--text-muted);
+      max-width: 640px;
+      line-height: 1.7;
+    }
+
+    /* CONTAINER */
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
+    @media (min-width: 768px) { .container { padding: 0 2.5rem; } }
+
+    /* REVEAL — progressive enhancement: visible by default, JS adds .anim-ready to enable hidden state */
+    .reveal { opacity: 1; transform: none; transition: opacity .8s ease, transform .8s ease; }
+    html.anim-ready .reveal { opacity: 0; transform: translateY(20px); }
+    html.anim-ready .reveal.is-visible { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: .1s; }
+    .reveal-delay-2 { transition-delay: .2s; }
+    .reveal-delay-3 { transition-delay: .3s; }
+
+    /* HEADER + NAV */
+    .header {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      background: rgba(250, 250, 247, .92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(98, 165, 70, .08);
+      transition: var(--transition);
+    }
+    .nav { display: flex; justify-content: space-between; align-items: center; padding: 1rem 0; }
+    .logo { font-family: var(--font-brand); font-size: 1.5rem; font-weight: 400; color: var(--gwaka-vert); }
+    .logo img { height: 40px; width: auto; }
+    .nav-links { display: none; gap: 2rem; list-style: none; }
+    @media (min-width: 768px) { .nav-links { display: flex; align-items: center; } }
+    .nav-links a {
+      font-weight: 400; font-size: .95rem; color: var(--text);
+      transition: color .2s; min-height: 44px; display: flex; align-items: center;
+    }
+    .nav-links a:hover { color: var(--gwaka-vert); }
+    .nav-cta {
+      background: var(--gwaka-vert); color: var(--white) !important;
+      padding: .65rem 1.25rem !important; border-radius: 100px;
+      font-weight: 500 !important; transition: var(--transition);
+    }
+    .nav-cta:hover { background: var(--gwaka-vert-accent); transform: translateY(-1px); }
+
+    /* MOBILE BURGER */
+    .nav-burger {
+      display: flex; flex-direction: column; gap: 4px; padding: .5rem;
+      width: 44px; height: 44px; align-items: center; justify-content: center;
+    }
+    @media (min-width: 768px) { .nav-burger { display: none; } }
+    .nav-burger span { width: 24px; height: 2px; background: var(--text); transition: var(--transition); }
+    .nav-mobile {
+      position: fixed; top: 73px; left: 0; right: 0;
+      background: var(--white); padding: 1.5rem; box-shadow: var(--shadow-md);
+      transform: translateY(-200%); transition: var(--transition);
+      list-style: none; display: flex; flex-direction: column; gap: 1rem; z-index: 999;
+    }
+    .nav-mobile.is-open { transform: translateY(0); }
+    .nav-mobile a { display: block; padding: .75rem 0; font-weight: 500; min-height: 44px; }
+
+    /* HERO */
+    .hero-prestations {
+      min-height: 60vh; padding: 8rem 0 5rem;
+      background:
+        linear-gradient(180deg, rgba(250,250,247,.4) 0%, rgba(250,250,247,.85) 100%),
+        url('/portfolio/new/images/gwaka/photos-temehani/hero-brunch-marquee.webp') center/cover;
+      display: flex; align-items: center;
+    }
+    .hero-prestations-inner { max-width: 760px; }
+    .hero-prestations h1 {
+      font-family: var(--font-display); font-weight: 300;
+      font-size: clamp(2.25rem, 6vw, 4rem); line-height: 1.05;
+      color: var(--dark); margin-bottom: 1.25rem;
+    }
+    .hero-prestations h1 em {
+      font-style: italic; color: var(--gwaka-vert); font-family: var(--font-display);
+    }
+    .hero-prestations p {
+      font-size: clamp(1.05rem, 2vw, 1.2rem); color: var(--text-muted);
+      max-width: 580px; line-height: 1.7; margin-bottom: 2rem;
+    }
+    .hero-prestations-stats {
+      display: flex; gap: 2rem; flex-wrap: wrap;
+      padding: 1.5rem 0; border-top: 1px solid rgba(98, 165, 70, .15);
+      margin-top: 2rem;
+    }
+    .hero-stat { display: flex; flex-direction: column; gap: .25rem; }
+    .hero-stat-value {
+      font-family: var(--font-display); font-size: 1.75rem; font-weight: 400;
+      color: var(--gwaka-vert);
+    }
+    .hero-stat-label { font-size: .8rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: .08em; }
+
+    /* HERO CTAs */
+    .hero-cta-row { display: flex; gap: 1rem; flex-wrap: wrap; margin-top: .5rem; }
+    .btn-primary, .btn-outline {
+      display: inline-flex; align-items: center; gap: .5rem;
+      padding: .9rem 1.75rem; border-radius: 100px;
+      font-weight: 500; font-size: 1rem; transition: var(--transition); cursor: pointer;
+      min-height: 48px;
+    }
+    .btn-primary { background: var(--gwaka-vert); color: var(--white); }
+    .btn-primary:hover { background: var(--gwaka-vert-accent); transform: translateY(-2px); box-shadow: var(--shadow-md); }
+    .btn-outline { background: transparent; color: var(--gwaka-vert); border: 1.5px solid var(--gwaka-vert); }
+    .btn-outline:hover { background: var(--gwaka-vert); color: var(--white); }
+
+    /* SECTION SPACING */
+    section { padding: 5rem 0; }
+    @media (min-width: 768px) { section { padding: 6rem 0; } }
+
+    /* INTRO */
+    .intro {
+      background: var(--white);
+      padding: 5rem 0;
+    }
+    .intro-grid {
+      display: grid; gap: 3rem; align-items: center;
+      grid-template-columns: 1fr;
+    }
+    @media (min-width: 1024px) { .intro-grid { grid-template-columns: 1.2fr 1fr; } }
+    .intro-text p { font-size: 1.05rem; color: var(--text-muted); line-height: 1.8; margin-bottom: 1rem; }
+    .intro-text p:first-of-type {
+      font-size: 1.2rem; color: var(--text); font-weight: 500; line-height: 1.6;
+    }
+    .intro-image {
+      border-radius: var(--radius-lg); overflow: hidden;
+      box-shadow: var(--shadow-lg); aspect-ratio: 4 / 5;
+    }
+    .intro-image img { width: 100%; height: 100%; object-fit: cover; }
+
+    /* PRESTATIONS DETAIL */
+    .prestation-detail {
+      padding: 5rem 0;
+      border-top: 1px solid rgba(98, 165, 70, .1);
+    }
+    .prestation-detail:nth-child(even) { background: var(--white); }
+    .prestation-detail:first-of-type { border-top: none; }
+    .prestation-grid {
+      display: grid; gap: 3rem; align-items: center;
+      grid-template-columns: 1fr;
+    }
+    @media (min-width: 1024px) { .prestation-grid { grid-template-columns: 1fr 1fr; gap: 4rem; } }
+    .prestation-detail:nth-child(even) .prestation-grid { direction: rtl; }
+    .prestation-detail:nth-child(even) .prestation-grid > * { direction: ltr; }
+    .prestation-image {
+      border-radius: var(--radius-lg); overflow: hidden;
+      box-shadow: var(--shadow-md); aspect-ratio: 4 / 3;
+      position: relative;
+    }
+    .prestation-image img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s ease; }
+    .prestation-image:hover img { transform: scale(1.04); }
+    .prestation-badge {
+      position: absolute; top: 1rem; left: 1rem;
+      background: var(--white); color: var(--gwaka-vert);
+      padding: .4rem .85rem; border-radius: 100px;
+      font-size: .75rem; font-weight: 600; letter-spacing: .08em;
+      text-transform: uppercase; box-shadow: var(--shadow-sm);
+    }
+    .prestation-content .section-label { color: var(--gwaka-vert); }
+    .prestation-content h2 {
+      font-family: var(--font-display); font-weight: 300;
+      font-size: clamp(1.75rem, 3.5vw, 2.5rem); line-height: 1.2;
+      margin-bottom: 1rem; color: var(--dark);
+    }
+    .prestation-hook {
+      font-family: var(--font-display); font-style: italic;
+      font-size: 1.15rem; color: var(--gwaka-vert);
+      margin-bottom: 1.25rem; line-height: 1.5;
+    }
+    .prestation-content p.prestation-desc {
+      color: var(--text-muted); line-height: 1.75; margin-bottom: 1.5rem;
+    }
+    .prestation-includes {
+      list-style: none; padding: 0; margin: 1.5rem 0;
+      display: grid; gap: .75rem;
+    }
+    .prestation-includes li {
+      display: flex; align-items: flex-start; gap: .75rem;
+      font-size: .98rem; color: var(--text);
+    }
+    .prestation-includes li svg {
+      width: 20px; height: 20px; flex-shrink: 0; margin-top: 2px;
+      color: var(--gwaka-vert);
+    }
+    .prestation-examples {
+      margin-top: 1.5rem; padding: 1.25rem 1.5rem;
+      background: var(--gwaka-vert-light); border-radius: var(--radius);
+      border-left: 3px solid var(--gwaka-vert);
+    }
+    .prestation-examples-label {
+      font-size: .75rem; font-weight: 600; color: var(--gwaka-vert-accent);
+      text-transform: uppercase; letter-spacing: .08em; margin-bottom: .5rem;
+      display: block;
+    }
+    .prestation-examples p { font-size: .95rem; color: var(--text); line-height: 1.6; }
+
+    /* CLE EN MAIN */
+    .cle-en-main {
+      background: linear-gradient(180deg, var(--gwaka-cream) 0%, #f0f5ec 100%);
+      padding: 6rem 0;
+    }
+    .cle-header { text-align: center; margin-bottom: 4rem; }
+    .cle-header .section-subtitle { margin: 1rem auto 0; }
+    .cle-grid {
+      display: grid; gap: 2rem;
+      grid-template-columns: 1fr;
+    }
+    @media (min-width: 640px) { .cle-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (min-width: 1024px) { .cle-grid { grid-template-columns: repeat(4, 1fr); } }
+    .cle-feature {
+      background: var(--white); padding: 2rem 1.5rem;
+      border-radius: var(--radius); text-align: center;
+      box-shadow: var(--shadow-sm); transition: var(--transition);
+    }
+    .cle-feature:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+    .cle-feature-icon {
+      width: 56px; height: 56px; border-radius: 50%;
+      background: var(--gwaka-vert); color: var(--white);
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 1.25rem;
+    }
+    .cle-feature-icon svg {
+      width: 26px; height: 26px; stroke: currentColor; fill: none;
+      stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round;
+    }
+    .cle-feature-title {
+      font-family: var(--font-display); font-weight: 400;
+      font-size: 1.2rem; margin-bottom: .65rem; color: var(--dark);
+    }
+    .cle-feature-desc { font-size: .92rem; color: var(--text-muted); line-height: 1.6; }
+
+    /* FAQ */
+    .faq { background: var(--white); padding: 6rem 0; }
+    .faq-header { text-align: center; margin-bottom: 3rem; }
+    .faq-header .section-subtitle { margin: 1rem auto 0; }
+    .faq-list { max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; gap: 1rem; }
+    .faq-item {
+      background: var(--gwaka-cream); border-radius: var(--radius);
+      border: 1px solid rgba(98, 165, 70, .12); overflow: hidden;
+      transition: var(--transition);
+    }
+    .faq-item:hover { border-color: rgba(98, 165, 70, .3); }
+    .faq-question {
+      width: 100%; text-align: left; padding: 1.25rem 1.5rem;
+      display: flex; justify-content: space-between; align-items: center; gap: 1rem;
+      font-weight: 500; font-size: 1.05rem; color: var(--dark);
+    }
+    .faq-question::after {
+      content: "+"; font-size: 1.5rem; color: var(--gwaka-vert);
+      transition: transform .3s ease; font-weight: 300; flex-shrink: 0;
+    }
+    .faq-item.is-open .faq-question::after { transform: rotate(45deg); }
+    .faq-answer {
+      max-height: 0; overflow: hidden;
+      transition: max-height .35s ease, padding .35s ease;
+      padding: 0 1.5rem;
+    }
+    .faq-item.is-open .faq-answer { max-height: 600px; padding: 0 1.5rem 1.25rem; }
+    .faq-answer p { color: var(--text-muted); line-height: 1.7; font-size: .98rem; }
+
+    /* TESTIMONIALS QUICK */
+    .testimonials-row {
+      background: linear-gradient(180deg, var(--white) 0%, var(--gwaka-cream) 100%);
+      padding: 5rem 0;
+    }
+    .testimonials-row-header { text-align: center; margin-bottom: 3rem; }
+    .testimonials-row-grid {
+      display: grid; gap: 1.5rem;
+      grid-template-columns: 1fr;
+    }
+    @media (min-width: 768px) { .testimonials-row-grid { grid-template-columns: repeat(3, 1fr); } }
+    .testimonial-mini {
+      background: var(--white); padding: 1.75rem;
+      border-radius: var(--radius); box-shadow: var(--shadow-sm);
+      border-top: 3px solid var(--gwaka-vert);
+    }
+    .testimonial-mini-stars { color: #F5C842; font-size: 1rem; letter-spacing: .15em; margin-bottom: .75rem; }
+    .testimonial-mini-quote {
+      font-style: italic; color: var(--text); line-height: 1.6;
+      font-size: .98rem; margin-bottom: 1rem;
+    }
+    .testimonial-mini-author { font-size: .85rem; color: var(--text-muted); font-weight: 500; }
+    .testimonial-mini-author strong { color: var(--gwaka-vert); font-weight: 600; }
+
+    /* CTA FINALE */
+    .cta-final {
+      padding: 6rem 0;
+      background:
+        linear-gradient(135deg, rgba(98, 165, 70, .92), rgba(79, 136, 56, .96)),
+        url('/portfolio/new/images/gwaka/photos-temehani/evening-buffet-luxury.webp') center/cover;
+      color: var(--white); text-align: center;
+    }
+    .cta-final h2 {
+      font-family: var(--font-display); font-weight: 300;
+      font-size: clamp(1.85rem, 4vw, 2.75rem); margin-bottom: 1rem; color: var(--white);
+    }
+    .cta-final p {
+      font-size: 1.1rem; max-width: 580px; margin: 0 auto 2rem;
+      color: rgba(255, 255, 255, .92); line-height: 1.7;
+    }
+    .cta-final .btn-primary {
+      background: var(--white); color: var(--gwaka-vert);
+    }
+    .cta-final .btn-primary:hover { background: var(--gwaka-cream); }
+    .cta-final-row { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .cta-final .btn-outline { color: var(--white); border-color: var(--white); }
+    .cta-final .btn-outline:hover { background: var(--white); color: var(--gwaka-vert); }
+
+    /* FOOTER */
+    .footer {
+      background: #1F2A1B; color: rgba(255, 255, 255, .8);
+      padding: 4rem 0 2rem;
+    }
+    .footer-grid {
+      display: grid; gap: 3rem;
+      grid-template-columns: 1fr;
+      margin-bottom: 3rem;
+    }
+    @media (min-width: 768px) { .footer-grid { grid-template-columns: 1.5fr 1fr 1fr; } }
+    .footer-brand { font-family: var(--font-brand); font-size: 1.5rem; color: var(--white); margin-bottom: 1rem; display: block; }
+    .footer-brand img { height: 50px; }
+    .footer-desc { font-size: .92rem; line-height: 1.7; max-width: 320px; }
+    .footer h4 { font-family: var(--font-display); font-weight: 400; color: var(--white); margin-bottom: 1rem; font-size: 1.05rem; }
+    .footer ul { list-style: none; display: flex; flex-direction: column; gap: .65rem; }
+    .footer a { font-size: .92rem; transition: color .2s; }
+    .footer a:hover { color: var(--gwaka-jaune); }
+    .footer-bottom {
+      padding-top: 2rem; border-top: 1px solid rgba(255, 255, 255, .1);
+      display: flex; justify-content: space-between; flex-wrap: wrap; gap: 1rem;
+      font-size: .85rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ========== HEADER ========== -->
+  <header class="header" role="banner">
+    <div class="container">
+      <nav class="nav" aria-label="Navigation principale">
+        <a href="/" class="logo" aria-label="Retour accueil GWAKA">
+          <img src="/portfolio/new/images/gwaka/logo-gwaka-coul.png" alt="GWAKA" loading="eager">
+        </a>
+        <ul class="nav-links" role="menubar">
+          <li role="none"><a href="/" role="menuitem">Accueil</a></li>
+          <li role="none"><a href="/prestations" role="menuitem" aria-current="page" style="color:var(--gwaka-vert); font-weight:500;">Nos Prestations</a></li>
+          <li role="none"><a href="/portfolio/new/gwaka-menu.html" role="menuitem">Notre Carte</a></li>
+          <li role="none"><a href="/#galerie" role="menuitem">Galerie</a></li>
+          <li role="none"><a href="/#avis" role="menuitem">Avis</a></li>
+          <li role="none"><a href="/#contact" class="nav-cta" role="menuitem">Devis gratuit</a></li>
+        </ul>
+        <button class="nav-burger" id="navBurger" aria-label="Menu" aria-expanded="false" aria-controls="navMobile">
+          <span></span><span></span><span></span>
+        </button>
+      </nav>
+      <ul class="nav-mobile" id="navMobile" role="menu">
+        <li><a href="/">Accueil</a></li>
+        <li><a href="/prestations" style="color:var(--gwaka-vert); font-weight:600;">Nos Prestations</a></li>
+        <li><a href="/portfolio/new/gwaka-menu.html">Notre Carte</a></li>
+        <li><a href="/#galerie">Galerie</a></li>
+        <li><a href="/#avis">Avis</a></li>
+        <li><a href="/#contact" class="nav-cta" style="text-align:center;">Devis gratuit</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <!-- ========== HERO ========== -->
+  <section class="hero-prestations" role="region" aria-label="Nos prestations">
+    <div class="container">
+      <div class="hero-prestations-inner">
+        <span class="section-label">Nos Prestations</span>
+        <h1>Mille et une <em>fa&ccedil;ons</em><br>de vous r&eacute;galer</h1>
+        <p>Brunchs gourmands, buffets corporate, cocktails d&icirc;natoires, plateaux ap&eacute;ritif ou &eacute;v&eacute;nements priv&eacute;s &mdash; chez vous, sur votre lieu d&rsquo;&eacute;v&eacute;nement, ou en livraison. Cuisine saine et g&eacute;n&eacute;reuse, produits locaux, dressage soign&eacute;.</p>
+        <div class="hero-cta-row">
+          <a href="/#contact" class="btn-primary">Demander un devis gratuit</a>
+          <a href="#prestations" class="btn-outline">D&eacute;couvrir nos formules</a>
+        </div>
+        <div class="hero-prestations-stats">
+          <div class="hero-stat">
+            <span class="hero-stat-value">5</span>
+            <span class="hero-stat-label">Formules sur mesure</span>
+          </div>
+          <div class="hero-stat">
+            <span class="hero-stat-value">100&nbsp;%</span>
+            <span class="hero-stat-label">Fait maison</span>
+          </div>
+          <div class="hero-stat">
+            <span class="hero-stat-value">Cl&eacute; en main</span>
+            <span class="hero-stat-label">Livraison + mise en place</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== INTRO ========== -->
+  <section class="intro" aria-label="Introduction prestations">
+    <div class="container">
+      <div class="intro-grid">
+        <div class="intro-text reveal">
+          <span class="section-label">L&rsquo;esprit GWAKA</span>
+          <h2 class="section-title">Une cuisine qui rassemble, du brief &agrave; la derni&egrave;re bouch&eacute;e</h2>
+          <p>Chez GWAKA, chaque prestation commence par une conversation. On &eacute;coute votre projet, votre nombre d&rsquo;invit&eacute;s, vos envies et vos contraintes &mdash; puis on compose un menu qui vous ressemble.</p>
+          <p>Tout est fait maison, &agrave; partir de produits frais et locaux quand c&rsquo;est possible. Pas de menu fig&eacute; : on s&rsquo;adapte aux r&eacute;gimes (v&eacute;g&eacute;tarien, sans gluten, sans lactose), aux saisons, et &agrave; votre budget.</p>
+          <p>Et surtout, on s&rsquo;occupe de tout : composition du menu, dressage, livraison, mise en place avec nappes et vaisselle &eacute;coresponsable. Vous recevez vos invit&eacute;s, nous g&eacute;rons le reste.</p>
+        </div>
+        <div class="intro-image reveal reveal-delay-1">
+          <img src="/portfolio/new/images/gwaka/photos-temehani/fruit-platter-sculpte.webp" alt="Plateau de fruits sculpt&eacute; GWAKA" loading="lazy">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== PRESTATION 1 : BRUNCH GOURMAND ========== -->
+  <section class="prestation-detail" id="prestations">
+    <div class="container">
+      <div class="prestation-grid">
+        <div class="prestation-image reveal">
+          <span class="prestation-badge">01 &mdash; Brunch</span>
+          <img src="/portfolio/new/images/gwaka/photos-temehani/brunch-marquee-tropical.webp" alt="Brunch Gourmand GWAKA avec viennoiseries, fruits et plateaux color&eacute;s" loading="lazy">
+        </div>
+        <div class="prestation-content reveal reveal-delay-1">
+          <span class="section-label">Formule 01</span>
+          <h2>Brunch Gourmand</h2>
+          <p class="prestation-hook">Vous organisez un brunch entre amis ou en famille, pour un anniversaire ou juste le plaisir d&rsquo;un dimanche matin&nbsp;?</p>
+          <p class="prestation-desc">Composez votre brunch &agrave; partir de notre catalogue (pancakes, smoothie bowls, viennoiseries, fruits frais, oeufs br&ucirc;l&eacute;s, plateaux de charcuterie et fromages) ou laissez-nous &eacute;laborer un menu enti&egrave;rement sur mesure pour votre &eacute;v&eacute;nement priv&eacute;.</p>
+          <ul class="prestation-includes">
+            <li><svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Buffet sucr&eacute; et sal&eacute; vari&eacute;, pr&eacute;sentation soign&eacute;e</li>
+            <li><svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Boissons chaudes (caf&eacute;, th&eacute;, infusions) et fra&icirc;ches (jus, eaux fruit&eacute;es)</li>
+            <li><svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Options v&eacute;g&eacute;tariennes, sans gluten, sans lactose sur demande</li>
+            <li><svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Dressage, livraison et mise en place incluse</li>
+          </ul>
+          <div class="prestation-examples">
+            <span class="prestation-examples-label">&Eacute;v&eacute;nements ad&eacute;quats</span>
+            <p>Anniversaire enfant ou adulte, baby shower, gender reveal, brunch dominical, r&eacute;union de famille, cr&eacute;maill&egrave;re.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== PRESTATION 2 : CORPORATE & SEMINAIRE ========== -->
+  <section class="prestation-detail">
+    <div class="container">
+      <div class="prestation-grid">
+        <div class="prestation-image reveal">
+          <span class="prestation-badge">02 &mdash; Corporate</span>
+          <img src="/portfolio/new/images/gwaka/photos-temehani/corporate-aeroport-tahiti.webp" alt="Buffet Corporate &amp; S&eacute;minaire GWAKA pour entreprise" loading="lazy">
+        </div>
+        <div class="prestation-content reveal reveal-delay-1">
+          <span class="section-label">Formule 02</span>
+          <h2>Corporate &amp; S&eacute;minaire</h2>
+          <p class="prestation-hook">Vous organisez un s&eacute;minaire, une formation, un d&eacute;jeuner d&rsquo;&eacute;quipe ou un cocktail d&rsquo;entreprise&nbsp;?</p>
+          <p class="prestation-desc">Buffets, pauses gourmandes et plateaux sur mesure pour vos &eacute;v&eacute;nements professionnels. R&eacute;f&eacute;rence Totalenergies, Socredo, ICPF, Gaz de Tahiti et DJS : on tient le cap des d&eacute;lais, des quantit&eacute;s et de la qualit&eacute;.</p>
+          <ul class="prestation-includes">
+            <li><svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Petit-d&eacute;jeuner d&rsquo;accueil, pauses caf&eacute;, d&eacute;jeuners buffet</li>
+            <li><svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Plateaux repas individuels pour confort professionnel</li>
+            <li><svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Cocktail d&rsquo;entreprise, inauguration, lancement produit</li>
+            <li><svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Facturation entreprise, livraison ponctuelle, devis rapide</li>
+          </ul>
+          <div class="prestation-examples">
+            <span class="prestation-examples-label">D&eacute;j&agrave; servis</span>
+            <p>Totalenergies, Banque Socredo, ICPF, Gaz de Tahiti, DJS, Royal Auto &mdash; s&eacute;minaires de 20 &agrave; 100 personnes, formations, journ&eacute;es d&rsquo;&eacute;quipe.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== PRESTATION 3 : COCKTAIL DINATOIRE ========== -->
+  <section class="prestation-detail">
+    <div class="container">
+      <div class="prestation-grid">
+        <div class="prestation-image reveal">
+          <span class="prestation-badge">03 &mdash; Cocktail</span>
+          <img src="/portfolio/new/images/gwaka/photos-temehani/cocktail-bouchees-boutique.webp" alt="Cocktail D&icirc;natoire GWAKA bouch&eacute;es et verrines" loading="lazy">
+        </div>
+        <div class="prestation-content reveal reveal-delay-1">
+          <span class="section-label">Formule 03</span>
+          <h2>Cocktail D&icirc;natoire</h2>
+          <p class="prestation-hook">Vous recevez chez vous pour un anniversaire, une cr&eacute;maill&egrave;re, un vernissage ou un &eacute;v&eacute;nement priv&eacute;&nbsp;?</p>
+          <p class="prestation-desc">Bouch&eacute;es &eacute;l&eacute;gantes, verrines et plateaux pour des soir&eacute;es qui marquent les esprits. Pr&eacute;sentation soign&eacute;e, dressage avec nappes et vaisselle &eacute;coresponsable, boissons fra&icirc;ches incluses.</p>
+          <ul class="prestation-includes">
+            <li><svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Bouch&eacute;es sal&eacute;es et sucr&eacute;es, verrines sign&eacute;es</li>
+            <li><svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Plateaux tapas, charcuterie et fromages, fruits sculpt&eacute;s</li>
+            <li><svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Boissons fra&icirc;ches (infusions, jus press&eacute;s, eaux fruit&eacute;es)</li>
+            <li><svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Vaisselle &eacute;coresponsable, dressage et mise en place</li>
+          </ul>
+          <div class="prestation-examples">
+            <span class="prestation-examples-label">&Eacute;v&eacute;nements ad&eacute;quats</span>
+            <p>Anniversaire 30/40/50 ans, cr&eacute;maill&egrave;re, vernissage, lancement de marque, soir&eacute;e priv&eacute;e, after-work.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== PRESTATION 4 : PLATEAU APERITIF ========== -->
+  <section class="prestation-detail">
+    <div class="container">
+      <div class="prestation-grid">
+        <div class="prestation-image reveal">
+          <span class="prestation-badge">04 &mdash; Plateau</span>
+          <img src="/portfolio/new/images/gwaka/photos-temehani/vegetable-rainbow-board.webp" alt="Plateau ap&eacute;ritif GWAKA fruits, charcuterie, fromages" loading="lazy">
+        </div>
+        <div class="prestation-content reveal reveal-delay-1">
+          <span class="section-label">Formule 04</span>
+          <h2>Plateau Ap&eacute;ritif</h2>
+          <p class="prestation-hook">Vous &ecirc;tes invit&eacute;(e) quelque part et ne savez pas quoi apporter, ou vous recevez chez vous&nbsp;?</p>
+          <p class="prestation-desc">Plateaux fromages, charcuteries, fruits sculpt&eacute;s, crudit&eacute;s et tapenades. Pr&ecirc;ts &agrave; servir, color&eacute;s, parfaits pour un ap&eacute;ritif chez soi ou chez des amis. Pas de pr&eacute;paration, juste &agrave; poser sur la table.</p>
+          <ul class="prestation-includes">
+            <li><svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Plateaux mixtes : fromages, charcuteries, fruits, crudit&eacute;s</li>
+            <li><svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Sauces et tapenades maison, pains et crackers</li>
+            <li><svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Pr&eacute;sentation board en bois ou plat &eacute;l&eacute;gant</li>
+            <li><svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Format 4, 8, 12 ou 20 personnes &mdash; livraison ou retrait</li>
+          </ul>
+          <div class="prestation-examples">
+            <span class="prestation-examples-label">&Eacute;v&eacute;nements ad&eacute;quats</span>
+            <p>Ap&eacute;ritif chez des amis, soir&eacute;e en duo, plateau cadeau, picnic, fin de journ&eacute;e improvis&eacute;e.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== PRESTATION 5 : EVENEMENTIEL PRIVE ========== -->
+  <section class="prestation-detail">
+    <div class="container">
+      <div class="prestation-grid">
+        <div class="prestation-image reveal">
+          <span class="prestation-badge">05 &mdash; &Eacute;v&eacute;nement</span>
+          <img src="/portfolio/new/images/gwaka/photos-temehani/evening-buffet-luxury.webp" alt="&Eacute;v&eacute;nementiel priv&eacute; GWAKA pour mariage, baby shower, gender reveal" loading="lazy">
+        </div>
+        <div class="prestation-content reveal reveal-delay-1">
+          <span class="section-label">Formule 05</span>
+          <h2>&Eacute;v&eacute;nementiel Priv&eacute;</h2>
+          <p class="prestation-hook">Mariage, baby shower, gender reveal, anniversaire intime ou grande f&ecirc;te&nbsp;?</p>
+          <p class="prestation-desc">On s&rsquo;occupe de tout : menu sur mesure, mise en place avec nappes, vaisselle recyclable, boissons fra&icirc;ches et chaudes. Vous profitez de votre &eacute;v&eacute;nement, on g&egrave;re la cuisine, la pr&eacute;sentation et la logistique.</p>
+          <ul class="prestation-includes">
+            <li><svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Menu enti&egrave;rement personnalis&eacute; selon th&eacute;matique</li>
+            <li><svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Dressage compl&egrave;te : nappes, vaisselle, d&eacute;coration florale possible</li>
+            <li><svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Boissons fra&icirc;ches et chaudes incluses</li>
+            <li><svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Gestion logistique compl&egrave;te &mdash; vous profitez, on g&egrave;re</li>
+          </ul>
+          <div class="prestation-examples">
+            <span class="prestation-examples-label">&Eacute;v&eacute;nements ad&eacute;quats</span>
+            <p>Mariage civil ou r&eacute;ception, baby shower, gender reveal, anniversaire intime (10-50), grande f&ecirc;te familiale, c&eacute;r&eacute;monie priv&eacute;e.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== CLE EN MAIN ========== -->
+  <section class="cle-en-main" aria-label="Service cl&eacute; en main">
+    <div class="container">
+      <div class="cle-header reveal">
+        <span class="section-label">Service cl&eacute; en main</span>
+        <h2 class="section-title">Tout est compris</h2>
+        <p class="section-subtitle">Du brief jusqu&rsquo;&agrave; la derni&egrave;re bouch&eacute;e. Vous recevez vos invit&eacute;s, nous g&eacute;rons le reste.</p>
+      </div>
+      <div class="cle-grid">
+        <div class="cle-feature reveal">
+          <div class="cle-feature-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+          </div>
+          <h3 class="cle-feature-title">Menu sur mesure</h3>
+          <p class="cle-feature-desc">On compose votre menu &agrave; partir de notre catalogue ou enti&egrave;rement personnalis&eacute; selon vos envies et votre budget.</p>
+        </div>
+        <div class="cle-feature reveal reveal-delay-1">
+          <div class="cle-feature-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M17 8h1a4 4 0 0 1 0 8h-1"/><path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4Z"/><line x1="6" y1="2" x2="6" y2="4"/><line x1="10" y1="2" x2="10" y2="4"/><line x1="14" y1="2" x2="14" y2="4"/></svg>
+          </div>
+          <h3 class="cle-feature-title">Boissons incluses</h3>
+          <p class="cle-feature-desc">Infusions fruit&eacute;es maison, jus press&eacute;s, caf&eacute;s, d&eacute;caf&eacute;in&eacute;s et th&eacute;s : chaud ou froid, selon votre &eacute;v&eacute;nement.</p>
+        </div>
+        <div class="cle-feature reveal reveal-delay-2">
+          <div class="cle-feature-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/><path d="M7 2v20"/><path d="M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"/></svg>
+          </div>
+          <h3 class="cle-feature-title">Mise en place</h3>
+          <p class="cle-feature-desc">Nappes &eacute;l&eacute;gantes, dressage et installation chez vous ou sur votre lieu d&rsquo;&eacute;v&eacute;nement. Pr&ecirc;t &agrave; servir &agrave; l&rsquo;arriv&eacute;e des invit&eacute;s.</p>
+        </div>
+        <div class="cle-feature reveal reveal-delay-3">
+          <div class="cle-feature-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19.2 2.96a1 1 0 0 1 1.6.9c-.5 5.2-1.1 6.7-3.3 9.2A7 7 0 0 1 11 20z"/><path d="M2 21c0-3 1.85-5.36 5.08-6"/></svg>
+          </div>
+          <h3 class="cle-feature-title">Vaisselle recyclable</h3>
+          <p class="cle-feature-desc">Vaisselle &eacute;coresponsable, emballages biod&eacute;gradables. On apporte tout, vous n&rsquo;avez rien &agrave; pr&eacute;voir.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== TESTIMONIALS QUICK ========== -->
+  <section class="testimonials-row" aria-label="T&eacute;moignages clients">
+    <div class="container">
+      <div class="testimonials-row-header reveal">
+        <span class="section-label">Ils l&rsquo;ont fait</span>
+        <h2 class="section-title">Ce qu&rsquo;ils en disent</h2>
+      </div>
+      <div class="testimonials-row-grid">
+        <article class="testimonial-mini reveal">
+          <div class="testimonial-mini-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p class="testimonial-mini-quote">&laquo;&nbsp;Bonjour. Merci pour le brunch hier. C&rsquo;&eacute;tait topissime&nbsp;!! Bonne journ&eacute;e&nbsp;&raquo;</p>
+          <div class="testimonial-mini-author"><strong>Brunch Box</strong> &mdash; cliente priv&eacute;e</div>
+        </article>
+        <article class="testimonial-mini reveal reveal-delay-1">
+          <div class="testimonial-mini-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p class="testimonial-mini-quote">&laquo;&nbsp;Merci de nous avoir r&eacute;gal&eacute;, tous ont aim&eacute;, ils ont trouv&eacute; beau et bon pour ceux qui ne connaissaient pas.&nbsp;&raquo;</p>
+          <div class="testimonial-mini-author"><strong>Cocktail d&icirc;natoire</strong> &mdash; cliente priv&eacute;e</div>
+        </article>
+        <article class="testimonial-mini reveal reveal-delay-2">
+          <div class="testimonial-mini-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p class="testimonial-mini-quote">&laquo;&nbsp;Ia ora na, merci beaucoup pour le ma&rsquo;a d&rsquo;hier. Tout &eacute;tait excellent, on a ador&eacute; et on s&rsquo;est r&eacute;gal&eacute;es. On recommandera c&rsquo;est s&ucirc;r&nbsp;!&nbsp;&raquo;</p>
+          <div class="testimonial-mini-author"><strong>Anne</strong> &mdash; plateau sushis</div>
+        </article>
+      </div>
+      <p style="text-align:center; margin-top:2rem; color:#6b7280; font-size:.85rem; font-style:italic;">Plus d&rsquo;avis sur <a href="https://www.instagram.com/gwaka.tahiti/" target="_blank" rel="noopener" style="color:var(--gwaka-vert); font-weight:600;">@gwaka.tahiti</a></p>
+    </div>
+  </section>
+
+  <!-- ========== FAQ ========== -->
+  <section class="faq" aria-label="Questions fr&eacute;quentes">
+    <div class="container">
+      <div class="faq-header reveal">
+        <span class="section-label">FAQ</span>
+        <h2 class="section-title">Vos questions, nos r&eacute;ponses</h2>
+        <p class="section-subtitle">Quelques pr&eacute;cisions sur nos prestations, d&eacute;lais et conditions.</p>
+      </div>
+      <div class="faq-list reveal">
+        <div class="faq-item">
+          <button class="faq-question">Combien de temps &agrave; l&rsquo;avance dois-je r&eacute;server&nbsp;?</button>
+          <div class="faq-answer"><p>Pour un brunch ou un plateau, comptez 5 &agrave; 7 jours minimum. Pour un &eacute;v&eacute;nement priv&eacute; (mariage, gros &eacute;v&eacute;nement corporate), id&eacute;alement 3 &agrave; 4 semaines pour caler le menu et la logistique. Pour les demandes urgentes, contactez-nous &mdash; on fait au mieux selon notre planning.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">Y a-t-il un minimum de personnes ou de commande&nbsp;?</button>
+          <div class="faq-answer"><p>Les plateaux ap&eacute;ritif sont disponibles d&egrave;s 4 personnes. Pour les brunchs et cocktails d&icirc;natoires : minimum 10 personnes. Pour le corporate et l&rsquo;&eacute;v&eacute;nementiel, le minimum d&eacute;pend du format (devis sur mesure).</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">Vous d&eacute;placez-vous partout &agrave; Tahiti&nbsp;?</button>
+          <div class="faq-answer"><p>Oui, nous livrons sur l&rsquo;ensemble de Tahiti. Pour la presqu&rsquo;&icirc;le ou les communes &eacute;loign&eacute;es, des frais de livraison peuvent s&rsquo;appliquer selon la distance. Pour Moorea ou les autres &icirc;les, contactez-nous : c&rsquo;est faisable selon les conditions logistiques.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">Adapt&eacute; aux r&eacute;gimes sp&eacute;ciaux (v&eacute;g&eacute;tarien, sans gluten, allergies)&nbsp;?</button>
+          <div class="faq-answer"><p>Absolument. On adapte chaque menu aux r&eacute;gimes v&eacute;g&eacute;tariens, v&eacute;g&eacute;taliens, sans gluten, sans lactose, et nous prenons en compte toutes les allergies. Pr&eacute;cisez-le simplement lors du devis et on construit le menu en cons&eacute;quence.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">Quels sont vos tarifs&nbsp;?</button>
+          <div class="faq-answer"><p>Chaque prestation est sur mesure, donc les tarifs d&eacute;pendent du nombre d&rsquo;invit&eacute;s, du type de menu et des services inclus (livraison, mise en place, vaisselle, boissons). Demandez un devis gratuit : on vous propose un budget transparent sous 48&nbsp;h.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">Acceptez-vous les paiements entreprise / facturation pro&nbsp;?</button>
+          <div class="faq-answer"><p>Oui. Nous &eacute;mettons des factures pour les entreprises (avec NUM TAHITI, TVA si applicable) et acceptons les virements bancaires. R&eacute;f&eacute;rences corporate : Totalenergies, Banque Socredo, ICPF, Gaz de Tahiti, DJS, Royal Auto.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== CTA FINALE ========== -->
+  <section class="cta-final" aria-label="Appel &agrave; l&rsquo;action">
+    <div class="container">
+      <h2>Pr&ecirc;t &agrave; r&eacute;galer vos invit&eacute;s&nbsp;?</h2>
+      <p>Demandez un devis gratuit et personnalis&eacute;. R&eacute;ponse sous 48&nbsp;h avec menu et budget transparent.</p>
+      <div class="cta-final-row">
+        <a href="/#contact" class="btn-primary">Demander un devis gratuit</a>
+        <a href="/portfolio/new/gwaka-menu.html" class="btn-outline">Consulter notre carte</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <a href="/" class="footer-brand">
+            <img src="/portfolio/new/images/gwaka/logo-gwaka-blanc.png" alt="GWAKA" loading="lazy">
+          </a>
+          <p class="footer-desc">Traiteur brunch &amp; healthy &agrave; Tahiti. Cuisine saine, locale et faite maison pour vos &eacute;v&eacute;nements priv&eacute;s et professionnels.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Liens</h4>
+          <ul>
+            <li><a href="/">Accueil</a></li>
+            <li><a href="/prestations">Nos Prestations</a></li>
+            <li><a href="/portfolio/new/gwaka-menu.html">Notre Carte</a></li>
+            <li><a href="/#galerie">Galerie</a></li>
+            <li><a href="/#avis">Avis clients</a></li>
+            <li><a href="/#contact">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <ul>
+            <li><a href="tel:+68987201234">+689 87 20 12 34</a></li>
+            <li><a href="mailto:contact@gwakatahiti.com">contact@gwakatahiti.com</a></li>
+            <li><a href="https://www.instagram.com/gwaka.tahiti/" target="_blank" rel="noopener">Instagram @gwaka.tahiti</a></li>
+            <li><a href="https://www.facebook.com/gwaka.tahiti" target="_blank" rel="noopener">Facebook GWAKA Tahiti</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; 2026 GWAKA. Tous droits r&eacute;serv&eacute;s.</span>
+        <span>Tahiti, Polyn&eacute;sie fran&ccedil;aise</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Reveal animation — progressive enhancement, only enables hide-then-fade if IntersectionObserver supported
+    if ('IntersectionObserver' in window) {
+      document.documentElement.classList.add('anim-ready');
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.05, rootMargin: '0px 0px 100px 0px' });
+      document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+      // Fail-safe for headless captures / very tall pages: after 2s force-reveal any element still hidden
+      setTimeout(() => {
+        document.querySelectorAll('.reveal:not(.is-visible)').forEach(el => el.classList.add('is-visible'));
+      }, 2000);
+    }
+
+    // Burger menu
+    const burger = document.getElementById('navBurger');
+    const navMobile = document.getElementById('navMobile');
+    burger.addEventListener('click', () => {
+      const isOpen = navMobile.classList.toggle('is-open');
+      burger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    });
+    navMobile.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navMobile.classList.remove('is-open');
+        burger.setAttribute('aria-expanded', 'false');
+      });
+    });
+
+    // FAQ accordion
+    document.querySelectorAll('.faq-question').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const item = btn.closest('.faq-item');
+        item.classList.toggle('is-open');
+      });
+    });
+  </script>
+
+</body>
+</html>
