@@ -128,23 +128,22 @@
       .menu-backdrop.open { pointer-events: all; }
     }
 
-    /* HERO SUB-PAGE — compact, contextual, with breadcrumb */
-    .hero { position: relative; min-height: 55vh; display: flex; align-items: flex-end; overflow: hidden; padding: 6rem 0 3rem; }
-    @media (min-width: 768px) { .hero { min-height: 60vh; padding: 7rem 0 4rem; } }
-    .hero-bg { position: absolute; inset: 0; background-image: url('/portfolio/new/images/gwaka/photos-temehani/hero-sunset-moorea-ai.webp'); background-size: cover; background-position: center 60%; background-repeat: no-repeat; }
-    .hero-bg::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,.25) 0%, rgba(0,0,0,.65) 100%); }
-    .hero-content { position: relative; z-index: 2; max-width: 760px; padding: 0 1.5rem; width: 100%; margin: 0 auto; }
+    /* HERO SUB-PAGE — same dimensions as /menu hero (60vh, padding 8rem 0 4rem, centered) */
+    .hero { position: relative; min-height: 60vh; display: flex; align-items: center; justify-content: center; overflow: hidden; padding: 8rem 0 4rem; text-align: center; }
+    .hero-bg { position: absolute; inset: 0; background-image: url('/portfolio/new/images/gwaka/photos-temehani/galerie-09-brunch-balloons-event-ai.webp'); background-size: cover; background-position: center; background-repeat: no-repeat; }
+    .hero-bg::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,.35) 0%, rgba(0,0,0,.62) 100%); }
+    .hero-content { position: relative; z-index: 2; max-width: 800px; padding: 0 1.5rem; width: 100%; margin: 0 auto; }
     @media (min-width: 768px) { .hero-content { padding: 0 2.5rem; } }
-    .breadcrumb { display: flex; align-items: center; gap: .4rem; font-size: .8rem; color: rgba(255,255,255,.78); margin-bottom: 1.25rem; font-weight: 400; letter-spacing: .03em; }
-    .breadcrumb a { color: rgba(255,255,255,.78); transition: color .2s; }
+    .breadcrumb { display: flex; align-items: center; gap: .4rem; font-size: .8rem; color: rgba(255,255,255,.85); margin-bottom: 1.25rem; font-weight: 400; letter-spacing: .03em; justify-content: center; }
+    .breadcrumb a { color: rgba(255,255,255,.85); transition: color .2s; }
     .breadcrumb a:hover { color: var(--white); }
-    .breadcrumb .sep { color: rgba(255,255,255,.45); }
+    .breadcrumb .sep { color: rgba(255,255,255,.55); }
     .breadcrumb .current { color: var(--white); font-weight: 500; }
     .hero-label { display: inline-block; font-family: var(--font-body); font-weight: 600; font-size: .72rem; letter-spacing: .22em; text-transform: uppercase; color: var(--yellow); margin-bottom: 1rem; }
-    .hero-title { font-family: var(--font-display); font-weight: 300; font-size: clamp(2.25rem, 5.5vw, 4rem); line-height: 1.05; color: var(--white); margin-bottom: 1.25rem; text-shadow: 0 4px 32px rgba(0,0,0,.4); }
+    .hero-title { font-family: var(--font-display); font-weight: 300; font-size: clamp(2.5rem, 6vw, 4.5rem); line-height: 1.05; color: var(--white); margin-bottom: 1.25rem; text-shadow: 0 4px 32px rgba(0,0,0,.4); }
     .hero-title em { font-style: italic; color: var(--yellow); font-family: var(--font-display); }
-    .hero-tagline { font-family: var(--font-tagline); font-weight: 300; font-size: clamp(1rem, 1.5vw, 1.15rem); line-height: 1.65; color: rgba(255,255,255,.92); margin: 0 0 2rem; max-width: 600px; }
-    .hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .hero-tagline { font-family: var(--font-tagline); font-weight: 300; font-size: clamp(1rem, 1.5vw, 1.15rem); line-height: 1.65; color: rgba(255,255,255,.92); margin: 0 auto 2rem; max-width: 620px; }
+    .hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; }
     .btn-primary { display: inline-flex; align-items: center; gap: .5rem; padding: .875rem 2rem; font-weight: 600; font-size: .9375rem; color: var(--white); background: var(--green); border-radius: 100px; cursor: pointer; transition: background var(--transition), transform .2s, box-shadow var(--transition); }
     .btn-primary:hover { background: var(--green-accent); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(74,124,63,.3); }
     .btn-outline { display: inline-flex; align-items: center; gap: .5rem; padding: .875rem 2rem; font-weight: 500; font-size: .9375rem; color: var(--white); border: 1.5px solid rgba(255,255,255,.5); border-radius: 100px; cursor: pointer; transition: border-color var(--transition), background var(--transition), transform .2s; }
@@ -330,7 +329,7 @@
           <p>Et surtout, on s&rsquo;occupe de tout : composition du menu, dressage, livraison, mise en place avec nappes et vaisselle &eacute;coresponsable. Vous recevez vos invit&eacute;s, nous g&eacute;rons le reste.</p>
         </div>
         <div class="intro-image reveal reveal-delay-1">
-          <img src="/portfolio/new/images/gwaka/photos-temehani/galerie-02-fruit-sculpture-ai.webp" alt="Plateau de fruits sculpt&eacute; GWAKA" loading="lazy">
+          <img src="/portfolio/new/images/gwaka/photos-temehani/galerie-10-table-bambou-ai.webp" alt="Table dressee dans la bambouseraie - esprit GWAKA" loading="lazy">
         </div>
       </div>
     </div>
