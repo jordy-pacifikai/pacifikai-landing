@@ -1461,15 +1461,9 @@
         </div>
       </a>
       <ul class="navbar-links-desktop" role="menubar">
-        <li role="none"><a href="/#prestations" role="menuitem">Nos Prestations</a></li>
-        <li role="none"><a href="/menu" role="menuitem">Menu</a></li>
-        <li role="none"><a href="/#galerie" role="menuitem">Galerie</a></li>
-        <li role="none">
-          <button type="button" class="mode-toggle" id="modeToggle" role="switch" aria-checked="false" aria-label="Basculer entre version IA et Reelle">
-            <span class="mode-toggle-option mode-toggle-option--active" data-mode="ai">&#10024; IA</span>
-            <span class="mode-toggle-option" data-mode="real">&#128247; R&eacute;el</span>
-          </button>
-        </li>
+        <li role="none"><a href="/" role="menuitem">Accueil</a></li>
+        <li role="none"><a href="/prestations" role="menuitem">Nos Prestations</a></li>
+        <li role="none"><a href="/menu" role="menuitem" class="active" aria-current="page">Notre Carte</a></li>
         <li role="none"><a href="/#contact" role="menuitem"><span class="btn-nav">Demande de devis</span></a></li>
       </ul>
       <button class="burger" id="burger" aria-label="Ouvrir le menu" aria-expanded="false">
@@ -1481,9 +1475,9 @@
   <!-- Drawer mobile : enfant direct de body pour eviter containing block (navbar a backdrop-filter quand scrolled) -->
   <aside class="mobile-drawer" id="navLinks" aria-label="Menu mobile">
     <ul role="menu">
-      <li role="none"><a href="/#prestations" role="menuitem">Nos Prestations</a></li>
-      <li role="none"><a href="/menu" role="menuitem">Menu</a></li>
-      <li role="none"><a href="/#galerie" role="menuitem">Galerie</a></li>
+      <li role="none"><a href="/" role="menuitem">Accueil</a></li>
+      <li role="none"><a href="/prestations" role="menuitem">Nos Prestations</a></li>
+      <li role="none"><a href="/menu" role="menuitem" style="color:var(--green); font-weight:600;">Notre Carte</a></li>
       <li role="none"><a href="/#contact" role="menuitem"><span class="btn-nav">Demande de devis</span></a></li>
     </ul>
   </aside>
