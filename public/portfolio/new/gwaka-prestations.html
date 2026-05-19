@@ -238,18 +238,23 @@
     .cta-final .btn-outline { color: var(--white); border-color: var(--white); }
     .cta-final .btn-outline:hover { background: var(--white); color: var(--green); }
 
-    /* FOOTER */
-    .footer { background: #1F2A1B; color: rgba(255, 255, 255, .8); padding: 4rem 0 2rem; }
-    .footer-grid { display: grid; gap: 3rem; grid-template-columns: 1fr; margin-bottom: 3rem; }
-    @media (min-width: 768px) { .footer-grid { grid-template-columns: 1.5fr 1fr 1fr; } }
-    .footer-brand { font-family: var(--font-brand); font-size: 1.5rem; color: var(--white); margin-bottom: 1rem; display: flex; align-items: center; gap: .65rem; }
-    .footer-brand img { height: 40px; width: 40px; border-radius: 50%; object-fit: cover; }
-    .footer-desc { font-size: .92rem; line-height: 1.7; max-width: 320px; }
-    .footer h4 { font-family: var(--font-display); font-weight: 400; color: var(--white); margin-bottom: 1rem; font-size: 1.05rem; }
-    .footer ul { list-style: none; display: flex; flex-direction: column; gap: .65rem; }
-    .footer a { font-size: .92rem; transition: color .2s; }
-    .footer a:hover { color: var(--yellow); }
-    .footer-bottom { padding-top: 2rem; border-top: 1px solid rgba(255, 255, 255, .1); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 1rem; font-size: .85rem; }
+    /* FOOTER — meme structure que home */
+    .footer { background: var(--dark); color: rgba(255,255,255,.7); padding: 4rem 0 2rem; }
+    .footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem; }
+    @media (max-width: 768px) { .footer-grid { grid-template-columns: 1fr; gap: 2rem; } }
+    .footer-brand { display: flex; flex-direction: column; gap: 1rem; }
+    .footer-brand-logo { display: flex; align-items: center; gap: .625rem; }
+    .footer-brand-logo img { width: 40px; height: 40px; border-radius: 50%; object-fit: cover; }
+    .footer-brand-logo span { font-family: var(--font-display); font-weight: 400; font-size: 1.25rem; color: var(--white); }
+    .footer-brand p { font-size: .875rem; line-height: 1.6; max-width: 280px; }
+    .footer-col h4 { font-family: var(--font-display); font-weight: 400; font-size: 1rem; color: var(--white); margin-bottom: 1.25rem; }
+    .footer-col ul { list-style: none; padding: 0; }
+    .footer-col li { margin-bottom: .75rem; font-size: .875rem; }
+    .footer-col a { font-size: .875rem; transition: color var(--transition); }
+    .footer-col a:hover { color: var(--green-accent); }
+    .footer-bottom { border-top: 1px solid rgba(255,255,255,.08); padding-top: 2rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; font-size: .8125rem; }
+    .footer-credit a { color: var(--green-accent); }
+    .footer-credit a:hover { color: var(--yellow); }
   </style>
 </head>
 <body>
@@ -599,36 +604,36 @@
   <footer class="footer" role="contentinfo">
     <div class="container">
       <div class="footer-grid">
-        <div class="footer-col">
-          <a href="/" class="footer-brand">
-            <img src="/portfolio/new/images/gwaka/gwaka-logo.webp" alt="GWAKA" loading="lazy">
-            <span>gwaka</span>
-          </a>
-          <p class="footer-desc">Traiteur brunch &amp; healthy &agrave; Tahiti. Cuisine saine, locale et faite maison pour vos &eacute;v&eacute;nements priv&eacute;s et professionnels.</p>
+        <div class="footer-brand">
+          <div class="footer-brand-logo">
+            <img src="/portfolio/new/images/gwaka/gwaka-logo.webp" alt="Logo GWAKA" width="40" height="40" loading="lazy">
+            <span>GWAKA</span>
+          </div>
+          <p>Traiteur Brunch &amp; Healthy &mdash; Tahiti.<br>Cuisine saine, locale et faite avec amour.</p>
         </div>
         <div class="footer-col">
-          <h4>Liens</h4>
+          <h4>Navigation</h4>
           <ul>
             <li><a href="/">Accueil</a></li>
             <li><a href="/prestations">Nos Prestations</a></li>
             <li><a href="/menu">Notre Carte</a></li>
-            <li><a href="/#galerie">Galerie</a></li>
-            <li><a href="/#avis">Avis clients</a></li>
-            <li><a href="/#contact">Contact</a></li>
+            <li><a href="/#contact">Demande de devis</a></li>
           </ul>
         </div>
         <div class="footer-col">
           <h4>Contact</h4>
           <ul>
-            <li><a href="mailto:contact@gwakatahiti.com">contact@gwakatahiti.com</a></li>
-            <li><a href="https://www.instagram.com/gwaka.tahiti/" target="_blank" rel="noopener">Instagram @gwaka.tahiti</a></li>
-            <li><a href="https://www.facebook.com/gwaka.tahiti" target="_blank" rel="noopener">Facebook GWAKA Tahiti</a></li>
+            <li>Fa&rsquo;a&rsquo;&#257;, Tahiti, Polyn&eacute;sie fran&ccedil;aise</li>
+            <li><a href="tel:+68989537570">+689 89 53 75 70</a></li>
+            <li><a href="mailto:gwakatahiti@gmail.com">gwakatahiti@gmail.com</a></li>
+            <li><a href="https://www.instagram.com/gwaka.tahiti/" target="_blank" rel="noopener" aria-label="Instagram GWAKA">@gwaka.tahiti</a></li>
+            <li><a href="https://www.facebook.com/gwaka.tahiti" target="_blank" rel="noopener" aria-label="Facebook GWAKA">Facebook GWAKA</a></li>
           </ul>
         </div>
       </div>
       <div class="footer-bottom">
         <span>&copy; 2026 GWAKA. Tous droits r&eacute;serv&eacute;s.</span>
-        <span>Tahiti, Polyn&eacute;sie fran&ccedil;aise</span>
+        <span class="footer-credit">Site cree par <a href="https://pacifikai.com" target="_blank" rel="noopener">PACIFIK'AI</a></span>
       </div>
     </div>
   </footer>
