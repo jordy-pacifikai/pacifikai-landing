@@ -1260,6 +1260,45 @@
       color: var(--text-muted);
       font-style: italic;
     }
+    .testimonial-verified {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      display: inline-flex;
+      align-items: center;
+      gap: .3rem;
+      font-size: .65rem;
+      font-weight: 500;
+      color: var(--green-accent);
+      background: rgba(98, 165, 70, .08);
+      padding: .25rem .5rem;
+      border-radius: 100px;
+      letter-spacing: .04em;
+    }
+    .testimonial-verified svg { width: 12px; height: 12px; fill: currentColor; }
+    .testimonials-cta {
+      text-align: center;
+      margin-top: 3rem;
+    }
+    .testimonials-cta a {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      padding: .75rem 1.5rem;
+      background: var(--white);
+      color: var(--green);
+      border: 1.5px solid var(--green);
+      border-radius: 100px;
+      font-size: .9rem;
+      font-weight: 500;
+      transition: var(--transition);
+    }
+    .testimonials-cta a:hover {
+      background: var(--green);
+      color: var(--white);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(98, 165, 70, .25);
+    }
 
     /* ──────────────────────────────
        GALERIE
@@ -1936,9 +1975,9 @@
         <h2 class="section-title">Ce qu&rsquo;ils en disent</h2>
         <p class="section-subtitle">Retours d&rsquo;exp&eacute;rience de nos client(e)s apr&egrave;s leur &eacute;v&eacute;nement GWAKA.</p>
       </div>
-      <p class="testimonials-source reveal" style="text-align:center; color:#6b7280; font-size:.85rem; margin:-.5rem 0 1.5rem; font-style:italic;">Retours clients authentiques publi&eacute;s sur Instagram <a href="https://www.instagram.com/gwaka.tahiti/" target="_blank" rel="noopener" style="color:var(--gwaka-vert); text-decoration:none; font-weight:600;">@gwaka.tahiti</a></p>
       <div class="testimonials-grid reveal">
         <article class="testimonial-card">
+          <span class="testimonial-verified" aria-label="Verifie sur Instagram"><svg viewBox="0 0 24 24"><path d="M12 0C8.74 0 8.333.015 7.053.072 5.775.132 4.905.333 4.14.63c-.789.306-1.459.717-2.126 1.384S.935 3.35.63 4.14C.333 4.905.131 5.775.072 7.053.012 8.333 0 8.74 0 12s.015 3.667.072 4.947c.06 1.277.261 2.148.558 2.913.306.788.717 1.459 1.384 2.126.667.666 1.336 1.079 2.126 1.384.766.296 1.636.499 2.913.558C8.333 23.988 8.74 24 12 24s3.667-.015 4.947-.072c1.277-.06 2.148-.262 2.913-.558.788-.306 1.459-.718 2.126-1.384.666-.667 1.079-1.335 1.384-2.126.296-.765.499-1.636.558-2.913.06-1.28.072-1.687.072-4.947s-.015-3.667-.072-4.947c-.06-1.277-.262-2.149-.558-2.913-.306-.789-.718-1.459-1.384-2.126C21.319 1.347 20.651.935 19.86.63c-.765-.297-1.636-.499-2.913-.558C15.667.012 15.26 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg> Instagram</span>
           <div class="testimonial-stars" aria-label="5 etoiles">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
           <p class="testimonial-quote">&laquo;&nbsp;Bonjour. Merci pour le brunch hier. C&rsquo;&eacute;tait topissime&nbsp;!! Bonne journ&eacute;e&nbsp;&raquo;</p>
           <div class="testimonial-author">
@@ -1950,6 +1989,7 @@
           </div>
         </article>
         <article class="testimonial-card">
+          <span class="testimonial-verified" aria-label="Verifie sur Instagram"><svg viewBox="0 0 24 24"><path d="M12 0C8.74 0 8.333.015 7.053.072 5.775.132 4.905.333 4.14.63c-.789.306-1.459.717-2.126 1.384S.935 3.35.63 4.14C.333 4.905.131 5.775.072 7.053.012 8.333 0 8.74 0 12s.015 3.667.072 4.947c.06 1.277.261 2.148.558 2.913.306.788.717 1.459 1.384 2.126.667.666 1.336 1.079 2.126 1.384.766.296 1.636.499 2.913.558C8.333 23.988 8.74 24 12 24s3.667-.015 4.947-.072c1.277-.06 2.148-.262 2.913-.558.788-.306 1.459-.718 2.126-1.384.666-.667 1.079-1.335 1.384-2.126.296-.765.499-1.636.558-2.913.06-1.28.072-1.687.072-4.947s-.015-3.667-.072-4.947c-.06-1.277-.262-2.149-.558-2.913-.306-.789-.718-1.459-1.384-2.126C21.319 1.347 20.651.935 19.86.63c-.765-.297-1.636-.499-2.913-.558C15.667.012 15.26 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg> Instagram</span>
           <div class="testimonial-stars" aria-label="5 etoiles">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
           <p class="testimonial-quote">&laquo;&nbsp;Coucou Temehani, c&rsquo;&eacute;tait tr&egrave;s bon, mention sp&eacute;ciale au wrap de tofu et au bun au caviar d&rsquo;aubergine. Bonne soir&eacute;e.&nbsp;&raquo;</p>
           <div class="testimonial-author">
@@ -1961,17 +2001,19 @@
           </div>
         </article>
         <article class="testimonial-card">
+          <span class="testimonial-verified" aria-label="Verifie sur Instagram"><svg viewBox="0 0 24 24"><path d="M12 0C8.74 0 8.333.015 7.053.072 5.775.132 4.905.333 4.14.63c-.789.306-1.459.717-2.126 1.384S.935 3.35.63 4.14C.333 4.905.131 5.775.072 7.053.012 8.333 0 8.74 0 12s.015 3.667.072 4.947c.06 1.277.261 2.148.558 2.913.306.788.717 1.459 1.384 2.126.667.666 1.336 1.079 2.126 1.384.766.296 1.636.499 2.913.558C8.333 23.988 8.74 24 12 24s3.667-.015 4.947-.072c1.277-.06 2.148-.262 2.913-.558.788-.306 1.459-.718 2.126-1.384.666-.667 1.079-1.335 1.384-2.126.296-.765.499-1.636.558-2.913.06-1.28.072-1.687.072-4.947s-.015-3.667-.072-4.947c-.06-1.277-.262-2.149-.558-2.913-.306-.789-.718-1.459-1.384-2.126C21.319 1.347 20.651.935 19.86.63c-.765-.297-1.636-.499-2.913-.558C15.667.012 15.26 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg> Instagram</span>
           <div class="testimonial-stars" aria-label="5 etoiles">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
           <p class="testimonial-quote">&laquo;&nbsp;Merci de nous avoir r&eacute;gal&eacute;, tous ont aim&eacute;, ils ont trouv&eacute; beau et bon pour ceux qui ne connaissaient pas.&nbsp;&raquo;</p>
           <div class="testimonial-author">
             <div class="testimonial-author-avatar">V</div>
             <div class="testimonial-author-meta">
-              <span class="testimonial-author-name">Cliente Cocktail Dinatoire</span>
+              <span class="testimonial-author-name">Cliente Cocktail D&icirc;natoire</span>
               <span class="testimonial-author-context">Cocktail d&icirc;natoire priv&eacute;</span>
             </div>
           </div>
         </article>
         <article class="testimonial-card">
+          <span class="testimonial-verified" aria-label="Verifie sur Instagram"><svg viewBox="0 0 24 24"><path d="M12 0C8.74 0 8.333.015 7.053.072 5.775.132 4.905.333 4.14.63c-.789.306-1.459.717-2.126 1.384S.935 3.35.63 4.14C.333 4.905.131 5.775.072 7.053.012 8.333 0 8.74 0 12s.015 3.667.072 4.947c.06 1.277.261 2.148.558 2.913.306.788.717 1.459 1.384 2.126.667.666 1.336 1.079 2.126 1.384.766.296 1.636.499 2.913.558C8.333 23.988 8.74 24 12 24s3.667-.015 4.947-.072c1.277-.06 2.148-.262 2.913-.558.788-.306 1.459-.718 2.126-1.384.666-.667 1.079-1.335 1.384-2.126.296-.765.499-1.636.558-2.913.06-1.28.072-1.687.072-4.947s-.015-3.667-.072-4.947c-.06-1.277-.262-2.149-.558-2.913-.306-.789-.718-1.459-1.384-2.126C21.319 1.347 20.651.935 19.86.63c-.765-.297-1.636-.499-2.913-.558C15.667.012 15.26 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg> Instagram</span>
           <div class="testimonial-stars" aria-label="5 etoiles">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
           <p class="testimonial-quote">&laquo;&nbsp;Ia ora na, merci beaucoup pour le ma&rsquo;a d&rsquo;hier. Tout &eacute;tait excellent, on a ador&eacute; et on s&rsquo;est r&eacute;gal&eacute;es. On recommandera c&rsquo;est s&ucirc;r&nbsp;!&nbsp;&raquo;</p>
           <div class="testimonial-author">
@@ -1983,6 +2025,7 @@
           </div>
         </article>
         <article class="testimonial-card">
+          <span class="testimonial-verified" aria-label="Verifie sur Instagram"><svg viewBox="0 0 24 24"><path d="M12 0C8.74 0 8.333.015 7.053.072 5.775.132 4.905.333 4.14.63c-.789.306-1.459.717-2.126 1.384S.935 3.35.63 4.14C.333 4.905.131 5.775.072 7.053.012 8.333 0 8.74 0 12s.015 3.667.072 4.947c.06 1.277.261 2.148.558 2.913.306.788.717 1.459 1.384 2.126.667.666 1.336 1.079 2.126 1.384.766.296 1.636.499 2.913.558C8.333 23.988 8.74 24 12 24s3.667-.015 4.947-.072c1.277-.06 2.148-.262 2.913-.558.788-.306 1.459-.718 2.126-1.384.666-.667 1.079-1.335 1.384-2.126.296-.765.499-1.636.558-2.913.06-1.28.072-1.687.072-4.947s-.015-3.667-.072-4.947c-.06-1.277-.262-2.149-.558-2.913-.306-.789-.718-1.459-1.384-2.126C21.319 1.347 20.651.935 19.86.63c-.765-.297-1.636-.499-2.913-.558C15.667.012 15.26 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg> Instagram</span>
           <div class="testimonial-stars" aria-label="5 etoiles">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
           <p class="testimonial-quote">&laquo;&nbsp;Merciii on s&rsquo;est r&eacute;gal&eacute; ! Les enfants ont ador&eacute; les pancakes et nous tous le reste.&nbsp;&raquo;</p>
           <div class="testimonial-author">
@@ -1994,6 +2037,7 @@
           </div>
         </article>
         <article class="testimonial-card">
+          <span class="testimonial-verified" aria-label="Verifie sur Instagram"><svg viewBox="0 0 24 24"><path d="M12 0C8.74 0 8.333.015 7.053.072 5.775.132 4.905.333 4.14.63c-.789.306-1.459.717-2.126 1.384S.935 3.35.63 4.14C.333 4.905.131 5.775.072 7.053.012 8.333 0 8.74 0 12s.015 3.667.072 4.947c.06 1.277.261 2.148.558 2.913.306.788.717 1.459 1.384 2.126.667.666 1.336 1.079 2.126 1.384.766.296 1.636.499 2.913.558C8.333 23.988 8.74 24 12 24s3.667-.015 4.947-.072c1.277-.06 2.148-.262 2.913-.558.788-.306 1.459-.718 2.126-1.384.666-.667 1.079-1.335 1.384-2.126.296-.765.499-1.636.558-2.913.06-1.28.072-1.687.072-4.947s-.015-3.667-.072-4.947c-.06-1.277-.262-2.149-.558-2.913-.306-.789-.718-1.459-1.384-2.126C21.319 1.347 20.651.935 19.86.63c-.765-.297-1.636-.499-2.913-.558C15.667.012 15.26 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg> Instagram</span>
           <div class="testimonial-stars" aria-label="5 etoiles">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
           <p class="testimonial-quote">&laquo;&nbsp;Je te remercie pour cette belle et savoureuse prestation qui a &eacute;t&eacute; appr&eacute;ci&eacute;e de tous !!&nbsp;&raquo;</p>
           <div class="testimonial-author">
@@ -2004,6 +2048,48 @@
             </div>
           </div>
         </article>
+        <article class="testimonial-card">
+          <span class="testimonial-verified" aria-label="Verifie sur Instagram"><svg viewBox="0 0 24 24"><path d="M12 0C8.74 0 8.333.015 7.053.072 5.775.132 4.905.333 4.14.63c-.789.306-1.459.717-2.126 1.384S.935 3.35.63 4.14C.333 4.905.131 5.775.072 7.053.012 8.333 0 8.74 0 12s.015 3.667.072 4.947c.06 1.277.261 2.148.558 2.913.306.788.717 1.459 1.384 2.126.667.666 1.336 1.079 2.126 1.384.766.296 1.636.499 2.913.558C8.333 23.988 8.74 24 12 24s3.667-.015 4.947-.072c1.277-.06 2.148-.262 2.913-.558.788-.306 1.459-.718 2.126-1.384.666-.667 1.079-1.335 1.384-2.126.296-.765.499-1.636.558-2.913.06-1.28.072-1.687.072-4.947s-.015-3.667-.072-4.947c-.06-1.277-.262-2.149-.558-2.913-.306-.789-.718-1.459-1.384-2.126C21.319 1.347 20.651.935 19.86.63c-.765-.297-1.636-.499-2.913-.558C15.667.012 15.26 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg> Instagram</span>
+          <div class="testimonial-stars" aria-label="5 etoiles">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p class="testimonial-quote">&laquo;&nbsp;Merci &agrave; toi c&rsquo;&eacute;tait excellent et certainement pas la derni&egrave;re fois !&nbsp;&raquo;</p>
+          <div class="testimonial-author">
+            <div class="testimonial-author-avatar">B</div>
+            <div class="testimonial-author-meta">
+              <span class="testimonial-author-name">Cliente Brunch Fid&egrave;le</span>
+              <span class="testimonial-author-context">Brunch livr&eacute; &agrave; domicile</span>
+            </div>
+          </div>
+        </article>
+        <article class="testimonial-card">
+          <span class="testimonial-verified" aria-label="Verifie sur Instagram"><svg viewBox="0 0 24 24"><path d="M12 0C8.74 0 8.333.015 7.053.072 5.775.132 4.905.333 4.14.63c-.789.306-1.459.717-2.126 1.384S.935 3.35.63 4.14C.333 4.905.131 5.775.072 7.053.012 8.333 0 8.74 0 12s.015 3.667.072 4.947c.06 1.277.261 2.148.558 2.913.306.788.717 1.459 1.384 2.126.667.666 1.336 1.079 2.126 1.384.766.296 1.636.499 2.913.558C8.333 23.988 8.74 24 12 24s3.667-.015 4.947-.072c1.277-.06 2.148-.262 2.913-.558.788-.306 1.459-.718 2.126-1.384.666-.667 1.079-1.335 1.384-2.126.296-.765.499-1.636.558-2.913.06-1.28.072-1.687.072-4.947s-.015-3.667-.072-4.947c-.06-1.277-.262-2.149-.558-2.913-.306-.789-.718-1.459-1.384-2.126C21.319 1.347 20.651.935 19.86.63c-.765-.297-1.636-.499-2.913-.558C15.667.012 15.26 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg> Instagram</span>
+          <div class="testimonial-stars" aria-label="5 etoiles">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p class="testimonial-quote">&laquo;&nbsp;C&rsquo;&eacute;tait vraiment excellent Merci !! Tr&egrave;s bonne exp&eacute;rience, j&rsquo;en commanderai encore. Bon dimanche.&nbsp;&raquo;</p>
+          <div class="testimonial-author">
+            <div class="testimonial-author-avatar">R</div>
+            <div class="testimonial-author-meta">
+              <span class="testimonial-author-name">Cliente R&eacute;currente</span>
+              <span class="testimonial-author-context">Plateau gourmand</span>
+            </div>
+          </div>
+        </article>
+        <article class="testimonial-card">
+          <span class="testimonial-verified" aria-label="Verifie sur Instagram"><svg viewBox="0 0 24 24"><path d="M12 0C8.74 0 8.333.015 7.053.072 5.775.132 4.905.333 4.14.63c-.789.306-1.459.717-2.126 1.384S.935 3.35.63 4.14C.333 4.905.131 5.775.072 7.053.012 8.333 0 8.74 0 12s.015 3.667.072 4.947c.06 1.277.261 2.148.558 2.913.306.788.717 1.459 1.384 2.126.667.666 1.336 1.079 2.126 1.384.766.296 1.636.499 2.913.558C8.333 23.988 8.74 24 12 24s3.667-.015 4.947-.072c1.277-.06 2.148-.262 2.913-.558.788-.306 1.459-.718 2.126-1.384.666-.667 1.079-1.335 1.384-2.126.296-.765.499-1.636.558-2.913.06-1.28.072-1.687.072-4.947s-.015-3.667-.072-4.947c-.06-1.277-.262-2.149-.558-2.913-.306-.789-.718-1.459-1.384-2.126C21.319 1.347 20.651.935 19.86.63c-.765-.297-1.636-.499-2.913-.558C15.667.012 15.26 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg> Instagram</span>
+          <div class="testimonial-stars" aria-label="5 etoiles">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p class="testimonial-quote">&laquo;&nbsp;A tester absolument ! Largement copieux pour 2... un d&eacute;lice&nbsp;&raquo;</p>
+          <div class="testimonial-author">
+            <div class="testimonial-author-avatar">D</div>
+            <div class="testimonial-author-meta">
+              <span class="testimonial-author-name">Cliente Duo</span>
+              <span class="testimonial-author-context">Brunch Box pour 2</span>
+            </div>
+          </div>
+        </article>
+      </div>
+      <div class="testimonials-cta reveal">
+        <a href="https://www.instagram.com/stories/highlights/17942670649998571/" target="_blank" rel="noopener" aria-label="Voir tous les avis sur Instagram">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C8.74 0 8.333.015 7.053.072 5.775.132 4.905.333 4.14.63c-.789.306-1.459.717-2.126 1.384S.935 3.35.63 4.14C.333 4.905.131 5.775.072 7.053.012 8.333 0 8.74 0 12s.015 3.667.072 4.947c.06 1.277.261 2.148.558 2.913.306.788.717 1.459 1.384 2.126.667.666 1.336 1.079 2.126 1.384.766.296 1.636.499 2.913.558C8.333 23.988 8.74 24 12 24s3.667-.015 4.947-.072c1.277-.06 2.148-.262 2.913-.558.788-.306 1.459-.718 2.126-1.384.666-.667 1.079-1.335 1.384-2.126.296-.765.499-1.636.558-2.913.06-1.28.072-1.687.072-4.947s-.015-3.667-.072-4.947c-.06-1.277-.262-2.149-.558-2.913-.306-.789-.718-1.459-1.384-2.126C21.319 1.347 20.651.935 19.86.63c-.765-.297-1.636-.499-2.913-.558C15.667.012 15.26 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+          Voir tous les avis sur @gwaka.tahiti
+        </a>
       </div>
     </div>
   </section>
