@@ -1,39 +1,77 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { articles, getArticleBySlug } from "@/lib/blog-data";
+import { articles, getArticleBySlug, type Article } from "@/lib/blog-data";
+import { ARTICLE_IMAGES } from "@/lib/blog-images";
+import { fetchSupabaseArticles, getSupabaseArticleBySlug } from "@/lib/blog-supabase";
+import { generateBreadcrumbSchema } from "@/lib/schema";
+import RelatedLinks from "@/components/seo/RelatedLinks";
+import { getRelatedLinks } from "@/lib/internal-links";
 
 interface Props {
   params: Promise<{ slug: string }>;
 }
 
+// Revalidate every minute so newly-published Supabase articles appear fast
+export const revalidate = 60;
+// Allow on-demand generation for slugs not in generateStaticParams output
+export const dynamicParams = true;
+
+async function resolveArticle(slug: string): Promise<Article | undefined> {
+  const hardcoded = getArticleBySlug(slug);
+  if (hardcoded) return hardcoded;
+  return await getSupabaseArticleBySlug(slug);
+}
+
+function resolveImage(slug: string, article: Article): string | undefined {
+  return article.image || ARTICLE_IMAGES[slug] || undefined;
+}
+
 export async function generateStaticParams() {
-  return articles.map((article) => ({
-    slug: article.slug,
-  }));
+  const fromSupabase = await fetchSupabaseArticles();
+  const seen = new Set<string>();
+  const out: { slug: string }[] = [];
+  for (const a of articles) {
+    if (!seen.has(a.slug)) {
+      seen.add(a.slug);
+      out.push({ slug: a.slug });
+    }
+  }
+  for (const a of fromSupabase) {
+    if (!seen.has(a.slug)) {
+      seen.add(a.slug);
+      out.push({ slug: a.slug });
+    }
+  }
+  return out;
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
-  const article = getArticleBySlug(slug);
+  const article = await resolveArticle(slug);
 
   if (!article) {
     return { title: "Article introuvable | PACIFIK'AI" };
   }
+  const heroImage = resolveImage(slug, article);
 
   return {
     title: `${article.title} | PACIFIK'AI`,
     description: article.description,
+    alternates: {
+      canonical: `https://pacifikai.com/blog/${slug}`,
+    },
     openGraph: {
       title: `${article.title} | PACIFIK'AI`,
       description: article.description,
       type: "article",
       locale: "fr_PF",
+      url: `https://pacifikai.com/blog/${slug}`,
       publishedTime: article.date,
       authors: ["PACIFIK'AI"],
       images: [
         {
-          url: "/assets/og-image.png",
+          url: heroImage ?? "/assets/og-image.png",
           width: 1200,
           height: 630,
           alt: article.title,
@@ -71,11 +109,12 @@ function formatDate(dateStr: string): string {
 
 export default async function ArticlePage({ params }: Props) {
   const { slug } = await params;
-  const article = getArticleBySlug(slug);
+  const article = await resolveArticle(slug);
 
   if (!article) {
     notFound();
   }
+  const heroImage = resolveImage(slug, article);
 
   const related = articles
     .filter((a) => a.slug !== slug && a.category === article.category)
@@ -107,8 +146,14 @@ export default async function ArticlePage({ params }: Props) {
     dateModified: article.date,
     mainEntityOfPage: `https://pacifikai.com/blog/${slug}`,
     inLanguage: "fr",
-    image: "https://pacifikai.com/assets/og-image.png",
+    image: heroImage ?? "https://pacifikai.com/assets/og-image.png",
   };
+
+  const breadcrumbSchema = generateBreadcrumbSchema([
+    { name: "Accueil", url: "https://pacifikai.com" },
+    { name: "Blog", url: "https://pacifikai.com/blog" },
+    { name: article.title, url: `https://pacifikai.com/blog/${slug}` },
+  ]);
 
   return (
     <div className="min-h-screen bg-bg">
@@ -121,6 +166,10 @@ export default async function ArticlePage({ params }: Props) {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
 
       <div className="relative z-10 pt-28 pb-24 px-4">
@@ -141,22 +190,63 @@ export default async function ArticlePage({ params }: Props) {
           </nav>
         </div>
 
-        {/* Article header */}
+        {/* Hero card — image + title fused */}
         <header className="max-w-3xl mx-auto mb-12">
-          <div className="flex items-center gap-3 mb-5">
-            <span
-              className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-[10px] font-semibold tracking-widest uppercase border ${categoryColor}`}
-            >
-              {article.category}
-            </span>
-            <span className="text-xs text-text-dim">
-              {formatDate(article.date)}
-            </span>
-          </div>
+          {heroImage ? (
+            <div className="relative rounded-2xl overflow-hidden border border-white/[0.06] mb-8">
+              {/* Image */}
+              <div className="relative aspect-[2/1]">
+                <img
+                  src={`https://wsrv.nl/?url=${encodeURIComponent(heroImage)}&w=960&q=80&output=webp`}
+                  alt={article.title}
+                  width={960}
+                  height={480}
+                  className="w-full h-full object-cover"
+                />
+                {/* Gradient overlay bottom */}
+                <div className="absolute inset-0 bg-gradient-to-t from-[#080c14] via-[#080c14]/60 to-transparent" />
+              </div>
 
-          <h1 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold leading-tight tracking-tight mb-6 text-text">
-            {article.title}
-          </h1>
+              {/* Title overlaid on image */}
+              <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8">
+                <div className="flex items-center gap-3 mb-3">
+                  <span
+                    className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-[10px] font-semibold tracking-widest uppercase border backdrop-blur-sm ${categoryColor}`}
+                  >
+                    {article.category}
+                  </span>
+                  <span className="text-xs text-white/50">
+                    {formatDate(article.date)}
+                  </span>
+                  {article.readTime && (
+                    <>
+                      <span className="w-1 h-1 rounded-full bg-white/30" />
+                      <span className="text-xs text-white/50">{article.readTime} de lecture</span>
+                    </>
+                  )}
+                </div>
+                <h1 className="font-display text-2xl md:text-3xl lg:text-4xl font-bold leading-tight tracking-tight text-white">
+                  {article.title}
+                </h1>
+              </div>
+            </div>
+          ) : (
+            <div className="mb-8">
+              <div className="flex items-center gap-3 mb-5">
+                <span
+                  className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-[10px] font-semibold tracking-widest uppercase border ${categoryColor}`}
+                >
+                  {article.category}
+                </span>
+                <span className="text-xs text-text-dim">
+                  {formatDate(article.date)}
+                </span>
+              </div>
+              <h1 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold leading-tight tracking-tight text-text">
+                {article.title}
+              </h1>
+            </div>
+          )}
 
           <p className="text-text-secondary text-lg leading-relaxed">
             {article.description}
@@ -188,7 +278,7 @@ export default async function ArticlePage({ params }: Props) {
             </p>
             <div className="flex flex-col sm:flex-row gap-3 justify-center">
               <a
-                href="/#contact"
+                href="/contact"
                 className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-[#f97066] text-white font-semibold text-sm hover:bg-[#f97066]/90 transition-colors"
               >
                 Demander un devis gratuit
@@ -204,6 +294,12 @@ export default async function ArticlePage({ params }: Props) {
         </div>
 
         {/* Related articles */}
+        {/* Cross-type internal links (SEO) */}
+        <RelatedLinks
+          links={getRelatedLinks(`/blog/${slug}`, article.title.toLowerCase().split(/\s+/))}
+          title="Services et ressources associés"
+        />
+
         {related.length > 0 && (
           <div className="max-w-5xl mx-auto mt-20">
             <h2 className="font-display text-2xl font-bold mb-8 text-center">
@@ -218,7 +314,8 @@ export default async function ArticlePage({ params }: Props) {
                   <Link
                     key={rel.slug}
                     href={`/blog/${rel.slug}`}
-                    className="group glass glass-hover rounded-xl p-5 border border-white/[0.06] hover:border-[#f97066]/20 transition-all duration-300 hover:-translate-y-1"
+                    data-tilt
+                    className="group glass glass-hover rounded-xl p-5 border border-white/[0.06] hover:border-[#f97066]/20 transition-colors duration-300"
                   >
                     <span
                       className={`inline-flex items-center px-2 py-0.5 rounded-full text-[9px] font-bold tracking-widest uppercase border ${relColor} mb-3`}
@@ -255,6 +352,148 @@ export default async function ArticlePage({ params }: Props) {
 
       {/* Article prose styles */}
       <style>{`
+        /* Article header from original HTML articles */
+        .article-prose .article-header {
+          display: none; /* Header info already rendered by Next.js above */
+        }
+        .article-prose .article-breadcrumb { display: none; }
+        .article-prose .article-category-tag { display: none; }
+        .article-prose .article-meta {
+          display: flex; align-items: center; gap: 2rem;
+          color: rgba(255,255,255,0.4); font-size: 0.85rem;
+          padding-bottom: 1.5rem; margin-bottom: 2rem;
+          border-bottom: 1px solid rgba(255,255,255,0.06);
+        }
+        .article-prose .article-meta-item {
+          display: flex; align-items: center; gap: 0.5rem;
+        }
+        .article-prose .article-meta-item svg {
+          width: 15px; height: 15px;
+          stroke: rgba(255,255,255,0.4); opacity: 0.7;
+        }
+        .article-prose .article-content {
+          max-width: 100%; padding: 0;
+        }
+        .article-prose .article-content > p:first-of-type {
+          font-size: 1.15rem; line-height: 1.85;
+        }
+
+        /* Stats box */
+        .article-prose .stats-box {
+          background: rgba(255,255,255,0.03);
+          border: 1px solid rgba(255,255,255,0.07);
+          border-radius: 16px; padding: 2rem;
+          margin: 2.5rem 0; position: relative; overflow: hidden;
+          display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 1rem;
+        }
+        .article-prose .stats-box::before {
+          content: ''; position: absolute; top: -1px; left: 0; right: 0; height: 2px;
+          background: linear-gradient(90deg, #f97066, #f5c542, #f97066);
+        }
+        .article-prose .stat-item {
+          background: rgba(255,255,255,0.03);
+          border: 1px solid rgba(255,255,255,0.07);
+          border-radius: 12px; padding: 1.75rem; text-align: center;
+          transition: all 0.3s;
+        }
+        .article-prose .stat-item:hover {
+          border-color: #f97066; box-shadow: 0 0 20px rgba(249,112,102,0.15);
+        }
+        .article-prose .stat-number {
+          font-size: 2.25rem; font-weight: 800;
+          background: linear-gradient(135deg, #f97066, #f5c542);
+          -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+          background-clip: text; margin-bottom: 0.25rem;
+        }
+        .article-prose .stat-label {
+          font-size: 0.78rem; color: rgba(255,255,255,0.4); font-weight: 500;
+        }
+
+        /* Stats box list variant */
+        .article-prose .stats-box h3 {
+          font-size: 0.75rem; font-weight: 700; color: #f97066;
+          text-transform: uppercase; letter-spacing: 0.12em;
+          margin: 0 0 1.5rem 0; grid-column: 1 / -1;
+        }
+        .article-prose .stats-box ul {
+          margin: 0; display: grid; grid-template-columns: 1fr; gap: 0;
+          grid-column: 1 / -1; list-style: none; padding: 0;
+        }
+        .article-prose .stats-box li {
+          padding: 1rem; margin: 0;
+          border-bottom: 1px solid rgba(255,255,255,0.06);
+          list-style: none;
+        }
+        .article-prose .stats-box li:last-child { border-bottom: none; }
+        .article-prose .stats-box li strong {
+          font-weight: 800; color: #f5c542; font-size: 1.1em;
+        }
+
+        /* Key points / comparison grid */
+        .article-prose .key-points,
+        .article-prose .comparison-grid {
+          display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+          gap: 1rem; margin: 2rem 0;
+        }
+        .article-prose .key-point,
+        .article-prose .comparison-card {
+          background: rgba(255,255,255,0.03);
+          border: 1px solid rgba(255,255,255,0.07);
+          border-radius: 12px; padding: 1.5rem;
+        }
+        .article-prose .key-point-number {
+          font-size: 1.5rem; font-weight: 800; color: #f97066; margin-bottom: 0.5rem;
+        }
+
+        /* Quote box */
+        .article-prose .quote-box {
+          background: rgba(255,255,255,0.03);
+          border: none; border-left: 3px solid #f97066;
+          border-radius: 0 14px 14px 0;
+          padding: 2rem 2.25rem; margin: 2rem 0;
+          font-style: italic; color: rgba(255,255,255,0.6);
+        }
+
+        /* FAQ in article */
+        .article-prose .faq-section { margin: 2rem 0; }
+        .article-prose .faq-item {
+          background: rgba(255,255,255,0.03);
+          border: 1px solid rgba(255,255,255,0.07);
+          border-radius: 12px; padding: 1.25rem 1.5rem;
+          margin-bottom: 0.75rem;
+        }
+        .article-prose .faq-question {
+          font-weight: 700; color: var(--color-text, #fff); margin-bottom: 0.5rem;
+        }
+        .article-prose .faq-answer {
+          color: rgba(255,255,255,0.6); font-size: 0.95rem; line-height: 1.7;
+        }
+
+        /* CTA box in article */
+        .article-prose .cta-section,
+        .article-prose .cta-box-inline {
+          background: linear-gradient(135deg, rgba(249,112,102,0.08), rgba(20,184,166,0.05));
+          border: 1px solid rgba(249,112,102,0.2);
+          border-radius: 16px; padding: 2rem; margin: 2.5rem 0;
+          text-align: center;
+        }
+        .article-prose .cta-section h2,
+        .article-prose .cta-box-inline h3 {
+          border: none; padding: 0;
+        }
+        .article-prose .cta-btn,
+        .article-prose .cta-button {
+          display: inline-block; padding: 0.75rem 2rem;
+          background: #f97066; color: #080c14; font-weight: 700;
+          border-radius: 10px; text-decoration: none;
+          transition: all 0.3s; margin-top: 1rem;
+        }
+        .article-prose .cta-btn:hover,
+        .article-prose .cta-button:hover {
+          box-shadow: 0 0 24px rgba(249,112,102,0.4);
+          transform: translateY(-2px);
+        }
+
         .article-prose h1,
         .article-prose h2,
         .article-prose h3,

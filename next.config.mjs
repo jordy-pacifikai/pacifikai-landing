@@ -1,6 +1,33 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  output: 'standalone',
   transpilePackages: ['three'],
+  async rewrites() {
+    return [
+      // Portfolio clean URLs → static HTML files
+      { source: '/portfolio/new/:slug', destination: '/portfolio/new/:slug.html' },
+    ];
+  },
+  async headers() {
+    return [
+      {
+        source: '/api/(.*)',
+        headers: [
+          { key: 'Access-Control-Allow-Origin', value: '*' },
+          { key: 'Access-Control-Allow-Methods', value: 'GET, POST, OPTIONS' },
+          { key: 'Access-Control-Allow-Headers', value: 'Content-Type' },
+        ],
+      },
+      {
+        source: '/(.*)',
+        headers: [
+          { key: 'X-Content-Type-Options', value: 'nosniff' },
+          { key: 'X-Frame-Options', value: 'SAMEORIGIN' },
+          { key: 'Referrer-Policy', value: 'strict-origin-when-cross-origin' },
+        ],
+      },
+    ];
+  },
   async redirects() {
     return [
       // Services .html → clean
@@ -19,6 +46,13 @@ const nextConfig = {
       // Blog
       { source: '/blog/index.html', destination: '/blog', permanent: true },
       { source: '/blog/articles/:slug.html', destination: '/blog/:slug', permanent: true },
+      // Retro-compat: legacy /blog?article=slug (old FB posts) → /blog/slug
+      {
+        source: '/blog',
+        has: [{ type: 'query', key: 'article', value: '(?<slug>.+)' }],
+        destination: '/blog/:slug',
+        permanent: false,
+      },
       // Other
       { source: '/offre-site-web.html', destination: '/offre-site-web', permanent: true },
       { source: '/calculateur-roi.html', destination: '/calculateur-roi', permanent: true },
