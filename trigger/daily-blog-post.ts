@@ -216,33 +216,59 @@ async function generateArticle(
   scrapedContent: string,
   subjectCategory: string
 ): Promise<GeneratedArticle> {
-  const deepseekKey = process.env.DEEPSEEK_API_KEY;
-  if (!deepseekKey) throw new Error('DEEPSEEK_API_KEY not set');
+  // Article generation via Claude Sonnet 4.6 (OpenRouter) — best quality FR + knowledge à jour
+  const openrouterKey = process.env.OPENROUTER_API_KEY;
+  if (!openrouterKey) throw new Error('OPENROUTER_API_KEY not set');
+
+  // ─── CONTEXTE TEMPOREL DYNAMIQUE ─────────────────────────────────────
+  // CRITIQUE : DeepSeek a une knowledge cutoff dans le passé et écrit "en 2024" par défaut.
+  // On injecte la date courante explicitement pour éviter les articles obsolètes le jour de publication.
+  const now = new Date();
+  const currentYear = now.getUTCFullYear();
+  const currentMonth = now.toLocaleDateString('fr-FR', { month: 'long', timeZone: 'Pacific/Tahiti' });
+  const currentDateFr = now.toLocaleDateString('fr-FR', {
+    day: 'numeric', month: 'long', year: 'numeric', timeZone: 'Pacific/Tahiti',
+  });
 
   const systemPrompt = `Tu es le rédacteur du blog PACIFIK'AI, une agence d'automatisation IA basée en Polynésie française (Tahiti).
+
+═══ DATE DE PUBLICATION (CRITIQUE) ═══
+Nous sommes le **${currentDateFr}**. L'année courante est **${currentYear}**. Le mois est **${currentMonth} ${currentYear}**.
+
+RÈGLE TEMPORELLE ABSOLUE :
+- JAMAIS écrire "en 2024", "en 2025" ou toute année antérieure à ${currentYear} comme si c'était l'année actuelle ou future. C'est du passé.
+- Pour parler du présent → écris "en ${currentYear}", "aujourd'hui", "actuellement", "${currentMonth} ${currentYear}".
+- Pour parler de l'historique → contextualise : "depuis 2022", "lancé en 2023", "historiquement", "il y a 2 ans".
+- Si le SUJET ou les SOURCES mentionnent "2024" ou "2025" comme année courante → REMETS À JOUR vers "${currentYear}". Le contenu doit refléter ${currentYear}, pas du contenu daté.
+- Le slug et le titre NE DOIVENT JAMAIS contenir "2024", "2025" ou autre année passée. Si tu mentionnes une année dans le titre, c'est ${currentYear}.
+- Tendances, stats, prévisions : si la source dit "en 2024 X%", reformule "en ${currentYear}, plusieurs études rapportent que X%" ou supprime la précision si non vérifiable.
 
 STYLE
 - Français impeccable, professionnel mais accessible, ton direct sans bullshit marketing
 - ~800 mots, articles PRATIQUES avec conseils actionnables (pas de théorie abstraite)
 - Mentionne "Polynésie française" ou "Tahiti" 1× naturellement pour le SEO local
 
-RÈGLE ABSOLUE — VÉRACITÉ (la plus importante) :
+RÈGLE ABSOLUE — VÉRACITÉ :
 Tu n'INVENTES JAMAIS de faits. Si un chiffre, une stat, une étude, un nom d'entreprise, ou un cas d'usage n'apparaît PAS dans les sources fournies, tu ne l'écris PAS. Préfère :
 - "Plusieurs entreprises rapportent que..." plutôt qu'un faux "73% des entreprises..."
 - Un exemple générique "un acteur du retail" plutôt qu'inventer "Carrefour a gagné 8M€..."
 - Des conseils méthodologiques plutôt que des fausses success stories chiffrées
 Si les sources sont vides ou pauvres, écris un article méthodologique (étapes, pratiques, questions à se poser) au lieu de meubler avec des inventions.`;
 
-  const userPrompt = `SUJET : "${subject}"
+  const userPrompt = `DATE D'AUJOURD'HUI : ${currentDateFr} (année ${currentYear})
+
+SUJET : "${subject}"
 ${subjectCategory ? `\nCATÉGORIE : ${subjectCategory}` : ''}
 
 ${scrapedContent ? `SOURCES DE RÉFÉRENCE (utilise CES faits-là uniquement, paraphrase, ne copie pas) :
+NOTE : si les sources mentionnent "en 2024" ou "en 2025" comme année courante, c'est du contenu OBSOLÈTE. Reformule au présent ${currentYear} ou retire la précision temporelle.
 ---
 ${scrapedContent.slice(0, 12000)}
 ---` : `SOURCES : aucune source scrappée disponible.
 → Écris un article MÉTHODOLOGIQUE (étapes, pratiques, framework, questions à se poser).
 → N'INVENTE PAS de chiffres, d'études, de noms d'entreprises, de cas concrets datés.
-→ Reste en généralités vérifiables et concepts génériques.`}
+→ Reste en généralités vérifiables et concepts génériques.
+→ Si tu mentionnes une année, c'est ${currentYear} (pas 2024, pas 2025).`}
 
 Réponds UNIQUEMENT avec un objet JSON valide (pas de bloc markdown), structure exacte :
 {
@@ -256,7 +282,8 @@ Réponds UNIQUEMENT avec un objet JSON valide (pas de bloc markdown), structure 
 }
 
 CONTRAINTES :
-- Slug : minuscules, chiffres, tirets uniquement
+- Slug : minuscules, chiffres, tirets uniquement. JAMAIS d'année passée dans le slug ("2024", "2025" interdits). Si année nécessaire → "${currentYear}".
+- Title : JAMAIS d'année passée. Si année nécessaire → "${currentYear}". JAMAIS de "en 2024" ou "en 2025" dans le titre.
 - Category : EXACTEMENT une valeur ci-dessus (accents inclus)
 - reading_time : ENTIER (4, pas "4 min")
 - JAMAIS de comparatif "X vs Y" entre concurrents nommés
@@ -264,14 +291,16 @@ CONTRAINTES :
 - JAMAIS de fausses citations ni de faux noms de dirigeants
 - Si tu doutes d'un fait → reformule en généralité ou supprime`;
 
-  const resp = await retry.fetch('https://api.deepseek.com/v1/chat/completions', {
+  const resp = await retry.fetch('https://openrouter.ai/api/v1/chat/completions', {
     method: 'POST',
     headers: {
-      Authorization: `Bearer ${deepseekKey}`,
+      Authorization: `Bearer ${openrouterKey}`,
       'Content-Type': 'application/json',
+      'HTTP-Referer': 'https://pacifikai.com',
+      'X-Title': 'PACIFIK\'AI Blog Cron',
     },
     body: JSON.stringify({
-      model: 'deepseek-v4-pro',
+      model: 'anthropic/claude-sonnet-4.6',
       messages: [
         { role: 'system', content: systemPrompt },
         { role: 'user', content: userPrompt },
@@ -284,7 +313,7 @@ CONTRAINTES :
 
   if (!resp.ok) {
     const body = await resp.text();
-    throw new Error(`DeepSeek ${resp.status}: ${body}`);
+    throw new Error(`OpenRouter (Claude Sonnet 4.6) ${resp.status}: ${body}`);
   }
 
   const data = await resp.json() as {
@@ -296,9 +325,36 @@ CONTRAINTES :
   const cleaned = text.replace(/^```json?\s*\n?/, '').replace(/\n?```\s*$/, '').trim();
   const parsed = JSON.parse(cleaned);
 
+  // ─── DEFENSE IN DEPTH — sanitise stale years in title/slug ──────────
+  // Even with the prompt rule, DeepSeek occasionally leaks "en 2024" / "2024" into title/slug.
+  // Strip any year that's strictly older than currentYear from title and slug to avoid stale posts.
+  const staleYearPattern = /\b(20[0-2]\d)\b/g;
+  let cleanTitle: string = parsed.title || '';
+  cleanTitle = cleanTitle.replace(staleYearPattern, (m: string) => {
+    const y = parseInt(m, 10);
+    return y < currentYear ? String(currentYear) : m;
+  });
+  // Also remove patterns like "en 2024 ?" → "en {currentYear} ?", "en 2024 :" → "en {currentYear} :"
+  cleanTitle = cleanTitle.replace(/\ben (20\d\d)\b/gi, (_m: string, y: string) => {
+    return parseInt(y, 10) < currentYear ? `en ${currentYear}` : _m;
+  });
+
+  let cleanSlug: string = (parsed.slug || '').replace(/[^a-z0-9-]/g, '').slice(0, 80);
+  cleanSlug = cleanSlug.replace(staleYearPattern, (m: string) => {
+    const y = parseInt(m, 10);
+    return y < currentYear ? String(currentYear) : m;
+  });
+
+  if (cleanTitle !== parsed.title) {
+    logger.warn(`Title sanitised for stale year: "${parsed.title}" → "${cleanTitle}"`);
+  }
+  if (cleanSlug !== (parsed.slug || '')) {
+    logger.warn(`Slug sanitised for stale year: "${parsed.slug}" → "${cleanSlug}"`);
+  }
+
   return {
-    title: parsed.title,
-    slug: parsed.slug.replace(/[^a-z0-9-]/g, '').slice(0, 80),
+    title: cleanTitle,
+    slug: cleanSlug,
     excerpt: parsed.excerpt,
     content: parsed.content,
     category: parsed.category || 'IA',
@@ -705,7 +761,7 @@ export const dailyBlogPost = schedules.task({
     logger.info(`Scraped content length: ${scrapedContent.length} chars`);
 
     // Step 3: Generate article
-    logger.info('Step 3: Generating article with DeepSeek...');
+    logger.info('Step 3: Generating article with Claude Sonnet 4.6 (OpenRouter)...');
     const article = await generateArticle(
       subject.subject,
       scrapedContent,
