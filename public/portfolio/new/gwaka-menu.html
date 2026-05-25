@@ -1508,6 +1508,8 @@
         <button class="menu-tab" role="tab" aria-selected="false" data-filter="mini">Mini Sal&eacute;s</button>
       </div>
 
+      <!-- DYNAMIC MENU CONTAINER — populated from Google Sheets at runtime, static below = fallback -->
+      <div id="menu-dynamic-container">
       <!-- SALES -->
       <div class="menu-category" data-cat="sales">
         <div class="menu-category-header">
@@ -1624,6 +1626,7 @@
           <div class="menu-product"><div class="menu-product-img"><img src="/portfolio/new/images/gwaka/tortilla-espagnole.webp" alt="Tortilla Espagnole" loading="lazy"></div><div class="menu-product-body"><div class="menu-product-name">Tortilla Espagnole</div><p class="menu-product-desc">Tortilla aux pommes de terre</p></div></div>
         </div>
       </div>
+      </div><!-- /#menu-dynamic-container -->
 
       <div class="menu-cta reveal">
         <a href="https://drive.google.com/file/d/1NKrcejsYzoHpFg1EvS5LgBj6F1qOUt6A/view" target="_blank" rel="noopener" class="btn-secondary">
@@ -1791,9 +1794,9 @@
         });
       }
 
-      /* ── Menu filter tabs ── */
+      /* ── Menu filter tabs (re-callable apres render dynamique) ── */
       var tabs = document.querySelectorAll('.menu-tab');
-      var categories = document.querySelectorAll('.menu-category');
+      var categories;
 
       function setFilter(filter) {
         tabs.forEach(function(t) {
@@ -1801,9 +1804,7 @@
           t.classList.toggle('active', isActive);
           t.setAttribute('aria-selected', isActive);
         });
-
         if (!filter) {
-          // Default: show all category headers, hide all products
           categories.forEach(function(cat) {
             cat.classList.add('show');
             cat.querySelectorAll('.menu-product').forEach(function(p) {
@@ -1823,20 +1824,110 @@
         }
       }
 
-      tabs.forEach(function(tab) {
-        tab.addEventListener('click', function() {
-          var filter = this.getAttribute('data-filter');
-          // If clicking the already active tab, deselect → show all headers
-          if (this.classList.contains('active')) {
-            setFilter(null);
-          } else {
-            setFilter(filter);
-          }
+      function bindMenuFilter() {
+        categories = document.querySelectorAll('.menu-category');
+        tabs.forEach(function(tab) {
+          tab.onclick = function() {
+            var filter = this.getAttribute('data-filter');
+            if (this.classList.contains('active')) {
+              setFilter(null);
+            } else {
+              setFilter(filter);
+            }
+          };
         });
-      });
+        setFilter('sales');
+      }
+      // Expose for the dynamic loader to re-call after Sheet render
+      window.__bindMenuFilter = bindMenuFilter;
+      bindMenuFilter();
 
-      // Initialize: show "Sales" by default (Temehani vocal 13.7)
-      setFilter('sales');
+      /* ── Dynamic menu loader : fetch Google Sheet, replace static fallback ── */
+      (function loadMenuFromSheet() {
+        var SHEET_ID = '1cp1t3CoL1PtM1uQjP2e5JC91z1mAq6hw-tmiSpYhMj4';
+        var SHEET_NAME = 'Produits';
+        var URL = 'https://docs.google.com/spreadsheets/d/' + SHEET_ID + '/gviz/tq?tqx=out:json&sheet=' + SHEET_NAME;
+
+        function escapeHtml(s) {
+          return String(s == null ? '' : s).replace(/[&<>"']/g, function(c) {
+            return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[c];
+          });
+        }
+
+        var headerImages = {
+          sales: 'egg-muffin.webp',
+          toasts: 'feta-salmon-toast.webp',
+          wraps: 'wraps.webp',
+          salades: 'salade-quinoa.webp',
+          plateaux: 'plateau-fromages.webp',
+          sushis: 'sushis.webp',
+          mini: 'mini-quiche.webp'
+        };
+        var catOrder = ['sales','toasts','wraps','salades','plateaux','sushis','mini'];
+        var catLabels = {sales:'Salés', toasts:'Toasts', wraps:'Wraps', salades:'Salades', plateaux:'Plateaux', sushis:'Sushis', mini:'Mini Salés'};
+
+        fetch(URL).then(function(r) {
+          if (!r.ok) throw new Error('Sheet fetch failed: ' + r.status);
+          return r.text();
+        }).then(function(text) {
+          var m = text.match(/setResponse\(([\s\S]*)\);?\s*$/);
+          if (!m) throw new Error('Sheet response unrecognized');
+          var json = JSON.parse(m[1]);
+          var rawRows = (json.table && json.table.rows) || [];
+          if (rawRows.length < 2) return;
+          var rows = rawRows.map(function(r) { return r.c.map(function(c) { return c ? c.v : ''; }); });
+          var products = rows.slice(1).filter(function(r) { return r[7] === 'Oui'; });
+          if (products.length === 0) return;
+
+          var byCat = {};
+          products.forEach(function(p) {
+            var slug = p[0], label = p[1] || catLabels[slug] || slug;
+            if (!byCat[slug]) byCat[slug] = { label: label, products: [] };
+            byCat[slug].products.push({
+              name: p[2], desc: p[3], image: p[4],
+              veggie: p[5] === 'Oui',
+              order: parseInt(p[6], 10) || 0
+            });
+          });
+          Object.keys(byCat).forEach(function(slug) {
+            byCat[slug].products.sort(function(a,b) { return a.order - b.order; });
+          });
+
+          var container = document.getElementById('menu-dynamic-container');
+          if (!container) return;
+
+          var html = '';
+          catOrder.forEach(function(slug) {
+            var cat = byCat[slug];
+            if (!cat || cat.products.length === 0) return;
+            var headerImg = (cat.products[0] && cat.products[0].image) || headerImages[slug];
+            html += '<div class="menu-category" data-cat="' + slug + '">' +
+              '<div class="menu-category-header">' +
+                '<img class="menu-category-thumb" src="/portfolio/new/images/gwaka/' + escapeHtml(headerImg) + '" alt="' + escapeHtml(cat.label) + '" loading="lazy">' +
+                '<h3 class="menu-category-name">' + escapeHtml(cat.label) + '</h3>' +
+              '</div>' +
+              '<div class="menu-products">';
+            cat.products.forEach(function(p) {
+              var imgSrc = p.image && p.image.indexOf('http') === 0 ? p.image : '/portfolio/new/images/gwaka/' + (p.image || '');
+              html += '<div class="menu-product">' +
+                '<div class="menu-product-img"><img src="' + escapeHtml(imgSrc) + '" alt="' + escapeHtml(p.name) + '" loading="lazy"></div>' +
+                '<div class="menu-product-body">' +
+                  '<div class="menu-product-name">' + escapeHtml(p.name) +
+                  (p.veggie ? ' <span class="badge-v" title="V&eacute;g&eacute;tarien">V</span>' : '') +
+                  '</div>' +
+                  '<p class="menu-product-desc">' + escapeHtml(p.desc) + '</p>' +
+                '</div>' +
+              '</div>';
+            });
+            html += '</div></div>';
+          });
+
+          container.innerHTML = html;
+          if (window.__bindMenuFilter) window.__bindMenuFilter();
+        }).catch(function(e) {
+          console.warn('[gwaka-menu] Sheet load failed, using static fallback:', e.message);
+        });
+      })();
 
       /* ── Form handling (no form on menu page, skip if absent) ── */
       var form = document.getElementById('contactForm');
