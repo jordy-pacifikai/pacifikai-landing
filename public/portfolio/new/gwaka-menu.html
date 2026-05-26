@@ -1828,12 +1828,8 @@
         categories = document.querySelectorAll('.menu-category');
         tabs.forEach(function(tab) {
           tab.onclick = function() {
-            var filter = this.getAttribute('data-filter');
-            if (this.classList.contains('active')) {
-              setFilter(null);
-            } else {
-              setFilter(filter);
-            }
+            if (this.classList.contains('active')) return;
+            setFilter(this.getAttribute('data-filter'));
           };
         });
         setFilter('sales');
