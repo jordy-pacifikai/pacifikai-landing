@@ -663,6 +663,13 @@
       gap: 1.5rem;
     }
     .prestations-grid .presta-card { grid-column: span 2; }
+
+    /* Prestation cards clickables (link to /prestations#anchor) */
+    .presta-card { position: relative; }
+    .presta-card-link { display: block; color: inherit; text-decoration: none; height: 100%; }
+    .presta-card-link:hover .presta-card-title { color: var(--green); }
+    .presta-card:focus-within { outline: 2px solid var(--green); outline-offset: 4px; }
+    
     /* Center last 2 cards in row 2 */
     .prestations-grid .presta-card:nth-child(4) { grid-column: 2 / span 2; }
     .prestations-grid .presta-card:nth-child(5) { grid-column: 4 / span 2; }
@@ -1769,44 +1776,54 @@
       </div>
       <div class="prestations-grid">
         <article class="presta-card reveal reveal-delay-1">
-          <div class="presta-card-img"><img src="/portfolio/new/images/gwaka/photos-temehani/presta-brunch-gourmand-ai.webp" data-src-real="/portfolio/new/images/gwaka/photos-temehani/brunch-marquee-tropical.webp" alt="Brunch Gourmand GWAKA" loading="lazy"></div>
-          <div class="presta-card-body">
+          <a href="/prestations#brunch-gourmand" class="presta-card-link" aria-label="Voir le d&eacute;tail Brunch Gourmand">
+            <div class="presta-card-img"><img src="/portfolio/new/images/gwaka/photos-temehani/presta-brunch-gourmand-ai.webp" data-src-real="/portfolio/new/images/gwaka/photos-temehani/brunch-marquee-tropical.webp" alt="Brunch Gourmand GWAKA" loading="lazy"></div>
+            <div class="presta-card-body">
             <h3 class="presta-card-title">Brunch Gourmand</h3>
             <p class="presta-card-context">Vous organisez un brunch entre amis ou en famille, pour un anniversaire ou juste le plaisir d&rsquo;un dimanche matin ?</p>
             <p class="presta-card-desc">Composez votre brunch &agrave; partir de notre catalogue ou laissez-nous &eacute;laborer un menu sur mesure pour votre &eacute;v&eacute;nement priv&eacute;.</p>
           </div>
+          </a>
         </article>
         <article class="presta-card reveal reveal-delay-2">
-          <div class="presta-card-img"><img src="/portfolio/new/images/gwaka/photos-temehani/presta-buffet-corporate-ai.webp" data-src-real="/portfolio/new/images/gwaka/photos-temehani/corporate-aeroport-tahiti.webp" alt="Buffet Corporate &amp; S&eacute;minaire GWAKA" loading="lazy"></div>
-          <div class="presta-card-body">
+          <a href="/prestations#corporate-seminaire" class="presta-card-link" aria-label="Voir le d&eacute;tail Corporate &amp; S&eacute;minaire">
+            <div class="presta-card-img"><img src="/portfolio/new/images/gwaka/photos-temehani/presta-buffet-corporate-ai.webp" data-src-real="/portfolio/new/images/gwaka/photos-temehani/corporate-aeroport-tahiti.webp" alt="Buffet Corporate &amp; S&eacute;minaire GWAKA" loading="lazy"></div>
+            <div class="presta-card-body">
             <h3 class="presta-card-title">Corporate &amp; S&eacute;minaire</h3>
             <p class="presta-card-context">Vous organisez un s&eacute;minaire, une formation, un d&eacute;jeuner d&rsquo;&eacute;quipe ou un cocktail d&rsquo;entreprise ?</p>
             <p class="presta-card-desc">Buffets, pauses gourmandes et plateaux sur mesure pour vos &eacute;v&eacute;nements professionnels &mdash; cl&eacute; en main, livraison comprise.</p>
           </div>
+          </a>
         </article>
         <article class="presta-card reveal reveal-delay-3">
-          <div class="presta-card-img"><img src="/portfolio/new/images/gwaka/photos-temehani/presta-cocktail-dinatoire-ai.webp" data-src-real="/portfolio/new/images/gwaka/photos-temehani/cocktail-bouchees-boutique.webp?v=2" alt="Cocktail D&icirc;natoire GWAKA" loading="lazy"></div>
-          <div class="presta-card-body">
+          <a href="/prestations#cocktail-dinatoire" class="presta-card-link" aria-label="Voir le d&eacute;tail Cocktail D&icirc;natoire">
+            <div class="presta-card-img"><img src="/portfolio/new/images/gwaka/photos-temehani/presta-cocktail-dinatoire-ai.webp" data-src-real="/portfolio/new/images/gwaka/photos-temehani/cocktail-bouchees-boutique.webp?v=2" alt="Cocktail D&icirc;natoire GWAKA" loading="lazy"></div>
+            <div class="presta-card-body">
             <h3 class="presta-card-title">Cocktail D&icirc;natoire</h3>
             <p class="presta-card-context">Vous recevez chez vous pour un anniversaire, une cr&eacute;maill&egrave;re, un vernissage ou un &eacute;v&eacute;nement priv&eacute; ?</p>
             <p class="presta-card-desc">Bouch&eacute;es &eacute;l&eacute;gantes, verrines et plateaux pour des soir&eacute;es qui marquent les esprits, accompagn&eacute;s de nos boissons fra&icirc;ches et nos vaisselles &eacute;coresponsables.</p>
           </div>
+          </a>
         </article>
         <article class="presta-card reveal reveal-delay-1">
-          <div class="presta-card-img"><img src="/portfolio/new/images/gwaka/photos-temehani/presta-plateau-aperitif-ai.webp" data-src-real="/portfolio/new/images/gwaka/photos-temehani/vegetable-rainbow-board.webp" alt="Plateau Ap&eacute;ritif GWAKA" loading="lazy"></div>
-          <div class="presta-card-body">
+          <a href="/prestations#plateau-aperitif" class="presta-card-link" aria-label="Voir le d&eacute;tail Plateau Ap&eacute;ritif">
+            <div class="presta-card-img"><img src="/portfolio/new/images/gwaka/photos-temehani/presta-plateau-aperitif-ai.webp" data-src-real="/portfolio/new/images/gwaka/photos-temehani/vegetable-rainbow-board.webp" alt="Plateau Ap&eacute;ritif GWAKA" loading="lazy"></div>
+            <div class="presta-card-body">
             <h3 class="presta-card-title">Plateau Ap&eacute;ritif</h3>
             <p class="presta-card-context">Vous &ecirc;tes invit&eacute; quelque part et ne savez pas quoi apporter, ou vous recevez chez vous ?</p>
             <p class="presta-card-desc">Plateaux fromages, charcuteries, fruits sculpt&eacute;s, crudit&eacute;s et tapenades &mdash; cl&eacute; en main, pr&ecirc;ts &agrave; servir.</p>
           </div>
+          </a>
         </article>
         <article class="presta-card reveal reveal-delay-2">
-          <div class="presta-card-img"><img src="/portfolio/new/images/gwaka/photos-temehani/presta-evenementiel-prive-ai.webp" data-src-real="/portfolio/new/images/gwaka/photos-temehani/evening-buffet-luxury.webp" alt="&Eacute;v&eacute;nementiel Priv&eacute; GWAKA" loading="lazy"></div>
-          <div class="presta-card-body">
+          <a href="/prestations#evenementiel-prive" class="presta-card-link" aria-label="Voir le d&eacute;tail &Eacute;v&eacute;nementiel Priv&eacute;">
+            <div class="presta-card-img"><img src="/portfolio/new/images/gwaka/photos-temehani/presta-evenementiel-prive-ai.webp" data-src-real="/portfolio/new/images/gwaka/photos-temehani/evening-buffet-luxury.webp" alt="&Eacute;v&eacute;nementiel Priv&eacute; GWAKA" loading="lazy"></div>
+            <div class="presta-card-body">
             <h3 class="presta-card-title">&Eacute;v&eacute;nementiel Priv&eacute;</h3>
             <p class="presta-card-context">Mariage, baby shower, gender reveal, anniversaire intime ou grande f&ecirc;te ?</p>
             <p class="presta-card-desc">On s&rsquo;occupe de tout : menu sur mesure, mise en place avec nappes, vaisselle recyclable, boissons fra&icirc;ches et chaudes. Vous profitez, on g&egrave;re.</p>
           </div>
+          </a>
         </article>
       </div>
     </div>
