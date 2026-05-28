@@ -169,6 +169,9 @@
 
     /* PRESTATIONS DETAIL */
     .prestation-detail { border-top: 1px solid rgba(98, 165, 70, .1); }
+    /* Compense la navbar fixe lors du scroll vers une ancre #prestation */
+    #brunch-gourmand, #corporate-seminaire, #cocktail-dinatoire,
+    #plateau-aperitif, #evenementiel-prive { scroll-margin-top: 110px; }
     .prestation-detail:nth-child(odd) { background: var(--cream); }
     .prestation-detail:nth-child(even) { background: var(--white); }
     .prestation-grid { display: grid; gap: 3rem; align-items: center; grid-template-columns: 1fr; }
