@@ -1940,6 +1940,7 @@
 
           container.innerHTML = html;
           if (window.__bindMenuFilter) window.__bindMenuFilter();
+          if (window.__bindLightbox) window.__bindLightbox();
         }).catch(function(e) {
           console.warn('[gwaka-menu] API load failed, using static fallback:', e.message);
         });
@@ -2021,11 +2022,13 @@
         });
       });
 
-      /* ── Lightbox catalogue (zoom au clic + nav prev/next + ESC) ── */
+      /* ── Lightbox catalogue + produits (zoom au clic + nav prev/next + ESC) ──
+           Re-bindable : appeler window.__bindLightbox() après un render dynamique
+           (loader API) pour que les nouvelles photos produits soient cliquables. ── */
       var lb = document.getElementById('lightbox');
       var lbImg = document.getElementById('lbImg');
       var lbCounter = document.getElementById('lbCounter');
-      var catalogueImgs = Array.from(document.querySelectorAll('.catalogue-page-card img, .menu-product .menu-product-img img'));
+      var catalogueImgs = [];
       var lbIdx = 0;
       var showLb = function(i) {
         lbIdx = (i + catalogueImgs.length) % catalogueImgs.length;
@@ -2043,9 +2046,22 @@
         lb.setAttribute('aria-hidden', 'true');
         document.body.classList.remove('lb-locked');
       };
-      catalogueImgs.forEach(function(img, i) {
-        img.parentElement.addEventListener('click', function() { showLb(i); });
-      });
+      function bindLightbox() {
+        catalogueImgs = Array.from(document.querySelectorAll('.catalogue-page-card img, .menu-product .menu-product-img img'));
+        catalogueImgs.forEach(function(img, i) {
+          var trigger = img.parentElement;
+          if (trigger.getAttribute('data-lb-bound')) return; // évite double-bind
+          trigger.setAttribute('data-lb-bound', '1');
+          trigger.addEventListener('click', function() {
+            // index live (le DOM a pu changer depuis le bind)
+            var all = Array.from(document.querySelectorAll('.catalogue-page-card img, .menu-product .menu-product-img img'));
+            catalogueImgs = all;
+            showLb(all.indexOf(img));
+          });
+        });
+      }
+      window.__bindLightbox = bindLightbox;
+      bindLightbox();
       document.getElementById('lbClose').addEventListener('click', closeLb);
       document.getElementById('lbPrev').addEventListener('click', function(e) { e.stopPropagation(); showLb(lbIdx - 1); });
       document.getElementById('lbNext').addEventListener('click', function(e) { e.stopPropagation(); showLb(lbIdx + 1); });
