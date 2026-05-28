@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GWAKA — Gestion du catalogue</title>
+  <meta name="robots" content="noindex,nofollow">
+  <link rel="icon" type="image/png" sizes="32x32" href="/portfolio/new/images/gwaka/favicon-32.png">
+  <link href="https://fonts.googleapis.com/css2?family=KoHo:wght@300;400;500;600;700&family=Yusei+Magic&display=swap" rel="stylesheet">
+  <style>
+    *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+    :root{--green:#62A546;--green-d:#4F8838;--cream:#FAFAF7;--text:#1A1A1A;--muted:#6B6B6B;--red:#d9534f;--border:#e4e7e2;--shadow:0 2px 12px rgba(0,0,0,.07)}
+    body{font-family:'KoHo',-apple-system,sans-serif;background:#f2f4ef;color:var(--text);min-height:100vh}
+    .brand-font{font-family:'Yusei Magic',serif}
+
+    /* LOGIN */
+    #login{position:fixed;inset:0;background:linear-gradient(135deg,#62A546,#3f6e2d);display:flex;align-items:center;justify-content:center;z-index:100;padding:20px}
+    #login .box{background:#fff;border-radius:18px;padding:40px 32px;max-width:380px;width:100%;box-shadow:0 20px 60px rgba(0,0,0,.25);text-align:center}
+    #login h1{font-size:24px;margin-bottom:6px}
+    #login p{color:var(--muted);font-size:14px;margin-bottom:24px}
+    #login input{width:100%;padding:14px 16px;border:2px solid var(--border);border-radius:10px;font-size:16px;margin-bottom:14px;font-family:inherit}
+    #login input:focus{outline:none;border-color:var(--green)}
+    #login button{width:100%;padding:14px;background:var(--green);color:#fff;border:none;border-radius:10px;font-size:16px;font-weight:600;cursor:pointer;font-family:inherit}
+    #login button:hover{background:var(--green-d)}
+    #login .err{color:var(--red);font-size:13px;margin-top:10px;min-height:18px}
+
+    /* HEADER */
+    header{position:sticky;top:0;background:#fff;border-bottom:1px solid var(--border);padding:14px 20px;z-index:50;box-shadow:0 1px 6px rgba(0,0,0,.04)}
+    .head-row{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;max-width:1400px;margin:0 auto}
+    .head-row h1{font-size:19px;display:flex;align-items:center;gap:8px}
+    .head-actions{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+    .btn{padding:9px 16px;border-radius:9px;border:none;font-size:14px;font-weight:600;cursor:pointer;font-family:inherit;transition:.15s}
+    .btn-green{background:var(--green);color:#fff}.btn-green:hover{background:var(--green-d)}
+    .btn-ghost{background:#eef1ec;color:#444}.btn-ghost:hover{background:#e2e6df}
+    .counter{font-size:13px;color:var(--muted)}
+    .filters{display:flex;gap:7px;flex-wrap:wrap;max-width:1400px;margin:12px auto 0}
+    .filters button{background:#eef1ec;border:1px solid transparent;color:#555;padding:5px 13px;border-radius:20px;font-size:13px;cursor:pointer;font-family:inherit}
+    .filters button.active{background:var(--green);color:#fff}
+    .save-toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#1a1a1a;color:#fff;padding:10px 20px;border-radius:24px;font-size:14px;opacity:0;transition:opacity .25s;pointer-events:none;z-index:80}
+    .save-toast.show{opacity:1}
+
+    /* GRID */
+    main{max-width:1400px;margin:0 auto;padding:20px}
+    .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px}
+    .card{background:#fff;border-radius:14px;overflow:hidden;box-shadow:var(--shadow);border:2px solid transparent;display:flex;flex-direction:column;transition:.15s}
+    .card.inactive{opacity:.55}
+    .card-img{position:relative;aspect-ratio:4/3;background:#eef1ec;overflow:hidden;cursor:pointer}
+    .card-img img{width:100%;height:100%;object-fit:cover;display:block}
+    .card-img .ph{display:flex;align-items:center;justify-content:center;height:100%;color:#aaa;font-size:13px;text-align:center;padding:10px}
+    .card-img .ovl{position:absolute;inset:0;background:rgba(0,0,0,.55);color:#fff;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:600;opacity:0;transition:.15s;flex-direction:column;gap:4px}
+    .card-img:hover .ovl{opacity:1}
+    .card-img.drag .ovl{opacity:1;background:rgba(98,165,70,.8)}
+    .uploading .ovl{opacity:1 !important;background:rgba(0,0,0,.7)}
+    .card-body{padding:12px;display:flex;flex-direction:column;gap:8px;flex:1}
+    .card-body input.nom{font-size:15px;font-weight:700;border:1px solid transparent;border-radius:6px;padding:4px 6px;font-family:inherit;background:#f7f9f5}
+    .card-body textarea.desc{font-size:13px;color:#444;border:1px solid transparent;border-radius:6px;padding:4px 6px;font-family:inherit;resize:vertical;min-height:46px;background:#f7f9f5}
+    .card-body input.nom:focus,.card-body textarea.desc:focus{outline:none;border-color:var(--green);background:#fff}
+    .row{display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+    select.cat{flex:1;padding:6px;border:1px solid var(--border);border-radius:7px;font-family:inherit;font-size:13px}
+    .chip{padding:5px 10px;border-radius:7px;font-size:12px;font-weight:600;cursor:pointer;border:1px solid var(--border);background:#fff;user-select:none}
+    .chip.on{background:var(--green);color:#fff;border-color:var(--green)}
+    .chip.veg.on{background:#2e9e4f;border-color:#2e9e4f}
+    .card-foot{display:flex;gap:6px;border-top:1px solid var(--border);padding:8px 12px;align-items:center}
+    .icon-btn{background:#eef1ec;border:none;width:32px;height:32px;border-radius:7px;cursor:pointer;font-size:15px;display:flex;align-items:center;justify-content:center}
+    .icon-btn:hover{background:#e2e6df}
+    .icon-btn.del:hover{background:#fde0df;color:var(--red)}
+    .spacer{flex:1}
+    .cat-head{grid-column:1/-1;font-size:15px;font-weight:700;color:var(--green-d);padding:8px 2px 2px;border-bottom:2px solid var(--green);margin-top:8px}
+    .empty{grid-column:1/-1;text-align:center;color:var(--muted);padding:60px 20px}
+    .skel{background:#fff;border-radius:14px;height:340px;box-shadow:var(--shadow);animation:pulse 1.2s ease-in-out infinite}
+    @keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}
+  </style>
+</head>
+<body>
+  <!-- LOGIN -->
+  <div id="login">
+    <div class="box">
+      <h1 class="brand-font">GWAKA</h1>
+      <p>Espace de gestion du catalogue</p>
+      <input type="password" id="pwd" placeholder="Mot de passe" autocomplete="current-password">
+      <button id="loginBtn">Se connecter</button>
+      <div class="err" id="loginErr"></div>
+    </div>
+  </div>
+
+  <!-- APP -->
+  <div id="app" style="display:none">
+    <header>
+      <div class="head-row">
+        <h1>🍽️ <span>Mon catalogue GWAKA</span></h1>
+        <div class="head-actions">
+          <span class="counter" id="counter"></span>
+          <button class="btn btn-green" id="addBtn">+ Ajouter un produit</button>
+          <button class="btn btn-ghost" id="logoutBtn">Déconnexion</button>
+        </div>
+      </div>
+      <div class="filters" id="filters"></div>
+    </header>
+    <main><div class="grid" id="grid"></div></main>
+  </div>
+
+  <div class="save-toast" id="toast">Enregistré ✓</div>
+  <input type="file" id="fileInput" accept="image/*" style="display:none">
+
+  <script>
+  (function(){
+    var API = '';  // same origin
+    var CATS = [
+      {slug:'sales',label:'Salés'},{slug:'toasts',label:'Toasts'},{slug:'wraps',label:'Wraps'},
+      {slug:'salades',label:'Salades'},{slug:'plateaux',label:'Plateaux'},{slug:'sushis',label:'Sushis'},
+      {slug:'mini',label:'Mini Salés'}
+    ];
+    var CAT_ORDER = CATS.map(function(c){return c.slug});
+    var products = [];
+    var filter = 'all';
+    var uploadTarget = null;
+
+    var $ = function(id){return document.getElementById(id)};
+    function toast(msg){var t=$('toast');t.textContent=msg;t.classList.add('show');setTimeout(function(){t.classList.remove('show')},1600)}
+    function imgUrl(img){if(!img)return '';return img.indexOf('http')===0?img:'/portfolio/new/images/gwaka/'+img+'?v=admin'}
+
+    // ---- LOGIN ----
+    function doLogin(){
+      var pwd=$('pwd').value;
+      $('loginErr').textContent='';
+      fetch(API+'/api/gwaka-admin/login',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({password:pwd})})
+        .then(function(r){return r.json().then(function(j){return {ok:r.ok,j:j}})})
+        .then(function(res){
+          if(res.ok&&res.j.ok){$('login').style.display='none';$('app').style.display='block';load()}
+          else $('loginErr').textContent=res.j.error||'Erreur de connexion';
+        }).catch(function(){$('loginErr').textContent='Erreur réseau'});
+    }
+    $('loginBtn').onclick=doLogin;
+    $('pwd').onkeydown=function(e){if(e.key==='Enter')doLogin()};
+    $('logoutBtn').onclick=function(){fetch(API+'/api/gwaka-admin/logout',{method:'POST'}).then(function(){location.reload()})};
+
+    // ---- LOAD ----
+    function load(){
+      $('grid').innerHTML='<div class="skel"></div><div class="skel"></div><div class="skel"></div>';
+      fetch(API+'/api/gwaka-admin/products',{headers:{'Accept':'application/json'}})
+        .then(function(r){if(r.status===401){$('login').style.display='flex';$('app').style.display='none';throw new Error('401')}return r.json()})
+        .then(function(j){products=j.products||[];renderFilters();render()})
+        .catch(function(e){if(String(e).indexOf('401')<0)$('grid').innerHTML='<div class="empty">Erreur de chargement</div>'});
+    }
+
+    function renderFilters(){
+      var html='<button data-f="all" class="'+(filter==='all'?'active':'')+'">Tout ('+products.length+')</button>';
+      CATS.forEach(function(c){
+        var n=products.filter(function(p){return p.categorie_slug===c.slug}).length;
+        html+='<button data-f="'+c.slug+'" class="'+(filter===c.slug?'active':'')+'">'+c.label+' ('+n+')</button>';
+      });
+      $('filters').innerHTML=html;
+      Array.prototype.forEach.call($('filters').children,function(b){b.onclick=function(){filter=b.dataset.f;renderFilters();render()}});
+    }
+
+    function render(){
+      var grid=$('grid');grid.innerHTML='';
+      var actifs=products.filter(function(p){return p.actif}).length;
+      $('counter').textContent=products.length+' produits · '+actifs+' visibles sur le site';
+      var list=products.slice().sort(function(a,b){
+        var ca=CAT_ORDER.indexOf(a.categorie_slug),cb=CAT_ORDER.indexOf(b.categorie_slug);
+        if(ca!==cb)return ca-cb;return (a.ordre||0)-(b.ordre||0);
+      });
+      var shown=list.filter(function(p){return filter==='all'||p.categorie_slug===filter});
+      if(!shown.length){grid.innerHTML='<div class="empty">Aucun produit. Clique sur « + Ajouter un produit ».</div>';return}
+      var lastCat=null;
+      shown.forEach(function(p){
+        if(filter==='all'&&p.categorie_slug!==lastCat){
+          lastCat=p.categorie_slug;
+          var lab=(CATS.find(function(c){return c.slug===lastCat})||{}).label||lastCat;
+          var h=document.createElement('div');h.className='cat-head';h.textContent=lab;grid.appendChild(h);
+        }
+        grid.appendChild(card(p));
+      });
+    }
+
+    function card(p){
+      var el=document.createElement('div');el.className='card'+(p.actif?'':' inactive');el.dataset.id=p.id;
+      var imgHtml=p.image?'<img src="'+imgUrl(p.image)+'" alt="">':'<div class="ph">Pas de photo<br>clique pour ajouter</div>';
+      el.innerHTML=
+        '<div class="card-img" title="Cliquer ou glisser une photo">'+imgHtml+
+          '<div class="ovl">📷 Changer la photo<br><small>clic ou glisser-déposer</small></div></div>'+
+        '<div class="card-body">'+
+          '<input class="nom" value="'+escAttr(p.nom)+'" placeholder="Nom du produit">'+
+          '<textarea class="desc" placeholder="Description (ingrédients...)">'+escHtml(p.description||'')+'</textarea>'+
+          '<div class="row">'+
+            '<select class="cat">'+CATS.map(function(c){return '<option value="'+c.slug+'"'+(c.slug===p.categorie_slug?' selected':'')+'>'+c.label+'</option>'}).join('')+'</select>'+
+            '<span class="chip veg '+(p.vegetarien?'on':'')+'" data-k="vegetarien">V</span>'+
+          '</div>'+
+        '</div>'+
+        '<div class="card-foot">'+
+          '<span class="chip '+(p.actif?'on':'')+'" data-k="actif">'+(p.actif?'Visible':'Masqué')+'</span>'+
+          '<div class="spacer"></div>'+
+          '<button class="icon-btn up" title="Monter">▲</button>'+
+          '<button class="icon-btn down" title="Descendre">▼</button>'+
+          '<button class="icon-btn del" title="Supprimer">🗑</button>'+
+        '</div>';
+
+      // image upload (click + drag)
+      var imgBox=el.querySelector('.card-img');
+      imgBox.onclick=function(){uploadTarget=p;$('fileInput').click()};
+      imgBox.ondragover=function(e){e.preventDefault();imgBox.classList.add('drag')};
+      imgBox.ondragleave=function(){imgBox.classList.remove('drag')};
+      imgBox.ondrop=function(e){e.preventDefault();imgBox.classList.remove('drag');if(e.dataTransfer.files[0]){uploadTarget=p;uploadFile(e.dataTransfer.files[0],el)}};
+
+      // inline save
+      el.querySelector('.nom').onblur=function(){save(p,{nom:this.value})};
+      el.querySelector('.desc').onblur=function(){save(p,{description:this.value})};
+      el.querySelector('.cat').onchange=function(){save(p,{categorie_slug:this.value});p.categorie_slug=this.value;render()};
+      el.querySelector('[data-k="vegetarien"]').onclick=function(){p.vegetarien=!p.vegetarien;this.classList.toggle('on');save(p,{vegetarien:p.vegetarien})};
+      el.querySelector('[data-k="actif"]').onclick=function(){p.actif=!p.actif;save(p,{actif:p.actif});render()};
+      el.querySelector('.del').onclick=function(){if(confirm('Supprimer "'+p.nom+'" ?'))del(p)};
+      el.querySelector('.up').onclick=function(){reorder(p,-1)};
+      el.querySelector('.down').onclick=function(){reorder(p,1)};
+      return el;
+    }
+
+    function escHtml(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
+    function escAttr(s){return String(s||'').replace(/&/g,'&amp;').replace(/"/g,'&quot;')}
+
+    function save(p,patch){
+      Object.assign(p,patch);
+      fetch(API+'/api/gwaka-admin/products/'+p.id,{method:'PATCH',headers:{'Content-Type':'application/json'},body:JSON.stringify(patch)})
+        .then(function(r){if(r.ok){toast('Enregistré ✓')}else{toast('Erreur')}}).catch(function(){toast('Erreur réseau')});
+    }
+
+    function del(p){
+      fetch(API+'/api/gwaka-admin/products/'+p.id,{method:'DELETE'})
+        .then(function(r){if(r.ok){products=products.filter(function(x){return x.id!==p.id});renderFilters();render();toast('Supprimé')}});
+    }
+
+    function reorder(p,dir){
+      var sameCat=products.filter(function(x){return x.categorie_slug===p.categorie_slug}).sort(function(a,b){return (a.ordre||0)-(b.ordre||0)});
+      var i=sameCat.findIndex(function(x){return x.id===p.id});
+      var j=i+dir;if(j<0||j>=sameCat.length)return;
+      var other=sameCat[j];
+      var oa=p.ordre||0,ob=other.ordre||0;
+      p.ordre=ob;other.ordre=oa;
+      save(p,{ordre:p.ordre});save(other,{ordre:other.ordre});
+      render();
+    }
+
+    function uploadFile(file,el){
+      if(!file)return;
+      el.classList.add('uploading');
+      var fd=new FormData();fd.append('file',file);
+      fetch(API+'/api/gwaka-admin/upload',{method:'POST',body:fd})
+        .then(function(r){return r.json()})
+        .then(function(j){
+          el.classList.remove('uploading');
+          if(j.url){save(uploadTarget,{image:j.url});uploadTarget.image=j.url;render();toast('Photo ajoutée ✓')}
+          else toast('Erreur upload: '+(j.error||''));
+        }).catch(function(){el.classList.remove('uploading');toast('Erreur upload')});
+    }
+
+    $('fileInput').onchange=function(){
+      if(this.files[0]&&uploadTarget){
+        var el=document.querySelector('.card[data-id="'+uploadTarget.id+'"]');
+        uploadFile(this.files[0],el);
+      }
+      this.value='';
+    };
+
+    $('addBtn').onclick=function(){
+      var slug=filter==='all'?'sales':filter;
+      var maxOrdre=products.filter(function(p){return p.categorie_slug===slug}).reduce(function(m,p){return Math.max(m,p.ordre||0)},0);
+      fetch(API+'/api/gwaka-admin/products',{method:'POST',headers:{'Content-Type':'application/json'},
+        body:JSON.stringify({categorie_slug:slug,nom:'Nouveau produit',ordre:maxOrdre+1,actif:false})})
+        .then(function(r){return r.json()})
+        .then(function(j){if(j.product){products.push(j.product);renderFilters();render();toast('Produit ajouté — complète-le 👇');
+          var c=document.querySelector('.card[data-id="'+j.product.id+'"]');if(c){c.scrollIntoView({behavior:'smooth',block:'center'});c.querySelector('.nom').focus();c.querySelector('.nom').select()}}});
+    };
+
+    // Auto-login check (cookie déjà présent ?)
+    fetch(API+'/api/gwaka-admin/products',{headers:{'Accept':'application/json'}})
+      .then(function(r){if(r.ok){$('login').style.display='none';$('app').style.display='block';return r.json()}throw new Error('need-login')})
+      .then(function(j){if(j){products=j.products||[];renderFilters();render()}})
+      .catch(function(){/* reste sur login */});
+  })();
+  </script>
+</body>
+</html>

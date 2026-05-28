@@ -1862,23 +1862,16 @@
       window.__bindMenuFilter = bindMenuFilter;
       bindMenuFilter();
 
-      /* ── Dynamic menu loader DESACTIVE 2026-05-26 : Sheet contient encore les
-           anciens produits AI inventés (Mini Wrap Poulet, Tortilla Espagnole,
-           etc.) que Temehani ne fait pas. Le fallback statique ci-dessus contient
-           les 64 vrais produits du catalogue Temehani. Re-activer le loader UNIQUEMENT
-           apres avoir purgé + repopulé la Sheet via le CSV
-           PACIFIK'AI/clients/gwaka/sheet-update-2026-05-25.csv ── */
-      if (false) (function loadMenuFromSheet() {
-        var SHEET_ID = '1cp1t3CoL1PtM1uQjP2e5JC91z1mAq6hw-tmiSpYhMj4';
-        var SHEET_NAME = 'Produits';
-        var URL = 'https://docs.google.com/spreadsheets/d/' + SHEET_ID + '/gviz/tq?tqx=out:json&sheet=' + SHEET_NAME;
-
+      /* ── Dynamic menu loader (API Supabase) ──
+           Fetch /api/gwaka-catalogue → remplace le fallback statique par les
+           produits actifs gérés depuis l'espace admin (gwakatahiti.com/admin).
+           Si l'API échoue ou renvoie 0 produit, le fallback statique reste. ── */
+      (function loadMenuFromAPI() {
         function escapeHtml(s) {
           return String(s == null ? '' : s).replace(/[&<>"']/g, function(c) {
             return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[c];
           });
         }
-
         var headerImages = {
           sales: 'catalogue-temehani/temehani-egg-muffin.webp',
           toasts: 'catalogue-temehani/temehani-toast-gwaka-salmon-feta.webp',
@@ -1891,27 +1884,26 @@
         var catOrder = ['sales','toasts','wraps','salades','plateaux','sushis','mini'];
         var catLabels = {sales:'Salés', toasts:'Toasts', wraps:'Wraps', salades:'Salades', plateaux:'Plateaux', sushis:'Sushis', mini:'Mini Salés'};
 
-        fetch(URL).then(function(r) {
-          if (!r.ok) throw new Error('Sheet fetch failed: ' + r.status);
-          return r.text();
-        }).then(function(text) {
-          var m = text.match(/setResponse\(([\s\S]*)\);?\s*$/);
-          if (!m) throw new Error('Sheet response unrecognized');
-          var json = JSON.parse(m[1]);
-          var rawRows = (json.table && json.table.rows) || [];
-          if (rawRows.length < 2) return;
-          var rows = rawRows.map(function(r) { return r.c.map(function(c) { return c ? c.v : ''; }); });
-          var products = rows.slice(1).filter(function(r) { return r[7] === 'Oui'; });
-          if (products.length === 0) return;
+        function imgSrcOf(image) {
+          if (!image) return '';
+          if (image.indexOf('http') === 0) return image;          // URL Supabase Storage (upload Temehani)
+          return '/portfolio/new/images/gwaka/' + image + '?v=20260526d'; // photo locale historique
+        }
+
+        fetch('/api/gwaka-catalogue').then(function(r) {
+          if (!r.ok) throw new Error('API fetch failed: ' + r.status);
+          return r.json();
+        }).then(function(data) {
+          var products = (data && data.products) || [];
+          if (products.length === 0) return; // garde le fallback statique
 
           var byCat = {};
           products.forEach(function(p) {
-            var slug = p[0], label = p[1] || catLabels[slug] || slug;
-            if (!byCat[slug]) byCat[slug] = { label: label, products: [] };
+            var slug = p.categorie_slug;
+            if (!byCat[slug]) byCat[slug] = { label: p.categorie_label || catLabels[slug] || slug, products: [] };
             byCat[slug].products.push({
-              name: p[2], desc: p[3], image: p[4],
-              veggie: p[5] === 'Oui',
-              order: parseInt(p[6], 10) || 0
+              name: p.nom, desc: p.description, image: p.image,
+              veggie: !!p.vegetarien, order: p.ordre || 0
             });
           });
           Object.keys(byCat).forEach(function(slug) {
@@ -1928,15 +1920,13 @@
             var headerImg = (cat.products[0] && cat.products[0].image) || headerImages[slug];
             html += '<div class="menu-category" data-cat="' + slug + '">' +
               '<div class="menu-category-header">' +
-                '<img class="menu-category-thumb" src="/portfolio/new/images/gwaka/' + escapeHtml(headerImg) + '?v=20260526b" alt="' + escapeHtml(cat.label) + '" loading="lazy">' +
+                '<img class="menu-category-thumb" src="' + escapeHtml(imgSrcOf(headerImg)) + '" alt="' + escapeHtml(cat.label) + '" loading="lazy">' +
                 '<h3 class="menu-category-name">' + escapeHtml(cat.label) + '</h3>' +
               '</div>' +
               '<div class="menu-products">';
             cat.products.forEach(function(p) {
-              var imgSrc = p.image && p.image.indexOf('http') === 0 ? p.image : '/portfolio/new/images/gwaka/' + (p.image || '');
-              if (imgSrc.indexOf('?') === -1 && imgSrc.indexOf('http') !== 0) imgSrc += '?v=20260526b';
               html += '<div class="menu-product">' +
-                '<div class="menu-product-img"><img src="' + escapeHtml(imgSrc) + '" alt="' + escapeHtml(p.name) + '" loading="lazy"></div>' +
+                '<div class="menu-product-img"><img src="' + escapeHtml(imgSrcOf(p.image)) + '" alt="' + escapeHtml(p.name) + '" loading="lazy"></div>' +
                 '<div class="menu-product-body">' +
                   '<div class="menu-product-name">' + escapeHtml(p.name) +
                   (p.veggie ? ' <span class="badge-v" title="V&eacute;g&eacute;tarien">V</span>' : '') +
@@ -1951,7 +1941,7 @@
           container.innerHTML = html;
           if (window.__bindMenuFilter) window.__bindMenuFilter();
         }).catch(function(e) {
-          console.warn('[gwaka-menu] Sheet load failed, using static fallback:', e.message);
+          console.warn('[gwaka-menu] API load failed, using static fallback:', e.message);
         });
       })();
 
