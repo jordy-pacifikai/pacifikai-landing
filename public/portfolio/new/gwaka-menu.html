@@ -1884,10 +1884,14 @@
         var catOrder = ['sales','toasts','wraps','salades','plateaux','sushis','mini'];
         var catLabels = {sales:'Salés', toasts:'Toasts', wraps:'Wraps', salades:'Salades', plateaux:'Plateaux', sushis:'Sushis', mini:'Mini Salés'};
 
-        function imgSrcOf(image) {
+        function origOf(image) {
           if (!image) return '';
-          if (image.indexOf('http') === 0) return image;          // URL Supabase Storage (upload Temehani)
-          return '/portfolio/new/images/gwaka/' + image + '?v=20260526d'; // photo locale historique
+          return image.indexOf('http') === 0 ? image : 'https://gwakatahiti.com/portfolio/new/images/gwaka/' + image;
+        }
+        // Vignette optimisée via wsrv.nl (perf mobile : ~25Ko au lieu de ~270Ko)
+        function thumbOf(image, w) {
+          if (!image) return '';
+          return 'https://wsrv.nl/?url=' + encodeURIComponent(origOf(image)) + '&w=' + (w || 600) + '&output=webp&q=74';
         }
 
         fetch('/api/gwaka-catalogue').then(function(r) {
@@ -1920,13 +1924,13 @@
             var headerImg = (cat.products[0] && cat.products[0].image) || headerImages[slug];
             html += '<div class="menu-category" data-cat="' + slug + '">' +
               '<div class="menu-category-header">' +
-                '<img class="menu-category-thumb" src="' + escapeHtml(imgSrcOf(headerImg)) + '" alt="' + escapeHtml(cat.label) + '" loading="lazy">' +
+                '<img class="menu-category-thumb" src="' + escapeHtml(thumbOf(headerImg, 200)) + '" alt="' + escapeHtml(cat.label) + '" loading="lazy" decoding="async" onerror="this.onerror=null;this.src=\'' + escapeHtml(origOf(headerImg)) + '\'">' +
                 '<h3 class="menu-category-name">' + escapeHtml(cat.label) + '</h3>' +
               '</div>' +
               '<div class="menu-products">';
             cat.products.forEach(function(p) {
               html += '<div class="menu-product">' +
-                '<div class="menu-product-img"><img src="' + escapeHtml(imgSrcOf(p.image)) + '" alt="' + escapeHtml(p.name) + '" loading="lazy"></div>' +
+                '<div class="menu-product-img"><img src="' + escapeHtml(thumbOf(p.image, 600)) + '" data-full="' + escapeHtml(origOf(p.image)) + '" alt="' + escapeHtml(p.name) + '" loading="lazy" decoding="async" onerror="this.onerror=null;this.src=\'' + escapeHtml(origOf(p.image)) + '\'"></div>' +
                 '<div class="menu-product-body">' +
                   '<div class="menu-product-name">' + escapeHtml(p.name) +
                   (p.veggie ? ' <span class="badge-v" title="V&eacute;g&eacute;tarien">V</span>' : '') +
@@ -2032,7 +2036,8 @@
       var lbIdx = 0;
       var showLb = function(i) {
         lbIdx = (i + catalogueImgs.length) % catalogueImgs.length;
-        var src = catalogueImgs[lbIdx].getAttribute('src');
+        // zoom en pleine résolution (data-full) plutôt que la vignette wsrv
+        var src = catalogueImgs[lbIdx].getAttribute('data-full') || catalogueImgs[lbIdx].getAttribute('src');
         var alt = catalogueImgs[lbIdx].getAttribute('alt') || '';
         lbImg.setAttribute('src', src);
         lbImg.setAttribute('alt', alt);

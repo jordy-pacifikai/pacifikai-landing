@@ -292,7 +292,12 @@
     var $=function(id){return document.getElementById(id)};
 
     function toast(msg,isErr){var t=$('toast');t.textContent=msg;t.className='toast show'+(isErr?' err':'');clearTimeout(t._t);t._t=setTimeout(function(){t.className='toast'+(isErr?' err':'')},2200)}
-    function imgUrl(img){if(!img)return '';return img.indexOf('http')===0?img:'/portfolio/new/images/gwaka/'+img+'?v=admin'}
+    // URL originale (locale ou Supabase absolue)
+    function origUrl(img){if(!img)return '';return img.indexOf('http')===0?img:'https://gwakatahiti.com/portfolio/new/images/gwaka/'+img}
+    // Vignette optimisée via proxy wsrv.nl (~20Ko au lieu de ~270Ko) — crucial sur mobile/data
+    function thumbUrl(img,w){if(!img)return '';return 'https://wsrv.nl/?url='+encodeURIComponent(origUrl(img))+'&w='+(w||500)+'&h='+(w||500)+'&fit=cover&output=webp&q=72'}
+    // <img> vignette + fallback sur l'original si le proxy échoue + lazy
+    function imgTag(img,alt){if(!img)return '<div class="ph">Pas de photo</div>';var o=escAttr(origUrl(img));return '<img src="'+escAttr(thumbUrl(img))+'" alt="'+escAttr(alt)+'" loading="lazy" decoding="async" onerror="this.onerror=null;this.src=\''+o+'\'">'}
     function escAttr(s){return String(s||'').replace(/&/g,'&amp;').replace(/"/g,'&quot;')}
     function escHtml(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
 
@@ -354,7 +359,7 @@
       html+=group?(open?'</div>':''):'</div>';c.innerHTML=html;bindCards();
     }
     function cardHtml(p){
-      var img=p.image?'<img src="'+escAttr(imgUrl(p.image))+'" alt="'+escAttr(p.nom)+'">':'<div class="ph">Pas de photo</div>';
+      var img=imgTag(p.image,p.nom);
       return '<div class="card'+(p.actif?'':' inactive')+'" data-id="'+p.id+'">'+
         '<div class="card-img" data-edit role="button" tabindex="0" aria-label="Modifier '+escAttr(p.nom)+'"><div class="card-badges">'+
           (p.vegetarien?'<span class="badge veg">V</span>':'')+(p.actif?'':'<span class="badge hidden">Masqué</span>')+
@@ -369,7 +374,7 @@
     }
     function renderList(c,list){
       var rows=list.map(function(p){
-        var img=p.image?'<img src="'+escAttr(imgUrl(p.image))+'" alt="'+escAttr(p.nom)+'">':'<div class="ph">🍽️</div>';
+        var img=p.image?'<img src="'+escAttr(thumbUrl(p.image,120))+'" alt="'+escAttr(p.nom)+'" loading="lazy" decoding="async" onerror="this.onerror=null;this.src=\''+escAttr(origUrl(p.image))+'\'">':'<div class="ph">🍽️</div>';
         return '<div class="lrow'+(p.actif?'':' inactive')+'" data-id="'+p.id+'">'+img+
           '<div class="l-main" data-edit role="button" tabindex="0" aria-label="Modifier '+escAttr(p.nom)+'"><div class="l-cat">'+escHtml(catLabel(p.categorie_slug))+(p.vegetarien?' · V':'')+'</div>'+
           '<div class="l-name">'+escHtml(p.nom)+'</div><div class="l-desc">'+escHtml(p.description||'')+'</div></div>'+
@@ -422,7 +427,7 @@
     function closeModal(force){if(!force&&hasUnsaved()&&!confirm('Tu as des changements non enregistrés. Fermer sans enregistrer ?'))return;$('prodModal').classList.remove('open');document.body.classList.remove('modal-open')}
     function setVeg(on){$('fVeg').classList.toggle('on',on);$('fVeg').setAttribute('aria-checked',on)}
     function setActif(on){$('fActif').classList.toggle('on',on);$('fActif').setAttribute('aria-checked',on);$('fActifLabel').textContent=on?'Visible sur le site':'Masqué (caché du site)'}
-    function setPreview(url){var img=$('dzPreview'),tx=$('dzText');if(url){img.src=imgUrl(url);img.style.display='block';tx.style.display='none'}else{img.style.display='none';tx.style.display='block'}}
+    function setPreview(url){var img=$('dzPreview'),tx=$('dzText');if(url){img.src=thumbUrl(url,700);img.style.display='block';tx.style.display='none'}else{img.style.display='none';tx.style.display='block'}}
     function fillCats(){$('fCat').innerHTML=CATS.map(function(c){return '<option value="'+c.slug+'">'+c.label+'</option>'}).join('')}
 
     function openAdd(){
