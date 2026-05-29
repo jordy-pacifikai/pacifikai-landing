@@ -25,7 +25,7 @@ export async function PATCH(req: Request, ctx: { params: Promise<{ id: string }>
     if (Object.keys(patch).length === 0) return Response.json({ error: "empty patch" }, { status: 400 });
     return Response.json({ product: await updateProduct(id, patch) });
   } catch (e) {
-    return Response.json({ error: String(e) }, { status: 500 });
+    console.error("[gwaka-admin]", e); return Response.json({ error: "Erreur serveur" }, { status: 500 });
   }
 }
 
@@ -36,6 +36,6 @@ export async function DELETE(req: Request, ctx: { params: Promise<{ id: string }
     await deleteProduct(id);
     return Response.json({ ok: true });
   } catch (e) {
-    return Response.json({ error: String(e) }, { status: 500 });
+    console.error("[gwaka-admin]", e); return Response.json({ error: "Erreur serveur" }, { status: 500 });
   }
 }

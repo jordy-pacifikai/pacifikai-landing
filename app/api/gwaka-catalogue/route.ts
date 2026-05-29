@@ -22,9 +22,10 @@ export async function GET(): Promise<Response> {
     const products = await listActiveProducts();
     return Response.json(
       { products },
-      { status: 200, headers: { ...CORS, "Cache-Control": "public, max-age=60, s-maxage=60" } }
+      { status: 200, headers: { ...CORS, "Cache-Control": "public, max-age=10, s-maxage=10" } }
     );
   } catch (e) {
-    return Response.json({ products: [], error: String(e) }, { status: 200, headers: CORS });
+    console.error("[gwaka-catalogue]", e);
+    return Response.json({ products: [], error: "fetch_failed" }, { status: 200, headers: CORS });
   }
 }

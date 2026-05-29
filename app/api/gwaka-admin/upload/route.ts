@@ -38,6 +38,6 @@ export async function POST(req: Request): Promise<Response> {
 
     return Response.json({ url: publicUrl, filename, bytes: webp.length });
   } catch (e) {
-    return Response.json({ error: String(e) }, { status: 500 });
+    console.error("[gwaka-admin]", e); return Response.json({ error: "Erreur serveur" }, { status: 500 });
   }
 }

@@ -15,7 +15,7 @@ export async function GET(req: Request): Promise<Response> {
   try {
     return Response.json({ products: await listAllProducts() });
   } catch (e) {
-    return Response.json({ error: String(e) }, { status: 500 });
+    console.error("[gwaka-admin]", e); return Response.json({ error: "Erreur serveur" }, { status: 500 });
   }
 }
 
@@ -36,6 +36,6 @@ export async function POST(req: Request): Promise<Response> {
     };
     return Response.json({ product: await createProduct(product) });
   } catch (e) {
-    return Response.json({ error: String(e) }, { status: 500 });
+    console.error("[gwaka-admin]", e); return Response.json({ error: "Erreur serveur" }, { status: 500 });
   }
 }
