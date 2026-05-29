@@ -82,15 +82,15 @@ export async function deleteProduct(id: string): Promise<void> {
   if (!res.ok) throw new Error(`Supabase delete failed: ${res.status}`);
 }
 
-/** Upload un fichier (déjà en buffer WebP) vers le bucket public gwaka-catalogue. Retourne le path stockage. */
-export async function uploadCataloguePhoto(filename: string, buffer: Buffer): Promise<string> {
+/** Upload un fichier image vers le bucket public gwaka-catalogue. Retourne l'URL publique. */
+export async function uploadCataloguePhoto(filename: string, buffer: Buffer, contentType = "image/webp"): Promise<string> {
   const path = `uploads/${filename}`;
   const res = await fetch(`${URL}/storage/v1/object/gwaka-catalogue/${path}`, {
     method: "POST",
     headers: {
       apikey: SERVICE_KEY,
       Authorization: `Bearer ${SERVICE_KEY}`,
-      "Content-Type": "image/webp",
+      "Content-Type": contentType,
       "x-upsert": "true",
     },
     body: new Uint8Array(buffer),

@@ -468,13 +468,34 @@
     dz.ondragleave=function(){dz.classList.remove('drag')};
     dz.ondrop=function(e){e.preventDefault();dz.classList.remove('drag');if(e.dataTransfer.files[0])upload(e.dataTransfer.files[0])};
     $('fileInput').onchange=function(){if(this.files[0])upload(this.files[0]);this.value=''};
+    // Traite l'image dans le navigateur : applique l'orientation EXIF (photo droite),
+    // redimensionne (max 1400px) et convertit en WebP. Retourne un Blob, ou null si échec (ex HEIC).
+    function processImage(file){
+      return new Promise(function(resolve){
+        if(typeof createImageBitmap!=='function'){resolve(null);return}
+        var done=false;var timer=setTimeout(function(){if(!done){done=true;resolve(null)}},15000);
+        createImageBitmap(file,{imageOrientation:'from-image'}).then(function(bmp){
+          try{
+            var max=1400,w=bmp.width,h=bmp.height;
+            if(w>max||h>max){var r=Math.min(max/w,max/h);w=Math.round(w*r);h=Math.round(h*r)}
+            var cv=document.createElement('canvas');cv.width=w;cv.height=h;
+            cv.getContext('2d').drawImage(bmp,0,0,w,h);if(bmp.close)bmp.close();
+            cv.toBlob(function(b){if(!done){done=true;clearTimeout(timer);resolve(b)}},'image/webp',0.82);
+          }catch(e){if(!done){done=true;clearTimeout(timer);resolve(null)}}
+        }).catch(function(){if(!done){done=true;clearTimeout(timer);resolve(null)}});
+      });
+    }
     function upload(file){
-      if(!/^image\//.test(file.type)){toast('Choisis une image (jpg, png, heic...)',true);return}
+      if(!/^image\//.test(file.type)&&!/\.(jpe?g|png|webp|heic|heif)$/i.test(file.name||'')){toast('Choisis une image (jpg, png, heic...)',true);return}
       if(file.size>MAX_UPLOAD){toast('Photo trop lourde (max 12 Mo)',true);return}
       dz.classList.add('uploading');var tx=$('dzText'),prev=tx.innerHTML;tx.style.display='block';
-      tx.innerHTML='<div style="font-size:16px;font-weight:700">📤 Envoi de la photo...</div><span style="font-size:12px">Patiente un instant</span>';$('dzPreview').style.display='none';
-      var fd=new FormData();fd.append('file',file);
-      fetch('/api/gwaka-admin/upload',{method:'POST',body:fd}).then(function(r){return r.json().then(function(j){return{ok:r.ok,j:j}})}).then(function(res){
+      tx.innerHTML='<div style="font-size:16px;font-weight:700">📤 Préparation de la photo...</div><span style="font-size:12px">Patiente un instant</span>';$('dzPreview').style.display='none';
+      processImage(file).then(function(blob){
+        var fd=new FormData();
+        if(blob){fd.append('file',blob,'photo.webp')}      // traitée client (droite + webp)
+        else{fd.append('file',file)}                        // fallback : original brut (serveur stocke tel quel)
+        return fetch('/api/gwaka-admin/upload',{method:'POST',body:fd});
+      }).then(function(r){return r.json().then(function(j){return{ok:r.ok,j:j}})}).then(function(res){
         dz.classList.remove('uploading');
         if(res.ok&&res.j.url){draftImage=res.j.url;setPreview(res.j.url);toast('Photo prête ✓ (remise droite)')}
         else{tx.innerHTML=prev;toast('Erreur lors de l\'envoi de la photo',true)}
