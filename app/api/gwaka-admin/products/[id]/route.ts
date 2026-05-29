@@ -8,6 +8,7 @@ export const dynamic = "force-dynamic";
 const CAT_LABELS: Record<string, string> = {
   sales: "Salés", toasts: "Toasts", wraps: "Wraps", salades: "Salades",
   plateaux: "Plateaux", sushis: "Sushis", mini: "Mini Salés",
+  brunch: "Brunch & Box", sucres: "Sucrés", boissons: "Boissons",
 };
 
 const ALLOWED = ["categorie_slug", "categorie_label", "nom", "description", "image", "vegetarien", "ordre", "actif"];

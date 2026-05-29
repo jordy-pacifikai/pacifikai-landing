@@ -1525,6 +1525,9 @@
         <button class="menu-tab" role="tab" aria-selected="false" data-filter="plateaux">Plateaux</button>
         <button class="menu-tab" role="tab" aria-selected="false" data-filter="sushis">Sushis</button>
         <button class="menu-tab" role="tab" aria-selected="false" data-filter="mini">Mini Sal&eacute;s</button>
+        <button class="menu-tab" role="tab" aria-selected="false" data-filter="brunch">Brunch &amp; Box</button>
+        <button class="menu-tab" role="tab" aria-selected="false" data-filter="sucres">Sucr&eacute;s</button>
+        <button class="menu-tab" role="tab" aria-selected="false" data-filter="boissons">Boissons</button>
       </div>
 
       <!-- DYNAMIC MENU CONTAINER — populated from Google Sheets at runtime, static below = fallback -->
@@ -1879,10 +1882,13 @@
           salades: 'catalogue-temehani/temehani-taboule.webp',
           plateaux: 'catalogue-temehani/temehani-planche-de-fromages.webp',
           sushis: 'catalogue-temehani/temehani-sushis.webp',
-          mini: 'catalogue-temehani/temehani-mini-cake-sale.webp'
+          mini: 'catalogue-temehani/temehani-mini-cake-sale.webp',
+          brunch: 'catalogue-temehani/temehani-pancakes.webp',
+          sucres: 'catalogue-temehani/temehani-carrot-cake.webp',
+          boissons: 'catalogue-temehani/temehani-eaux-infusees.webp'
         };
-        var catOrder = ['sales','toasts','wraps','salades','plateaux','sushis','mini'];
-        var catLabels = {sales:'Salés', toasts:'Toasts', wraps:'Wraps', salades:'Salades', plateaux:'Plateaux', sushis:'Sushis', mini:'Mini Salés'};
+        var catOrder = ['sales','toasts','wraps','salades','plateaux','sushis','mini','brunch','sucres','boissons'];
+        var catLabels = {sales:'Salés', toasts:'Toasts', wraps:'Wraps', salades:'Salades', plateaux:'Plateaux', sushis:'Sushis', mini:'Mini Salés', brunch:'Brunch & Box', sucres:'Sucrés', boissons:'Boissons'};
 
         function origOf(image) {
           if (!image) return '';
