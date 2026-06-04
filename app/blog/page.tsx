@@ -1,18 +1,7 @@
-import type { Metadata } from "next";
-import Link from "next/link";
+"use client";
 
-export const metadata: Metadata = {
-  title: "Blog | PACIFIK'AI — Automatisation IA en Polynésie",
-  description:
-    "Cas concrets d'entreprises qui transforment leurs opérations avec l'intelligence artificielle. Insights, tendances et focus Polynésie française.",
-  openGraph: {
-    title: "Blog | PACIFIK'AI — Automatisation IA en Polynésie",
-    description:
-      "Découvrez comment les entreprises leaders utilisent l'IA pour transformer leurs opérations.",
-    type: "website",
-    locale: "fr_FR",
-  },
-};
+import Link from "next/link";
+import { useState } from "react";
 
 type Article = {
   slug: string;
@@ -22,6 +11,7 @@ type Article = {
   date: string;
   readTime: string;
   featured?: boolean;
+  image?: string;
 };
 
 const ARTICLES: Article[] = [
@@ -34,6 +24,7 @@ const ARTICLES: Article[] = [
     date: "Mars 2026",
     readTime: "8 min",
     featured: true,
+    image: "https://v3b.fal.media/files/b/0a940533/MsceT9au7_JV5GkMUUluC.jpg",
   },
   {
     slug: "chatbot-ia-polynesie",
@@ -43,6 +34,7 @@ const ARTICLES: Article[] = [
     category: "Cas Concrets",
     date: "Mars 2026",
     readTime: "6 min",
+    image: "https://v3b.fal.media/files/b/0a940533/NmTj2PrYLawXOx28rQTRu.jpg",
   },
   {
     slug: "prix-site-web-polynesie",
@@ -52,6 +44,7 @@ const ARTICLES: Article[] = [
     category: "Guides Pratiques",
     date: "Mars 2026",
     readTime: "5 min",
+    image: "https://v3b.fal.media/files/b/0a940533/heJWVwR3-N4RxZsVzN4Wk.jpg",
   },
   {
     slug: "intelligence-artificielle-polynesie",
@@ -61,6 +54,7 @@ const ARTICLES: Article[] = [
     category: "Focus Polynésie",
     date: "Février 2026",
     readTime: "7 min",
+    image: "https://v3b.fal.media/files/b/0a940533/Oy5EwHZS7gGlfmASMCGQ-.jpg",
   },
   {
     slug: "automatisation-ia-vs-employe-polynesie",
@@ -70,6 +64,7 @@ const ARTICLES: Article[] = [
     category: "Tendances",
     date: "Février 2026",
     readTime: "6 min",
+    image: "https://v3b.fal.media/files/b/0a940533/J1cHbAfQy3S4OnKRCUsJd.jpg",
   },
   {
     slug: "starbucks-deep-brew-ia",
@@ -79,6 +74,7 @@ const ARTICLES: Article[] = [
     category: "Cas Concrets",
     date: "Janvier 2026",
     readTime: "5 min",
+    image: "https://v3b.fal.media/files/b/0a8c5bbc/z7vc-eBDfbizjAurNlPEc_b405efbecdbb46efb4ad552ee5acce5c.png",
   },
   {
     slug: "marriott-chatbot-reservation",
@@ -88,6 +84,7 @@ const ARTICLES: Article[] = [
     category: "Cas Concrets",
     date: "Janvier 2026",
     readTime: "7 min",
+    image: "https://v3b.fal.media/files/b/0a8c5bba/JjL4e8xzZQKqn1msaHopY_a4daac51f27343cba2456cf3fb5905ef.png",
   },
   {
     slug: "klm-service-client-ia",
@@ -97,6 +94,7 @@ const ARTICLES: Article[] = [
     category: "Cas Concrets",
     date: "Décembre 2025",
     readTime: "6 min",
+    image: "https://v3b.fal.media/files/b/0a8c5bb7/AmFVDpoLDQsO9W7xPFti1_cff11274c3d141b7ae8052110a4b1fad.png",
   },
   {
     slug: "hsbc-extraction-documents",
@@ -106,6 +104,7 @@ const ARTICLES: Article[] = [
     category: "Cas Concrets",
     date: "Décembre 2025",
     readTime: "5 min",
+    image: "https://v3b.fal.media/files/b/0a8c5bbe/Wnx3WF5OZR3_FooVxKaD8_e8bafb6f3a0540f2b4c82db35145e4c9.png",
   },
   {
     slug: "digitalisation-entreprise-tahiti",
@@ -115,6 +114,7 @@ const ARTICLES: Article[] = [
     category: "Guides Pratiques",
     date: "Novembre 2025",
     readTime: "8 min",
+    image: "https://v3b.fal.media/files/b/0a940533/tuh0vlAstCVeLDYOdjThF.jpg",
   },
   {
     slug: "creation-site-internet-tahiti",
@@ -124,6 +124,7 @@ const ARTICLES: Article[] = [
     category: "Guides Pratiques",
     date: "Novembre 2025",
     readTime: "9 min",
+    image: "https://v3b.fal.media/files/b/0a940533/7C8x4bfmGzKB2iDmuS1PQ.jpg",
   },
   {
     slug: "marketing-digital-tahiti",
@@ -133,6 +134,7 @@ const ARTICLES: Article[] = [
     category: "Tendances",
     date: "Octobre 2025",
     readTime: "7 min",
+    image: "https://v3b.fal.media/files/b/0a940533/zPFqJssVV0joBCPf_yw1R.jpg",
   },
   {
     slug: "transformation-digitale-polynesie-francaise",
@@ -142,6 +144,7 @@ const ARTICLES: Article[] = [
     category: "Tendances",
     date: "Octobre 2025",
     readTime: "10 min",
+    image: "https://v3b.fal.media/files/b/0a940533/1wWaQu7Tb-rU-l1OWPN7N.jpg",
   },
   {
     slug: "site-web-sur-mesure-vs-template-tahiti",
@@ -151,6 +154,7 @@ const ARTICLES: Article[] = [
     category: "Comparatifs",
     date: "Septembre 2025",
     readTime: "6 min",
+    image: "https://v3b.fal.media/files/b/0a940533/U3w1RK4fQdrpnDcKbNpLM.jpg",
   },
   {
     slug: "application-mobile-polynesie",
@@ -160,6 +164,7 @@ const ARTICLES: Article[] = [
     category: "Comparatifs",
     date: "Septembre 2025",
     readTime: "5 min",
+    image: "https://v3b.fal.media/files/b/0a940533/-SsyAW8Euovc8vCsIKdbn.jpg",
   },
   {
     slug: "agence-web-tahiti-2026",
@@ -169,6 +174,7 @@ const ARTICLES: Article[] = [
     category: "Guides Pratiques",
     date: "Août 2025",
     readTime: "6 min",
+    image: "https://v3b.fal.media/files/b/0a940533/uJzHEn94Mtb-jnGzyzwxj.jpg",
   },
   {
     slug: "agence-digitale-tahiti-guide",
@@ -178,6 +184,7 @@ const ARTICLES: Article[] = [
     category: "Guides Pratiques",
     date: "Août 2025",
     readTime: "7 min",
+    image: "https://v3b.fal.media/files/b/0a940533/hrJ1gI-WfBbddLP1FABSP.jpg",
   },
   {
     slug: "agences-digitales-tahiti-comparatif",
@@ -187,6 +194,7 @@ const ARTICLES: Article[] = [
     category: "Comparatifs",
     date: "Juillet 2025",
     readTime: "8 min",
+    image: "https://v3b.fal.media/files/b/0a940533/8E_s7Fc11HcMh58rUmCYo.jpg",
   },
   {
     slug: "chatbot-ia-vs-standard-telephonique",
@@ -196,6 +204,7 @@ const ARTICLES: Article[] = [
     category: "Comparatifs",
     date: "Juillet 2025",
     readTime: "5 min",
+    image: "https://v3b.fal.media/files/b/0a940533/qiiNPJ0RUzLAoa5-Xd7wu.jpg",
   },
   {
     slug: "automatisation-entreprise-tahiti",
@@ -205,6 +214,7 @@ const ARTICLES: Article[] = [
     category: "Guides Pratiques",
     date: "Juin 2025",
     readTime: "7 min",
+    image: "https://v3b.fal.media/files/b/0a940533/IzhFgCiahZQobgCrGoyB_.jpg",
   },
 ];
 
@@ -225,6 +235,43 @@ const CATEGORY_COLORS: Record<string, string> = {
   "Comparatifs": "text-[#60a5fa] bg-[#60a5fa]/10 border-[#60a5fa]/20",
 };
 
+const CATEGORY_GRADIENTS: Record<string, string> = {
+  "Tendances": "from-[#f97066]/20 via-[#e85d5a]/10 to-[#080c14]",
+  "Cas Concrets": "from-[#14b8a6]/20 via-[#0d9488]/10 to-[#080c14]",
+  "Focus Polynésie": "from-[#f5c542]/20 via-[#eab308]/10 to-[#080c14]",
+  "Guides Pratiques": "from-[#a78bfa]/20 via-[#7c3aed]/10 to-[#080c14]",
+  "Comparatifs": "from-[#60a5fa]/20 via-[#3b82f6]/10 to-[#080c14]",
+};
+
+const CATEGORY_ICONS: Record<string, React.ReactNode> = {
+  "Tendances": (
+    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#f97066" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="opacity-40">
+      <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
+    </svg>
+  ),
+  "Cas Concrets": (
+    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#14b8a6" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="opacity-40">
+      <rect x="2" y="3" width="20" height="14" rx="2" />
+      <line x1="8" y1="21" x2="16" y2="21" /><line x1="12" y1="17" x2="12" y2="21" />
+    </svg>
+  ),
+  "Focus Polynésie": (
+    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#f5c542" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="opacity-40">
+      <circle cx="12" cy="12" r="10" /><path d="M2 12h20" /><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+    </svg>
+  ),
+  "Guides Pratiques": (
+    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#a78bfa" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="opacity-40">
+      <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" /><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
+    </svg>
+  ),
+  "Comparatifs": (
+    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#60a5fa" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="opacity-40">
+      <line x1="18" y1="20" x2="18" y2="10" /><line x1="12" y1="20" x2="12" y2="4" /><line x1="6" y1="20" x2="6" y2="14" />
+    </svg>
+  ),
+};
+
 function CategoryBadge({ category }: { category: string }) {
   const colors = CATEGORY_COLORS[category] ?? "text-white/60 bg-white/5 border-white/10";
   return (
@@ -240,14 +287,28 @@ function FeaturedCard({ article }: { article: Article }) {
   return (
     <Link
       href={`/blog/${article.slug}`}
-      className="group col-span-full grid md:grid-cols-[1.4fr_1fr] glass glass-hover rounded-2xl overflow-hidden border border-white/[0.06] hover:border-[#f97066]/30 transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_20px_60px_rgba(249,112,102,0.10)]"
+      data-tilt
+      className="group col-span-full grid md:grid-cols-[1.4fr_1fr] glass glass-hover rounded-2xl overflow-hidden border border-white/[0.06] hover:border-[#f97066]/30 transition-colors duration-500 hover:shadow-[0_20px_60px_rgba(249,112,102,0.10)]"
     >
-      {/* Image placeholder */}
-      <div className="relative h-56 md:h-auto bg-gradient-to-br from-[#080c14] via-[#0d1424] to-[#f97066]/10 flex items-center justify-center overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-[#f97066]/5 to-[#14b8a6]/5" />
-        <span className="text-6xl opacity-20 select-none">🤖</span>
+      {/* Cover image */}
+      <div className={`relative h-56 md:h-auto bg-gradient-to-br ${CATEGORY_GRADIENTS[article.category] ?? "from-[#f97066]/20 to-[#080c14]"} flex items-center justify-center overflow-hidden`}>
+        {article.image ? (
+          <img
+            src={`https://wsrv.nl/?url=${encodeURIComponent(article.image)}&w=920&q=75&output=webp`}
+            alt={article.title}
+            width={920}
+            height={480}
+            loading="lazy"
+            className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+          />
+        ) : (
+          <>
+            <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCI+PGRlZnM+PHBhdHRlcm4gaWQ9ImciIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTTAgMGg2MHY2MEgweiIgZmlsbD0ibm9uZSIvPjxjaXJjbGUgY3g9IjMwIiBjeT0iMzAiIHI9IjEiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4wMykiLz48L3BhdHRlcm4+PC9kZWZzPjxyZWN0IGZpbGw9InVybCgjZykiIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCIvPjwvc3ZnPg==')] opacity-60" />
+            {CATEGORY_ICONS[article.category]}
+          </>
+        )}
         <div className="absolute top-4 left-4">
-          <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-[#f97066]/15 border border-[#f97066]/30 text-[#f97066] text-[10px] font-bold tracking-widest uppercase">
+          <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-[#f97066]/15 border border-[#f97066]/30 text-[#f97066] text-[10px] font-bold tracking-widest uppercase backdrop-blur-sm">
             À la une
           </span>
         </div>
@@ -286,12 +347,26 @@ function ArticleCard({ article }: { article: Article }) {
   return (
     <Link
       href={`/blog/${article.slug}`}
-      className="group flex flex-col glass glass-hover rounded-2xl overflow-hidden border border-white/[0.06] hover:border-[#f97066]/30 transition-all duration-500 hover:-translate-y-1.5 hover:shadow-[0_16px_48px_rgba(249,112,102,0.08)]"
+      data-tilt
+      className="group flex flex-col glass glass-hover rounded-2xl overflow-hidden border border-white/[0.06] hover:border-[#f97066]/30 transition-colors duration-500 hover:shadow-[0_16px_48px_rgba(249,112,102,0.08)]"
     >
-      {/* Image placeholder */}
-      <div className="relative h-48 bg-gradient-to-br from-[#080c14] via-[#0d1424] to-[#f97066]/8 flex items-center justify-center overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-[#f97066]/3 to-transparent" />
-        <span className="text-4xl opacity-15 select-none">📄</span>
+      {/* Cover image */}
+      <div className={`relative h-48 bg-gradient-to-br ${CATEGORY_GRADIENTS[article.category] ?? "from-[#f97066]/20 to-[#080c14]"} flex items-center justify-center overflow-hidden`}>
+        {article.image ? (
+          <img
+            src={`https://wsrv.nl/?url=${encodeURIComponent(article.image)}&w=800&q=75&output=webp`}
+            alt={article.title}
+            width={800}
+            height={400}
+            loading="lazy"
+            className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+          />
+        ) : (
+          <>
+            <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCI+PGRlZnM+PHBhdHRlcm4gaWQ9ImciIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTTAgMGg2MHY2MEgweiIgZmlsbD0ibm9uZSIvPjxjaXJjbGUgY3g9IjMwIiBjeT0iMzAiIHI9IjEiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4wMykiLz48L3BhdHRlcm4+PC9kZWZzPjxyZWN0IGZpbGw9InVybCgjZykiIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCIvPjwvc3ZnPg==')] opacity-60" />
+            {CATEGORY_ICONS[article.category]}
+          </>
+        )}
         <div className="absolute top-3 left-3">
           <CategoryBadge category={article.category} />
         </div>
@@ -325,8 +400,14 @@ function ArticleCard({ article }: { article: Article }) {
 }
 
 export default function BlogPage() {
-  const featured = ARTICLES.find((a) => a.featured);
-  const rest = ARTICLES.filter((a) => !a.featured);
+  const [activeCategory, setActiveCategory] = useState("Tous");
+
+  const filtered = activeCategory === "Tous"
+    ? ARTICLES
+    : ARTICLES.filter((a) => a.category === activeCategory);
+
+  const featured = filtered.find((a) => a.featured);
+  const rest = featured ? filtered.filter((a) => a !== featured) : filtered;
 
   return (
     <div className="min-h-screen bg-bg">
@@ -353,26 +434,27 @@ export default function BlogPage() {
           </p>
         </div>
 
-        {/* Category pills (static display — filter is client-side and optional) */}
+        {/* Category pills — functional filter */}
         <div className="flex flex-wrap justify-center gap-2 mb-12">
           {CATEGORIES.map((cat) => (
-            <span
+            <button
               key={cat}
-              className={`px-4 py-1.5 rounded-full text-xs font-semibold border cursor-default transition-colors ${
-                cat === "Tous"
+              onClick={() => setActiveCategory(cat)}
+              className={`px-4 py-1.5 rounded-full text-xs font-semibold border cursor-pointer transition-colors ${
+                cat === activeCategory
                   ? "bg-[#f97066]/15 border-[#f97066]/30 text-[#f97066]"
                   : "bg-white/[0.03] border-white/[0.08] text-text-secondary hover:border-white/20 hover:text-text"
               }`}
             >
               {cat}
-            </span>
+            </button>
           ))}
         </div>
 
         {/* Stats bar */}
-        <div className="flex items-center justify-center gap-8 mb-14 text-center">
+        <div className="flex items-center justify-center gap-6 sm:gap-8 mb-14 text-center">
           <div>
-            <p className="text-2xl font-bold text-text">{ARTICLES.length}</p>
+            <p className="text-2xl font-bold text-text">{filtered.length}</p>
             <p className="text-xs text-text-dim uppercase tracking-widest">Articles</p>
           </div>
           <div className="w-px h-8 bg-border" />
@@ -399,7 +481,7 @@ export default function BlogPage() {
         </div>
 
         {/* Newsletter CTA */}
-        <div className="mt-20 glass rounded-2xl p-8 md:p-12 text-center border border-white/[0.06]">
+        <div data-tilt className="mt-20 glass rounded-2xl p-8 md:p-12 text-center border border-white/[0.06]">
           <div className="w-12 h-12 rounded-full bg-[#14b8a6]/15 border border-[#14b8a6]/20 flex items-center justify-center mx-auto mb-5">
             <svg width="20" height="20" viewBox="0 0 20 20" fill="none" className="text-[#14b8a6]">
               <path d="M2 4h16v12H2V4zm0 0l8 6 8-6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
@@ -413,7 +495,7 @@ export default function BlogPage() {
             en Polynésie française. Pas de spam — une newsletter mensuelle.
           </p>
           <a
-            href="/#contact"
+            href="/contact"
             className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#14b8a6] text-bg font-semibold text-sm hover:bg-[#14b8a6]/90 transition-colors"
           >
             Nous contacter
