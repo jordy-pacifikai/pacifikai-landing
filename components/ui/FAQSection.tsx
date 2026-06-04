@@ -2,15 +2,16 @@
 
 import { useState } from "react";
 import SectionReveal from "@/components/effects/SectionReveal";
+import { useT } from "@/lib/i18n/useT";
 
-const FAQS = [
+const FAQS_FR = [
   {
     q: "Qu'est-ce qu'une agence digitale à Tahiti ?",
     a: "Une agence digitale à Tahiti comme PACIFIK'AI accompagne les entreprises de Polynésie française dans leur transformation numérique : création de sites web, chatbots IA, automatisation des process, marketing digital et formation.",
   },
   {
     q: "Combien coûte un site internet en Polynésie française ?",
-    a: "Un site vitrine professionnel commence à 100 000 XPF avec PACIFIK'AI. Le tarif varie selon les fonctionnalités : chatbot IA, e-commerce, dashboard analytics. Chaque projet est sur mesure avec un devis détaillé gratuit.",
+    a: "Avec PACIFIK'AI, votre site web professionnel est disponible en abonnement à 4 900 XPF/mois, sans engagement et sans frais de mise en place. Tout est inclus : design sur mesure, hébergement, nom de domaine, maintenance, sécurité et support. En annuel : 49 000 XPF/an, soit 2 mois offerts.",
   },
   {
     q: "Comment un chatbot IA peut aider mon entreprise à Tahiti ?",
@@ -18,7 +19,7 @@ const FAQS = [
   },
   {
     q: "L'intelligence artificielle est-elle accessible aux PME polynésiennes ?",
-    a: "Absolument. Nos solutions démarrent à 100 000 XPF/mois et s'adaptent à la taille de votre entreprise. L'IA n'est plus réservée aux grandes entreprises — c'est un levier de compétitivité pour les PME.",
+    a: "Absolument. Votre site web professionnel démarre à 4 900 XPF/mois (abonnement sans engagement) et nos solutions IA s'adaptent à la taille de votre entreprise. Le digital n'est plus réservé aux grandes entreprises — c'est un levier de compétitivité pour les PME polynésiennes.",
   },
   {
     q: "Quelle est la meilleure agence digitale en Polynésie française ?",
@@ -26,7 +27,7 @@ const FAQS = [
   },
   {
     q: "Par où commencer la digitalisation de son entreprise à Tahiti ?",
-    a: "Commencez par un audit gratuit de 30 minutes avec nous. On identifie les tâches répétitives, les opportunités d'automatisation et on vous propose une roadmap personnalisée sur 12 mois.",
+    a: "Envoyez-nous un email pour nous parler de votre projet. On échange sur vos besoins, on identifie les opportunités et on vous propose une approche personnalisée.",
   },
   {
     q: "PACIFIK'AI intervient-il en dehors de Tahiti ?",
@@ -66,24 +67,30 @@ function FAQItem({ q, a }: { q: string; a: string }) {
 }
 
 export default function FAQSection() {
+  const t = useT("faq");
+  const faqs = t?.items ?? FAQS_FR;
+
   return (
     <section id="faq" className="section-padding">
       <div className="max-w-3xl mx-auto">
         <SectionReveal>
           <div className="text-center mb-12 reveal-child">
             <p className="text-lagoon text-sm font-medium tracking-[0.2em] uppercase mb-4">
-              FAQ
+              {t?.label ?? "FAQ"}
             </p>
             <h2 className="font-display text-[clamp(2rem,5vw,3.5rem)] leading-tight">
-              Questions{" "}
-              <span className="gradient-text-lagoon">fréquentes</span>
+              {t ? (
+                <>{t.title}{" "}<span className="gradient-text-lagoon">{t.titleHighlight}</span></>
+              ) : (
+                <>Questions{" "}<span className="gradient-text-lagoon">fréquentes</span></>
+              )}
             </h2>
           </div>
         </SectionReveal>
 
         <SectionReveal>
           <div className="glass rounded-3xl p-6 md:p-8 border border-border reveal-child">
-            {FAQS.map((faq, i) => (
+            {faqs.map((faq, i) => (
               <FAQItem key={i} q={faq.q} a={faq.a} />
             ))}
           </div>

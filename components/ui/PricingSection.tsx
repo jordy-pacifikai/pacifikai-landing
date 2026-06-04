@@ -5,35 +5,35 @@ import MagneticButton from "@/components/effects/MagneticButton";
 
 const PLANS = [
   {
-    name: "Starter",
-    price: "100 000",
-    unit: "XPF",
+    name: "Présence",
+    price: "4 900",
+    unit: "XPF/mois",
     popular: false,
     features: [
-      "Design sur mesure responsive",
-      "Hebergement premium inclus",
-      "Nom de domaine .pf ou .com",
-      "SEO local optimise",
+      "Site complet multi-pages, sans engagement",
+      "Hebergement + SSL + nom de domaine inclus",
+      "SEO local + Google My Business",
+      "Maintenance, securite & sauvegardes",
       "Formulaire de contact",
-      "Livraison en 1-2 semaines",
+      "0 frais de mise en place",
     ],
-    cta: "Demander un devis",
+    cta: "Lancer mon site",
     href: "#contact",
   },
   {
-    name: "Business",
-    price: "250 000",
-    unit: "XPF",
+    name: "Croissance",
+    price: "9 900",
+    unit: "XPF/mois",
     popular: true,
     features: [
-      "Tout le pack Starter",
-      "Chatbot IA 24/7 (WhatsApp + site)",
-      "5 workflows automatises",
-      "Tableau de bord analytics",
-      "Formation de votre equipe",
-      "Support 3 mois inclus",
+      "Tout Présence",
+      "Assistant IA MANA 24/7 inclus",
+      "Reservation & RDV en ligne",
+      "Newsletter + multi-langue",
+      "SEO avance + suivi mensuel",
+      "Support prioritaire",
     ],
-    cta: "Demander un devis",
+    cta: "Choisir Croissance",
     href: "#contact",
   },
   {
@@ -74,6 +74,7 @@ export default function PricingSection() {
             {PLANS.map((plan, i) => (
               <div
                 key={i}
+                data-tilt
                 className={`reveal-child glass rounded-3xl p-8 relative flex flex-col ${
                   plan.popular
                     ? "border-accent/30 border-2 ring-1 ring-accent/10"

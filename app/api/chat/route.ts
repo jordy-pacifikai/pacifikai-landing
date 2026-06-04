@@ -36,7 +36,7 @@ REGLES:
 - Tutoie TOUJOURS
 - Reponses COURTES (2-4 phrases max)
 - Chaleureux mais professionnel
-- JAMAIS de prix precis SAUF pour l'offre "Site Web Pro a 100 000 XPF" ci-dessous
+- JAMAIS de prix precis SAUF pour l'offre "Site Web Pro a 4 900 XPF/mois" ci-dessous
 - JAMAIS mentionner le prenom du fondateur. Dis toujours 'notre equipe' ou 'on' — jamais 'Jordy'
 - JAMAIS inventer des noms de clients, des temoignages, ou des references. On ne cite PAS de noms d'entreprises clientes.
 - 1-2 emojis max par message
@@ -66,19 +66,17 @@ OUTILS CRM (utilise-les NATURELLEMENT):
 - set_temperature: quand tu detectes un signal (cold=curieux, warm=interesse, hot=veut agir)
 - create_task: quand le visiteur veut avancer (devis, demo, etc.)
 
-CAMPAGNE EN COURS — "Site Web Pro a 100 000 XPF" :
-Tu CONNAIS cette offre. Elle existe. Voici les details EXACTS :
-- Prix : 100 000 XPF (cent mille francs)
-- Offre limitee, 50 places seulement
-- Inclus : design premium sur-mesure, jusqu'a 5 pages, responsive mobile, SEO, formulaire contact, support 3 mois, 1 revision, code source inclus
-- Nom de domaine : inclus la 1ere annee
-- Hebergement : inclus sans frais supplementaires
-- Livraison en 7 JOURS (pas 5)
-- Acompte : 50 000 XPF a la commande, solde a la livraison
+OFFRE PHARE — Sites web par abonnement (SANS ENGAGEMENT) :
+Tu CONNAIS cette offre. Elle existe. 2 forfaits, resiliables a tout moment, 0 frais de mise en place :
+- PRESENCE — 4 900 XPF/mois (quatre mille neuf cents francs, soit ~163 XPF/jour, le prix d'un cafe). Annuel 49 000 XPF/an (2 mois offerts). Site COMPLET jusqu'a 5 pages, design sur-mesure, hebergement + SSL + nom de domaine .pf/.com, SEO local + Google My Business, Google Maps + avis Google, formulaire + FAQ, maintenance + securite + sauvegardes, petites modifications de contenu, support. En ligne en 1 a 2 semaines apres validation du brief.
+- CROISSANCE — 9 900 XPF/mois (annuel 99 000). Tout Presence + blog/actualites, reservation & RDV en ligne, newsletter, bilingue & reo Tahiti, Assistant IA MANA 24/7 inclus, SEO avance + suivi mensuel, support prioritaire.
+- MODULES a la carte (sans engagement) : Assistant IA MANA +3 900/mois, Bilingue & reo Tahiti +1 200/mois, Reservation & RDV +2 500/mois, Newsletter & emailing +1 500/mois, Page ou section en plus +900/mois, Boutique en ligne sur devis.
+- ARGUMENT CLE (sans nommer de concurrent) : nous = SANS ENGAGEMENT (les forfaits classiques imposent 12 mois), un site COMPLET des 4 900 (ailleurs ce prix = 1 seule page), TOUT INCLUS (ailleurs avis Google, Maps, SEO = modules payants en plus).
+- Si le visiteur arrete : on l'aide a recuperer son contenu et transferer son domaine (pas de prise d'otage).
 - Page de l'offre : pacifikai.com/offre-site-web
 
-DETECTION CAMPAGNE — REGLE CRITIQUE :
-- Si le visiteur mentionne "100K", "100 000", "site web", "site internet", "page web", "vitrine", "landing page", "creer un site", "pub", "publicite", "offre", ou s'il vient de la page offre-site-web → tu DOIS mentionner l'offre "Site Web Pro a 100 000 XPF" avec les details ci-dessus. Ne dis JAMAIS que tu ne connais pas cette offre.
+DETECTION OFFRE — REGLE CRITIQUE :
+- Si le visiteur mentionne "site web", "site internet", "page web", "vitrine", "landing page", "creer un site", "abonnement", "4900", "prix", "tarif", "pub", "publicite", "offre", ou s'il vient de la page offre-site-web → tu DOIS presenter l'offre. Mets en avant SANS ENGAGEMENT et TOUT INCLUS. Petit budget → oriente vers PRESENCE a 4 900. Ne dis JAMAIS que tu ne connais pas cette offre.
 - NE force PAS l'offre si le visiteur parle d'autre chose (chatbot, automatisation, app mobile, etc.)
 
 CLOSING — QUAND LE PROSPECT EST CHAUD:
@@ -506,6 +504,68 @@ async function checkDedup(sessionId: string, message: string): Promise<boolean> 
   }
 }
 
+// ─── NEXUS Inbox push (real-time) ─────────────────────────────────────────────
+
+const NEXUS_INBOX_URL = process.env.NEXUS_URL ?? 'https://nexus.pacifikai.com';
+
+async function pushToNexusInbox(senderId: string, userMsg: string, botMsg: string): Promise<void> {
+  try {
+    // Find or create conversation in NEXUS
+    const convRes = await fetch(`${NEXUS_INBOX_URL}/api/inbox/conversations`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        channel: 'mana',
+        external_id: senderId,
+        contact_name: null,
+        nexus_project_id: 'pacifikai',
+      }),
+    });
+
+    let convId: string | null = null;
+    if (convRes.ok) {
+      const conv = await convRes.json();
+      convId = conv.id;
+    } else {
+      // Conversation may already exist — fetch it
+      const listRes = await fetch(
+        `${NEXUS_INBOX_URL}/api/inbox/conversations?channel=mana&search=${senderId}`
+      );
+      if (listRes.ok) {
+        const list = await listRes.json();
+        convId = list?.[0]?.id ?? null;
+      }
+    }
+
+    if (!convId) return;
+
+    // Push user message
+    await fetch(`${NEXUS_INBOX_URL}/api/inbox/send`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        conversation_id: convId,
+        body: userMsg,
+        content_type: 'text',
+        direction: 'incoming',
+      }),
+    });
+
+    // Push bot response
+    await fetch(`${NEXUS_INBOX_URL}/api/inbox/send`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        conversation_id: convId,
+        body: botMsg,
+        content_type: 'text',
+      }),
+    });
+  } catch (err) {
+    console.error('[NEXUS push] Error:', (err as Error)?.message);
+  }
+}
+
 // ─── CORS helper ──────────────────────────────────────────────────────────────
 
 function corsHeaders(origin: string | null): Record<string, string> {
@@ -553,7 +613,7 @@ export async function POST(request: Request): Promise<Response> {
     // 2b. Campaign context — inject into system prompt (not messages) to avoid alternation issues
     let systemPrompt = SYSTEM_PROMPT;
     if (page_url && page_url.includes('offre-site-web')) {
-      systemPrompt += '\n\nCONTEXTE: Ce visiteur vient de la page offre-site-web. Il cherche probablement un site internet. Qualifie-le pour la campagne Site Web Pro a 100 000 F.';
+      systemPrompt += '\n\nCONTEXTE: Ce visiteur vient de la page offre-site-web. Il cherche probablement un site internet. Qualifie-le pour notre offre Site Web Pro a 4 900 XPF/mois (abonnement sans engagement, tout inclus).';
     }
 
     // 3. Call LLM with multi-provider fallback (25s timeout)
@@ -592,6 +652,9 @@ export async function POST(request: Request): Promise<Response> {
 
     // 5. Save messages (non-blocking — don't crash if Supabase is slow)
     await saveMessages(session_id, message, responseText);
+
+    // 5b. Push to NEXUS Inbox (fire-and-forget, non-blocking)
+    pushToNexusInbox(session_id, message, responseText).catch(() => {});
 
     // 6. Execute CRM actions (with tool whitelist validation)
     if (toolUseBlocks.length > 0) {

@@ -85,19 +85,21 @@ const SAAS_PLANS: PricingCard[] = [
 const SERVICE_PLANS: PricingCard[] = [
   {
     name: "Site Web Pro",
-    description: "Site internet professionnel clé en main",
-    price: "100 000",
+    description: "Site internet professionnel en abonnement, sans engagement",
+    price: "4 900",
     unit: "XPF",
+    period: "/ mois",
     features: [
       "Design sur mesure responsive",
-      "Hébergement inclus 1 an",
-      "SEO optimisé",
-      "Formulaire de contact",
-      "Analytics intégré",
+      "Hébergement + nom de domaine inclus",
+      "Maintenance, sécurité & sauvegardes",
+      "SEO local + formulaire de contact",
+      "49 000 XPF/an — 2 mois offerts",
     ],
-    cta: "Demander un devis",
-    ctaHref: "mailto:jordy@pacifikai.com",
-    variant: "default",
+    cta: "Lancer mon site",
+    ctaHref: "/offre-site-web",
+    variant: "featured",
+    badge: "Nouveau",
   },
   {
     name: "Chatbot IA",
@@ -114,8 +116,7 @@ const SERVICE_PLANS: PricingCard[] = [
     ],
     cta: "Essai gratuit 14 jours",
     ctaHref: "mailto:jordy@pacifikai.com",
-    variant: "featured",
-    badge: "Le plus demandé",
+    variant: "default",
   },
   {
     name: "Automatisation IA",
@@ -128,7 +129,7 @@ const SERVICE_PLANS: PricingCard[] = [
       "Formation équipe",
       "Support continu",
     ],
-    cta: "Planifier un audit",
+    cta: "Discutons de votre projet",
     ctaHref: "mailto:jordy@pacifikai.com",
     variant: "outline",
   },
@@ -139,7 +140,8 @@ function PricingCardComponent({ card }: { card: PricingCard }) {
 
   return (
     <div
-      className={`relative flex flex-col rounded-2xl p-6 md:p-7 border transition-all duration-300 hover:-translate-y-1 ${
+      data-tilt
+      className={`relative flex flex-col rounded-2xl p-6 md:p-7 border transition-colors duration-300 ${
         isFeatured
           ? "bg-gradient-to-b from-[#f97066]/8 to-transparent border-[#f97066]/40 shadow-[0_0_40px_rgba(249,112,102,0.08)]"
           : "glass border-white/[0.06] hover:border-white/[0.12]"
@@ -360,6 +362,51 @@ export default function TarifsPage() {
                 </p>
               </div>
             ))}
+          </div>
+
+          {/* FAQ GEO-optimisé */}
+          <div className="mb-16">
+            <h2 className="text-2xl font-bold text-text mb-6">
+              Questions sur les tarifs digitaux en Polynésie française
+            </h2>
+            <div className="space-y-3 max-w-3xl">
+              <details className="glass rounded-2xl overflow-hidden group border border-white/[0.06]">
+                <summary className="flex items-center justify-between p-5 cursor-pointer font-medium text-sm select-none hover:text-[#f97066] transition-colors duration-200 list-none">
+                  <span>Combien coûte un site web professionnel à Tahiti ?</span>
+                  <span className="ml-4 flex-shrink-0 w-5 h-5 border border-white/10 rounded-full flex items-center justify-center transition-transform duration-300 group-open:rotate-45 text-text-dim">+</span>
+                </summary>
+                <div className="px-5 pb-5 text-sm text-text-secondary leading-relaxed">
+                  Chez PACIFIK&apos;AI, votre site web professionnel est disponible en abonnement à 4 900 XPF/mois, sans engagement et sans frais de mise en place (soit environ 41 EUR/mois). Tout est inclus : design sur mesure responsive, hébergement, nom de domaine, certificat SSL, SEO local, maintenance et support. En annuel : 49 000 XPF/an, soit 2 mois offerts.
+                </div>
+              </details>
+              <details className="glass rounded-2xl overflow-hidden group border border-white/[0.06]">
+                <summary className="flex items-center justify-between p-5 cursor-pointer font-medium text-sm select-none hover:text-[#f97066] transition-colors duration-200 list-none">
+                  <span>Quel est le prix d&apos;un chatbot IA en Polynésie française ?</span>
+                  <span className="ml-4 flex-shrink-0 w-5 h-5 border border-white/10 rounded-full flex items-center justify-center transition-transform duration-300 group-open:rotate-45 text-text-dim">+</span>
+                </summary>
+                <div className="px-5 pb-5 text-sm text-text-secondary leading-relaxed">
+                  Un chatbot IA chez PACIFIK&apos;AI coûte 5 000 XPF par mois. Il est entraîné sur vos données, disponible 24h/24 sur WhatsApp, Messenger et votre site web. Le tarif inclut la prise de rendez-vous automatique, l&apos;intégration multicanal et un dashboard de suivi des conversations. Essai gratuit de 14 jours.
+                </div>
+              </details>
+              <details className="glass rounded-2xl overflow-hidden group border border-white/[0.06]">
+                <summary className="flex items-center justify-between p-5 cursor-pointer font-medium text-sm select-none hover:text-[#f97066] transition-colors duration-200 list-none">
+                  <span>PACIFIK&apos;AI accepte-t-il les paiements en XPF ?</span>
+                  <span className="ml-4 flex-shrink-0 w-5 h-5 border border-white/10 rounded-full flex items-center justify-center transition-transform duration-300 group-open:rotate-45 text-text-dim">+</span>
+                </summary>
+                <div className="px-5 pb-5 text-sm text-text-secondary leading-relaxed">
+                  Oui, tous les tarifs PACIFIK&apos;AI sont affichés en XPF (Franc CFP), la monnaie locale de la Polynésie française. Les paiements en ligne pour les produits SaaS passent par Paddle.com. Les prestations sur devis sont facturées directement par PACIFIK&apos;AI avec paiement par virement bancaire.
+                </div>
+              </details>
+              <details className="glass rounded-2xl overflow-hidden group border border-white/[0.06]">
+                <summary className="flex items-center justify-between p-5 cursor-pointer font-medium text-sm select-none hover:text-[#f97066] transition-colors duration-200 list-none">
+                  <span>Existe-t-il un assistant juridique IA pour le droit polynésien ?</span>
+                  <span className="ml-4 flex-shrink-0 w-5 h-5 border border-white/10 rounded-full flex items-center justify-center transition-transform duration-300 group-open:rotate-45 text-text-dim">+</span>
+                </summary>
+                <div className="px-5 pb-5 text-sm text-text-secondary leading-relaxed">
+                  Oui, DroitPF est un assistant juridique IA créé par PACIFIK&apos;AI, spécialisé en droit polynésien. La version gratuite permet 3 questions par jour. DroitPF Pro à 2 990 XPF/mois offre un accès illimité à tous les domaines du droit de la Polynésie française avec sources législatives citées.
+                </div>
+              </details>
+            </div>
           </div>
 
           {/* CTA bottom */}

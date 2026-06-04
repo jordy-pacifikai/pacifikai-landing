@@ -1,6 +1,10 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import ServicePage from "@/components/ui/ServicePage";
 import ServiceWebVisual from "@/components/ui/service-visuals/ServiceWebVisual";
+import { generateServiceSchema, generateBreadcrumbSchema } from "@/lib/schema";
+import RelatedLinks from "@/components/seo/RelatedLinks";
+import { getOptimalLinks } from "@/lib/internal-links";
 
 export const metadata: Metadata = {
   title: "Création de Sites Internet à Tahiti | PACIFIK'AI — Sites Web Polynésie",
@@ -11,7 +15,7 @@ export const metadata: Metadata = {
     description:
       "Création de sites internet à Tahiti : sites vitrines, pages de vente, e-commerce et blogs.",
     url: "https://pacifikai.com/services/landing-pages",
-    locale: "fr_FR",
+    locale: "fr_PF",
     type: "website",
   },
   alternates: {
@@ -93,8 +97,55 @@ const ICON_BLOG = (
   </svg>
 );
 
+const FAQ_JSONLD = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: [
+    {
+      "@type": "Question",
+      name: "Combien coûte un site web à Tahiti ?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Chez PACIFIK'AI, un site web professionnel à Tahiti se prend en abonnement : 4 900 XPF/mois, sans engagement et 0 frais de mise en place (≈ 163 XPF/jour). Tout est inclus : design sur mesure responsive, développement, hébergement et SSL, nom de domaine .pf ou .com, maintenance, mises à jour, sécurité et sauvegardes, SEO local, formulaire de contact et support. En paiement annuel : 49 000 XPF/an, soit 2 mois offerts.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Combien de temps pour créer un site internet en Polynésie française ?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Un site vitrine standard est en ligne en 1 à 2 semaines avec PACIFIK'AI. Un site plus complexe avec des fonctionnalités avancées comme le e-commerce ou un portail de réservation prend 2 à 4 semaines. Le contenu est généré par l'IA et validé avec vous.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Le contenu du site est-il inclus dans le prix ?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Oui, l'intelligence artificielle génère les textes de votre site en fonction de votre activité et de vos objectifs commerciaux. Vous validez le contenu et PACIFIK'AI affine les textes ensemble. Le SEO est optimisé pour le référencement Google en Polynésie française.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Que se passe-t-il après la livraison du site ?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Avec l'abonnement à 4 900 XPF/mois, PACIFIK'AI assure en continu la maintenance technique, les mises à jour et la sécurité (avec sauvegardes) de votre site web. Vous pouvez modifier votre contenu en toute autonomie via un CMS simple, et les modifications de contenu sont incluses. L'hébergement, le nom de domaine et le support réactif restent inclus tant que l'abonnement est actif, sans engagement.",
+      },
+    },
+  ],
+};
+
+const relatedLinks = getOptimalLinks("/services/landing-pages", "service", ["site web", "creation site", "landing page", "vitrine", "e-commerce"]);
+
 export default function LandingPagesPage() {
   return (
+    <>
+    <Script
+      id="faq-jsonld-sites-web"
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(FAQ_JSONLD) }}
+    />
     <ServicePage
       badge="Conversion x3"
       title="Landing Pages &"
@@ -128,12 +179,12 @@ export default function LandingPagesPage() {
       stepsTitle="3 étapes, votre site est en ligne"
       stepsSubtitle="Du design au déploiement, on gère tout."
       metrics={[
-        { icon: ICON_CONVERT, value: "x3", label: "Conversion vs template standard" },
+        { icon: ICON_CONVERT, value: "≈ x3", label: "Conversion vs template (en moyenne)" },
         { icon: ICON_SPEED, value: "< 2s", label: "Temps de chargement" },
         { icon: ICON_SCORE, value: "100", label: "Score Google PageSpeed" },
-        { icon: ICON_SEO, value: "+65%", label: "Trafic organique après 3 mois", barPercent: 65 },
+        { icon: ICON_SEO, value: "+65%", label: "Trafic organique moyen (~3 mois)", barPercent: 65 },
       ]}
-      metricsTitle="Des résultats mesurables"
+      metricsTitle="Des résultats typiques observés"
       useCases={[
         {
           icon: ICON_SALE,
@@ -160,26 +211,28 @@ export default function LandingPagesPage() {
         {
           question: "Combien coûte un site web ?",
           answer:
-            "Nos sites web démarrent à partir de 100 000 XPF pour un site vitrine. Le prix varie selon la complexité, le nombre de pages et les fonctionnalités intégrées.",
+            "Un site vitrine se prend en abonnement : 4 900 XPF/mois, sans engagement et 0 frais de mise en place (≈ 163 XPF/jour). Design, hébergement, domaine .pf ou .com, maintenance, SEO local et support sont inclus. En annuel : 49 000 XPF/an, soit 2 mois offerts.",
         },
         {
-          question: "Combien de temps pour livrer un site ?",
+          question: "Combien de temps pour mettre un site en ligne ?",
           answer:
-            "Un site vitrine standard est livré en 5 à 10 jours ouvrés. Un site plus complexe avec des fonctionnalités avancées prend 2 à 4 semaines.",
+            "Un site vitrine standard est en ligne en 1 à 2 semaines. Un site plus complexe avec des fonctionnalités avancées prend 2 à 4 semaines.",
         },
         {
           question: "Le contenu est-il inclus ?",
           answer:
-            "Oui, l'IA génère les textes de votre site en fonction de votre activité et de vos objectifs. Vous validez et on affine ensemble.",
+            "Oui, l'IA génère les textes de votre site en fonction de votre activité et de vos objectifs. Vous validez et on affine ensemble. Les modifications de contenu sont incluses dans l'abonnement.",
         },
         {
-          question: "Que se passe-t-il après la livraison ?",
+          question: "Que se passe-t-il après la mise en ligne ?",
           answer:
-            "Nous assurons la maintenance technique et les mises à jour de sécurité. Vous pouvez modifier votre contenu en toute autonomie via un CMS simple.",
+            "L'abonnement à 4 900 XPF/mois couvre en continu la maintenance, les mises à jour, la sécurité et les sauvegardes. Vous pouvez modifier votre contenu en toute autonomie via un CMS simple, et le support reste inclus sans engagement.",
         },
       ]}
       ctaFinalTitle="Prêt à avoir un site qui convertit ?"
       ctaFinalSubtitle="Contactez-nous pour discuter de votre projet."
     />
+    <RelatedLinks links={relatedLinks} />
+    </>
   );
 }

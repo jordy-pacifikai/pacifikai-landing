@@ -4,13 +4,13 @@ import Footer from "@/components/ui/Footer";
 import PortfolioCarousel from "@/components/ui/PortfolioCarousel";
 
 export const metadata: Metadata = {
-  title: "Offre Site Web Pro 100 000 XPF | PACIFIK'AI",
+  title: "Site Web Pro à 4 900 XPF/mois — Sans Engagement | PACIFIK'AI",
   description:
-    "Offre limitée : votre site internet professionnel pour seulement 100 000 XPF. Design premium, mobile-ready, SEO, livré en 7 jours ouvrables. 50 places seulement.",
+    "Votre site internet professionnel en abonnement : 4 900 XPF/mois, sans engagement, 0 frais de mise en place. Design premium, hébergement, nom de domaine, maintenance et support inclus. En ligne en 1 à 2 semaines.",
   openGraph: {
-    title: "Site Web Pro à 100 000 XPF — 50 Places Seulement",
+    title: "Site Web Pro à 4 900 XPF/mois — Sans Engagement",
     description:
-      "Site internet professionnel clé en main pour 100 000 XPF. Design premium, 5 pages, livré en 7 jours.",
+      "Site internet professionnel tout inclus pour 4 900 XPF/mois (ou 49 000 XPF/an, 2 mois offerts). Hébergement, domaine, maintenance et support inclus. Sans engagement.",
     url: "https://pacifikai.com/offre-site-web",
     locale: "fr_FR",
   },
@@ -28,14 +28,29 @@ const INCLUS = [
     desc: "Parfait sur téléphone, tablette et ordinateur",
   },
   {
+    icon: "☁️",
+    title: "Hébergement premium + SSL",
+    desc: "Serveur rapide et sécurisé (HTTPS), inclus dans l'abonnement",
+  },
+  {
+    icon: "🌐",
+    title: "Nom de domaine inclus",
+    desc: ".pf ou .com standard, inclus pendant l'abonnement",
+  },
+  {
     icon: "📄",
-    title: "Jusqu'à 5 pages",
-    desc: "Accueil, À propos, Services, Galerie, Contact",
+    title: "Site complet, jusqu'à 5 pages",
+    desc: "Accueil, À propos, Services, Galerie, Contact…",
   },
   {
     icon: "🔍",
-    title: "SEO de base",
-    desc: "Optimisé pour apparaître sur Google",
+    title: "SEO local",
+    desc: "Optimisé pour être trouvé sur Google en Polynésie",
+  },
+  {
+    icon: "🔧",
+    title: "Maintenance & mises à jour",
+    desc: "On garde votre site à jour, sécurisé et sauvegardé",
   },
   {
     icon: "💬",
@@ -43,42 +58,27 @@ const INCLUS = [
     desc: "Vos clients vous écrivent directement depuis le site",
   },
   {
-    icon: "🚀",
-    title: "Livré en 7 jours",
-    desc: "Brief lundi, site en ligne vendredi",
-  },
-  {
     icon: "📝",
-    title: "1 révision incluse",
-    desc: "Ajustements après la première livraison",
+    title: "Petites modifications incluses",
+    desc: "Vos textes et photos à jour (hors refonte ou nouvelle fonction)",
   },
   {
-    icon: "🎓",
-    title: "Formation 30 min",
-    desc: "On vous montre comment gérer votre site",
-  },
-  {
-    icon: "🔧",
-    title: "Support 3 mois",
-    desc: "Assistance technique par email",
-  },
-  {
-    icon: "🔒",
-    title: "Propriétaire à 100 %",
-    desc: "Le site est à vous. Code source inclus.",
+    icon: "🤝",
+    title: "Support réactif",
+    desc: "Assistance par e-mail et WhatsApp, tant que vous êtes abonné",
   },
 ];
 
 const OPTIONS = [
   {
-    icon: "🌐",
-    title: "Nom de domaine",
-    desc: ".com (~2 000 XPF/an) ou .pf (~3 000 XPF HT/an via Vini) — on s'occupe de tout",
+    icon: "🛒",
+    title: "Boutique en ligne",
+    desc: "Vendez vos produits et encaissez directement sur votre site — sur devis",
   },
   {
-    icon: "☁️",
-    title: "Hébergement premium",
-    desc: "Serveur rapide, SSL, à partir de 2 000 XPF/mois — ou hébergement gratuit de base",
+    icon: "🤖",
+    title: "Assistant IA MANA",
+    desc: "Un assistant maison qui répond à vos clients et prend les rendez-vous 24/7 — +3 900/mois ou inclus en Croissance",
   },
 ];
 
@@ -136,7 +136,7 @@ export default function OffreSiteWebPage() {
             {/* Badge */}
             <div className="inline-flex items-center gap-2 bg-accent/10 border border-accent/30 text-accent px-5 py-2 rounded-full text-sm font-semibold mb-8">
               <span className="w-2 h-2 rounded-full bg-accent animate-pulse" />
-              Offre limitée — 2026
+              Site web par abonnement — sans engagement
             </div>
 
             <h1 className="font-display text-4xl md:text-6xl font-bold tracking-tight leading-tight mb-5">
@@ -145,33 +145,33 @@ export default function OffreSiteWebPage() {
               professionnel pour
               <br />
               <span className="text-accent text-5xl md:text-7xl">
-                100 000 XPF
+                4 900 XPF/mois
               </span>
             </h1>
 
             <p className="text-text-secondary text-lg max-w-xl mx-auto mb-8">
-              Design premium, mobile-ready, optimisé Google. Livré en 7 jours
-              ouvrables.
+              Design premium, hébergement, nom de domaine, maintenance et
+              support — tout inclus. Sans engagement, 0 frais de mise en place.
             </p>
 
             <a
               href="/contact"
               className="inline-flex items-center gap-2 bg-accent text-bg font-bold text-lg px-10 py-4 rounded-xl hover:shadow-[0_0_32px_rgba(249,112,102,0.5)] transition-all duration-300"
             >
-              Je réserve ma place &rarr;
+              Lancer mon site &rarr;
             </a>
 
             <p className="mt-4 text-text-dim text-sm">
-              Paiement en 2x possible &middot; Facture incluse
+              Sans engagement &middot; Résiliable à tout moment &middot; Facture incluse
             </p>
 
-            {/* Slots counter */}
+            {/* Value badge */}
             <div className="inline-flex items-center gap-3 bg-bg-card border border-border px-7 py-3 rounded-xl mt-8">
-              <span className="text-accent font-extrabold text-3xl">50</span>
+              <span className="text-accent font-extrabold text-3xl">163</span>
               <span className="text-text-secondary text-sm text-left leading-snug">
-                places
+                XPF / jour
                 <br />
-                disponibles
+                le prix d&apos;un café
               </span>
             </div>
           </div>
@@ -371,12 +371,12 @@ export default function OffreSiteWebPage() {
                 {
                   num: "03",
                   title: "Développement",
-                  desc: "On construit votre site en moins de 7 jours ouvrables",
+                  desc: "On construit votre site, en ligne en 1 à 2 semaines",
                 },
                 {
                   num: "04",
-                  title: "Mise en ligne",
-                  desc: "Formation incluse, vous prenez le contrôle de votre site",
+                  title: "Mise en ligne & suivi",
+                  desc: "Votre site est en ligne — on l'héberge et on l'entretient pour vous",
                 },
               ].map((step) => (
                 <div key={step.num} className="relative">
@@ -416,27 +416,27 @@ export default function OffreSiteWebPage() {
             <div className="bg-gradient-to-br from-accent/8 to-lagoon/5 border border-accent/20 rounded-3xl p-8 md:p-12 text-center">
               <div className="inline-flex items-center gap-2 bg-accent/10 border border-accent/20 text-accent px-4 py-1.5 rounded-full text-xs font-semibold mb-6">
                 <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
-                Offre spéciale — places limitées
+                Sans engagement &middot; 0 frais de mise en place
               </div>
 
               <h2 className="font-display text-4xl md:text-5xl font-bold mb-2">
-                100 000 XPF
+                4 900 XPF<span className="text-2xl md:text-3xl text-text-secondary">/mois</span>
               </h2>
               <p className="text-text-secondary mb-2">
-                paiement unique &middot; tout inclus
+                tout inclus &middot; sans engagement
               </p>
               <p className="text-text-dim text-sm mb-8">
-                Paiement en 2x sans frais possible (2 &times; 50 000 XPF)
+                ≈ 163 XPF/jour &middot; ou 49 000 XPF/an (2 mois offerts)
               </p>
 
               <div className="space-y-3 mb-8 text-left max-w-xs mx-auto">
                 {[
                   "Design sur-mesure",
-                  "5 pages incluses",
-                  "Responsive mobile",
-                  "SEO de base",
-                  "Livré en 7 jours",
-                  "Formation & support 3 mois",
+                  "Site complet multi-pages",
+                  "Hébergement + domaine inclus",
+                  "SEO local",
+                  "Maintenance & sécurité",
+                  "Modifications & support inclus",
                 ].map((feat) => (
                   <div key={feat} className="flex items-center gap-2.5 text-sm">
                     <span className="text-lagoon">✓</span>
@@ -449,10 +449,89 @@ export default function OffreSiteWebPage() {
                 href="/contact"
                 className="inline-flex items-center gap-2 bg-accent text-bg font-bold text-base px-10 py-4 rounded-xl hover:shadow-[0_0_32px_rgba(249,112,102,0.5)] transition-all duration-300 w-full justify-center mb-4"
               >
-                Je réserve ma place &rarr;
+                Lancer mon site &rarr;
               </a>
               <p className="text-text-dim text-xs">
-                Aucun engagement &middot; Réponse sous 24h
+                Sans engagement &middot; Résiliable à tout moment &middot; Réponse rapide
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* CROISSANCE + MODULES */}
+        <section className="relative z-10 py-20 px-6">
+          <div className="max-w-4xl mx-auto">
+            <div className="text-center mb-10">
+              <h2 className="font-display text-3xl md:text-4xl font-bold tracking-tight mb-3">
+                Besoin d&rsquo;aller plus loin ?
+              </h2>
+              <p className="text-text-secondary max-w-lg mx-auto">
+                La formule Présence suffit pour la plupart. Pour plus de fonctions,
+                passez à Croissance — ou ajoutez juste les modules qu&rsquo;il vous
+                faut.
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-6 mb-6">
+              <div className="bg-bg-card border border-border rounded-3xl p-8">
+                <div className="flex items-baseline justify-between mb-4">
+                  <h3 className="font-display text-xl">Croissance</h3>
+                  <div>
+                    <span className="font-display text-2xl text-accent">9 900</span>
+                    <span className="text-text-dim text-sm ml-1">XPF/mois</span>
+                  </div>
+                </div>
+                <p className="text-text-secondary text-sm mb-5">
+                  Tout Présence, et en plus :
+                </p>
+                <ul className="space-y-2.5">
+                  {[
+                    "Jusqu'à 8–10 pages + blog / actualités",
+                    "Réservation & prise de RDV en ligne",
+                    "Newsletter / emailing",
+                    "Bilingue & reo Tahiti",
+                    "Assistant IA MANA 24/7 inclus",
+                    "SEO avancé + suivi mensuel",
+                    "Support prioritaire",
+                  ].map((f) => (
+                    <li key={f} className="flex items-start gap-2.5 text-sm text-text-secondary">
+                      <span className="text-lagoon mt-0.5">✓</span>
+                      {f}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <div className="bg-bg-card border border-border rounded-3xl p-8">
+                <h3 className="font-display text-xl mb-1">Modules à la carte</h3>
+                <p className="text-text-dim text-xs mb-5">
+                  Activez seulement ce qu&rsquo;il vous faut · sans engagement
+                </p>
+                <ul className="space-y-2.5">
+                  {[
+                    ["Assistant IA MANA 24/7", "+3 900 / mois"],
+                    ["Bilingue & reo Tahiti", "+1 200 / mois"],
+                    ["Réservation & prise de RDV", "+2 500 / mois"],
+                    ["Newsletter & emailing", "+1 500 / mois"],
+                    ["Page ou section en plus", "+900 / mois"],
+                    ["Boutique en ligne", "sur devis"],
+                  ].map(([n, pr]) => (
+                    <li key={n} className="flex items-center justify-between gap-3 text-sm">
+                      <span className="text-text-secondary">{n}</span>
+                      <span className="text-accent whitespace-nowrap">{pr}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+
+            <div className="bg-gradient-to-br from-lagoon/8 to-transparent border border-lagoon/20 rounded-2xl p-6 text-center">
+              <p className="text-text-secondary text-sm leading-relaxed max-w-2xl mx-auto">
+                <strong className="text-text">Sans engagement</strong>, là où la
+                plupart des forfaits du marché imposent <strong className="text-text">12 mois de contrat</strong>.
+                Un <strong className="text-text">site complet multi-pages</strong> dès 4 900 XPF/mois,
+                là où l&rsquo;entrée de gamme se limite souvent à <strong className="text-text">une seule page</strong>.
+                Et tout est inclus — certains modules sont souvent facturés en plus ailleurs.
               </p>
             </div>
           </div>
@@ -467,24 +546,24 @@ export default function OffreSiteWebPage() {
             <div className="space-y-4">
               {[
                 {
-                  q: "Qu'est-ce qui est inclus dans les 100 000 XPF ?",
-                  a: "Design sur-mesure, développement, jusqu'à 5 pages, responsive mobile, SEO de base, formulaire de contact, 1 révision, formation de 30 min et support technique pendant 3 mois.",
+                  q: "Qu'est-ce qui est inclus dans l'abonnement ?",
+                  a: "Tout : design sur-mesure, développement, hébergement premium + SSL, nom de domaine .pf ou .com, SEO local, maintenance, mises à jour, sauvegardes, formulaire de contact, modifications de contenu et support. Aucun frais de mise en place, aucun frais caché.",
+                },
+                {
+                  q: "Y a-t-il un engagement ?",
+                  a: "Non. L'abonnement est sans engagement, résiliable à tout moment. En payant à l'année (49 000 XPF/an), vous économisez 2 mois par rapport au mensuel.",
                 },
                 {
                   q: "En combien de temps mon site sera-t-il en ligne ?",
-                  a: "7 jours ouvrables à partir du brief validé. Brief le lundi, site en ligne le vendredi suivant.",
+                  a: "Comptez 1 à 2 semaines à partir du brief validé : on échange, vous validez la maquette, on développe et on met en ligne.",
                 },
                 {
-                  q: "Suis-je propriétaire du site ?",
-                  a: "Oui, à 100 %. Le code source vous appartient. On peut aussi vous le transférer sur votre propre hébergeur si vous le souhaitez.",
+                  q: "Et si je veux arrêter ? Je perds mon site ?",
+                  a: "Vous restez libre. Si vous résiliez, on vous aide à récupérer votre contenu et à transférer votre nom de domaine vers l'hébergeur de votre choix. Pas de prise d'otage.",
                 },
                 {
-                  q: "Le paiement en 2x est-il possible ?",
-                  a: "Oui, 50 000 XPF à la commande et 50 000 XPF à la livraison. Aucun frais supplémentaire.",
-                },
-                {
-                  q: "Et si j'ai plus de 5 pages ?",
-                  a: "Chaque page supplémentaire est facturée 15 000 XPF. On vous donne un devis précis avant de commencer.",
+                  q: "Puis-je faire évoluer mon site ?",
+                  a: "Oui. Les petites modifications de contenu (textes, photos) sont incluses. Pour des pages supplémentaires, une boutique en ligne, un chatbot IA ou des fonctions sur-mesure, on ajoute le module correspondant ou on établit un devis clair.",
                 },
               ].map((faq) => (
                 <div
@@ -510,7 +589,7 @@ export default function OffreSiteWebPage() {
               </h2>
               <p className="text-text-secondary mb-8 max-w-md mx-auto">
                 Écrivez-nous par email ou discutez avec MANA. On vous répond
-                dans l&apos;heure.
+                sous 1 jour ouvré.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <a
